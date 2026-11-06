@@ -2,157 +2,250 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RAMen: your local AI never forgets</title>
-<meta name="description" content="RAMen gives the AI models on your own computer a long memory. Every chat and agent session is saved and reopens in seconds, and long conversations stay fast. Built on llama.cpp.">
-<meta property="og:title" content="RAMen: your local AI never forgets">
-<meta property="og:description" content="Long memory and fast long conversations for the AI models on your own computer.">
-<meta property="og:image" content="assets/hero.jpg">
-<meta name="theme-color" content="#07070b">
+<meta name="description" content="RAMen gives the AI models on your own computer a long memory: every chat and agent session is saved, reopens in seconds, and long conversations stay fast. Free forever for session memory.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
 <style>
+  /* RAMen v2: one illustrated night in the RAMen world. Every section is a scene of the same poster world (thick black
+     outlines, swirl clouds, lanterns), each in its own colours; the text sits on the calm sky of its scene and the art
+     melts into the page below it. Glossy 3D objects float beside the words. Type: Inter, heavy and tight, white with an
+     ink outline like the art; one shine word per heading; one broth-orange button. No cards: sections are set apart by
+     space, headings and hairlines. Motion is gentle and stops for reduced motion. */
   :root {
-    --bg: #07070b; --bg2: #0d0c14; --panel: rgba(255, 255, 255, .045); --panel-strong: rgba(255, 255, 255, .07);
-    --line: rgba(255, 255, 255, .09); --ink: #f6efe6; --muted: #a79fae; --dim: #6f6878;
-    --broth: #f29a43; --pink: #f2a3c7; --violet: #7b5cff; --aqua: #3fe0d0; --ok: #8fe3b5;
-    --radius: 20px;
+    color-scheme: dark;
+    --ink: #070a17;
+    --night: #0d1a35;          /* sampled from the hero sky so the art melts into the page */
+    --dusk: #2a1846;           /* speed scene */
+    --amber: #2b1a12;          /* the shop counter */
+    --market: #0f2a33;         /* the night market */
+    --roof: #24133f;           /* the rooftops */
+    --lake: #0a1630;           /* the lake */
+    --text: #ffffff; --muted: #dcd6ea; --faint: #b9b2cc;
+    --line: rgba(255, 255, 255, .2); --line-2: rgba(255, 255, 255, .45);
+    --cream: #fff3e2; --broth: #f29a43; --broth-hi: #ffb46a; --pink: #f2a3c7; --violet: #7b5cff; --aqua: #3fe0d0;
+    --shine: linear-gradient(90deg, #ffd08a 0%, #f29a43 18%, #f2a3c7 38%, #c9b6ff 55%, #3fe0d0 72%, #ffd08a 100%);
+    --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --max: 1180px;
+    --outline: .03em 0 0 var(--ink), -.03em 0 0 var(--ink), 0 .03em 0 var(--ink), 0 -.03em 0 var(--ink),
+      .022em .022em 0 var(--ink), -.022em .022em 0 var(--ink), .022em -.022em 0 var(--ink), -.022em -.022em 0 var(--ink),
+      0 .075em 0 var(--ink);
   }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; overflow-x: clip; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink); overflow-x: hidden;
-    font: 17px/1.6 "Inter", ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  /* film grain over everything, like a printed poster */
-  body::after {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .07; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--night); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body { margin: 0; color: var(--text); font: 400 17px/1.6 var(--font); letter-spacing: -0.011em; overflow-x: clip;
+         -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--night); }
+  img, video { display: block; max-width: 100%; }
   a { color: inherit; }
-  img { display: block; max-width: 100%; }
-  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; position: relative; }
-  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .88em; }
-  .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .45; pointer-events: none; z-index: 0; }
+  code { font-family: var(--mono); font-size: .9em; }
+  .wrap { width: min(var(--max), 100% - 32px); margin: 0 auto; }
+  h1, h2, h3 { margin: 0; font-weight: 850; text-wrap: balance; color: #fff; }
+  h2 { font-size: clamp(36px, 6.2vw, 64px); line-height: 1.02; letter-spacing: -0.045em; text-shadow: var(--outline); }
+  .shine { background: var(--shine); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text;
+           color: transparent; text-shadow: none; filter: drop-shadow(0 .055em 0 var(--ink)); animation: shine 9s linear infinite; }
+  .kick { display: inline-flex; align-items: center; gap: 10px; color: var(--cream); font: 760 13px/1.3 var(--font);
+          letter-spacing: .16em; text-transform: uppercase; }
+  .kick i { font-style: normal; color: var(--broth); font-size: 15px; letter-spacing: 0; }
+  .kick + h1, .kick + h2 { margin-top: 18px; }
+  .lede { color: var(--muted); font-size: clamp(17px, 2.2vw, 20px); max-width: 60ch; margin: 20px auto 0; }
+  .center { text-align: center; }
 
-  /* header */
-  header { position: absolute; top: 0; left: 0; right: 0; z-index: 5; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; padding-top: 22px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; text-decoration: none; letter-spacing: -.01em; }
-  .brand svg { width: 32px; height: 32px; }
-  .brand b { color: var(--broth); }
-  nav { display: flex; align-items: center; background: rgba(7, 7, 11, .62); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--line); border-radius: 14px; padding: 6px 6px 6px 4px; }
-  nav a { margin-left: 20px; text-decoration: none; color: #e4dcea; font-size: 15px; }
-  nav a:hover { color: var(--ink); }
-  nav a.buy { color: #1a0f05; background: var(--broth); padding: 8px 14px; border-radius: 10px; font-weight: 700; }
+  /* buttons: broth orange, outlined in ink with a hard shadow like the art */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 54px; padding: 0 26px;
+         border-radius: 999px; border: 2.5px solid var(--ink); font: 780 16.5px/1 var(--font); letter-spacing: -0.01em;
+         white-space: nowrap; text-decoration: none; transition: transform .15s, box-shadow .15s, background .15s; }
+  .btn.primary { background: var(--broth); color: #1d0c02; box-shadow: 0 5px 0 var(--ink), 0 20px 44px -16px rgba(242, 154, 67, .8); }
+  .btn.primary:hover { background: var(--broth-hi); transform: translateY(-2px); box-shadow: 0 7px 0 var(--ink), 0 24px 48px -16px rgba(242, 154, 67, .9); }
+  .btn.primary:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--ink); }
+  .btn.line { background: rgba(255, 255, 255, .07); color: #fff; border-color: rgba(255, 255, 255, .8); }
+  .btn.line:hover { background: rgba(255, 255, 255, .16); border-color: #fff; }
+  .btn.sm { height: 42px; padding: 0 18px; font-size: 15px; border-width: 2px; }
+  .btn.sm.primary { box-shadow: 0 3px 0 var(--ink); }
+  .btns { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin-top: 30px; }
+  .fine { margin-top: 18px; color: var(--faint); font-size: 14.5px; }
+  .fine i { font-style: normal; color: var(--broth); margin: 0 6px; }
 
-  /* hero: illustration on the right, fading into the night on the left */
-  .hero { position: relative; min-height: 720px; display: flex; align-items: center; isolation: isolate; }
-  .hero-art { position: absolute; inset: 0; z-index: -1; overflow: hidden;
-              background: radial-gradient(120% 90% at 80% 30%, #1b2a6b 0%, #0d1236 45%, var(--bg) 80%); }
-  .hero-art img { position: absolute; right: 0; top: 0; height: 100%; width: 72%; object-fit: cover; object-position: 60% 50%; }
-  .hero-art::after { content: ""; position: absolute; inset: 0;
-                     background: linear-gradient(90deg, var(--bg) 22%, rgba(7, 7, 11, .82) 42%, rgba(7, 7, 11, .15) 70%, rgba(7, 7, 11, .3) 100%),
-                                 linear-gradient(0deg, var(--bg) 0%, transparent 28%); }
-  .hero .wrap { width: 100%; padding-top: 110px; padding-bottom: 80px; }
-  .hero-copy { max-width: 560px; }
-  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 650; letter-spacing: .06em;
-             text-transform: uppercase; color: var(--pink); background: rgba(242, 163, 199, .1); border: 1px solid rgba(242, 163, 199, .25);
-             padding: 6px 12px; border-radius: 999px; }
-  .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 10px var(--ok); }
-  h1 { font-size: clamp(44px, 7vw, 78px); line-height: 1; letter-spacing: -.035em; margin: 20px 0 20px; font-weight: 850; }
-  h1 em { font-style: normal; background: linear-gradient(90deg, var(--broth), var(--pink) 60%, var(--violet));
-          -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .lede { font-size: 19px; color: #cfc6d6; margin: 0 0 30px; }
-  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 14px; font-weight: 700; text-decoration: none;
-         font-size: 16px; border: 1px solid var(--line); background: var(--panel-strong); backdrop-filter: blur(8px); transition: transform .15s; }
-  .btn:hover { transform: translateY(-1px); }
-  .btn.primary { background: linear-gradient(135deg, var(--broth), #ff7a59); border-color: transparent; color: #1a0f05;
-                 box-shadow: 0 10px 30px rgba(242, 154, 67, .35); }
-  .fine { font-size: 14px; color: var(--muted); margin-top: 14px; }
+  /* header: frosted near-white glass with ink text, so it sits calmly over the art */
+  header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
+           background: rgba(248, 246, 251, .9); border-bottom: 1px solid rgba(7, 10, 23, .08); box-shadow: 0 6px 24px -14px rgba(7, 10, 23, .45); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font: 850 22px/1 var(--font); letter-spacing: -0.04em; }
+  .brand svg { width: 34px; height: 34px; }
+  .brand b { color: #e07f1f; }
+  nav { display: flex; align-items: center; gap: 24px; }
+  nav a:not(.btn) { color: #3b3850; text-decoration: none; font-weight: 650; font-size: 15px; }
+  nav a:not(.btn):hover { color: var(--ink); }
 
-  section { position: relative; padding: 84px 0; overflow-x: clip; }
-  .kicker { color: var(--broth); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 10px; }
-  h2 { font-size: clamp(30px, 4.4vw, 46px); letter-spacing: -.025em; margin: 0 0 14px; line-height: 1.1; font-weight: 800; }
-  .sub { color: var(--muted); margin: 0 0 40px; max-width: 660px; font-size: 18px; }
+  /* scenes: each section is one picture. Its sky colour is sampled from the top of its art, so the words sit on the
+     same sky the art continues below them; the art fills the foot of the section and a cloud band covers each seam */
+  .scene { position: relative; isolation: isolate; background: var(--sky, var(--night));
+           padding: clamp(80px, 9vw, 132px) 0 calc(56.25vw * var(--show, .58)); }
+  .scene::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56.25vw; z-index: -1;
+                   background: var(--art, none) center bottom / cover no-repeat;
+                   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 24%); mask-image: linear-gradient(180deg, transparent 0, #000 24%); }
+  .band { position: absolute; left: 0; bottom: -5.5vw; z-index: 4; width: 100%; height: 11vw; object-fit: cover; object-position: 50% 50%;
+          pointer-events: none; filter: drop-shadow(0 6px 0 rgba(7, 10, 23, .35)); animation: drift 16s ease-in-out infinite; }
+  .scene + .scene { padding-top: clamp(110px, 12vw, 170px); }
+  /* the warm shop counter is a light scene: dark ink words */
+  .light { color: #2b1406; }
+  .light h2, .light h3 { color: #2b1406; text-shadow: none; }
+  .light .lede, .light .rows p { color: #5a3416; }
+  .light .kick { color: #7a3d0f; }
+  .light .rows li { border-color: rgba(43, 20, 6, .22); }
+  .light .cmd { background: rgba(43, 20, 6, .88); border-color: #2b1406; color: #ffe8c9; }
+  .light .rows .n { color: #b4520b; }
+  .light .shine { background-image: linear-gradient(90deg, #b4520b 0%, #d9480f 20%, #c2417f 40%, #6a3fd1 60%, #0f7f76 80%, #b4520b 100%);
+                  filter: none; }
 
-  /* numbers */
-  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 22px; position: relative; overflow: hidden; }
-  .stat::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
-                  background: linear-gradient(140deg, rgba(242, 154, 67, .5), transparent 40%, rgba(123, 92, 255, .4));
-                  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
-  .num { font-size: clamp(34px, 4vw, 46px); font-weight: 850; letter-spacing: -.03em; line-height: 1.05; }
-  .num small { font-size: .45em; font-weight: 700; color: var(--muted); letter-spacing: 0; }
-  .stat p { margin: 8px 0 14px; color: #cfc6d6; font-size: 15px; }
-  .tag { display: inline-block; font-size: 11.5px; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
-  .tag.m { color: var(--ok); background: rgba(143, 227, 181, .1); border: 1px solid rgba(143, 227, 181, .3); }
-  .tag.p { color: var(--pink); background: rgba(242, 163, 199, .08); border: 1px solid rgba(242, 163, 199, .3); }
-  .notes { color: var(--dim); font-size: 13.5px; margin-top: 18px; max-width: 860px; }
+  /* hero: the words sit on the art's calm left sky; no empty band above */
+  .s-hero { position: relative; padding: 0; min-height: clamp(620px, 55.8vw, 100svh); display: flex; align-items: center;
+            overflow: hidden; background: var(--night); }
+  .s-hero .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 76% 40%; }
+  .s-hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+                    background: linear-gradient(90deg, rgba(9, 16, 41, .92) 0%, rgba(9, 16, 41, .78) 30%, rgba(9, 16, 41, .25) 52%, transparent 64%),
+                                linear-gradient(0deg, rgba(9, 16, 41, .7) 0%, transparent 22%); }
+  .s-hero .wrap { position: relative; z-index: 2; padding: 96px 0 120px; }
+  .s-hero .copy { max-width: 640px; text-align: left; }
+  .s-hero h1 { margin: 16px 0 0; font-size: clamp(46px, 5.6vw, 86px); line-height: .95; letter-spacing: -0.052em; text-shadow: var(--outline); }
+  .s-hero .lede { margin: 22px 0 0; max-width: 46ch; color: #ece6f6; }
+  .s-hero .btns { justify-content: flex-start; }
+  .s-hero .hero-band { bottom: -5vw; }
+  .s-hero .float-a { position: absolute; z-index: 2; width: clamp(80px, 9vw, 150px); right: 7%; bottom: 14%; }
 
-  /* steps */
-  .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
-  .step .n { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; color: #1a0f05;
-             background: linear-gradient(135deg, var(--broth), var(--pink)); margin-bottom: 14px; }
-  .step h3 { margin: 0 0 6px; font-size: 18px; }
-  .step p { margin: 0 0 14px; color: var(--muted); font-size: 15.5px; }
-  .step code { display: block; background: rgba(0, 0, 0, .55); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
-               overflow-x: auto; white-space: nowrap; color: #f6d9b8; }
-  .how { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 40px; align-items: center; }
-  .how .art { aspect-ratio: 1; border-radius: 28px; background: #000; overflow: hidden; box-shadow: 0 30px 80px rgba(123, 92, 255, .25); }
+  /* ribbon */
+  .ribbon { position: relative; z-index: 3; background: var(--ink); border-block: 2.5px solid #000; overflow: hidden; }
+  .ribbon .track { display: flex; width: max-content; animation: roll 38s linear infinite; }
+  .ribbon span { padding: 16px 0; color: var(--cream); font: 800 15px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+  .ribbon span i { font-style: normal; color: var(--broth); margin: 0 22px; }
 
-  /* features */
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px 26px; transition: border-color .2s, transform .2s; }
-  .card:hover { border-color: rgba(242, 154, 67, .35); transform: translateY(-2px); }
-  .card img { width: 96px; height: 96px; margin: -6px 0 6px -10px; mix-blend-mode: lighten; }
-  .card h3 { margin: 4px 0 6px; font-size: 19px; letter-spacing: -.01em; }
-  .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+  /* numbers strip, split by thin lines */
+  .strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1000px; margin: 54px auto 0; }
+  .strip > div { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 6px 10px; min-width: 0; text-align: center; }
+  .strip > div + div { border-left: 1px solid var(--line); }
+  .strip b { font: 900 clamp(44px, 8vw, 92px)/.9 var(--font); letter-spacing: -0.04em; color: var(--cream); text-shadow: var(--outline);
+             font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .strip b small { font-size: .42em; letter-spacing: -0.01em; }
+  .strip span { color: var(--muted); font-size: 14.5px; line-height: 1.4; max-width: 22ch; }
+  .notes { color: var(--faint); font-size: 13.5px; max-width: 80ch; margin: 30px auto 0; text-align: center; }
 
-  /* projected per machine */
-  table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--panel); border: 1px solid var(--line);
-          border-radius: var(--radius); overflow: hidden; font-size: 15.5px; }
-  th, td { text-align: left; padding: 16px 20px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tr:last-child td { border-bottom: 0; }
-  th { color: var(--muted); font-weight: 650; font-size: 13px; letter-spacing: .05em; text-transform: uppercase; background: rgba(255, 255, 255, .02); }
-  td b { color: var(--ink); }
-  td span { color: var(--dim); }
-  .table-wrap { overflow-x: auto; }
+  /* the real race */
+  .race { position: relative; max-width: 1040px; margin: 56px auto 0; border: 2.5px solid var(--ink); border-radius: 22px; overflow: hidden;
+          box-shadow: 0 8px 0 var(--ink), 0 40px 90px -30px rgba(242, 154, 67, .45); background: #07070b; }
+  .race video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .race .tag { position: absolute; top: 14px; right: 14px; background: rgba(7, 10, 23, .8); border: 1.5px solid var(--line-2);
+               border-radius: 999px; padding: 6px 12px; font: 700 12.5px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--cream); }
 
-  /* pricing */
-  .price { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
-  .price-card { background: linear-gradient(160deg, rgba(242, 154, 67, .12), rgba(123, 92, 255, .1)); border: 1px solid rgba(242, 154, 67, .35);
-                border-radius: 26px; padding: 32px; position: relative; overflow: hidden; }
-  .price-card img { position: absolute; right: -10px; top: -10px; width: 170px; height: 170px; mix-blend-mode: lighten; }
-  .amount { font-size: 64px; font-weight: 850; letter-spacing: -.04em; line-height: 1; }
-  .amount small { font-size: 18px; font-weight: 650; color: var(--muted); letter-spacing: 0; }
-  ul.checks { list-style: none; padding: 0; margin: 22px 0 26px; }
-  ul.checks li { padding-left: 30px; position: relative; margin: 10px 0; color: #ddd4e2; }
-  ul.checks li::before { content: ""; position: absolute; left: 4px; top: 8px; width: 12px; height: 7px;
-                         border-left: 2.5px solid var(--ok); border-bottom: 2.5px solid var(--ok); transform: rotate(-45deg); }
+  /* rows: numbered steps split by thin lines */
+  .rows { list-style: none; margin: 46px auto 0; padding: 0; max-width: 980px; }
+  .rows li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 26px; align-items: center; padding: 26px 0;
+             border-top: 1px solid var(--line); }
+  .rows li:last-child { border-bottom: 1px solid var(--line); }
+  .rows li img { width: 120px; height: 120px; object-fit: contain; }
+  .rows .n { font: 860 13px/1 var(--font); letter-spacing: .16em; color: var(--broth); }
+  .rows h3 { margin: 8px 0 6px; font-size: 24px; letter-spacing: -0.025em; }
+  .rows p { margin: 0; color: var(--muted); }
+  .cmd { display: inline-block; margin-top: 12px; max-width: 100%; overflow-x: auto; white-space: nowrap; background: rgba(0, 0, 0, .45);
+         border: 1.5px solid var(--line-2); border-radius: 12px; padding: 9px 14px; color: var(--cream); font: 600 15px/1.4 var(--mono); }
 
-  details { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
-  summary { cursor: pointer; font-weight: 700; }
+  /* features: icon, title, words; no boxes */
+  .feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; margin-top: 56px; }
+  .feat img { width: 112px; height: 112px; object-fit: contain; margin: 0 0 6px -8px; }
+  .feat h3 { font-size: 21px; letter-spacing: -0.025em; margin-bottom: 6px; }
+  .feat p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  /* plans: columns split by thin lines */
+  .ticket { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 34px auto 0; width: fit-content;
+            max-width: 100%; padding: 12px 20px; border-radius: 16px; border: 2.5px solid var(--ink); background: var(--cream); color: #2a1406;
+            font-weight: 760; transform: rotate(-1.2deg); box-shadow: 0 5px 0 var(--ink); }
+  .ticket b { color: #b4520b; }
+  .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 50px; }
+  .plan { padding: 8px 26px 10px; min-width: 0; }
+  .plan + .plan { border-left: 1px solid var(--line); }
+  .plan img { width: 104px; height: 104px; object-fit: contain; margin: 0 0 10px -6px; }
+  .plan h3 { font-size: 22px; letter-spacing: -0.02em; }
+  .price { margin-top: 10px; font: 900 46px/1 var(--font); letter-spacing: -0.04em; color: var(--cream); text-shadow: var(--outline); }
+  .price small { display: block; margin-top: 8px; font: 650 14.5px/1.3 var(--font); letter-spacing: 0; color: var(--faint); text-shadow: none; }
+  .plan ul { list-style: none; margin: 18px 0 0; padding: 0; }
+  .plan li { position: relative; padding-left: 22px; margin: 9px 0; color: var(--muted); font-size: 15.5px; line-height: 1.45; }
+  .plan li::before { content: "✦"; position: absolute; left: 0; color: var(--broth); font-size: 13px; top: 2px; }
+  .plan.pro .price { color: #fff; }
+  .plan.pro h3 .badge { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 4px 9px; border-radius: 999px; border: 2px solid var(--ink);
+                        background: var(--aqua); color: #03141a; font: 800 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
+  .ent { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 22px; align-items: center; margin-top: 46px; padding: 24px 0;
+         border-block: 1px solid var(--line); }
+  .ent img { width: 96px; height: 96px; object-fit: contain; }
+  .ent h3 { font-size: 22px; }
+  .ent p { margin: 4px 0 0; color: var(--muted); }
+
+  /* questions */
+  .faq { max-width: 860px; margin: 46px auto 0; }
+  details { border-top: 1px solid var(--line); padding: 20px 2px; }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; list-style: none; font-weight: 760; font-size: 18.5px; letter-spacing: -0.02em; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--broth); font-weight: 800; font-size: 24px; line-height: .9; }
+  details[open] summary::after { content: "−"; }
   details p { color: var(--muted); margin: 10px 0 0; }
 
-  footer { border-top: 1px solid var(--line); padding: 30px 0 44px; color: var(--dim); font-size: 14px; }
+  /* the last scene: the call to action floats over the lake */
+  .final { margin-top: clamp(90px, 11vw, 160px); text-align: center; }
+  .final h2 { max-width: 16ch; margin: 0 auto; }
+  footer { position: relative; z-index: 3; background: var(--ink); color: var(--faint); font-size: 14px; padding: 30px 0 calc(40px + env(safe-area-inset-bottom)); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+  footer a { color: var(--muted); }
+
+  /* motion */
+  .float { animation: float 6.5s ease-in-out infinite; }
+  .float.b { animation-duration: 7.6s; animation-delay: -2.6s; }
+  .float.c { animation-duration: 6.9s; animation-delay: -4.2s; }
+  .rise { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
+  .rise.in { opacity: 1; transform: none; }
+  @keyframes shine { to { background-position: -200% 0; } }
+  @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-1.6deg); } }
+  @keyframes drift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-1.4%); } }
+  @keyframes roll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rise { opacity: 1; transform: none; }
+  }
 
   @media (max-width: 900px) {
-    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid, .steps, .price, .how { grid-template-columns: minmax(0, 1fr); }
-    .how .art { max-width: 260px; }
-    nav a:not(.buy) { display: none; }
-    .hero { min-height: 0; flex-direction: column; align-items: stretch; }
-    .hero-art { position: relative; height: 340px; inset: auto; }
-    .hero-art img { width: 100%; }
-    .hero-art::after { background: linear-gradient(0deg, var(--bg) 0%, transparent 45%); }
-    .hero .wrap { padding-top: 0; margin-top: -40px; padding-bottom: 40px; }
+    nav a:not(.btn) { display: none; }
+    .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 30px; }
+    .strip > div:nth-child(3) { border-left: 0; }
+    .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+    .plan:nth-child(3) { border-left: 0; }
+    .s-hero { min-height: 0; display: block; padding-top: 74vw; }
+    .s-hero .bg { height: 100vw; bottom: auto; object-position: 64% 50%; }
+    .s-hero::before { background: linear-gradient(180deg, transparent 0, transparent 40vw, rgba(9, 16, 41, .85) 78vw, var(--night) 100vw); }
+    .s-hero .wrap { padding: 0 0 72px; }
+    .s-hero .copy { max-width: none; }
+    .scene { padding-bottom: calc(100vw * var(--show, .58)); }
+    .scene::before { height: 100vw; background-size: cover; background-position: 50% 100%; }
+    .band { height: 18vw; bottom: -9vw; }
+
   }
-  @media (max-width: 520px) { .stats { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 560px) {
+    .strip { grid-template-columns: minmax(0, 1fr); }
+    .strip > div + div { border-left: 0; border-top: 1px solid var(--line); padding-top: 26px; }
+    .feats, .plans { grid-template-columns: minmax(0, 1fr); }
+    .plan + .plan { border-left: 0; border-top: 1px solid var(--line); padding-top: 26px; }
+    .rows li { grid-template-columns: 76px minmax(0, 1fr); gap: 16px; }
+    .rows li img { width: 76px; height: 76px; }
+    .ent { grid-template-columns: 72px minmax(0, 1fr); }
+    .ent img { width: 72px; height: 72px; }
+    .ent .btn { grid-column: 1 / -1; justify-self: start; }
+    .s-hero .float-a { display: none; }
+    .s-hero h1 { font-size: 46px; }
+    .scene::before { height: 130vw; }
+    .scene { padding-bottom: calc(130vw * var(--show, .58)); }
+    .final h2 { font-size: 34px; }
+  }
 </style>
 </head>
 <body>
@@ -161,142 +254,146 @@
     <a class="brand" href="#" aria-label="RAMen home">
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
-        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
         <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
-        <path d="M46 6 26 30M54 9 32 31" stroke="#f2a3c7" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
       </svg>
       <span>RAM<b>en</b></span>
     </a>
     <nav>
-      <a href="#numbers">Numbers</a>
-      <a href="#features">Features</a>
-      <a href="#faq">FAQ</a>
-      <a href="#pricing" class="buy">Buy $39</a>
+      <a href="#speed">Speed</a>
+      <a href="#how">How it works</a>
+      <a href="#plans">Plans</a>
+      <a href="#faq">Questions</a>
+      <a class="btn sm primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get RAMen</a>
     </nav>
   </div>
 </header>
 
-<div class="hero">
-  <div class="hero-art"><img src="assets/hero.jpg" alt="" onerror="this.remove()"></div>
+<main>
+<section class="s-hero">
+  <img class="bg" src="assets/hero.jpg" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl">
   <div class="wrap">
-    <div class="hero-copy">
-      <h1>Your local AI <em>never forgets.</em></h1>
-      <p class="lede">RAMen gives the models on your own computer a long memory. Every chat and agent session is saved automatically and reopens in seconds, and long conversations stay fast.</p>
-      <div class="cta">
+    <div class="copy">
+      <span class="kick rise"><i>✦</i> Local AI, on your own computer <i>✦</i></span>
+      <h1 class="rise">Your local AI <span class="shine">never forgets.</span></h1>
+      <p class="lede rise">RAMen saves every chat and agent session, brings it back in seconds, and keeps long conversations fast. One command to start, with the apps you already use.</p>
+      <div class="btns rise">
         <a class="btn primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get launch updates</a>
-        <a class="btn" href="#pricing">Buy once, $39</a>
+        <a class="btn line" href="#speed">See it race</a>
       </div>
-      <p class="fine">14-day free trial at launch. Windows, macOS and Linux. No subscription.</p>
+      <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux</p>
     </div>
   </div>
-</div>
+  <img class="band hero-band" src="assets/v2/band.webp" alt="" aria-hidden="true">
+</section>
 
-<section id="numbers">
-  <div class="glow" style="width:420px;height:420px;background:var(--violet);left:-160px;top:40px"></div>
+<div class="ribbon" aria-hidden="true"><div class="track">
+  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
+  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
+</div></div>
+
+<section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(assets/v2/speed.jpg);--show:.8">
+  <div class="wrap center">
+    <span class="kick rise"><i>✦</i> Speed <i>✦</i></span>
+    <h2 class="rise">Long chats <span class="shine">stop slowing down.</span></h2>
+    <p class="lede rise">The longer a conversation gets, the slower a local model writes. RAMen reads only the parts of the conversation that matter at each step, so the speed holds.</p>
+    <div class="race rise">
+      <video src="assets/v2/race.mp4" poster="assets/v2/race.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Normal llama.cpp and RAMen answering the same 87,000-token conversation, side by side, in real time"></video>
+      <span class="tag">Real recording</span>
+    </div>
+    <div class="strip rise">
+      <div><b>1.8<small>s</small></b><span>to reopen a 105,000-token session after a restart, instead of 3.7 minutes</span></div>
+      <div><b>99.7<small>%</small></b><span>of each agent's history reused when three agents share one GPU</span></div>
+      <div><b>54<small>/54</small></b><span>long-document answers the same as full attention</span></div>
+      <div><b>5.5<small>x</small></b><span>faster replies at 128,000 tokens, and the speed holds as the chat grows</span></div>
+    </div>
+    <p class="notes rise">Measured on an NVIDIA L4 with Qwen3-4B, November 2026: 43 versus 7.8 tokens per second at 128K tokens. The video: Qwen3 32B on an RTX A6000, 20.5 versus 8.4 tokens per second at 87K tokens, same answer.</p>
+  </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
+</section>
+
+<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(assets/v2/counter.jpg);--show:.6">
   <div class="wrap">
-    <p class="kicker">The numbers</p>
-    <h2>Seconds, not minutes</h2>
-    <p class="sub">Without RAMen, a local model re-reads a whole saved conversation before it can answer. With RAMen it picks up where it left off.</p>
-    <div class="stats">
-      <div class="stat">
-        <div class="num">1.8<small> s</small></div>
-        <p>to reopen a 105,000-token session after a restart, instead of 3.7 minutes</p>
-      </div>
-      <div class="stat">
-        <div class="num">99.7<small>%</small></div>
-        <p>of each agent's history reused when three agents share one GPU</p>
-      </div>
-      <div class="stat">
-        <div class="num">54<small> / 54</small></div>
-        <p>long-document tests answered the same as full attention with selective reading on</p>
-      </div>
-      <div class="stat">
-        <div class="num">5.5<small>x</small></div>
-        <p>faster replies at 128,000 tokens of context, and the speed holds as the conversation grows</p>
-      </div>
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Set up in a minute <i>✦</i></span>
+      <h2 class="rise">Three commands. <span class="shine">No new tools.</span></h2>
+      <p class="lede rise">RAMen picks a model that fits your computer, sizes the memory, and speaks the same API as OpenAI, so your apps work unchanged.</p>
     </div>
-    <p class="notes">Measured: Qwen3-4B on an NVIDIA L4 GPU, November 2026. Reply speed: 43 versus 7.8 tokens per second at 128K tokens (1.7x at 32K, 2.8x at 64K). Answer tests: documents of 16K to 64K tokens.</p>
-
-    <h3 style="margin:48px 0 16px;font-size:22px">Projected on popular machines</h3>
-    <div class="table-wrap">
-      <table>
-        <tr><th>Machine</th><th>Reopen a long session</th><th>Three agents at once</th><th>How much it remembers</th></tr>
-        <tr><td><b>Gaming PC</b><br><span>RTX 5070 12 GB, 32 GB RAM, Qwen3-4B</span></td><td><b>4 s</b> <span>instead of 89 s</span></td><td><b>About 4x</b> <span>more turns per hour</span></td><td><b>262K tokens</b> <span>instead of 92K</span></td></tr>
-        <tr><td><b>AI enthusiast PC</b><br><span>RTX 4090 24 GB, 64 GB RAM, Qwen3-30B-A3B</span></td><td><b>2 s</b> <span>instead of 58 s</span></td><td><b>About 3x</b> <span>more turns per hour</span></td><td><b>262K tokens</b> <span>instead of 62K</span></td></tr>
-        <tr><td><b>MacBook Pro</b><br><span>M4 Max, 64 GB</span></td><td><b>2 s</b> <span>instead of about 55 min</span></td><td><b>About 4x</b> <span>faster writing at 200K tokens</span></td><td><b>Same</b> <span>(Macs already share memory)</span></td></tr>
-      </table>
-    </div>
-    <p class="notes">All figures in this table are projections from RAMen's performance model, not measurements yet.</p>
+    <ol class="rows">
+      <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>One line on Mac and Linux, a download on Windows (at launch).</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits, downloads it and starts in the background. Or bring any GGUF model.</p><code class="cmd">ramen start</code></div></li>
+      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Cline, Continue, Aider, OpenCode, Open WebUI, or anything that speaks the OpenAI API.</p><code class="cmd">ramen connect cline</code></div></li>
+    </ol>
   </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section id="how">
-  <div class="wrap how">
-    <div class="art"><img src="assets/bowl.jpg" alt="" onerror="this.parentNode.style.display='none'"></div>
-    <div>
-      <p class="kicker">Set up in a minute</p>
-      <h2>Three steps, no new tools</h2>
-      <p class="sub">RAMen sits in front of llama.cpp and speaks the same API as OpenAI, so the apps you already use work unchanged.</p>
-      <div class="steps">
-        <div class="step"><div class="n">1</div><h3>Install</h3><p>One command on macOS and Linux, a download on Windows (at launch).</p><code id="download">curl -fsSL https://getramenai.com/install.sh | bash</code></div>
-        <div class="step"><div class="n">2</div><h3>Start your model</h3><p>Any GGUF model that llama.cpp runs.</p><code>ramen -m your-model.gguf</code></div>
-        <div class="step"><div class="n">3</div><h3>Connect your apps</h3><p>Agents, chat apps and editors that use the OpenAI API.</p><code>http://127.0.0.1:8090/v1</code></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="features">
-  <div class="glow" style="width:460px;height:460px;background:var(--broth);right:-200px;top:120px;opacity:.25"></div>
+<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(assets/v2/market.jpg);--show:.84">
   <div class="wrap">
-    <p class="kicker">What you get</p>
-    <h2>Memory that keeps up with your agents</h2>
-    <p class="sub">Normally a local model forgets most of a long session, and reopening a saved one means reading it all again. RAMen fixes both.</p>
-    <div class="grid">
-      <div class="card"><img src="assets/restore.jpg" alt="" onerror="this.remove()"><h3>Sessions that survive restarts</h3><p>Every conversation is saved to disk on its own and comes back in seconds, even after a reboot.</p></div>
-      <div class="card"><img src="assets/agents.jpg" alt="" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Switch between agents and chats without re-reading their history. Each one resumes exactly where it stopped.</p></div>
-      <div class="card"><img src="assets/bolt.jpg" alt="" onerror="this.remove()"><h3>Fast on long contexts</h3><p>On long conversations RAMen reads only the parts of the context that matter at each step, so replies stay quick. It switches on by itself.</p></div>
-      <div class="card"><img src="assets/lock.jpg" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Your prompts, files and sessions never leave your machine. The only thing RAMen sends out is a license check.</p></div>
-      <div class="card"><img src="assets/plug.jpg" alt="" onerror="this.remove()"><h3>Works with your apps</h3><p>An OpenAI-compatible API on your own computer. Point your agent framework, chat app or code editor at it and go.</p></div>
-      <div class="card"><img src="assets/gear.jpg" alt="" onerror="this.remove()"><h3>Built on llama.cpp</h3><p>The engine local AI already runs on, with RAMen's memory and selective reading added on top.</p></div>
+    <div class="center">
+      <span class="kick rise"><i>✦</i> What you get <i>✦</i></span>
+      <h2 class="rise">Memory that <span class="shine">keeps up with your agents.</span></h2>
+    </div>
+    <div class="feats">
+      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" onerror="this.remove()"><h3>Sessions that survive restarts</h3><p>Every conversation is saved to disk on its own and comes back in seconds, even after a reboot.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/agents.webp" alt="" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Switch between agents and chats without re-reading their history. Each one resumes where it stopped.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/speed.webp" alt="" onerror="this.remove()"><h3>Fast on long chats</h3><p>Selective reading switches on by itself where it is faster on your machine, so RAMen is never slower.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Prompts, files and sessions never leave your machine. No tracking, and it works offline.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps</h3><p>One command connects Cline, Continue, Aider, OpenCode and Open WebUI. Anything OpenAI-compatible works.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Built on llama.cpp</h3><p>The engine local AI already runs on, with RAMen's memory and selective reading added on top.</p></div>
     </div>
   </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section id="pricing">
-  <div class="glow" style="width:420px;height:420px;background:var(--pink);left:10%;bottom:0;opacity:.18"></div>
-  <div class="wrap price">
-    <div>
-      <p class="kicker">Pricing</p>
-      <h2>One price. Yours to keep.</h2>
-      <p class="sub">Try everything free for 14 days. If RAMen earns its place, buy it once and use it on up to three of your computers.</p>
-    </div>
-    <div class="price-card">
-      <img src="assets/medal.jpg" alt="" onerror="this.remove()">
-      <div class="amount">$39 <small>one-time</small></div>
-      <ul class="checks">
-        <li>Session memory and selective reading</li>
-        <li>Use on up to 3 computers, move it any time</li>
-        <li>Free updates for version 1</li>
-        <li>Windows, macOS and Linux</li>
-      </ul>
-      <a class="btn primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Available at launch: get notified</a>
-      <p class="fine">Secure checkout by Polar. Sales tax handled at checkout.</p>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
+<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(assets/v2/rooftops.jpg);--show:.68">
   <div class="wrap">
-    <p class="kicker">FAQ</p>
-    <h2>Questions</h2>
-    <details><summary>What do I need to run it?</summary><p>A computer that runs llama.cpp and a GGUF model. Selective reading on long contexts needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
-    <details><summary>Does it send my data anywhere?</summary><p>No. Everything runs on your computer. RAMen only contacts the license server to check your key, and keeps working offline between checks.</p></details>
-    <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API: agent frameworks, chat front ends, coding assistants and your own scripts. Point them at http://127.0.0.1:8090/v1.</p></details>
-    <details><summary>What happens after the trial?</summary><p>RAMen asks for a license key. Buy once, enter the key, and keep going. There is no subscription.</p></details>
-    <details><summary>Can I move my license to a new computer?</summary><p>Yes. A key works on three computers at a time, and you can free up a slot yourself from the customer portal.</p></details>
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
+      <h2 class="rise">Free forever. <span class="shine">Faster for $3.99.</span></h2>
+      <p class="lede rise">Start free. Every plan begins with 14 days of everything, no card needed.</p>
+      <div class="ticket rise">✦ Launch offer: <b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦</div>
+    </div>
+    <div class="plans">
+      <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
+        <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps, one command to start</li></ul></div>
+      <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
+        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Up to 3 of your computers</li></ul></div>
+      <div class="plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price">$9.99<small>per person a month, from 3 people</small></div>
+        <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul></div>
+      <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
+        <ul><li>One GPU machine serving your whole team</li><li>A key per person, conversations kept apart</li><li>Usage per person and Prometheus metrics</li></ul></div>
+    </div>
+    <div class="ent rise"><img class="float b" src="assets/v2/icons/enterprise.webp" alt="" onerror="this.remove()"><div><h3>Enterprise</h3><p>Offline licenses for machines without internet, invoices and purchase orders, a support agreement.</p></div>
+      <a class="btn line" href="mailto:support@getramenai.com?subject=RAMen%20Enterprise">Talk to us</a></div>
+    <p class="fine center">Secure checkout by Polar. Sales tax handled at checkout. Plans open at launch.</p>
+  </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
+</section>
+
+<section class="scene s-faq" id="faq" style="--sky:#0f1430;--art:url(assets/v2/lake.jpg);--show:.62">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Questions <i>✦</i></span>
+      <h2 class="rise">Good to know.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>What do I need to run it?</summary><p>A computer that runs llama.cpp. RAMen picks a model that fits, or use any GGUF model. Selective reading on long chats needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
+      <details><summary>Does it send my data anywhere?</summary><p>No. Everything runs on your computer. Paid plans check the license key at start-up, and RAMen keeps working offline between checks.</p></details>
+      <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API. <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode and Open WebUI for you.</p></details>
+      <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once and keep long chats fast.</p></details>
+      <details><summary>Is there a one-time price?</summary><p>Yes, at launch: Pro for life for $19.99, for the first 1,000 buyers. After that Pro is $3.99 a month or $29 a year.</p></details>
+      <details><summary>Who is the Server plan for?</summary><p>Teams that share one GPU machine. RAMen serves everyone from it, gives each person a key, keeps each person's conversations apart and counts usage per person.</p></details>
+      <details><summary>Can I move my license to a new computer?</summary><p>Yes. A Pro key works on three computers at a time, and you can free a slot yourself with <code>ramen deactivate</code> or from the customer portal.</p></details>
+    </div>
+  </div>
+  <div class="wrap final">
+    <h2 class="rise">Bring your chats back <span class="shine">in seconds.</span></h2>
+    <div class="btns rise"><a class="btn primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get launch updates</a></div>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="wrap">
@@ -304,5 +401,20 @@
     <span><a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
+
+<script>
+  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 </body>
 </html>
