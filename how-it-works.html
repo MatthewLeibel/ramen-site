@@ -81,6 +81,8 @@
 
 <h2>1. Chats that come back in seconds</h2>
 <p>While a model reads a conversation it builds a working memory (the KV cache). RAMen saves each conversation's working memory to disk as you go and restores it the moment that conversation continues, even after a restart. Many chats and agents share a few live slots on the GPU; the rest wait on disk and come back on demand.</p>
+<div class="video"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none"></video></div>
+<p class="note">Real recording, real time, on a Mac mini M2 Pro with Qwen3 4B: a 70,082-token chat, restarted. Reading it from scratch took 12 minutes 47 seconds just before; RAMen restored it and wrote the first word after 3.7 seconds.</p>
 <p>Saving the cache is not a new idea: llama.cpp has slot save and restore, and small tools automate it. RAMen does it for every session automatically, with checks that a saved cache matches the model and settings before it is reused, and it combines it with the speedup below.</p>
 
 <h2>2. Long chats that stay fast</h2>
@@ -114,6 +116,8 @@
 </ul>
 
 <h2>Try it</h2>
+<div class="video"><video src="assets/v2/install.mp4" poster="assets/v2/install.jpg" controls muted playsinline preload="none"></video></div>
+<p class="note">A fresh install on a Mac mini, recorded as it happened (the model download is shown 4x faster).</p>
 <p>Mac and Linux: <code>curl -fsSL https://getramenai.com/install.sh | bash</code><br>Windows (PowerShell): <code>irm https://getramenai.com/install.ps1 | iex</code><br>Then <code>ramen start</code>. The free plan is free forever, and every install starts with 14 days of everything. <a href="/#pricing">See plans</a>.</p>
 
 </div></main>
