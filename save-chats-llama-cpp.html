@@ -78,8 +78,8 @@
 <p>There are three ways to keep that memory, from most manual to least.</p>
 
 <h2>1. By hand, with llama-server's slot save and restore</h2>
-<p>Start the server with a folder for saved slots:</p>
-<pre><code>llama-server -m model.gguf --slot-save-path ./slots</code></pre>
+<p>Start the server with a folder for saved slots (recent llama.cpp versions listen on port 9931 unless you pass <code>--port</code>, so the command sets 8080 to match the examples below):</p>
+<pre><code>llama-server -m model.gguf --port 8080 --slot-save-path ./slots</code></pre>
 <p>After a long conversation in slot 0, save its memory to a file:</p>
 <pre><code>curl -X POST "http://127.0.0.1:8080/slots/0?action=save" \
      -H "Content-Type: application/json" -d '{"filename": "my-chat.bin"}'</code></pre>
