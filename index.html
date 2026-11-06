@@ -175,6 +175,11 @@
   .plan.pro .price { color: #fff; }
   .plan.pro h3 .badge { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 4px 9px; border-radius: 999px; border: 2px solid var(--ink);
                         background: var(--aqua); color: #03141a; font: 800 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
+  .plan .btn { margin-top: 20px; }
+  .plan { display: flex; flex-direction: column; } .plan ul { flex: 1; } .plan .btn { align-self: flex-start; }
+  .ticket .btn { margin-left: 4px; transform: rotate(1.2deg); }
+  .alt-os { margin-top: 14px !important; }
+  .fine a { color: #fff; }
   .ent { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 22px; align-items: center; margin-top: 46px; padding: 24px 0;
          border-block: 1px solid var(--line); }
   .ent img { width: 96px; height: 96px; object-fit: contain; }
@@ -265,7 +270,7 @@
       <a href="#how">How it works</a>
       <a href="#plans">Plans</a>
       <a href="#faq">Questions</a>
-      <a class="btn sm primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get RAMen</a>
+      <a class="btn sm primary" href="#how">Download free</a>
     </nav>
   </div>
 </header>
@@ -279,8 +284,8 @@
       <h1 class="rise">Your local AI <span class="shine">never forgets.</span></h1>
       <p class="lede rise">RAMen saves every chat and agent session, brings it back in seconds, and keeps long conversations fast. One command to start, with the apps you already use.</p>
       <div class="btns rise">
-        <a class="btn primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get launch updates</a>
-        <a class="btn line" href="#speed">See it race</a>
+        <a class="btn primary" href="#how">Download free</a>
+        <a class="btn line" href="#plans">See plans</a>
       </div>
       <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux</p>
     </div>
@@ -321,7 +326,7 @@
       <p class="lede rise">RAMen picks a model that fits your computer, sizes the memory, and speaks the same API as OpenAI, so your apps work unchanged.</p>
     </div>
     <ol class="rows">
-      <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>One line on Mac and Linux, a download on Windows (at launch).</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code></div></li>
+      <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>One line. Mac (Apple silicon) and Linux, in Terminal:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows 10 and 11, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits, downloads it and starts in the background. Or bring any GGUF model.</p><code class="cmd">ramen start</code></div></li>
       <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Cline, Continue, Aider, OpenCode, Open WebUI, or anything that speaks the OpenAI API.</p><code class="cmd">ramen connect cline</code></div></li>
     </ol>
@@ -347,27 +352,27 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(assets/v2/rooftops.jpg);--show:.68">
+<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
       <h2 class="rise">Free forever. <span class="shine">Faster for $3.99.</span></h2>
       <p class="lede rise">Start free. Every plan begins with 14 days of everything, no card needed.</p>
-      <div class="ticket rise">✦ Launch offer: <b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦</div>
+      <div class="ticket rise">✦ Launch offer: <b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦ <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG">Claim it</a></div>
     </div>
     <div class="plans">
       <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
-        <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps, one command to start</li></ul></div>
+        <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps, one command to start</li></ul><a class="btn line sm" href="#how">Download free</a></div>
       <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
-        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Up to 3 of your computers</li></ul></div>
+        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
       <div class="plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price">$9.99<small>per person a month, from 3 people</small></div>
-        <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul></div>
+        <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_DYqZqS4EOCcWQqCNccDaTmGDzqUwRLo4VLRC22vmIiF">Get Team</a></div>
       <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
-        <ul><li>One GPU machine serving your whole team</li><li>A key per person, conversations kept apart</li><li>Usage per person and Prometheus metrics</li></ul></div>
+        <ul><li>One GPU machine serving your whole team</li><li>A key per person, conversations kept apart</li><li>Usage per person and Prometheus metrics</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_Ux819FD0OLMWUBjs49I2gixXzGgUa2dYgqE432JNc0T">Get Server</a></div>
     </div>
     <div class="ent rise"><img class="float b" src="assets/v2/icons/enterprise.webp" alt="" onerror="this.remove()"><div><h3>Enterprise</h3><p>Offline licenses for machines without internet, invoices and purchase orders, a support agreement.</p></div>
       <a class="btn line" href="mailto:support@getramenai.com?subject=RAMen%20Enterprise">Talk to us</a></div>
-    <p class="fine center">Secure checkout by Polar. Sales tax handled at checkout. Plans open at launch.</p>
+    <p class="fine center">Secure checkout by Polar <i>✦</i> Sales tax handled at checkout <i>✦</i> Cancel any time in your <a href="https://polar.sh/ramen/portal">customer portal</a></p>
   </div>
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
@@ -385,12 +390,14 @@
       <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once and keep long chats fast.</p></details>
       <details><summary>Is there a one-time price?</summary><p>Yes, at launch: Pro for life for $19.99, for the first 1,000 buyers. After that Pro is $3.99 a month or $29 a year.</p></details>
       <details><summary>Who is the Server plan for?</summary><p>Teams that share one GPU machine. RAMen serves everyone from it, gives each person a key, keeps each person's conversations apart and counts usage per person.</p></details>
+      <details><summary>How do I switch on my plan after buying?</summary><p>Your license key is in the email from Polar and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. Run <code>ramen activate YOUR-KEY</code> and you are done.</p></details>
+      <details><summary>How do I cancel or change my plan?</summary><p>Any time, in your <a href="https://polar.sh/ramen/portal">customer portal</a>. You keep your plan until the end of the period you paid for, then RAMen goes back to the free plan. See the <a href="refunds.html">refund policy</a>.</p></details>
       <details><summary>Can I move my license to a new computer?</summary><p>Yes. A Pro key works on three computers at a time, and you can free a slot yourself with <code>ramen deactivate</code> or from the customer portal.</p></details>
     </div>
   </div>
   <div class="wrap final">
     <h2 class="rise">Bring your chats back <span class="shine">in seconds.</span></h2>
-    <div class="btns rise"><a class="btn primary" href="mailto:support@getramenai.com?subject=Tell%20me%20when%20RAMen%20launches">Get launch updates</a></div>
+    <div class="btns rise"><a class="btn primary" href="#how">Download free</a><a class="btn line" href="#plans">See plans</a></div>
   </div>
 </section>
 </main>
@@ -398,7 +405,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span><a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
