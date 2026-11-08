@@ -5,7 +5,8 @@
 #
 # Installs ramen and its llama-server into ~/.ramen/bin and adds that folder to your PATH.
 # Nothing else is changed. To remove RAMen: rm -rf ~/.ramen (your saved chats are in ~/.context-engine).
-# RAMEN_HOME=/some/dir changes the install folder; RAMEN_PKG=/path/or/url.tar.gz installs a specific package.
+# RAMEN_HOME=/some/dir changes the install folder; RAMEN_PKG=/path/or/url.tar.gz installs a specific package;
+# RAMEN_VULKAN=1 installs the preview build for AMD and Intel Arc graphics cards on Linux.
 set -euo pipefail
 
 REPO="MatthewLeibel/ramen-releases"
@@ -16,7 +17,10 @@ die() { printf 'RAMen install: %s\n' "$*" >&2; exit 1; }
 
 OS="$(uname -s)"; ARCH="$(uname -m)"
 vulkan_gpu() {   # an AMD graphics card, or an Intel Arc card, with a Vulkan driver: the Vulkan build
-    { ldconfig -p 2>/dev/null | grep -q 'libvulkan.so.1'; } || ls /usr/lib*/libvulkan.so.1 /usr/lib/*/libvulkan.so.1 >/dev/null 2>&1 || return 1
+    have=""     # (grep -c reads everything: grep -q would stop ldconfig with SIGPIPE, a failure under pipefail)
+    [ "$( { ldconfig -p 2>/dev/null || true; } | grep -c 'libvulkan\.so\.1')" -gt 0 ] && have=1
+    for f in /usr/lib*/libvulkan.so.1 /usr/lib/*/libvulkan.so.1 /usr/lib*/*/libvulkan.so.1; do [ -e "$f" ] && have=1; done
+    [ -n "$have" ] || return 1
     for d in /sys/class/drm/card*/device; do
         v="$(cat "$d/vendor" 2>/dev/null)"; id="$(cat "$d/device" 2>/dev/null)"
         [ "$v" = 0x1002 ] && return 0                                         # AMD
@@ -29,9 +33,13 @@ case "$OS-$ARCH" in
     Darwin-x86_64) die "RAMen needs a Mac with Apple silicon (M1 or newer). Intel Macs are not supported." ;;
     Linux-x86_64)
         if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then PKG="ramen-linux-x64-cuda"
-        elif vulkan_gpu; then PKG="ramen-linux-x64-vulkan"
+        elif vulkan_gpu; then
+            if [ "${RAMEN_VULKAN:-}" = 1 ]; then PKG="ramen-linux-x64-vulkan"     # preview: not yet tested on every card
+            else PKG="ramen-linux-x64-cpu"; VULKAN_HINT=1; fi
         else PKG="ramen-linux-x64-cpu"; fi ;;
-    Linux-aarch64|Linux-arm64) PKG="ramen-linux-arm64-cpu" ;;      # DGX Spark, Graviton, Ampere, Raspberry Pi 5
+    Linux-aarch64|Linux-arm64)                                      # DGX Spark, Graviton, Ampere, Raspberry Pi 5
+        [ "$(getconf LONG_BIT 2>/dev/null || echo 64)" = 64 ] || die "RAMen needs a 64-bit system (this one is 32-bit; on a Raspberry Pi, install the 64-bit Raspberry Pi OS)"
+        PKG="ramen-linux-arm64-cpu" ;;
     *) die "this installer is for macOS and Linux. On Windows, run in PowerShell: irm https://getramenai.com/install.ps1 | iex" ;;
 esac
 command -v curl >/dev/null || die "curl is needed"
@@ -92,3 +100,8 @@ echo "  ramen start"
 echo
 echo "It picks a model that fits this computer, downloads it and runs in the background."
 echo "Connect an app with:  ramen connect cline   (or continue, aider, opencode, openwebui, env)"
+if [ -n "${VULKAN_HINT:-}" ]; then
+    echo
+    echo "This computer has an AMD or Intel Arc graphics card. A preview build that uses it is available:"
+    echo "  curl -fsSL https://getramenai.com/install.sh | RAMEN_VULKAN=1 bash"
+fi

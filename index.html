@@ -291,6 +291,7 @@
     <nav>
       <a href="#speed">Speed</a>
       <a href="#how">How it works</a>
+      <a href="#phone">Phone</a>
       <a href="#plans">Plans</a>
       <a href="#faq">Questions</a>
       <a class="btn sm primary" href="#how">Download free</a>
@@ -383,6 +384,26 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
+<section class="scene s-phone" id="phone" style="--sky:#262a5c;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New in 1.2 <i>✦</i></span>
+      <h2 class="rise">Start on your computer. <span class="shine">Continue on your phone.</span></h2>
+      <p class="lede rise">Hand a conversation to your phone with its memory already read. The RAMen app answers your next message right away, on the phone and offline. Nothing goes through a cloud.</p>
+    </div>
+    <ol class="rows">
+      <li class="rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 01</span><h3>Pack it on your computer</h3><p>Your computer reads the whole conversation with the phone app's model and puts that memory in one file.</p><code class="cmd">ramen handoff</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Send it to your phone</h3><p>AirDrop to an iPhone, Quick Share or a cable to an Android phone. The file goes straight from your computer to your phone.</p></div></li>
+      <li class="rise"><img class="float c" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Keep talking</h3><p>Open it with the RAMen app. Your phone loads the memory instead of reading the whole conversation again, so it answers right away.</p></div></li>
+    </ol>
+    <div class="btns rise">
+      <a class="btn primary" href="https://github.com/MatthewLeibel/ramen-releases/releases/latest/download/ramen-android-preview.apk">Get the Android app (preview)</a>
+      <span class="btn line" aria-disabled="true">iPhone app: coming soon</span>
+    </div>
+    <p class="notes rise">The phone app runs a small model (Qwen3 0.6B) on the phone itself and saves every chat's memory, so chats come back in about a second even after the phone closes the app. Android 10 or newer on a 64-bit phone: open the download on the phone and allow the install once. The iPhone app is in testing.</p>
+  </div>
+</section>
+
 <section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
@@ -418,6 +439,7 @@
       <details><summary>What do I need to run it?</summary><p>A Mac with Apple silicon, or a Windows or Linux PC, with or without an NVIDIA card; Linux on ARM works too (for example NVIDIA DGX Spark or AWS Graviton). RAMen picks a model that fits, or use any GGUF model, including the ones you already downloaded with Ollama or LM Studio. Selective reading on long chats needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
       <details><summary>Can it run a model bigger than my computer's memory?</summary><p>Yes, on Pro and during the trial, for mixture-of-experts models such as gpt-oss 120B or Qwen3 30B-A3B. RAMen keeps the rest of the model in memory and reads the experts from the SSD as they are needed, into its own cache. It writes more slowly than a model that fits, and the answers are the same. <code>ramen models</code> shows what runs on your computer.</p></details>
       <details><summary>Does it work with Ollama or LM Studio?</summary><p>Alongside them. RAMen runs the model itself, so it does not plug into Ollama, but the models you downloaded with Ollama or LM Studio show up in <code>ramen models</code> and start without a new download, and apps made for Ollama can talk to RAMen: <code>ramen connect ollama</code> shows the address.</p></details>
+      <details><summary>Does it work on phones?</summary><p>Yes. The RAMen app for Android (preview) runs a small model on the phone with saved memory for every chat; the iPhone app is in testing. <code>ramen handoff</code> moves a conversation from your computer to your phone with its memory already read, so the phone can continue it right away.</p></details>
       <details><summary>Does it send my data anywhere?</summary><p>No. Everything runs on your computer. Paid plans check the license key at start-up, and RAMen keeps working offline between checks.</p></details>
       <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API or to Ollama's API. <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode and Open WebUI for you.</p></details>
       <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once and keep long chats fast.</p></details>
