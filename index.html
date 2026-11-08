@@ -310,7 +310,7 @@
         <a class="btn primary" href="#how">Download free</a>
         <a class="btn line" href="#plans">See plans</a>
       </div>
-      <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux</p>
+      <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux, including ARM</p>
       <p class="fine rise"><a class="ph-link" href="#updates">Launching on Product Hunt this Sunday, Nov 8. Get a reminder</a></p>
     </div>
   </div>
@@ -318,8 +318,8 @@
 </section>
 
 <div class="ribbon" aria-hidden="true"><div class="track">
-  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
-  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
+  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Models bigger than your memory<i>✦</i>Works with Ollama apps<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
+  <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Models bigger than your memory<i>✦</i>Works with Ollama apps<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
 </div></div>
 
 <section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(assets/v2/speed.jpg);--show:.8">
@@ -351,14 +351,14 @@
     </div>
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>One line. Mac (Apple silicon) and Linux, in Terminal:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows 10 and 11, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
-      <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits, downloads it and starts in the background. Or bring any GGUF model.</p><code class="cmd">ramen start</code></div></li>
-      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Cline, Continue, Aider, OpenCode, Open WebUI, or anything that speaks the OpenAI API.</p><code class="cmd">ramen connect cline</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits, downloads it and starts in the background. Or start one you already downloaded with Ollama or LM Studio, or any GGUF file.</p><code class="cmd">ramen start</code></div></li>
+      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Cline, Continue, Aider, OpenCode, Open WebUI, apps made for Ollama, or anything that speaks the OpenAI API.</p><code class="cmd">ramen connect cline</code></div></li>
     </ol>
   </div>
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(assets/v2/market.jpg);--show:.84">
+<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(assets/v2/market.jpg);--show:.96">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> What you get <i>✦</i></span>
@@ -368,10 +368,17 @@
       <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" onerror="this.remove()"><h3>Sessions that survive restarts</h3><p>Every conversation is saved to disk on its own and comes back in seconds, even after a reboot.</p></div>
       <div class="feat rise"><img class="float b" src="assets/v2/icons/agents.webp" alt="" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Switch between agents and chats without re-reading their history. Each one resumes where it stopped.</p></div>
       <div class="feat rise"><img class="float c" src="assets/v2/icons/speed.webp" alt="" onerror="this.remove()"><h3>Fast on long chats</h3><p>Selective reading switches on by itself where it is faster on your machine, so RAMen is never slower.</p></div>
-      <div class="feat rise"><img class="float b" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Prompts, files and sessions never leave your machine. No tracking, and it works offline.</p></div>
-      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps</h3><p>One command connects Cline, Continue, Aider, OpenCode and Open WebUI. Anything OpenAI-compatible works.</p></div>
-      <div class="feat rise"><img class="float c" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Built on llama.cpp</h3><p>The engine local AI already runs on, with RAMen's memory and selective reading added on top.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Models bigger than your memory</h3><p>Run a mixture-of-experts model larger than your computer's memory, like gpt-oss 120B on a 16 GB Mac. RAMen reads its experts straight from the file into its own cache. On Pro.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps and models</h3><p>One command connects Cline, Continue, Aider, OpenCode and Open WebUI, and apps made for Ollama work too. Models you already downloaded with Ollama or LM Studio start without a new download.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Prompts, files and sessions never leave your machine, and it works offline. Built on llama.cpp, the engine local AI already runs on.</p></div>
     </div>
+    <div class="strip rise">
+      <div><b>117<small>B</small></b><span>parameters (gpt-oss 120B) running on a 16 GB Mac mini</span></div>
+      <div><b>4.4<small>x</small></b><span>faster at reading a long prompt than plain llama.cpp on the same Mac</span></div>
+      <div><b>2.8<small>tok/s</small></b><span>writing, with RAMen's own expert cache (1.9 before it)</span></div>
+      <div><b>5<small>s</small></b><span>to start the model, instead of 41</span></div>
+    </div>
+    <p class="notes rise">Measured on a Mac mini M2 Pro with 16 GB and gpt-oss 120B (63 GB), November 2026, same settings: a 1,233-token prompt read at 62 versus 14 tokens per second by plain llama.cpp, and the model started in 5 seconds versus 41. Writing runs at 2.8 tokens per second, up from 1.9 with RAMen 1.0. Big models are part of Pro and the trial. <a href="how-it-works.html#big">How it works</a>.</p>
   </div>
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
@@ -388,7 +395,7 @@
       <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
         <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps, one command to start</li></ul><a class="btn line sm" href="#how">Download free</a></div>
       <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
-        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
+        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Models bigger than your computer's memory</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
       <div class="plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price">$9.99<small>per person a month, from 3 people</small></div>
         <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_DYqZqS4EOCcWQqCNccDaTmGDzqUwRLo4VLRC22vmIiF">Get Team</a></div>
       <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
@@ -408,9 +415,11 @@
       <h2 class="rise">Good to know.</h2>
     </div>
     <div class="faq">
-      <details><summary>What do I need to run it?</summary><p>A computer that runs llama.cpp. RAMen picks a model that fits, or use any GGUF model. Selective reading on long chats needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
+      <details><summary>What do I need to run it?</summary><p>A Mac with Apple silicon, or a Windows or Linux PC, with or without an NVIDIA card; Linux on ARM works too (for example NVIDIA DGX Spark or AWS Graviton). RAMen picks a model that fits, or use any GGUF model, including the ones you already downloaded with Ollama or LM Studio. Selective reading on long chats needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
+      <details><summary>Can it run a model bigger than my computer's memory?</summary><p>Yes, on Pro and during the trial, for mixture-of-experts models such as gpt-oss 120B or Qwen3 30B-A3B. RAMen keeps the rest of the model in memory and reads the experts from the SSD as they are needed, into its own cache. It writes more slowly than a model that fits, and the answers are the same. <code>ramen models</code> shows what runs on your computer.</p></details>
+      <details><summary>Does it work with Ollama or LM Studio?</summary><p>Alongside them. RAMen runs the model itself, so it does not plug into Ollama, but the models you downloaded with Ollama or LM Studio show up in <code>ramen models</code> and start without a new download, and apps made for Ollama can talk to RAMen: <code>ramen connect ollama</code> shows the address.</p></details>
       <details><summary>Does it send my data anywhere?</summary><p>No. Everything runs on your computer. Paid plans check the license key at start-up, and RAMen keeps working offline between checks.</p></details>
-      <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API. <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode and Open WebUI for you.</p></details>
+      <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API or to Ollama's API. <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode and Open WebUI for you.</p></details>
       <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once and keep long chats fast.</p></details>
       <details><summary>Is there a one-time price?</summary><p>Yes, at launch: Pro for life for $19.99, for the first 1,000 buyers. After that Pro is $3.99 a month or $29 a year.</p></details>
       <details><summary>Who is the Server plan for?</summary><p>Teams that share one GPU machine. RAMen serves everyone from it, gives each person a key, keeps each person's conversations apart and counts usage per person.</p></details>

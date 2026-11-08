@@ -21,7 +21,7 @@ case "$OS-$ARCH" in
     Linux-x86_64)
         if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then PKG="ramen-linux-x64-cuda"
         else PKG="ramen-linux-x64-cpu"; fi ;;
-    Linux-aarch64|Linux-arm64) die "Linux on ARM is not supported yet. Write to support@getramenai.com and we will tell you when it is." ;;
+    Linux-aarch64|Linux-arm64) PKG="ramen-linux-arm64-cpu" ;;      # DGX Spark, Graviton, Ampere, Raspberry Pi 5
     *) die "this installer is for macOS and Linux. On Windows, run in PowerShell: irm https://getramenai.com/install.ps1 | iex" ;;
 esac
 command -v curl >/dev/null || die "curl is needed"

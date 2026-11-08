@@ -74,7 +74,7 @@
 </div></header>
 <main><div class="wrap">
 <h1>How RAMen works</h1>
-<p>Local AI gets frustrating on long work for two reasons. The model slows down as a conversation grows. And when you close the app, everything it had read is gone, so reopening a long chat means waiting while it reads the whole thing again. RAMen fixes both, on your own computer, in front of llama.cpp.</p>
+<p>Local AI gets frustrating on long work for two reasons. The model slows down as a conversation grows. And when you close the app, everything it had read is gone, so reopening a long chat means waiting while it reads the whole thing again. RAMen fixes both, on your own computer, in front of llama.cpp. It also runs models bigger than your computer's memory, and works with the apps and models you already use.</p>
 
 <div class="video"><video src="assets/v2/race.mp4" poster="assets/v2/race.jpg" controls muted playsinline preload="metadata"></video></div>
 <p class="note">A replay of a real run at its real speed: Qwen3 32B on an RTX A6000, the same 87,099-token conversation, normal llama.cpp on the left (8.4 tokens per second) and RAMen on the right (20.5). Same answer.</p>
@@ -88,6 +88,21 @@
 <h2>2. Long chats that stay fast</h2>
 <p>Normally every new word the model writes reads the whole working memory, so a 100,000-token chat is several times slower than a short one. RAMen keeps a small summary of each block of the memory and, at each step, reads only the blocks that matter for the next word (about 8,000 tokens' worth), plus the start and the most recent part of the conversation. The idea comes from research on query-aware sparse attention (Quest, 2024). RAMen builds it into llama.cpp for NVIDIA and Apple GPUs. It switches on by itself only past the length where it is faster on your kind of machine (between 16K and about 43K tokens), so it is never slower.</p>
 <p>Quality: when the selection covers the whole conversation, RAMen writes exactly the same text as normal attention. With selection on, it gave the same answers as full attention in 54 of 54 long-document tests (16K to 64K tokens), and a needle-in-a-haystack test passed at 32K and 64K.</p>
+
+<h2 id="big">3. Models bigger than your memory</h2>
+<p>The strongest open models are mixture-of-experts models: for each word they use only a few of their "experts", but all of them have to be stored somewhere. When such a model is bigger than your computer's memory, llama.cpp leaves the experts in the model file and the operating system reads them from the SSD a small page at a time, which is slow. RAMen (Pro) keeps everything except the experts in memory and reads the experts itself: in large parallel reads, straight into a cache of its own, with the next layer's experts predicted from the current one so the reads start early. When the graphics card reads a long prompt, RAMen hands it the experts from that cache. The math does not change, so the answers are the same.</p>
+<div class="wide"><table>
+<tr><th>Mac mini M2 Pro, 16 GB</th><th>What</th><th>Plain llama.cpp</th><th>RAMen</th></tr>
+<tr><td><b>gpt-oss 120B</b> (63 GB)</td><td>Reading a 1,233-token prompt</td><td>14 tok/s</td><td><b>62 tok/s</b></td></tr>
+<tr><td></td><td>Starting the model</td><td>41 s</td><td><b>5 s</b></td></tr>
+<tr><td><b>Qwen3 30B-A3B</b> (18.5 GB)</td><td>Reading a long prompt</td><td>20 tok/s</td><td><b>101 tok/s</b></td></tr>
+<tr><td></td><td>Writing</td><td>7 to 13 tok/s</td><td><b>11 to 15 tok/s</b></td></tr>
+<tr><td></td><td>Starting the model</td><td>12 s</td><td><b>2 s</b></td></tr>
+</table></div>
+<p class="note">November 2026, the same settings on both sides (experts on the CPU, everything else on the GPU, the same build of llama.cpp). gpt-oss 120B writes at 2.8 tokens per second with RAMen's own expert cache, up from 1.9 with RAMen 1.0 on the same settings. Big models write slowly: a 300-word answer from gpt-oss 120B takes about two minutes, so they suit background and agent work more than live chat.</p>
+
+<h2>4. Your apps and your models</h2>
+<p>RAMen speaks the OpenAI API and, since version 1.1.0, Ollama's API too, so apps made for Ollama (Open WebUI, Continue, Cline, Enchanted and others) can talk to it, and their chats are saved like any other. When Ollama itself is not installed, RAMen also answers on Ollama's usual address. Models you already downloaded with Ollama, LM Studio, llama.cpp or Hugging Face show up in <code>ramen models</code> and start by name, without a new download. Hybrid models such as Qwen 3.5 come back without re-reading the conversation too.</p>
 
 <h2>Measured results</h2>
 <div class="wide"><table>
@@ -112,13 +127,15 @@
 <li>Selective reading speeds up writing (decode), not the first read of a new long prompt.</li>
 <li>It does not stack with draft models (speculative decoding) yet; RAMen uses whichever is faster.</li>
 <li>Models that keep a small memory by design (for example sliding-window models) gain little speed. Session memory still helps them.</li>
+<li>Models bigger than your memory: mixture-of-experts models only (a dense model that big would crawl). RAMen's own expert cache runs on Mac and Linux; on Windows the experts are read through the system's file cache for now.</li>
+<li>After a saved chat is restored, llama.cpp reads the last word of the prompt again on its own. On a graphics card that small difference in the math can change a later word of the reply; the saved state itself is exact.</li>
 <li>RAMen is proprietary software with a free plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
 </ul>
 
 <h2>Try it</h2>
 <div class="video"><video src="assets/v2/install.mp4" poster="assets/v2/install.jpg" controls muted playsinline preload="none"></video></div>
 <p class="note">A fresh install on a Mac mini, recorded as it happened (the model download is shown 4x faster).</p>
-<p>Mac and Linux: <code>curl -fsSL https://getramenai.com/install.sh | bash</code><br>Windows (PowerShell): <code>irm https://getramenai.com/install.ps1 | iex</code><br>Then <code>ramen start</code>. The free plan is free forever, and every install starts with 14 days of everything. <a href="/#pricing">See plans</a>.</p>
+<p>Mac and Linux (including ARM): <code>curl -fsSL https://getramenai.com/install.sh | bash</code><br>Windows (PowerShell): <code>irm https://getramenai.com/install.ps1 | iex</code><br>Then <code>ramen start</code>. The free plan is free forever, and every install starts with 14 days of everything. <a href="/#pricing">See plans</a>.</p>
 
 </div></main>
 <footer><div class="wrap">
