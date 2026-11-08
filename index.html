@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <style>
   /* Main page only: the hero, the ribbon, the plans, the enterprise row and the sign-up form. The shared look
-     (tokens, header, scenes, bands, components, motion, phone sizes) is in assets/site.css; see DESIGN.md. */
+     (tokens, header, scenes, components, motion, phone sizes) is in assets/site.css; see DESIGN.md. */
   /* hero: the words sit on the art's calm left sky; no empty band above */
   .s-hero { position: relative; padding: 0; min-height: clamp(620px, 55.8vw, 100svh); display: flex; align-items: center;
             overflow: hidden; background: var(--night); }
@@ -40,7 +40,6 @@
   .s-hero h1 { margin: 16px 0 0; font-size: clamp(46px, 5.6vw, 86px); line-height: .95; letter-spacing: -0.052em; text-shadow: var(--outline); }
   .s-hero .lede { margin: 22px 0 0; max-width: 46ch; color: #ece6f6; }
   .s-hero .btns { justify-content: flex-start; }
-  .s-hero .hero-band { bottom: -5vw; }
   .s-hero .float-a { position: absolute; z-index: 2; width: clamp(80px, 9vw, 150px); right: 7%; bottom: 14%; }
 
   /* ribbon */
@@ -138,7 +137,6 @@
       <p class="fine rise"><a class="ph-link" href="#updates">Launching on Product Hunt this Sunday, Nov 8. Get a reminder</a></p>
     </div>
   </div>
-  <img class="band hero-band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <div class="ribbon" aria-hidden="true"><div class="track">
@@ -163,7 +161,6 @@
     </div>
     <p class="notes rise">Measured on an NVIDIA L4 with Qwen3-4B, November 2026: 42 versus 9.1 tokens per second at 128K tokens, same settings. The video: Qwen3 32B on an RTX A6000, 20.5 versus 8.4 tokens per second at 87K tokens, same answer. <a href="how-it-works.html">How it works and all results</a>.</p>
   </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(/assets/v2/counter.jpg);--show:.6">
@@ -179,7 +176,6 @@
       <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Cline, Continue, Aider, OpenCode, Open WebUI, apps made for Ollama, or anything that speaks the OpenAI API.</p><code class="cmd">ramen connect cline</code></div></li>
     </ol>
   </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="scene s-features" id="features" style="--sky:#46367d;--art:url(/assets/v2/market.jpg);--show:.96">
@@ -204,7 +200,6 @@
     </div>
     <p class="notes rise">Measured on a Mac mini M2 Pro with 16 GB and gpt-oss 120B (63 GB), November 2026, same settings: a 1,233-token prompt read at 62 versus 14 tokens per second by plain llama.cpp, and the model started in 5 seconds versus 41. Writing runs at 2.8 tokens per second, up from 1.9 with RAMen 1.0. Big models are part of Pro and the trial. <a href="how-it-works.html#big">How it works</a>.</p>
   </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="scene s-phone" id="phone" style="--sky:#2e3061;--show:.9;--art:url(/assets/v3/phone.jpg);--art-m:url(/assets/v3/phone-m.jpg)">
@@ -225,7 +220,6 @@
     </div>
     <p class="notes rise">The phone app runs a small model (Qwen3 0.6B) on the phone itself and saves every chat's memory, so chats come back in about a second even after the phone closes the app. Android 10 or newer on a 64-bit phone: open the download on the phone and allow the install once. The iPhone app is in testing.</p>
   </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(/assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
@@ -250,7 +244,6 @@
       <a class="btn line" href="mailto:support@getramenai.com?subject=RAMen%20Enterprise">Talk to us</a></div>
     <p class="fine center">Secure checkout by Polar <i>✦</i> Sales tax handled at checkout <i>✦</i> Cancel any time in your <a href="https://polar.sh/ramen/portal">customer portal</a></p>
   </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
 <section class="scene s-faq" id="faq" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--show:.62">

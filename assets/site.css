@@ -79,15 +79,12 @@ header nav a:not(.btn) { color: #3b3850; text-decoration: none; font-weight: 650
 header nav a:not(.btn):hover { color: var(--ink); }
 
 /* scenes: each section is one picture. Its sky colour is sampled from the top of its art, so the words sit on the
-   same sky the art continues below them; the art fills the foot of the section and a cloud band covers each seam */
+   same sky the art continues below them; the art fills the foot of the section */
 .scene { position: relative; isolation: isolate; background: var(--sky, var(--night));
          padding: clamp(80px, 9vw, 132px) 0 calc(56.25vw * var(--show, .58)); }
 .scene::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56.25vw; z-index: -1;
                  background: var(--art, none) center bottom / cover no-repeat;
                  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 24%); mask-image: linear-gradient(180deg, transparent 0, #000 24%); }
-.band { position: absolute; left: 0; bottom: -5.5vw; z-index: 4; width: 100%; height: 11vw; object-fit: cover; object-position: 50% 50%;
-        pointer-events: none; filter: drop-shadow(0 6px 0 rgba(7, 10, 23, .35)); animation: drift 16s ease-in-out infinite; }
-.scene + .scene { padding-top: clamp(110px, 12vw, 170px); }
 /* the warm shop counter is a light scene: dark ink words */
 .light { color: #2b1406; }
 .light h2, .light h3 { color: #2b1406; text-shadow: none; }
@@ -170,7 +167,6 @@ footer a { color: var(--muted); }
 .rise.in { opacity: 1; transform: none; }
 @keyframes shine { to { background-position: -200% 0; } }
 @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-1.6deg); } }
-@keyframes drift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-1.4%); } }
 @keyframes roll { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -184,7 +180,6 @@ footer a { color: var(--muted); }
   .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .scene { padding-bottom: calc(100vw * var(--show, .58)); }
   .scene::before { height: 100vw; background-size: cover; background-position: 50% 100%; }
-  .band { height: 18vw; bottom: -9vw; }
 }
 @media (max-width: 560px) {
   .strip { grid-template-columns: minmax(0, 1fr); }
@@ -209,7 +204,7 @@ footer a { color: var(--muted); }
 
 /* page hero: the main hero's look, shorter. The words sit on the left, on the art's own sky colour (set --sky to the
    colour at the top of the art); the art fills the right and melts into that sky. Phones and tablets: the art on top,
-   the words below, as on the main hero. A cloud band covers the foot. .light is for light art (dark words) */
+   the words below, as on the main hero. .light is for light art (dark words) */
 .page-hero { position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center;
              min-height: clamp(460px, 40vw, 640px); background: var(--sky, var(--night)); }
 .page-hero .bg { position: absolute; top: 0; right: 0; bottom: 0; z-index: -1; width: 64%; height: 100%; max-width: none;
@@ -220,7 +215,6 @@ footer a { color: var(--muted); }
 .page-hero h1 { margin: 16px 0 0; font-size: clamp(42px, 4.7vw, 70px); line-height: .96; letter-spacing: -0.05em; text-shadow: var(--outline); }
 .page-hero .lede { margin: 20px 0 0; max-width: 46ch; color: #ece6f6; }
 .page-hero .btns { justify-content: flex-start; }
-.page-hero .band { bottom: -5vw; }
 .light h1 { color: #2b1406; text-shadow: none; }
 .page-hero.light .lede { color: #5a3416; }
 
