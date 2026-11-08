@@ -23,57 +23,78 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
-<style>
-  :root { color-scheme: dark; --ink: #070a17; --night: #0d1a35; --text: #fff; --muted: #dcd6ea; --faint: #b9b2cc;
-          --line: rgba(255,255,255,.18); --broth: #f29a43; --cream: #fff3e2;
-          --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: radial-gradient(1000px 520px at 50% -200px, rgba(242,154,67,.14), transparent 70%), var(--night);
-         color: var(--text); font: 400 17px/1.65 var(--font); -webkit-font-smoothing: antialiased; }
-  header { background: rgba(248,246,251,.92); border-bottom: 1px solid rgba(7,10,23,.08); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .wrap { width: min(820px, 100% - 32px); margin: 0 auto; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font: 850 21px/1 var(--font); letter-spacing: -0.04em; }
-  .brand svg { width: 32px; height: 32px; } .brand b { color: #e07f1f; }
-  header a.back { color: #3b3850; font-weight: 650; font-size: 15px; text-decoration: none; }
-  main { padding: 56px 0 80px; }
-  h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.05; letter-spacing: -0.04em; margin: 0 0 12px; }
-  h2 { font-size: 22px; letter-spacing: -0.02em; margin: 38px 0 8px; }
-  p, li { color: var(--muted); } a { color: #ffd08a; } strong, b { color: #fff; }
-  ul { padding-left: 22px; } li { margin: 6px 0; }
-  code { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: .92em; background: rgba(0,0,0,.4);
-          border: 1px solid var(--line); border-radius: 8px; padding: 2px 7px; color: var(--cream); }
-  pre { background: rgba(0,0,0,.45); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; overflow-x: auto; }
-  pre code { background: none; border: 0; padding: 0; }
-  .steps { counter-reset: s; list-style: none; padding: 0; }
-  .steps > li { counter-increment: s; position: relative; padding: 18px 0 18px 54px; border-top: 1px solid var(--line); }
-  .steps > li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 20px; font: 860 14px/1 var(--font); letter-spacing: .14em; color: var(--broth); }
-  .steps > li b { display: block; font-size: 19px; margin-bottom: 4px; }
-  footer { border-top: 1px solid var(--line); color: var(--faint); font-size: 14px; padding: 26px 0 40px; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 22px; justify-content: space-between; }
-  footer a { color: var(--muted); }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<header><div class="wrap">
-  <a class="brand" href="/" aria-label="RAMen home"><svg viewBox="0 0 64 64" aria-hidden="true">
-    <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
-    <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
-    <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
-    <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/></svg><span>RAM<b>en</b></span></a>
-  <a class="back" href="/">Back to RAMen</a>
-</div></header>
-<main><div class="wrap">
-<h1>RAMen Refund Policy</h1>
-<p>Effective 6 November 2026.</p>
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav>
+      <a href="index.html#speed">Speed</a>
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#phone">Phone</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#faq">Questions</a>
+      <a class="btn sm primary" href="index.html#how">Download free</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" style="--sky:#151839">
+  <picture>
+    <source media="(max-width: 560px)" srcset="assets/v3/docs-m.jpg">
+    <img class="bg" src="assets/v3/docs.jpg" alt="" fetchpriority="high">
+  </picture>
+  <div class="wrap">
+    <div class="copy">
+      <span class="kick rise"><i>✦</i> Legal <i>✦</i></span>
+      <h1 class="rise">RAMen <span class="shine">Refund Policy</span></h1>
+      <p class="lede rise">Effective 6 November 2026.</p>
+    </div>
+  </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
+</section>
+<section class="scene" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--art-m:url(/assets/v2/lake-m.jpg);--show:.75">
+  <div class="wrap read">
+    <article class="prose">
 <p>Every plan starts with a free 14-day trial of everything, so you can check RAMen works on your computer before paying.</p>
 <ul><li><strong>Monthly and yearly plans:</strong> ask within 14 days of a payment for a full refund of that payment. Cancel any time from the customer portal (<a href="https://polar.sh/ramen/portal">https://polar.sh/ramen/portal</a>); you keep access until the end of the period you paid for.</li><li><strong>Lifetime Pro:</strong> ask within 30 days of purchase for a full refund.</li><li><strong>Server and Enterprise:</strong> as agreed in the order, otherwise as for monthly and yearly plans.</li></ul>
 <p>Ask at <a href="mailto:support@getramenai.com">support@getramenai.com</a> with the email you bought with. Refunds are paid by Polar to the original payment method.</p>
-</div></main>
-<footer><div class="wrap">
-  <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-  <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
-</div></footer>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+  </div>
+</footer>
+
+<script>
+  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

@@ -24,98 +24,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-  /* RAMen v2: one illustrated night in the RAMen world. Every section is a scene of the same poster world (thick black
-     outlines, swirl clouds, lanterns), each in its own colours; the text sits on the calm sky of its scene and the art
-     melts into the page below it. Glossy 3D objects float beside the words. Type: Inter, heavy and tight, white with an
-     ink outline like the art; one shine word per heading; one broth-orange button. No cards: sections are set apart by
-     space, headings and hairlines. Motion is gentle and stops for reduced motion. */
-  :root {
-    color-scheme: dark;
-    --ink: #070a17;
-    --night: #0d1a35;          /* sampled from the hero sky so the art melts into the page */
-    --dusk: #2a1846;           /* speed scene */
-    --amber: #2b1a12;          /* the shop counter */
-    --market: #0f2a33;         /* the night market */
-    --roof: #24133f;           /* the rooftops */
-    --lake: #0a1630;           /* the lake */
-    --text: #ffffff; --muted: #dcd6ea; --faint: #b9b2cc;
-    --line: rgba(255, 255, 255, .2); --line-2: rgba(255, 255, 255, .45);
-    --cream: #fff3e2; --broth: #f29a43; --broth-hi: #ffb46a; --pink: #f2a3c7; --violet: #7b5cff; --aqua: #3fe0d0;
-    --shine: linear-gradient(90deg, #ffd08a 0%, #f29a43 18%, #f2a3c7 38%, #c9b6ff 55%, #3fe0d0 72%, #ffd08a 100%);
-    --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-    --max: 1180px;
-    --outline: .03em 0 0 var(--ink), -.03em 0 0 var(--ink), 0 .03em 0 var(--ink), 0 -.03em 0 var(--ink),
-      .022em .022em 0 var(--ink), -.022em .022em 0 var(--ink), .022em -.022em 0 var(--ink), -.022em -.022em 0 var(--ink),
-      0 .075em 0 var(--ink);
-  }
-  *, *::before, *::after { box-sizing: border-box; }
-  html { background: var(--night); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 84px; }
-  body { margin: 0; color: var(--text); font: 400 17px/1.6 var(--font); letter-spacing: -0.011em; overflow-x: clip;
-         -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: var(--night); }
-  img, video { display: block; max-width: 100%; }
-  a { color: inherit; }
-  code { font-family: var(--mono); font-size: .9em; }
-  .wrap { width: min(var(--max), 100% - 32px); margin: 0 auto; }
-  h1, h2, h3 { margin: 0; font-weight: 850; text-wrap: balance; color: #fff; }
-  h2 { font-size: clamp(36px, 6.2vw, 64px); line-height: 1.02; letter-spacing: -0.045em; text-shadow: var(--outline); }
-  .shine { background: var(--shine); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text;
-           color: transparent; text-shadow: none; filter: drop-shadow(0 .055em 0 var(--ink)); animation: shine 9s linear infinite; }
-  .kick { display: inline-flex; align-items: center; gap: 10px; color: var(--cream); font: 760 13px/1.3 var(--font);
-          letter-spacing: .16em; text-transform: uppercase; }
-  .kick i { font-style: normal; color: var(--broth); font-size: 15px; letter-spacing: 0; }
-  .kick + h1, .kick + h2 { margin-top: 18px; }
-  .lede { color: var(--muted); font-size: clamp(17px, 2.2vw, 20px); max-width: 60ch; margin: 20px auto 0; }
-  .center { text-align: center; }
-
-  /* buttons: broth orange, outlined in ink with a hard shadow like the art */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 54px; padding: 0 26px;
-         border-radius: 999px; border: 2.5px solid var(--ink); font: 780 16.5px/1 var(--font); letter-spacing: -0.01em;
-         white-space: nowrap; text-decoration: none; transition: transform .15s, box-shadow .15s, background .15s; }
-  .btn.primary { background: var(--broth); color: #1d0c02; box-shadow: 0 5px 0 var(--ink), 0 20px 44px -16px rgba(242, 154, 67, .8); }
-  .btn.primary:hover { background: var(--broth-hi); transform: translateY(-2px); box-shadow: 0 7px 0 var(--ink), 0 24px 48px -16px rgba(242, 154, 67, .9); }
-  .btn.primary:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--ink); }
-  .btn.line { background: rgba(255, 255, 255, .07); color: #fff; border-color: rgba(255, 255, 255, .8); }
-  .btn.line:hover { background: rgba(255, 255, 255, .16); border-color: #fff; }
-  .btn.sm { height: 42px; padding: 0 18px; font-size: 15px; border-width: 2px; }
-  .btn.sm.primary { box-shadow: 0 3px 0 var(--ink); }
-  .btns { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; margin-top: 30px; }
-  .fine { margin-top: 18px; color: var(--faint); font-size: 14.5px; }
-  .fine i { font-style: normal; color: var(--broth); margin: 0 6px; }
-
-  /* header: frosted near-white glass with ink text, so it sits calmly over the art */
-  header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
-           background: rgba(248, 246, 251, .9); border-bottom: 1px solid rgba(7, 10, 23, .08); box-shadow: 0 6px 24px -14px rgba(7, 10, 23, .45); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font: 850 22px/1 var(--font); letter-spacing: -0.04em; }
-  .brand svg { width: 34px; height: 34px; }
-  .brand b { color: #e07f1f; }
-  nav { display: flex; align-items: center; gap: 24px; }
-  nav a:not(.btn) { color: #3b3850; text-decoration: none; font-weight: 650; font-size: 15px; }
-  nav a:not(.btn):hover { color: var(--ink); }
-
-  /* scenes: each section is one picture. Its sky colour is sampled from the top of its art, so the words sit on the
-     same sky the art continues below them; the art fills the foot of the section and a cloud band covers each seam */
-  .scene { position: relative; isolation: isolate; background: var(--sky, var(--night));
-           padding: clamp(80px, 9vw, 132px) 0 calc(56.25vw * var(--show, .58)); }
-  .scene::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56.25vw; z-index: -1;
-                   background: var(--art, none) center bottom / cover no-repeat;
-                   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 24%); mask-image: linear-gradient(180deg, transparent 0, #000 24%); }
-  .band { position: absolute; left: 0; bottom: -5.5vw; z-index: 4; width: 100%; height: 11vw; object-fit: cover; object-position: 50% 50%;
-          pointer-events: none; filter: drop-shadow(0 6px 0 rgba(7, 10, 23, .35)); animation: drift 16s ease-in-out infinite; }
-  .scene + .scene { padding-top: clamp(110px, 12vw, 170px); }
-  /* the warm shop counter is a light scene: dark ink words */
-  .light { color: #2b1406; }
-  .light h2, .light h3 { color: #2b1406; text-shadow: none; }
-  .light .lede, .light .rows p { color: #5a3416; }
-  .light .kick { color: #7a3d0f; }
-  .light .rows li { border-color: rgba(43, 20, 6, .22); }
-  .light .cmd { background: rgba(43, 20, 6, .88); border-color: #2b1406; color: #ffe8c9; }
-  .light .rows .n { color: #b4520b; }
-  .light .shine { background-image: linear-gradient(90deg, #b4520b 0%, #d9480f 20%, #c2417f 40%, #6a3fd1 60%, #0f7f76 80%, #b4520b 100%);
-                  filter: none; }
-
+  /* Main page only: the hero, the ribbon, the plans, the enterprise row and the sign-up form. The shared look
+     (tokens, header, scenes, bands, components, motion, phone sizes) is in assets/site.css; see DESIGN.md. */
   /* hero: the words sit on the art's calm left sky; no empty band above */
   .s-hero { position: relative; padding: 0; min-height: clamp(620px, 55.8vw, 100svh); display: flex; align-items: center;
             overflow: hidden; background: var(--night); }
@@ -137,46 +49,7 @@
   .ribbon span { padding: 16px 0; color: var(--cream); font: 800 15px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
   .ribbon span i { font-style: normal; color: var(--broth); margin: 0 22px; }
 
-  /* numbers strip, split by thin lines */
-  .strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 1000px; margin: 54px auto 0; }
-  .strip > div { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 6px 10px; min-width: 0; text-align: center; }
-  .strip > div + div { border-left: 1px solid var(--line); }
-  .strip b { font: 900 clamp(44px, 8vw, 92px)/.9 var(--font); letter-spacing: -0.04em; color: var(--cream); text-shadow: var(--outline);
-             font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .strip b small { font-size: .42em; letter-spacing: -0.01em; }
-  .strip span { color: var(--muted); font-size: 14.5px; line-height: 1.4; max-width: 22ch; }
-  .notes { color: var(--faint); font-size: 13.5px; max-width: 80ch; margin: 30px auto 0; text-align: center; }
-
-  /* the real race */
-  .race { position: relative; max-width: 1040px; margin: 56px auto 0; border: 2.5px solid var(--ink); border-radius: 22px; overflow: hidden;
-          box-shadow: 0 8px 0 var(--ink), 0 40px 90px -30px rgba(242, 154, 67, .45); background: #07070b; }
-  .race video { width: 100%; height: auto; aspect-ratio: 16 / 9; }
-  .race .tag { position: absolute; top: 14px; right: 14px; background: rgba(7, 10, 23, .8); border: 1.5px solid var(--line-2);
-               border-radius: 999px; padding: 6px 12px; font: 700 12.5px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--cream); }
-
-  /* rows: numbered steps split by thin lines */
-  .rows { list-style: none; margin: 46px auto 0; padding: 0; max-width: 980px; }
-  .rows li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 26px; align-items: center; padding: 26px 0;
-             border-top: 1px solid var(--line); }
-  .rows li:last-child { border-bottom: 1px solid var(--line); }
-  .rows li img { width: 120px; height: 120px; object-fit: contain; }
-  .rows .n { font: 860 13px/1 var(--font); letter-spacing: .16em; color: var(--broth); }
-  .rows h3 { margin: 8px 0 6px; font-size: 24px; letter-spacing: -0.025em; }
-  .rows p { margin: 0; color: var(--muted); }
-  .cmd { display: inline-block; margin-top: 12px; max-width: 100%; overflow-x: auto; white-space: nowrap; background: rgba(0, 0, 0, .45);
-         border: 1.5px solid var(--line-2); border-radius: 12px; padding: 9px 14px; color: var(--cream); font: 600 15px/1.4 var(--mono); }
-
-  /* features: icon, title, words; no boxes */
-  .feats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; margin-top: 56px; }
-  .feat img { width: 112px; height: 112px; object-fit: contain; margin: 0 0 6px -8px; }
-  .feat h3 { font-size: 21px; letter-spacing: -0.025em; margin-bottom: 6px; }
-  .feat p { margin: 0; color: var(--muted); font-size: 16px; }
-
   /* plans: columns split by thin lines */
-  .ticket { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 34px auto 0; width: fit-content;
-            max-width: 100%; padding: 12px 20px; border-radius: 16px; border: 2.5px solid var(--ink); background: var(--cream); color: #2a1406;
-            font-weight: 760; transform: rotate(-1.2deg); box-shadow: 0 5px 0 var(--ink); }
-  .ticket b { color: #b4520b; }
   .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 50px; }
   .plan { padding: 8px 26px 10px; min-width: 0; }
   .plan + .plan { border-left: 1px solid var(--line); }
@@ -192,52 +65,13 @@
                         background: var(--aqua); color: #03141a; font: 800 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
   .plan .btn { margin-top: 20px; }
   .plan { display: flex; flex-direction: column; } .plan ul { flex: 1; } .plan .btn { align-self: flex-start; }
-  .ticket .btn { margin-left: 4px; transform: rotate(1.2deg); }
-  .alt-os { margin-top: 14px !important; }
-  .fine a { color: #fff; }
   .ent { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 22px; align-items: center; margin-top: 46px; padding: 24px 0;
          border-block: 1px solid var(--line); }
   .ent img { width: 96px; height: 96px; object-fit: contain; }
   .ent h3 { font-size: 22px; }
   .ent p { margin: 4px 0 0; color: var(--muted); }
 
-  /* questions */
-  .faq { max-width: 860px; margin: 46px auto 0; }
-  details { border-top: 1px solid var(--line); padding: 20px 2px; }
-  details:last-child { border-bottom: 1px solid var(--line); }
-  summary { cursor: pointer; list-style: none; font-weight: 760; font-size: 18.5px; letter-spacing: -0.02em; display: flex; justify-content: space-between; gap: 16px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; color: var(--broth); font-weight: 800; font-size: 24px; line-height: .9; }
-  details[open] summary::after { content: "−"; }
-  details p { color: var(--muted); margin: 10px 0 0; }
-
-  /* the last scene: the call to action floats over the lake */
-  .final { margin-top: clamp(90px, 11vw, 160px); text-align: center; }
-  .final h2 { max-width: 16ch; margin: 0 auto; }
-  footer { position: relative; z-index: 3; background: var(--ink); color: var(--faint); font-size: 14px; padding: 30px 0 calc(40px + env(safe-area-inset-bottom)); }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
-  footer a { color: var(--muted); }
-
-  /* motion */
-  .float { animation: float 6.5s ease-in-out infinite; }
-  .float.b { animation-duration: 7.6s; animation-delay: -2.6s; }
-  .float.c { animation-duration: 6.9s; animation-delay: -4.2s; }
-  .rise { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
-  .rise.in { opacity: 1; transform: none; }
-  @keyframes shine { to { background-position: -200% 0; } }
-  @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-1.6deg); } }
-  @keyframes drift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-1.4%); } }
-  @keyframes roll { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .rise { opacity: 1; transform: none; }
-  }
-
   @media (max-width: 900px) {
-    nav a:not(.btn) { display: none; }
-    .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 30px; }
-    .strip > div:nth-child(3) { border-left: 0; }
-    .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
     .plan:nth-child(3) { border-left: 0; }
     .s-hero { min-height: 0; display: block; padding-top: 74vw; }
@@ -245,33 +79,22 @@
     .s-hero::before { background: linear-gradient(180deg, transparent 0, transparent 40vw, rgba(9, 16, 41, .85) 78vw, var(--night) 100vw); }
     .s-hero .wrap { padding: 0 0 72px; }
     .s-hero .copy { max-width: none; }
-    .scene { padding-bottom: calc(100vw * var(--show, .58)); }
-    .scene::before { height: 100vw; background-size: cover; background-position: 50% 100%; }
-    .band { height: 18vw; bottom: -9vw; }
-
   }
   @media (max-width: 560px) {
-    .strip { grid-template-columns: minmax(0, 1fr); }
-    .strip > div + div { border-left: 0; border-top: 1px solid var(--line); padding-top: 26px; }
-    .feats, .plans { grid-template-columns: minmax(0, 1fr); }
+    .plans { grid-template-columns: minmax(0, 1fr); }
     .plan + .plan { border-left: 0; border-top: 1px solid var(--line); padding-top: 26px; }
-    .rows li { grid-template-columns: 76px minmax(0, 1fr); gap: 16px; }
-    .rows li img { width: 76px; height: 76px; }
     .ent { grid-template-columns: 72px minmax(0, 1fr); }
     .ent img { width: 72px; height: 72px; }
     .ent .btn { grid-column: 1 / -1; justify-self: start; }
     .s-hero .float-a { display: none; }
     .s-hero h1 { font-size: 46px; }
-    .scene::before { height: 130vw; }
-    .scene { padding-bottom: calc(130vw * var(--show, .58)); }
-    .final h2 { font-size: 34px; }
   }
   .updates { max-width: 560px; margin: 36px auto 0; text-align: center; }
   .updates-t { color: var(--cream); font-weight: 650; font-size: 17px; margin: 0 0 12px; }
   .updates-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
   .updates input[type=email] { flex: 1 1 250px; min-width: 0; height: 42px; padding: 0 14px; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .8); background: rgba(255, 255, 255, .08); color: #fff; font: inherit; font-size: 16px; }
   .updates input[type=email]::placeholder { color: rgba(255, 255, 255, .6); }
-  .updates .hp, .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .updates .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .updates-msg { margin-top: 12px; }
   .updates-msg a, .ph-link { color: var(--broth-hi); }
 </style>
@@ -323,7 +146,7 @@
   <span>Saves every chat<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Models bigger than your memory<i>✦</i>Works with Ollama apps<i>✦</i>Works offline<i>✦</i>Built on llama.cpp<i>✦</i>Free plan forever<i>✦</i></span>
 </div></div>
 
-<section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(assets/v2/speed.jpg);--show:.8">
+<section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(/assets/v2/speed.jpg);--show:.8">
   <div class="wrap center">
     <span class="kick rise"><i>✦</i> Speed <i>✦</i></span>
     <h2 class="rise">Long chats <span class="shine">stop slowing down.</span></h2>
@@ -343,7 +166,7 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(assets/v2/counter.jpg);--show:.6">
+<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(/assets/v2/counter.jpg);--show:.6">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Set up in a minute <i>✦</i></span>
@@ -359,7 +182,7 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(assets/v2/market.jpg);--show:.96">
+<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(/assets/v2/market.jpg);--show:.96">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> What you get <i>✦</i></span>
@@ -384,7 +207,7 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-phone" id="phone" style="--sky:#262a5c;--show:0">
+<section class="scene s-phone" id="phone" style="--sky:#2e3061;--show:.9;--art:url(/assets/v3/phone.jpg);--art-m:url(/assets/v3/phone-m.jpg)">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> New in 1.2 <i>✦</i></span>
@@ -394,7 +217,7 @@
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 01</span><h3>Pack it on your computer</h3><p>Your computer reads the whole conversation with the phone app's model and puts that memory in one file.</p><code class="cmd">ramen handoff</code></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Send it to your phone</h3><p>AirDrop to an iPhone, Quick Share or a cable to an Android phone. The file goes straight from your computer to your phone.</p></div></li>
-      <li class="rise"><img class="float c" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Keep talking</h3><p>Open it with the RAMen app. Your phone loads the memory instead of reading the whole conversation again, so it answers right away.</p></div></li>
+      <li class="rise"><img class="float c" src="assets/v3/icons/phone.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Keep talking</h3><p>Open it with the RAMen app. Your phone loads the memory instead of reading the whole conversation again, so it answers right away.</p></div></li>
     </ol>
     <div class="btns rise">
       <a class="btn primary" href="https://github.com/MatthewLeibel/ramen-releases/releases/latest/download/ramen-android-preview.apk">Get the Android app (preview)</a>
@@ -402,15 +225,16 @@
     </div>
     <p class="notes rise">The phone app runs a small model (Qwen3 0.6B) on the phone itself and saves every chat's memory, so chats come back in about a second even after the phone closes the app. Android 10 or newer on a 64-bit phone: open the download on the phone and allow the install once. The iPhone app is in testing.</p>
   </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
+<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(/assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
       <h2 class="rise">Free forever. <span class="shine">Faster for $3.99.</span></h2>
       <p class="lede rise">Start free. Every plan begins with 14 days of everything, no card needed.</p>
-      <div class="ticket rise">✦ Launch offer: <b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦ <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG">Claim it</a></div>
+      <div class="ticket rise">✦ Launch offer: <span><b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦</span> <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG">Claim it</a></div>
     </div>
     <div class="plans">
       <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
@@ -429,7 +253,7 @@
   <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
 </section>
 
-<section class="scene s-faq" id="faq" style="--sky:#0f1430;--art:url(assets/v2/lake.jpg);--show:.62">
+<section class="scene s-faq" id="faq" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--show:.62">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Questions <i>✦</i></span>
