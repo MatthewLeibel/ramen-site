@@ -15,11 +15,21 @@ say() { printf '\033[1m%s\033[0m\n' "$*"; }
 die() { printf 'RAMen install: %s\n' "$*" >&2; exit 1; }
 
 OS="$(uname -s)"; ARCH="$(uname -m)"
+vulkan_gpu() {   # an AMD graphics card, or an Intel Arc card, with a Vulkan driver: the Vulkan build
+    { ldconfig -p 2>/dev/null | grep -q 'libvulkan.so.1'; } || ls /usr/lib*/libvulkan.so.1 /usr/lib/*/libvulkan.so.1 >/dev/null 2>&1 || return 1
+    for d in /sys/class/drm/card*/device; do
+        v="$(cat "$d/vendor" 2>/dev/null)"; id="$(cat "$d/device" 2>/dev/null)"
+        [ "$v" = 0x1002 ] && return 0                                         # AMD
+        [ "$v" = 0x8086 ] && case "$id" in 0x56??|0xe2??) return 0;; esac      # Intel Arc (Alchemist, Battlemage)
+    done
+    return 1
+}
 case "$OS-$ARCH" in
     Darwin-arm64) PKG="ramen-macos-arm64" ;;
     Darwin-x86_64) die "RAMen needs a Mac with Apple silicon (M1 or newer). Intel Macs are not supported." ;;
     Linux-x86_64)
         if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then PKG="ramen-linux-x64-cuda"
+        elif vulkan_gpu; then PKG="ramen-linux-x64-vulkan"
         else PKG="ramen-linux-x64-cpu"; fi ;;
     Linux-aarch64|Linux-arm64) PKG="ramen-linux-arm64-cpu" ;;      # DGX Spark, Graviton, Ampere, Raspberry Pi 5
     *) die "this installer is for macOS and Linux. On Windows, run in PowerShell: irm https://getramenai.com/install.ps1 | iex" ;;
@@ -34,8 +44,8 @@ say "Downloading RAMen ($PKG)"
 if [ -f "$URL" ]; then cp "$URL" "$TMP/pkg.tar.gz"; [ -f "$URL.sha256" ] && cp "$URL.sha256" "$TMP/pkg.sha256"
 else
     if ! curl -fL --retry 3 --progress-bar -o "$TMP/pkg.tar.gz" "$URL"; then
-        if [ "$PKG" = "ramen-linux-x64-cuda" ] && [ -z "${RAMEN_PKG:-}" ]; then
-            echo "The NVIDIA build could not be downloaded; installing the standard build instead (run the installer again later)."
+        if { [ "$PKG" = "ramen-linux-x64-cuda" ] || [ "$PKG" = "ramen-linux-x64-vulkan" ]; } && [ -z "${RAMEN_PKG:-}" ]; then
+            echo "The build for your graphics card could not be downloaded; installing the standard build instead (run the installer again later)."
             PKG="ramen-linux-x64-cpu"; URL="https://github.com/$REPO/releases/latest/download/$PKG.tar.gz"
             curl -fL --retry 3 --progress-bar -o "$TMP/pkg.tar.gz" "$URL" || die "could not download $URL"
         else die "could not download $URL"; fi
