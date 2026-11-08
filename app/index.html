@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>RAMen</title>
+<meta name="description" content="Private AI that runs on your phone and remembers every chat. No account, no cloud.">
+<meta name="theme-color" content="#0d1a35">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RAMen">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- first run: download the model -->
+  <section id="welcome" class="screen" hidden>
+    <div class="welcome">
+      <img class="bowl" src="icon-512.png" alt="" width="112" height="112">
+      <h1>Private AI that <span class="shine">remembers.</span></h1>
+      <p class="lede">RAMen runs right here on this phone, in the browser. Every chat is saved with its memory, so it comes back in a moment instead of being read again.</p>
+      <div class="actions">
+        <button id="get" class="btn primary">Download the model <span class="size">397 MB</span></button>
+      </div>
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><i></i></div>
+        <p class="fine" id="progress-text"></p>
+      </div>
+      <p class="fine" id="welcome-fine">Qwen3 0.6B. It stays on this device, and RAMen works offline after this.</p>
+      <p class="error" id="welcome-error" hidden></p>
+      <div class="install" id="install" hidden></div>
+    </div>
+  </section>
+
+  <!-- the chats -->
+  <section id="chats" class="screen" hidden>
+    <header class="bar-top">
+      <a class="brand" href="https://getramenai.com" target="_blank" rel="noopener"><img src="favicon.svg" alt="" width="28" height="28"><span>RAM<b>en</b></span></a>
+      <button id="new" class="btn primary sm">New chat</button>
+    </header>
+    <div class="list-wrap">
+      <ul id="list" class="list"></ul>
+      <div id="empty" class="empty" hidden>
+        <h2>Ask anything.</h2>
+        <p>Your chats stay on this phone, and each one picks up where you left it.</p>
+      </div>
+      <div class="install" id="install2" hidden></div>
+    </div>
+  </section>
+
+  <!-- one chat -->
+  <section id="chat" class="screen" hidden>
+    <header class="bar-top">
+      <button id="back" class="icon" aria-label="Back to your chats"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h1 id="title" class="title">New chat</h1>
+      <button id="del" class="icon" aria-label="Delete this chat"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </header>
+    <div id="thread" class="thread" aria-live="polite"></div>
+    <form id="composer" class="composer">
+      <textarea id="input" rows="1" placeholder="Message RAMen" autocomplete="off" enterkeyhint="send"></textarea>
+      <button id="send" class="send" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 19V6M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button id="stop" class="send stop" type="button" aria-label="Stop" hidden><svg viewBox="0 0 24 24" width="20" height="20"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg></button>
+    </form>
+  </section>
+
+  <!-- while the model loads -->
+  <section id="loading" class="screen center-screen" hidden>
+    <img class="bowl pulse" src="icon-512.png" alt="" width="96" height="96">
+    <p id="loading-text" class="fine">Getting the model ready…</p>
+    <p class="error" id="loading-error" hidden></p>
+  </section>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
