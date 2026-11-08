@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RAMen on your phone</title>
-<meta name="description" content="Private AI on your iPhone or Android phone that remembers every chat. Scan the code to open it, no account and no app store.">
+<meta name="description" content="Private AI on your iPhone or Android phone that remembers every chat, and RAMen for Android app makers. Scan the code to open it, no account and no app store.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
 <meta property="og:title" content="RAMen on your phone">
-<meta property="og:description" content="Private AI on your iPhone or Android phone that remembers every chat. Scan the code to open it, no account and no app store.">
+<meta property="og:description" content="Private AI on your iPhone or Android phone that remembers every chat, and RAMen for Android app makers. Scan the code to open it, no account and no app store.">
 <meta property="og:url" content="https://getramenai.com/phone.html">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
 <meta name="twitter:title" content="RAMen on your phone">
-<meta name="twitter:description" content="Private AI on your iPhone or Android phone that remembers every chat. Scan the code to open it, no account and no app store.">
+<meta name="twitter:description" content="Private AI on your iPhone or Android phone that remembers every chat, and RAMen for Android app makers. Scan the code to open it, no account and no app store.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/phone.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -88,6 +88,38 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+<section class="scene" id="app-makers" style="--sky:#151839;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> For app makers <i>✦</i></span>
+      <h2 class="rise">Make your app <span class="shine">remember.</span></h2>
+      <p class="lede center rise">RAMen for Android puts llama.cpp with RAMen's memory inside your own app. After every answer the conversation's exact model state is saved on the phone, so when it comes back, even after Android closed your app, the model reads only the new message.</p>
+    </div>
+  </div>
+  <div class="wrap read">
+    <article class="prose rise">
+<p><strong>1.</strong> In <code>settings.gradle.kts</code>, inside <code>dependencyResolutionManagement { repositories { ... } }</code>:</p>
+<pre><code>exclusiveContent {
+    forRepository { maven { url = uri("https://getramenai.com/maven") } }
+    filter { includeGroup("com.getramenai") }
+}</code></pre>
+<p><strong>2.</strong> In <code>app/build.gradle.kts</code> (minSdk 29):</p>
+<pre><code>implementation("com.getramenai:ramen:0.9.0")</code></pre>
+<p><strong>3.</strong> Hello world:</p>
+<pre><code>val ramen = Ramen.open(context, File(context.filesDir, "Qwen3-1.7B-Q4_K_M.gguf"))
+ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "chat-1") { r -&gt;
+    when (r) {
+        is Reply.Text -&gt; answer.append(r.text)
+        is Reply.Done -&gt; Log.i("app", "read ${r.readTokens} new tokens, memory: ${r.memory}")
+        is Reply.Failed -&gt; Log.e("app", r.message)
+        is Reply.Started -&gt; {}
+    }
+}</code></pre>
+<p>Send the whole conversation each time (system, user and assistant messages), as with the OpenAI API: RAMen keeps the part the model already holds, in memory or restored from its file, and reads only the rest. <code>history(session)</code> returns a conversation's saved messages, <code>forget(session)</code> deletes it, <code>close()</code> saves and frees the model's memory. Answers arrive on the main thread, one model and one answer at a time.</p>
+<p>Inside: llama.cpp for arm64 phones and x86_64 emulators, one CPU build per processor generation (the best one is picked when your app starts), 16 KB pages, no permissions needed. Tested in a blank app with only these two snippets on an Android emulator: the conversation came back after Android closed the app, and the model read only the new message. This is a 0.9.0 preview; a Swift package for iPhone apps is next. Questions: <a href="mailto:support@getramenai.com">support@getramenai.com</a>.</p>
+    </article>
   </div>
 </section>
 </main>
