@@ -155,7 +155,7 @@
       <h2 class="rise">Your apps and <span class="shine">your models.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>RAMen speaks the OpenAI API and, since version 1.1.0, Ollama's API too, so apps made for Ollama (Open WebUI, Continue, Cline, Enchanted and others) can talk to it, and their chats are saved like any other. When Ollama itself is not installed, RAMen also answers on Ollama's usual address. Models you already downloaded with Ollama, LM Studio, llama.cpp or Hugging Face show up in <code>ramen models</code> and start by name, without a new download. Hybrid models such as Qwen 3.5 come back without re-reading the conversation too.</p>
+      <p>RAMen speaks the OpenAI API, Anthropic's API and Ollama's API, so apps made for any of them can talk to it, and their chats are saved like any other: Open WebUI, Continue, Cline and Enchanted, and also Claude Code and Codex (<code>ramen claude</code>, <code>ramen connect codex</code>), whose long instructions are then read once instead of again on every restart. Every model already on your computer (from Ollama, LM Studio, llama.cpp or Hugging Face) shows up in your apps under names like <code>qwen3:4b</code>: pick one and RAMen switches to it, and each model's conversations come back with it. Already use Ollama? <code>ramen start --ollama replace</code> puts RAMen at Ollama's address with your Ollama models, so your apps use it without a change, and <code>ramen stop</code> starts Ollama again. Hybrid models such as Qwen 3.5 come back without re-reading the conversation too.</p>
     </div>
   </div>
 </section>
