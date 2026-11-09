@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RAMen for developers</title>
+<meta name="description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RAMen">
+<meta property="og:title" content="RAMen for developers">
+<meta property="og:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta property="og:url" content="https://getramenai.com/developers.html">
+<meta property="og:image" content="https://getramenai.com/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getramenai">
+<meta name="twitter:title" content="RAMen for developers">
+<meta name="twitter:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
+<link rel="canonical" href="https://getramenai.com/developers.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav>
+      <a href="index.html#speed">Speed</a>
+      <a href="index.html#how">How it works</a>
+      <a href="developers.html">Developers</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#faq">Questions</a>
+      <a class="btn sm primary" href="index.html#how">Download free</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero" style="--sky:#151839">
+  <picture>
+    <source media="(max-width: 560px)" srcset="assets/v3/docs-m.jpg">
+    <img class="bg" src="assets/v3/docs.jpg" alt="" fetchpriority="high">
+  </picture>
+  <div class="wrap">
+    <div class="copy">
+      <span class="kick rise"><i>✦</i> For developers <i>✦</i></span>
+      <h1 class="rise">RAMen inside <span class="shine">your app.</span></h1>
+      <p class="lede rise">Give your app's local AI a memory: every conversation comes back in seconds instead of being read again, and long ones stay fast. On computers your app talks to RAMen like any model server. On Android, the RAMen kit goes inside your app.</p>
+    </div>
+  </div>
+</section>
+<section class="scene" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--art-m:url(/assets/v2/lake-m.jpg);--show:.6">
+  <div class="wrap read">
+    <article class="prose rise">
+<h2>On a computer or a server</h2>
+<p>Start RAMen (<code>ramen start</code>) and point your app at it. It answers the APIs apps already speak, so there is no new client to learn:</p>
+<ul>
+<li><strong>OpenAI:</strong> <code>http://127.0.0.1:8090/v1</code> (chat completions and Responses)</li>
+<li><strong>Anthropic Messages:</strong> <code>http://127.0.0.1:8090</code></li>
+<li><strong>Ollama:</strong> <code>ramen start --ollama replace</code> answers at Ollama's own address, with your Ollama models</li>
+</ul>
+<p>Send the whole conversation each time, as usual. To name a conversation yourself, add an <code>X-Session-Id</code> header. On a shared GPU server (the Server plan), give each person a key with <code>ramen keys add NAME</code> and start it with <code>ramen start --api-keys ~/.context-engine/api-keys.txt --host 0.0.0.0</code>.</p>
+<h2>On Android: the RAMen kit</h2>
+<p><strong>1.</strong> In <code>settings.gradle.kts</code>, inside <code>dependencyResolutionManagement { repositories { ... } }</code>:</p>
+<pre><code>exclusiveContent {
+    forRepository { maven { url = uri("https://getramenai.com/maven") } }
+    filter { includeGroup("com.getramenai") }
+}</code></pre>
+<p><strong>2.</strong> In <code>app/build.gradle.kts</code> (minSdk 29):</p>
+<pre><code>implementation("com.getramenai:ramen:0.9.0")</code></pre>
+<p><strong>3.</strong> Hello world:</p>
+<pre><code>val ramen = Ramen.open(context, File(context.filesDir, "Qwen3-1.7B-Q4_K_M.gguf"))
+ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "chat-1") { r -&gt;
+    when (r) {
+        is Reply.Text -&gt; answer.append(r.text)
+        is Reply.Done -&gt; Log.i("app", "read ${r.readTokens} new tokens, memory: ${r.memory}")
+        is Reply.Failed -&gt; Log.e("app", r.message)
+        is Reply.Started -&gt; {}
+    }
+}</code></pre>
+<p>Send the whole conversation each time (system, user and assistant messages), as with the OpenAI API, and RAMen reads only what is new. <code>history(session)</code> returns a conversation's saved messages, <code>forget(session)</code> deletes it, and <code>close()</code> frees the model's memory. Answers arrive on the main thread. The kit runs any GGUF model your app ships or downloads, needs no permissions, and works on arm64 phones and x86_64 emulators. Tested in a blank app with only these two snippets: the conversation came back after Android closed the app, and the model read only the new message. This is a 0.9.0 preview.</p>
+<h2>iPhone</h2>
+<p>A Swift package for iPhone apps is next. Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a> to hear when it is ready, or with any question about building RAMen into your app.</p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+  </div>
+</footer>
+
+<script>
+  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
