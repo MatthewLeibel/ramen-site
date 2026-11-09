@@ -80,7 +80,7 @@
     filter { includeGroup("com.getramenai") }
 }</code></pre>
 <p><strong>2.</strong> In <code>app/build.gradle.kts</code> (minSdk 29):</p>
-<pre><code>implementation("com.getramenai:ramen:0.9.0")</code></pre>
+<pre><code>implementation("com.getramenai:ramen:0.9.1")</code></pre>
 <p><strong>3.</strong> Hello world:</p>
 <pre><code>val ramen = Ramen.open(context, File(context.filesDir, "Qwen3-1.7B-Q4_K_M.gguf"))
 ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "chat-1") { r -&gt;

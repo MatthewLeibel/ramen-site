@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.getramenai</groupId>
   <artifactId>ramen</artifactId>
-  <version>0.9.0</version>
+  <version>0.9.1</version>
   <packaging>aar</packaging>
   <name>RAMen for Android</name>
   <description>Local AI with session memory for Android apps: llama.cpp that saves each conversation's exact model state and reads only the new message when it comes back.</description>

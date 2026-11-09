@@ -3,7 +3,7 @@
   "component": {
     "group": "com.getramenai",
     "module": "ramen",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -33,13 +33,13 @@
       ],
       "files": [
         {
-          "name": "ramen-0.9.0.aar",
-          "url": "ramen-0.9.0.aar",
-          "size": 15311066,
-          "sha512": "199423cbedf9e390b420378614853c51d27e81f2c92289b5881d49178ae27b83e8d1ca95129add578aaaf74f111c76f36478d97b1662ef0c7344abe1ddf1b88a",
-          "sha256": "3fd21ac9d7373c1943097dfbe356ab709d89c4542aff940e0ea284aded884a1d",
-          "sha1": "f7a4c58b23f0be0035b64fc9266471114623b87c",
-          "md5": "7a7d3e0a483344ae054d4a7bbbd26a04"
+          "name": "ramen-0.9.1.aar",
+          "url": "ramen-0.9.1.aar",
+          "size": 15020134,
+          "sha512": "b62846925cf985c9379fb23d0951b585acfdb248090f6398b300c4079573e87105a0651403e99769a189ac01de80cd02765f7fba0e0426f50874695925c0b944",
+          "sha256": "7aab8833f72fc6d22a039e22af495507b2000d463cd58a5e64a6f1b5a8d93144",
+          "sha1": "bf91536652bca985982001a89493d937f73038ed",
+          "md5": "9f2611f37233ab2636bfacc90ccef3f9"
         }
       ]
     },
@@ -62,13 +62,13 @@
       ],
       "files": [
         {
-          "name": "ramen-0.9.0.aar",
-          "url": "ramen-0.9.0.aar",
-          "size": 15311066,
-          "sha512": "199423cbedf9e390b420378614853c51d27e81f2c92289b5881d49178ae27b83e8d1ca95129add578aaaf74f111c76f36478d97b1662ef0c7344abe1ddf1b88a",
-          "sha256": "3fd21ac9d7373c1943097dfbe356ab709d89c4542aff940e0ea284aded884a1d",
-          "sha1": "f7a4c58b23f0be0035b64fc9266471114623b87c",
-          "md5": "7a7d3e0a483344ae054d4a7bbbd26a04"
+          "name": "ramen-0.9.1.aar",
+          "url": "ramen-0.9.1.aar",
+          "size": 15020134,
+          "sha512": "b62846925cf985c9379fb23d0951b585acfdb248090f6398b300c4079573e87105a0651403e99769a189ac01de80cd02765f7fba0e0426f50874695925c0b944",
+          "sha256": "7aab8833f72fc6d22a039e22af495507b2000d463cd58a5e64a6f1b5a8d93144",
+          "sha1": "bf91536652bca985982001a89493d937f73038ed",
+          "md5": "9f2611f37233ab2636bfacc90ccef3f9"
         }
       ]
     }
