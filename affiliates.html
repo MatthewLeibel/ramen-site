@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RAMen affiliate program</title>
+<meta name="description" content="Share RAMen with your audience. Your own code gives them 50% off Pro for life, you earn 50% of every sale made with it, and Pro for life is yours free.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RAMen">
+<meta property="og:title" content="RAMen affiliate program: earn half of every sale">
+<meta property="og:description" content="Your own code gives your audience 50% off Pro for life, you earn 50% of every sale made with it, and Pro for life is yours free.">
+<meta property="og:url" content="https://getramenai.com/affiliates.html">
+<meta property="og:image" content="https://getramenai.com/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getramenai">
+<meta name="twitter:title" content="RAMen affiliate program: earn half of every sale">
+<meta name="twitter:description" content="Your own code gives your audience 50% off Pro for life, you earn 50% of every sale made with it, and Pro for life is yours free.">
+<meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
+<link rel="canonical" href="https://getramenai.com/affiliates.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* Affiliates page only: the hero over the night market, the warm terms section and the application form.
+     The shared look is in assets/site.css. */
+  .a-hero { text-align: center; padding-top: clamp(86px, 9vw, 132px); }
+  .a-hero h1 { margin: 18px auto 0; font-size: clamp(46px, 6.4vw, 88px); line-height: .95; letter-spacing: -0.052em;
+               text-shadow: var(--outline); }
+  .a-hero .lede { max-width: 56ch; color: #ece6f6; }
+  .a-hero .ticket i { font-style: normal; color: #b4520b; }
+
+  .a-how .strip { margin-top: 64px; }
+  .a-how .strip b { font-size: clamp(44px, 7vw, 84px); }
+  .a-how .rows { margin-top: 64px; }
+  .a-how { padding-bottom: clamp(24px, 3vw, 40px); }          /* the same sky as the next section: one calm stretch */
+  .a-gets, .a-faq { padding-bottom: clamp(80px, 9vw, 128px); }
+  .a-gets .more { margin-top: 44px; }
+
+  .a-terms { padding-bottom: clamp(80px, 9vw, 120px); }
+  .a-terms .callouts { margin-top: 54px; }
+  .a-terms .callout.cream > img { width: 80px; height: 80px; }
+  .a-terms .fine { color: #6b3f19; margin-top: 38px; }
+
+  .a-apply .lede { max-width: 52ch; }
+  .apply { position: relative; max-width: 840px; margin: 50px auto 0; padding: 32px 32px 28px; border: 2.5px solid var(--ink);
+           border-radius: 26px; background: var(--cream); color: #2b1406; text-align: left;
+           box-shadow: 0 8px 0 var(--ink), 0 44px 90px -34px rgba(0, 0, 0, .7); }
+  .apply .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 22px; }
+  .apply label { display: flex; flex-direction: column; gap: 8px; color: #7a3d0f; font: 780 12.5px/1.3 var(--font);
+                 letter-spacing: .1em; text-transform: uppercase; }
+  .apply label .opt { color: #a0714a; font-weight: 650; letter-spacing: .02em; text-transform: none; }
+  .apply .wide { grid-column: 1 / -1; }
+  .apply input, .apply select, .apply textarea { width: 100%; min-width: 0; height: 50px; padding: 0 15px; border: 2px solid var(--ink);
+           border-radius: 13px; background: #fffaf3; color: #2b1406; font: 520 16.5px/1.35 var(--font); letter-spacing: -0.01em;
+           box-shadow: inset 0 2px 0 rgba(43, 20, 6, .06); transition: box-shadow .15s, background .15s; }
+  .apply select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer;
+           background: #fffaf3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1.5 1.5 7 7l5.5-5.5' fill='none' stroke='%23070a17' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 17px center / 14px 9px no-repeat; }
+  .apply textarea { height: auto; min-height: 112px; padding: 13px 15px; resize: vertical; }
+  .apply input::placeholder, .apply textarea::placeholder { color: #ad8a6c; }
+  .apply input:focus, .apply select:focus, .apply textarea:focus { outline: none; background-color: #fff; box-shadow: 0 0 0 4px rgba(242, 154, 67, .55); }
+  .apply .send { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; margin-top: 26px; }
+  .apply .msg { margin: 0; flex: 1 1 260px; color: #5a3416; font-size: 15px; line-height: 1.5; }
+  .apply .msg a { color: #b4520b; }
+  .apply .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .apply .done { padding: 18px 6px 10px; text-align: center; }
+  .apply .done img { width: 104px; height: 104px; margin: 0 auto 8px; object-fit: contain; }
+  .apply .done h3 { color: #2b1406; font-size: 26px; letter-spacing: -0.03em; text-shadow: none; }
+  .apply .done p { margin: 8px auto 0; max-width: 46ch; color: #5a3416; }
+  .a-apply .after { margin-top: 30px; }
+
+  @media (max-width: 640px) {
+    .apply { padding: 24px 18px 22px; border-radius: 22px; }
+    .apply .grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .apply .send .btn { width: 100%; }
+  }
+  @media (max-width: 560px) {
+    .a-hero h1 { font-size: 46px; }
+    .a-hero .ticket { row-gap: 4px; font-size: 15px; }
+    .a-hero .ticket i { display: none; }
+    .a-how .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+    .a-how .strip > div + div { border-top: 0; padding-top: 6px; }
+    .a-how .strip > div:nth-child(2n) { border-left: 1px solid var(--line); }
+    .a-how .strip b { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#terms">Terms</a>
+      <a href="#faq">Questions</a>
+      <a href="index.html">RAMen</a>
+      <a class="btn sm primary" href="#apply">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="scene a-hero" style="--sky:#46367d;--art:url(/assets/v2/market.jpg);--art-m:url(/assets/v2/market-m.jpg);--show:.74">
+  <div class="wrap">
+    <span class="kick rise"><i>✦</i> RAMen affiliate program <i>✦</i></span>
+    <h1 class="rise">Share RAMen.<br> <span class="shine">Earn half of every sale.</span></h1>
+    <p class="lede rise">For YouTube channels, newsletters, podcasts and communities about AI. Your own code gives your audience 50% off Pro for life, you earn 50% of every sale made with it, and Pro for life is yours, free.</p>
+    <div class="btns rise">
+      <a class="btn primary" href="#apply">Apply now</a>
+      <a class="btn line" href="#how">How it works</a>
+    </div>
+    <div class="ticket rise"><span>Your audience pays <b>$9.99</b>, not $19.99</span><i>✦</i><span>You earn about <b>$5</b> a sale</span></div>
+  </div>
+</section>
+
+<section class="scene a-how" id="how" style="--sky:#141b40;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> How it works <i>✦</i></span>
+      <h2 class="rise">Four steps to <span class="shine">your first payout.</span></h2>
+      <p class="lede rise">Your code does the tracking, so there are no links to set up and nothing to add to your site.</p>
+    </div>
+    <div class="strip rise">
+      <div><b>50%</b><span>off Pro for life for your audience</span></div>
+      <div><b>50%</b><span>of every sale made with your code, for you</span></div>
+      <div><b>$0</b><span>to join, and Pro for life is yours free</span></div>
+      <div><b>∞</b><span>no time limit: every order with your code counts</span></div>
+    </div>
+    <ol class="rows">
+      <li class="rise"><img class="float" src="assets/v3/icons/scroll.webp" alt="" loading="lazy" onerror="this.remove()"><div><span class="n">STEP 01</span><h3>Apply</h3><p>Tell us where your audience is and the code you would like, such as ARIA. We read every application and answer by email.</p></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/free.webp" alt="" loading="lazy" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Get your code and your license</h3><p>Your code gives your audience 50% off Pro for life. Your own Pro for life license is free, so you can try everything properly before you say a word about it.</p></div></li>
+      <li class="rise"><img class="float c" src="assets/v3/icons/film.webp" alt="" loading="lazy" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Share it your way</h3><p>A full video, a short, a mention in a tutorial or a line in your newsletter: every format earns the same. No script and no obligation. Share it only if you like it.</p></div></li>
+      <li class="rise"><img class="float b" src="assets/v3/icons/party.webp" alt="" loading="lazy" onerror="this.remove()"><div><span class="n">STEP 04</span><h3>Get paid every month</h3><p>Half of every sale made with your code, by PayPal or e-transfer, with no minimum. Your own private page shows each sale as it comes in.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="scene a-gets" style="--sky:#141b40;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> What your audience gets <i>✦</i></span>
+      <h2 class="rise">A memory for <span class="shine">the AI on their computer.</span></h2>
+      <p class="lede rise">RAMen is the memory layer for local AI, built on llama.cpp. It makes a good demo: close a long chat, open it again, and it is back in seconds.</p>
+    </div>
+    <div class="feats">
+      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Chats that come back in seconds</h3><p>Every conversation is saved on the computer and comes back in seconds, even after a reboot, instead of being read again from the start.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/agents.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Switch between agents and chats without reading their history again. Each one picks up where it stopped.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/speed.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Fast on long chats</h3><p>Long chats and agent sessions stay fast, and RAMen is never slower than plain llama.cpp.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/engine.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Models bigger than memory</h3><p>Mixture-of-experts models larger than the computer's memory still run, like gpt-oss 120B on a 16 GB Mac.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Works with their apps</h3><p>Claude Code, Codex, Cline, Continue, Aider, OpenCode, Open WebUI and apps made for Ollama, with the models they already downloaded.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/private.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Stays on their computer</h3><p>Prompts, files and chats never leave the machine, and it works offline. On Mac, Windows and Linux.</p></div>
+    </div>
+    <p class="fine center more rise">A free plan forever, and a 14-day trial of everything with no card <i>✦</i> Your code is for Pro for life, which has all of it <i>✦</i> <a href="index.html#features">Everything RAMen does</a></p>
+  </div>
+</section>
+
+<section class="scene a-terms light" id="terms" style="--sky:#f6c27e;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> The terms <i>✦</i></span>
+      <h2 class="rise">The terms, <span class="shine">in plain words.</span></h2>
+    </div>
+    <div class="callouts">
+      <div class="callout cream rise"><img src="assets/v2/icons/pro.webp" alt="" loading="lazy" onerror="this.remove()"><h3>50% of every sale</h3><p>Half of what your audience pays for Pro for life with your code, before tax: about $5 a sale.</p></div>
+      <div class="callout cream rise"><img src="assets/v3/icons/scroll.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Tracked by your code</h3><p>No links, clicks or cookies to lose. Every order with your code counts, on any device, with no time limit.</p></div>
+      <div class="callout cream rise"><img src="assets/v3/icons/refund.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Paid every month</h3><p>By PayPal or e-transfer, with no minimum. A refunded order earns nothing, and Pro for life can be refunded within 30 days, so each payout covers the sales past that window.</p></div>
+      <div class="callout cream rise"><img src="assets/v2/icons/free.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Pro for life, yours</h3><p>A free Pro for life license for you, to use as long as you like.</p></div>
+      <div class="callout cream rise"><img src="assets/v3/icons/phone.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Your own page</h3><p>A private link shows every sale made with your code, what you have earned, what is still inside the refund window and what has been paid.</p></div>
+      <div class="callout cream rise"><img src="assets/v3/icons/shield.webp" alt="" loading="lazy" onerror="this.remove()"><h3>Fair play</h3><p>Tell your audience you earn from your code, as YouTube and the law ask. No ads on the RAMen name, no coupon sites, no spam, and no claims RAMen does not make. Your own purchases do not count.</p></div>
+    </div>
+    <p class="fine center rise">If these terms ever change, you will hear from us by email 30 days before. What you have already earned is always paid.</p>
+  </div>
+</section>
+
+<section class="scene a-faq" id="faq" style="--sky:#141b40;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Questions <i>✦</i></span>
+      <h2 class="rise">Good to know.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Who can apply?</summary><p>Anyone who makes things people watch, read or listen to about AI, coding, Macs or self-hosting: YouTube channels, newsletters, podcasts, blogs, courses and communities. There is no minimum audience size, and we read every application.</p></details>
+      <details><summary>Do I have to make a whole video?</summary><p>No. A full video, a short, a mention in a tutorial or a line in a newsletter all earn the same. There is no script and no obligation, and we would rather you share RAMen only if you like it.</p></details>
+      <details><summary>Can I try RAMen first?</summary><p>Yes. Your free Pro for life license comes with your code. Anyone can also try everything free for 14 days, no card needed.</p></details>
+      <details><summary>How are sales tracked?</summary><p>By your code. Every Pro for life order that uses it counts, whatever device or link it came from, with no cookies and no time limit. A link like <code>getramenai.com/?code=YOURCODE</code> shows your code on the site and applies it at checkout, so your audience does not have to type it.</p></details>
+      <details><summary>When and how do I get paid?</summary><p>Once a month, by PayPal or e-transfer, with no minimum. Each payout covers the sales made with your code that are past Pro for life's 30-day refund window. Your private page shows what is waiting and what has been paid.</p></details>
+      <details><summary>Do you also pay for sponsored videos?</summary><p>Not at the moment. For now the program is commission only.</p></details>
+      <details><summary>What does my audience need?</summary><p>A Mac with Apple silicon, or a Windows or Linux PC. RAMen picks a model that fits the computer, or uses the ones already downloaded. The free plan works forever; your code is for Pro for life.</p></details>
+      <details><summary>Who runs the program?</summary><p>RAMen is made by NEOTECH Inc. Questions about the program: <a href="mailto:support@getramenai.com">support@getramenai.com</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="scene a-apply" id="apply" style="--sky:#4e327f;--art:url(/assets/v2/rooftops.jpg);--art-m:url(/assets/v2/rooftops-m.jpg);--show:.6">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Apply <i>✦</i></span>
+      <h2 class="rise">Ready to <span class="shine">share RAMen?</span></h2>
+      <p class="lede rise">Tell us a little about where you share. We read every application and answer by email with your code and your license.</p>
+    </div>
+    <form class="apply rise" id="apply-form" novalidate>
+      <div class="grid">
+        <label>Your name<input name="name" autocomplete="name" required maxlength="100" placeholder="Ada Byte"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com"></label>
+        <label class="wide">Your channel, show or site<input name="link" required maxlength="300" inputmode="url" autocomplete="url" placeholder="youtube.com/@yourchannel"></label>
+        <label>Where you share
+          <select name="where">
+            <option>YouTube</option><option>Newsletter</option><option>Podcast</option><option>Blog</option>
+            <option>Course</option><option>Community</option><option>Other</option>
+          </select></label>
+        <label><span>Audience <span class="opt">(roughly)</span></span>
+          <select name="audience">
+            <option value="">Rather not say</option><option>Under 1,000</option><option>1,000 to 10,000</option>
+            <option>10,000 to 100,000</option><option>Over 100,000</option>
+          </select></label>
+        <label class="wide"><span>The code you would like <span class="opt">(optional, letters and numbers)</span></span><input name="code" maxlength="20" autocapitalize="characters" spellcheck="false" placeholder="ARIA"></label>
+        <label class="wide"><span>Anything else? <span class="opt">(optional)</span></span><textarea name="note" maxlength="1500" placeholder="What you cover, or how you would like to share RAMen"></textarea></label>
+        <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="send">
+        <button class="btn primary" type="submit">Send my application</button>
+        <p class="msg" role="status" aria-live="polite">Used only to answer you and run the program. <a href="privacy.html">Privacy</a></p>
+      </div>
+    </form>
+    <p class="fine center after rise">Rather write? <a href="mailto:support@getramenai.com?subject=RAMen%20affiliate%20program">support@getramenai.com</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+  </div>
+</footer>
+
+<script>
+  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<script>
+  // the application form: sent to the affiliate Worker (site/worker/partners.js), which keeps it for us to answer
+  (function () {
+    var f = document.getElementById('apply-form');
+    if (!f) return;
+    var msg = f.querySelector('.msg'), btn = f.querySelector('button');
+    var write = ' Please write to <a href="mailto:support@getramenai.com?subject=RAMen%20affiliate%20program">support@getramenai.com</a> instead.';
+    function say(text, html) { if (html) msg.innerHTML = text; else msg.textContent = text; }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var el = function (n) { return f.elements[n]; }, v = function (n) { return el(n).value.trim(); };
+      if (!v('name')) { say('Please tell us your name.'); el('name').focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))) { say('Please enter a valid email address.'); el('email').focus(); return; }
+      if (!/^(https?:\/\/)?[^\s\/.]+(\.[^\s\/.]+)+(\/\S*)?$/i.test(v('link'))) { say('Please add a link to your channel, show or site.'); el('link').focus(); return; }
+      btn.disabled = true; say('Sending...');
+      var data = {}; ['name', 'email', 'link', 'where', 'audience', 'code', 'note', 'website'].forEach(function (n) { data[n] = v(n); });
+      fetch('https://ramen-partners.matthewsleibel.workers.dev/apply', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (!d.ok) { say((d.error || 'Something went wrong.') + (d.error ? '' : write), !d.error); btn.disabled = false; return; }
+        var done = document.createElement('div');
+        done.className = 'done';
+        done.innerHTML = '<img src="assets/v3/icons/party.webp" alt=""><h3></h3><p></p>';
+        done.querySelector('h3').textContent = 'Thanks, ' + data.name.split(' ')[0] + '!';
+        done.querySelector('p').textContent = 'Your application is in. We will write to ' + data.email + ' with your code and your license.';
+        f.replaceChildren(done);
+      }).catch(function () { say('Something went wrong.' + write, true); btn.disabled = false; });
+    });
+  })();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

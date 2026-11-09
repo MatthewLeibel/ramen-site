@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your RAMen affiliate page</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  /* A partner's own page: their code, their links, their sales and payouts, from the affiliate Worker
+     (site/worker/partners.js). The private key is in the link after the #, so it never reaches a server log. */
+  .p-top { padding-bottom: clamp(70px, 8vw, 110px); text-align: center; }
+  .p-top h1 { margin: 18px auto 0; font-size: clamp(42px, 5.4vw, 72px); line-height: .96; letter-spacing: -0.05em; text-shadow: var(--outline); }
+  .p-top .who { margin: 16px 0 0; color: var(--muted); font-size: 18px; }
+  .p-top .who b { color: var(--cream); font-family: var(--mono); font-weight: 700; letter-spacing: .02em; }
+  .links { display: grid; gap: 14px; max-width: 820px; margin: 40px auto 0; text-align: left; }
+  .link { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; padding: 16px 18px;
+          border: 2.5px solid var(--ink); border-radius: 18px; background: rgba(13, 18, 45, .8); box-shadow: 0 6px 0 var(--ink); }
+  .link span { color: var(--cream); font: 760 12.5px/1.3 var(--font); letter-spacing: .12em; text-transform: uppercase; }
+  .link code { grid-column: 1; display: block; overflow-x: auto; white-space: nowrap; color: #fff; font: 600 15px/1.5 var(--mono); }
+  .link .btn { grid-column: 2; grid-row: 1 / span 2; }
+  .p-top .strip { margin-top: 56px; }
+  .p-top .strip b { font-size: clamp(38px, 6vw, 72px); }
+  .wait { margin: 26px auto 0; color: var(--muted); }
+  .p-body { padding-top: 0; padding-bottom: clamp(80px, 9vw, 120px); }
+  .p-body .wrap { max-width: 980px; }
+  .p-body h2 { font-size: clamp(28px, 3.6vw, 40px); margin: 0 0 18px; }
+  .p-body .table-wrap + h2 { margin-top: 56px; }
+  .p-body .empty { color: var(--muted); }
+  .p-body td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .state { display: inline-block; padding: 3px 10px; border-radius: 999px; border: 1.5px solid var(--line-2); font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .state.cleared { border-color: var(--aqua); color: var(--aqua); }
+  .state.waiting { border-color: var(--broth-hi); color: var(--broth-hi); }
+  .state.refunded { color: var(--faint); }
+  .p-body .fine { margin-top: 40px; }
+  .gone { max-width: 620px; margin: 30px auto 0; }
+  @media (max-width: 640px) {
+    .link { grid-template-columns: minmax(0, 1fr); }
+    .link .btn { grid-column: 1; grid-row: auto; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav>
+      <a href="affiliates.html#terms">Terms</a>
+      <a href="affiliates.html#faq">Questions</a>
+      <a class="btn sm primary" href="mailto:support@getramenai.com?subject=My%20RAMen%20affiliate%20page">Write to us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="scene p-top" style="--sky:#141b40;--show:0">
+  <div class="wrap">
+    <span class="kick"><i>✦</i> Your affiliate page <i>✦</i></span>
+    <h1>Your <span class="shine">RAMen numbers.</span></h1>
+    <p class="who" id="who" aria-live="polite">Loading your numbers...</p>
+    <div id="view" hidden>
+      <div class="links">
+        <div class="link"><span>Your link: shows your code on the site</span><code id="l-site"></code><button class="btn sm line" type="button" data-copy="l-site">Copy</button></div>
+        <div class="link"><span>Straight to checkout, code applied</span><code id="l-checkout"></code><button class="btn sm line" type="button" data-copy="l-checkout">Copy</button></div>
+      </div>
+      <div class="strip">
+        <div><b id="t-sales">0</b><span>sales with your code</span></div>
+        <div><b id="t-earned">$0</b><span>earned in all, at 50%</span></div>
+        <div><b id="t-due">$0</b><span>due at the next payout</span></div>
+        <div><b id="t-paid">$0</b><span>paid to you so far</span></div>
+      </div>
+      <p class="wait" id="t-wait" hidden></p>
+    </div>
+    <div class="gone" id="gone" hidden><p class="lede" id="gone-text"></p></div>
+  </div>
+</section>
+<section class="scene p-body" id="body" style="--sky:#141b40;--show:0" hidden>
+  <div class="wrap">
+    <h2>Sales</h2>
+    <div class="table-wrap stack"><table><thead><tr><th>Date</th><th>Your audience paid</th><th>Your 50%</th><th>Status</th></tr></thead><tbody id="sales"></tbody></table></div>
+    <h2>Payouts</h2>
+    <div class="table-wrap stack"><table><thead><tr><th>Date</th><th>Amount</th><th>Sent by</th></tr></thead><tbody id="payouts"></tbody></table></div>
+    <p class="fine center">Payouts go out once a month, by PayPal or e-transfer, for the sales past the 30-day refund window <i>✦</i> <span id="updated"></span> <i>✦</i> Anyone with this page's link can see it, so keep the link to yourself.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var API = 'https://ramen-partners.matthewsleibel.workers.dev/stats';
+  var $ = function (id) { return document.getElementById(id); };
+  var key = (/[#&]k=([A-Za-z0-9_-]{20,64})/.exec(location.hash) || [])[1];
+  function money(c) { return '$' + (c / 100).toFixed(2).replace(/\.00$/, ''); }
+  function moneyExact(c) { return '$' + (c / 100).toFixed(2); }
+  function day(iso) { return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }); }
+  function ago(iso) {
+    var m = Math.round((Date.now() - Date.parse(iso)) / 60000);
+    if (m < 2) return 'Updated just now';
+    if (m < 90) return 'Updated ' + m + ' minutes ago';
+    var h = Math.round(m / 60);
+    return h < 36 ? 'Updated ' + h + ' hours ago' : 'Updated ' + day(iso);
+  }
+  function stop(text) { $('who').hidden = true; $('gone').hidden = false; $('gone-text').textContent = text; }
+  function cell(tr, label, text, cls) { var td = document.createElement('td'); td.setAttribute('data-label', label); td.textContent = text; if (cls) td.className = cls; tr.appendChild(td); return td; }
+  if (!key) { stop('This page needs your private link, the one in your email from RAMen. If you lost it, write to support@getramenai.com.'); return; }
+  fetch(API, { headers: { 'X-Partner-Key': key } }).then(function (r) { return r.json(); }).then(function (d) {
+    if (!d.ok) { stop(d.error || 'This link did not work. Write to support@getramenai.com.'); return; }
+    $('who').innerHTML = '';
+    $('who').append('Code ', Object.assign(document.createElement('b'), { textContent: d.code }), ' ✦ ' + d.name);
+    $('l-site').textContent = d.links.site;
+    $('l-checkout').textContent = d.links.checkout;
+    var t = d.totals;
+    $('t-sales').textContent = t.sales;
+    $('t-earned').textContent = money(t.earned);
+    $('t-due').textContent = money(t.due);
+    $('t-paid').textContent = money(t.paid);
+    if (t.waiting > 0) { $('t-wait').hidden = false; $('t-wait').textContent = moneyExact(t.waiting) + ' more is still inside the 30-day refund window. It joins a payout once that window has passed.'; }
+    if (!d.active) { $('t-wait').hidden = false; $('t-wait').textContent = 'This code is not active any more. What it earned stays here and is still paid.'; }
+    var sales = $('sales');
+    if (!d.sales.length) { var tr = document.createElement('tr'); var td = cell(tr, '', 'No sales yet. They show up here within the hour after someone uses your code.', 'empty'); td.colSpan = 4; sales.appendChild(tr); }
+    d.sales.forEach(function (s) {
+      var tr = document.createElement('tr');
+      cell(tr, 'Date', day(s.date));
+      cell(tr, 'Your audience paid', moneyExact(s.cents), 'num');
+      cell(tr, 'Your 50%', moneyExact(s.commission), 'num');
+      var st = cell(tr, 'Status', '');
+      var b = document.createElement('span');
+      b.className = 'state ' + s.state;
+      b.textContent = s.state === 'cleared' ? 'Cleared' : s.state === 'waiting' ? 'Clears ' + day(s.clears + 'T12:00:00Z') : 'Refunded';
+      st.appendChild(b);
+      sales.appendChild(tr);
+    });
+    var pays = $('payouts');
+    if (!d.payouts.length) { var tr2 = document.createElement('tr'); var td2 = cell(tr2, '', 'No payouts yet.', 'empty'); td2.colSpan = 3; pays.appendChild(tr2); }
+    d.payouts.forEach(function (p) {
+      var tr = document.createElement('tr');
+      cell(tr, 'Date', p.date ? day(p.date + 'T12:00:00Z') : '');
+      cell(tr, 'Amount', moneyExact(p.cents), 'num');
+      cell(tr, 'Sent by', p.via || '');
+      pays.appendChild(tr);
+    });
+    $('updated').textContent = d.updated ? ago(d.updated) : 'Updated every hour';
+    $('view').hidden = false; $('body').hidden = false;
+  }).catch(function () { stop('Your numbers did not load. Please try again in a minute, or write to support@getramenai.com.'); });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-copy]');
+    if (!b) return;
+    var text = $(b.getAttribute('data-copy')).textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
+      b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600);
+    }).catch(function () { window.getSelection().selectAllChildren($(b.getAttribute('data-copy'))); });
+  });
+})();
+</script>
+</body>
+</html>
