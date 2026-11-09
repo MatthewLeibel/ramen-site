@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RAMen: one memory for all your local AI</title>
-<meta name="description" content="RAMen is the memory layer for the AI on your own computer: every app, model and agent session is saved and comes back in seconds, long chats stay fast. Works with apps made for Ollama, Claude Code and Codex. Free plan forever.">
+<meta name="description" content="RAMen is the memory layer for the AI on your own computer: every chat and agent session comes back in seconds, long chats stay fast, and overnight it learns what you told it, for every app and model. Works with apps made for Ollama, Claude Code and Codex. Free plan forever.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
 <meta property="og:title" content="RAMen: one memory for all your local AI">
-<meta property="og:description" content="One memory for every app, model and agent on your computer: chats come back in seconds and long ones stay fast. Free plan forever.">
+<meta property="og:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
 <meta property="og:url" content="https://getramenai.com/">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,10 +16,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
 <meta name="twitter:title" content="RAMen: one memory for all your local AI">
-<meta name="twitter:description" content="One memory for every app, model and agent on your computer: chats come back in seconds and long ones stay fast. Free plan forever.">
+<meta name="twitter:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RAMen","url":"https://getramenai.com/","description":"The memory layer for local AI: every app, model and agent session on your own computer is saved and comes back in seconds and long conversations stay fast. Built on llama.cpp.","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","image":"https://getramenai.com/assets/og.jpg","publisher":{"@type":"Organization","name":"NEOTECH Inc.","url":"https://getramenai.com/"},"offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, monthly","price":"3.99","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, lifetime (launch offer)","price":"19.99","priceCurrency":"USD"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RAMen","url":"https://getramenai.com/","description":"The memory layer for local AI: every app, model and agent session on your own computer is saved and comes back in seconds, long conversations stay fast, and RAMen Sleep learns what you told it for every app and model. Built on llama.cpp.","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","image":"https://getramenai.com/assets/og.jpg","publisher":{"@type":"Organization","name":"NEOTECH Inc.","url":"https://getramenai.com/"},"offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, monthly","price":"3.99","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, lifetime (launch offer)","price":"19.99","priceCurrency":"USD"}]}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +88,32 @@
     .s-hero .float-a { display: none; }
     .s-hero h1 { font-size: 46px; }
   }
+  /* RAMen Sleep: a day, a night, the next day, as three framed cards (ink outline, hard shadow, chat bubbles) */
+  .story { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; max-width: 1080px;
+           margin: 56px auto 0; padding: 0; counter-reset: none; }
+  .story li { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 22px 22px 26px;
+              border: 2.5px solid var(--ink); border-radius: 22px; background: rgba(255, 255, 255, .07); box-shadow: 7px 7px 0 var(--ink); }
+  .story li.night { background: rgba(7, 10, 23, .62); }
+  .story li + li::before { content: ""; position: absolute; left: -26px; top: 50%; width: 26px; height: 3px; background: var(--broth);
+                           border-radius: 3px; }
+  .story .when { font: 800 12.5px/1.2 var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--broth-hi); }
+  .story .you, .story .ai { margin: 0; max-width: 92%; padding: 12px 15px; border-radius: 17px; font-size: 15.5px; line-height: 1.45; }
+  .story .you { align-self: flex-end; background: var(--cream); color: #2b1406; border-bottom-right-radius: 6px; }
+  .story .ai { align-self: flex-start; background: rgba(255, 255, 255, .13); color: #fff; border: 1.5px solid var(--line-2);
+               border-bottom-left-radius: 6px; }
+  .story .who { display: block; margin-bottom: 4px; font: 760 11.5px/1 var(--font); letter-spacing: .08em; text-transform: uppercase;
+                opacity: .7; }
+  .story .note { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+  .story .cmd { align-self: flex-start; margin: 4px 0 0; }
+  .story .moon { position: absolute; top: -26px; right: 18px; width: 64px; height: 64px; object-fit: contain; }
+  .s-sleep { padding-bottom: clamp(56px, 6vw, 96px); }     /* the same sky as #speed below: one calm stretch */
+  .s-sleep .feats { margin-top: 64px; }
+  @media (min-width: 901px) { .s-sleep .feats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px 32px; } }
+  .s-sleep code { white-space: nowrap; }
+  @media (max-width: 900px) {
+    .story { grid-template-columns: minmax(0, 1fr); max-width: 560px; gap: 30px; }
+    .story li + li::before { left: 50%; top: -30px; width: 3px; height: 30px; }
+  }
   .updates { max-width: 560px; margin: 36px auto 0; text-align: center; }
   .updates-t { color: var(--cream); font-weight: 650; font-size: 17px; margin: 0 0 12px; }
   .updates-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -133,26 +159,26 @@
     <div class="copy">
       <span class="kick rise"><i>✦</i> The memory layer for local AI <i>✦</i></span>
       <h1 class="rise">One memory for <span class="shine">all your local AI.</span></h1>
-      <p class="lede rise">RAMen sits between your AI apps and your models and gives all of them memory. Every chat and agent session comes back in seconds, and long ones stay fast.</p>
+      <p class="lede rise">RAMen sits between your AI apps and your models and gives all of them memory. Every chat and agent session comes back in seconds, long ones stay fast, and overnight it learns what you told it.</p>
       <div class="btns rise">
         <a class="btn primary" href="#how">Download free</a>
         <a class="btn line" href="#plans">See plans</a>
       </div>
       <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux, including ARM</p>
-      <p class="fine rise"><a class="ph-link" href="#updates">Launching on Product Hunt this Sunday, Nov 8. Get a reminder</a></p>
+      <p class="fine rise"><a class="ph-link" href="#sleep">New in 1.4: RAMen Sleep, a memory that learns while you sleep</a> <i>✦</i> <a class="ph-link" href="#cloud">RAMen Cloud, Claude and GPT that never cut you off</a> <i>✦</i> <a class="ph-link" href="#online">RAMen Online, your memory in Claude and ChatGPT</a></p>
     </div>
   </div>
 </section>
 
 <div class="ribbon" aria-hidden="true"><div class="track">
-  <span>One memory for every app<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
-  <span>One memory for every app<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
+  <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
+  <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
 </div></div>
 
 <section class="scene s-layer" id="layer" style="--sky:#232659;--show:0">
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> New in 1.3 <i>✦</i></span>
+      <span class="kick rise"><i>✦</i> Every app, every model <i>✦</i></span>
       <h2 class="rise">Keep your apps and models. <span class="shine">RAMen adds the memory.</span></h2>
       <p class="lede rise">Apps made for Ollama, OpenAI or Anthropic talk to RAMen without a change. Every model on your computer is one pick away, and each conversation keeps its memory wherever it goes.</p>
     </div>
@@ -192,6 +218,109 @@
       <p><b>Codex</b><code class="cmd">ramen connect codex</code></p>
     </div>
   </div>
+  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
+</section>
+
+<section class="scene s-sleep" id="sleep" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Sleep <i>✦</i></span>
+      <h2 class="rise">It learns <span class="shine">while you sleep.</span></h2>
+      <p class="lede rise">At the end of the day, RAMen has your own model study your conversations, on your computer, and keep what you told it: your people, your work, your rules, how you like things. From the next chat on, every app and every model knows it, with none of the old chats in the prompt.</p>
+    </div>
+    <ol class="story rise" aria-label="An example: a day, a night, the next day">
+      <li><span class="when">Monday, in one app</span>
+        <p class="you"><span class="who">You</span>When I say "the usual", I mean 12 rye boules for the Thursday farmers market.</p></li>
+      <li class="night"><img class="moon float" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><span class="when">Monday night</span>
+        <code class="cmd">ramen sleep</code>
+        <p class="note">Your model reads the day's conversations, writes careful notes of what you said, and keeps your own words.</p></li>
+      <li><span class="when">Tuesday, in another app</span>
+        <p class="you"><span class="who">You</span>What do I mean when I say "the usual"?</p>
+        <p class="ai"><span class="who">Your model</span>When you say "the usual," you mean 12 rye boules for the Thursday farmers market.</p></li>
+    </ol>
+    <p class="notes center rise">A real answer from our test with a made-up person and Qwen3 4B, its first sentence. <a href="how-it-works.html#sleep">How Sleep works</a></p>
+    <div class="feats">
+      <div class="feat rise"><h3>One memory, every model</h3><p>Every app gets it, through every API RAMen speaks. Switch models and what it learned stays.</p></div>
+      <div class="feat rise"><h3>What came from you</h3><p>It keeps the facts you gave, in your own words, not its own suggestions. Each night it studies only the new conversations.</p></div>
+      <div class="feat rise"><h3>Yours to keep or delete</h3><p>All of it stays on your computer. <code>ramen sleep --off</code> stops using it and <code>ramen sleep --forget</code> deletes it.</p></div>
+      <div class="feat rise"><h3>Bring your history</h3><p>Months of chats in ChatGPT or Claude? <code>ramen import</code> reads their data export, so RAMen knows you from day one.</p></div>
+    </div>
+    <p class="fine center rise">Part of Pro and the 14-day trial <i>✦</i> A preview: it can still get things wrong, and may guess about things you never told it</p>
+  </div>
+</section>
+
+<section class="scene s-sleep s-cloud" id="cloud" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Cloud <i>✦</i></span>
+      <h2 class="rise">Claude and GPT, <span class="shine">never cut off.</span></h2>
+      <p class="lede rise">Add your own Claude or OpenAI key and your apps get their models through RAMen, with your memory. Your own model quietly reads along on your computer, so when the cloud hits a limit, goes down or the wifi drops, it carries on at once, knowing everything said so far.</p>
+    </div>
+    <ol class="story rise" aria-label="An example: a chat with Claude, the cloud stops, your model carries on">
+      <li><span class="when">In your app, with Claude</span>
+        <p class="you"><span class="who">You</span>My sourdough starter is called Gus. I feed him at 1:5:5, starter to flour to water.</p></li>
+      <li class="night"><span class="when">Then Claude stops answering</span>
+        <p class="note">A usage limit, an outage or no internet. Your own model has been reading along the whole time.</p></li>
+      <li><span class="when">A moment later, the same chat</span>
+        <p class="you"><span class="who">You</span>What feeding ratio do I use for Gus, and how much flour for 30 g of him?</p>
+        <p class="ai"><span class="who">Your model</span>Gus's feeding ratio is 1:5:5 (starter : flour : water).</p></li>
+    </ol>
+    <p class="notes center rise">A real answer from our test with Claude in the cloud and Qwen3 4B on an 8 GB Mac, its first sentence. <a href="how-it-works.html#cloud">How RAMen Cloud works</a></p>
+    <div class="feats">
+      <div class="feat rise"><h3>Your key, your choice</h3><p>Nothing goes to a cloud unless you add a key with <code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>. Every other model stays on your computer.</p></div>
+      <div class="feat rise"><h3>Your memory goes along</h3><p>With <code>ramen cloud memory on</code>, the notes that match each question go with it, so Claude and GPT know what you told RAMen. Off unless you turn it on.</p></div>
+      <div class="feat rise"><h3>Sleep learns from it</h3><p>Cloud chats are kept like any other, so the next <code>ramen sleep</code> learns from them too.</p></div>
+      <div class="feat rise"><h3>Any app, by name</h3><p>Apps that use OpenAI's or Anthropic's API pick the model by name, like <code>claude-sonnet-5-5</code>, and the answer says when your own model took over.</p></div>
+    </div>
+    <p class="fine center rise">Part of Pro and the 14-day trial <i>✦</i> A preview: after a takeover, the answers come from your own, smaller model</p>
+  </div>
+</section>
+
+<section class="scene s-sleep s-online" id="online" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Online <i>✦</i></span>
+      <h2 class="rise">One memory for <span class="shine">Claude and ChatGPT.</span></h2>
+      <p class="lede rise">Connect RAMen Memory in Claude or ChatGPT, on the web, the desktop apps or your phone. They save what you tell them and look it up when it matters, so you stop explaining yourself again, in every app and every chat. No install needed, and it works with your computer off.</p>
+    </div>
+    <ol class="story rise" aria-label="An example: Claude saves a fact, and a new chat days later uses it">
+      <li><span class="when">One chat in Claude</span>
+        <p class="you"><span class="who">You</span>My daughter Tova turns 7 next week and I'm baking for her class. She's allergic to sesame, so give me three nut-free, sesame-free snack ideas kids like.</p></li>
+      <li class="night"><span class="when">Claude saves it to RAMen Memory</span>
+        <p class="note">"My daughter Tova is allergic to sesame; she turns 7 next week and I'm baking nut-free, sesame-free snacks for her class."</p></li>
+      <li><span class="when">A new chat, days later</span>
+        <p class="you"><span class="who">You</span>I'm packing a snack for my kid's lunch. Which ingredient do I have to avoid?</p>
+        <p class="ai"><span class="who">Claude</span>Avoid sesame. Tova is allergic to it.</p></li>
+    </ol>
+    <p class="notes center rise">A real exchange from our test with Claude Sonnet 5.5 and RAMen Online, its first sentences. <a href="how-it-works.html#online">How RAMen Online works</a></p>
+    <div class="feats">
+      <div class="feat rise"><h3>Claude and ChatGPT</h3><p>Add RAMen Memory once in each app's connectors and sign in with your RAMen Pro key. It works in the browser, the desktop apps and the phone apps.</p></div>
+      <div class="feat rise"><h3>One memory, every AI</h3><p>Tell ChatGPT on Monday, and Claude knows on Tuesday. With RAMen on a computer, your local models and Sleep share the same memory.</p></div>
+      <div class="feat rise"><h3>The newest holds</h3><p>When something changes, a new address or a new routine, the newer note wins. When it has nothing, your AI says so instead of guessing.</p></div>
+      <div class="feat rise"><h3>Yours to delete</h3><p>Ask your AI to forget anything, or delete all of it with <code>ramen online --forget</code>. We never read it, sell it or train on it.</p></div>
+    </div>
+    <div class="callouts setup" id="online-setup">
+      <div class="callout rise">
+        <span class="kick"><i>✦</i> In Claude <i>✦</i></span>
+        <h3>Set it up in a minute</h3>
+        <ol class="steps">
+          <li>On claude.ai, open <b>Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add &rsaquo; Add custom connector</b>, name it RAMen Memory and paste this address:
+            <div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div></li>
+          <li>Click <b>Connect</b> and sign in with your RAMen Pro license key.</li>
+          <li>So Claude uses it by itself, add this line in <b>Settings &rsaquo; Your Claude &rsaquo; Instructions</b>:
+            <div class="copyline"><code class="cmd lines" id="ramen-line">I use the RAMen Memory connector as my memory across my AI apps. Before answering anything about me (my people, work, plans, preferences or earlier chats), check RAMen Memory. When I tell you a lasting fact about myself, save it to RAMen Memory as well.</code><button class="copy" type="button" data-copy="ramen-line" aria-label="Copy the line">Copy</button></div></li>
+        </ol>
+        <p class="after">Set up once, it is in Claude's desktop and phone apps too.</p>
+      </div>
+      <div class="callout rise">
+        <span class="kick"><i>✦</i> In ChatGPT <i>✦</i></span>
+        <h3>Coming to the plugin directory</h3>
+        <p>RAMen Memory is on its way to ChatGPT's plugin directory. Once it is listed, add it in <b>Settings &rsaquo; Plugins &rsaquo; Browse directory</b> and sign in with your key, then add the same line in <b>Settings &rsaquo; Personalization &rsaquo; Custom instructions</b>.</p>
+        <p>Without the line, Claude and ChatGPT still use RAMen whenever you name it: "save this to RAMen", "check RAMen".</p>
+      </div>
+    </div>
+    <p class="fine center rise">Part of RAMen Pro <i>✦</i> Your memory is kept on RAMen's servers so it works with your computer off; see the <a href="privacy.html#ramen-online">privacy policy</a></p>
+  </div>
 </section>
 
 <section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(/assets/v2/speed.jpg);--show:.8">
@@ -213,17 +342,18 @@
   </div>
 </section>
 
-<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(/assets/v2/counter.jpg);--show:.6">
+<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(/assets/v2/counter.jpg);--show:.82">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Set up in a minute <i>✦</i></span>
-      <h2 class="rise">Three commands. <span class="shine">No new tools.</span></h2>
+      <h2 class="rise">Four commands. <span class="shine">No new tools.</span></h2>
       <p class="lede rise">RAMen picks a model that fits your computer, sizes the memory, and speaks the same APIs as Ollama, OpenAI and Anthropic, so your apps work unchanged.</p>
     </div>
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>One line. Mac (Apple silicon) and Linux, in Terminal:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows 10 and 11, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits, downloads it and starts in the background. Or start one you already downloaded with Ollama or LM Studio, or any GGUF file.</p><code class="cmd">ramen start</code></div></li>
       <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>Apps made for Ollama find RAMen at Ollama's usual address (if you use Ollama, <code>ramen start --ollama replace</code> takes its place). Cline, Continue, Aider, OpenCode, Open WebUI and Codex in one command; Claude Code with <code>ramen claude</code>.</p><code class="cmd">ramen connect cline</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 04</span><h3>Let it learn</h3><p>When you are done for the day, run Sleep: RAMen pauses, your model studies the day's conversations and remembers what you told it, and RAMen starts again, for every app and model. Part of Pro and the trial.</p><code class="cmd">ramen sleep</code></div></li>
     </ol>
   </div>
 </section>
@@ -239,8 +369,11 @@
       <div class="feat rise"><img class="float b" src="assets/v2/icons/agents.webp" alt="" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Switch between agents and chats without re-reading their history. Each one resumes where it stopped.</p></div>
       <div class="feat rise"><img class="float c" src="assets/v2/icons/speed.webp" alt="" onerror="this.remove()"><h3>Fast on long chats</h3><p>Selective reading switches on by itself where it is faster on your machine, so RAMen is never slower.</p></div>
       <div class="feat rise"><img class="float b" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Models bigger than your memory</h3><p>Run a mixture-of-experts model larger than your computer's memory, like gpt-oss 120B on a 16 GB Mac. RAMen reads its experts straight from the file into its own cache. On Pro.</p></div>
-      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps and models</h3><p>One command connects Cline, Continue, Aider, OpenCode, Open WebUI, Claude Code and Codex, and apps made for Ollama work too. Every model already on your computer shows up in them, and picking one switches RAMen to it.</p></div>
-      <div class="feat rise"><img class="float c" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Prompts, files and sessions never leave your machine, and it works offline. Built on llama.cpp, the engine local AI already runs on.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps and models</h3><p>One command connects Cline, Continue, Aider, OpenCode, Open WebUI, Claude Code and Codex, and apps made for Ollama work too. Every model already on your computer shows up in them, and picking one switches RAMen to it. Claude Code, Codex, Ollama apps and the models you already have are part of Pro and the trial.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Your local chats, files and sessions never leave your machine, and it works offline. Cloud models are used only with your own key. Built on llama.cpp, the engine local AI already runs on.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><h3>Learns while you sleep</h3><p>Run <code>ramen sleep</code> when you are done for the day: your own model studies your conversations on your computer and keeps what you told it. New chats in every app and with every model know it, with none of the old chats in the prompt. It can still get things wrong. On Pro.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><h3>Your local memory in Claude</h3><p><code>ramen mcp</code> lets Claude Desktop, Claude Code, Codex and other apps that use MCP ask your local model what it learned about you. <code>ramen connect claude-desktop</code> sets it up in Claude Desktop in one step. They get a short answer, and only that answer leaves your computer. On Pro.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Thinking models finish their answers</h3><p>Models that think before they answer get room left for the answer, so a token limit or a full chat no longer cuts them off mid-thought. Two of them are in the catalog: <code>ramen start qwen3-4b-thinking</code>.</p></div>
     </div>
     <div class="strip rise">
       <div><b>117<small>B</small></b><span>parameters (gpt-oss 120B) running on a 16 GB Mac mini</span></div>
@@ -255,15 +388,15 @@
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
-      <h2 class="rise">Free forever. <span class="shine">Faster for $3.99.</span></h2>
+      <h2 class="rise">Free forever. <span class="shine">Everything for $3.99.</span></h2>
       <p class="lede rise">Start free. Every plan begins with 14 days of everything, no card needed.</p>
       <div class="ticket rise">✦ Launch offer: <span><b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦</span> <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG">Claim it</a></div>
     </div>
     <div class="plans">
       <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
-        <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps, one command to start</li></ul><a class="btn line sm" href="#how">Download free</a></div>
+        <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps through the OpenAI API, one command to start</li></ul><a class="btn line sm" href="#how">Download free</a></div>
       <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
-        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Models bigger than your computer's memory</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
+        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Models bigger than your computer's memory</li><li>Claude Code, Codex and apps made for Ollama</li><li>The models you already downloaded, one pick away</li><li>Learns from your chats while you sleep (RAMen Sleep)</li><li>Your local memory in Claude and other MCP apps</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
       <div class="plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price">$9.99<small>per person a month, from 3 people</small></div>
         <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_DYqZqS4EOCcWQqCNccDaTmGDzqUwRLo4VLRC22vmIiF">Get Team</a></div>
       <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
@@ -284,12 +417,17 @@
     <div class="faq">
       <details><summary>What do I need to run it?</summary><p>A Mac with Apple silicon, or a Windows or Linux PC, with or without an NVIDIA card; Linux on ARM works too (for example NVIDIA DGX Spark or AWS Graviton). RAMen picks a model that fits, or use any GGUF model, including the ones you already downloaded with Ollama or LM Studio. Selective reading on long chats needs an NVIDIA RTX 20-series card or newer, or an Apple Silicon Mac. Session memory works everywhere.</p></details>
       <details><summary>Can it run a model bigger than my computer's memory?</summary><p>Yes, on Pro and during the trial, for mixture-of-experts models such as gpt-oss 120B or Qwen3 30B-A3B. RAMen keeps the rest of the model in memory and reads the experts from the SSD as they are needed, into its own cache. It writes more slowly than a model that fits, and the answers are the same. <code>ramen models</code> shows what runs on your computer.</p></details>
-      <details><summary>Does it work with Ollama or LM Studio?</summary><p>Yes. The models you downloaded with Ollama or LM Studio show up in your apps and in <code>ramen models</code>, and start without a new download. Apps made for Ollama can talk to RAMen, and <code>ramen start --ollama replace</code> puts RAMen in Ollama's place, so they use it without a change. <code>ramen stop</code> starts Ollama again.</p></details>
-      <details><summary>Can I build RAMen into my own app?</summary><p>Yes. On a computer or a server, point your app at RAMen's OpenAI, Anthropic or Ollama API and every conversation gets its memory. For Android and iPhone apps, the RAMen kit (preview) goes inside your app: a Maven library on Android, a Swift package on iPhone. Details on the <a href="developers.html">developers page</a>.</p></details>
-      <details><summary>Does it send my data anywhere?</summary><p>No. Everything runs on your computer. Paid plans check the license key at start-up, and RAMen keeps working offline between checks.</p></details>
-      <details><summary>Which apps work with it?</summary><p>Anything that talks to the OpenAI API, Anthropic's API or Ollama's API. <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode, Open WebUI and Codex for you, and <code>ramen claude</code> starts Claude Code with RAMen's model.</p></details>
+      <details><summary>Does it work with Ollama or LM Studio?</summary><p>Yes, on Pro and during the trial. The models you downloaded with Ollama or LM Studio show up in your apps and in <code>ramen models</code>, and start without a new download. Apps made for Ollama can talk to RAMen, and <code>ramen start --ollama replace</code> puts RAMen in Ollama's place, so they use it without a change. <code>ramen stop</code> starts Ollama again.</p></details>
+      <details><summary>Can I build RAMen into my own app?</summary><p>Yes. On a computer or a server, point your app at RAMen's OpenAI API (or, on Pro, its Anthropic or Ollama API) and every conversation gets its memory. For Android and iPhone apps, the RAMen kit (preview) goes inside your app: a Maven library on Android, a Swift package on iPhone. Details on the <a href="developers.html">developers page</a>.</p></details>
+      <details><summary>Does it send my data anywhere?</summary><p>Not unless you choose to. Everything runs on your computer, including what RAMen Sleep learns. If you add your own Claude or OpenAI key (RAMen Cloud), the chats you have with their models go to them, as they would from any app, and RAMen's notes go along only if you turn that on. With RAMen Online, your memory is kept on RAMen's servers so Claude and ChatGPT can use it; it is never sold, shared or used for training, and one command deletes it. Paid plans check the license key at start-up, and RAMen keeps working offline between checks. If you connect RAMen Memory to an app such as Claude, the short answers that app asks for go to it. Details in the <a href="privacy.html">privacy policy</a>.</p></details>
+      <details><summary>Which apps work with it?</summary><p>On every plan, anything that talks to the OpenAI API: <code>ramen connect</code> sets up Cline, Continue, Aider, OpenCode and Open WebUI for you. On Pro and during the trial, also Anthropic's API and Ollama's API: <code>ramen connect codex</code> sets up Codex, and <code>ramen claude</code> starts Claude Code with RAMen's model.</p></details>
       <details><summary>Can it make Claude or ChatGPT faster?</summary><p>No. Those models run on Anthropic's and OpenAI's own servers. RAMen speeds up the models on your own computer, and it can run Claude Code and Codex, the coding tools, on those models with their sessions saved.</p></details>
-      <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once and keep long chats fast.</p></details>
+      <details><summary>Can I use my RAMen memory in claude.ai or ChatGPT?</summary><p>Yes, on Pro, with RAMen Online. In Claude (web, desktop and phone apps), add RAMen Memory as a custom connector, sign in with your RAMen Pro license key and add one line to Claude's instructions (<a href="#online-setup">the steps</a>). Claude then saves what you tell it and looks it up when it matters, in every chat, also with your computer off. ChatGPT gets it once it is in ChatGPT's plugin directory. If you run RAMen on a computer, <code>ramen online</code> links it, so what Sleep learns goes up and what you told Claude or ChatGPT comes down to your local models.</p></details>
+      <details><summary>Can I use Claude or GPT through RAMen?</summary><p>Yes, with your own API key, on Pro and during the trial: <code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>. Your apps then ask RAMen for those models by name, like <code>claude-sonnet-5-5</code>. Your own model reads along on your computer, so if the cloud hits a limit, goes down or your internet drops, it answers at once with everything said so far, and the answer says so. With <code>ramen cloud memory on</code>, the notes that match each question go along, so the cloud model knows what you told RAMen. Without a key, nothing goes to a cloud.</p></details>
+      <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time, for apps that use the OpenAI API. Everything else is part of Pro. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once, keep long chats fast, and use Claude Code, Codex, apps made for Ollama, the models you already have, RAMen Sleep, RAMen Memory, RAMen Cloud and RAMen Online.</p></details>
+      <details><summary>Can my model learn from my chats?</summary><p>Yes, with RAMen Sleep, on Pro and during the trial, on Mac, Windows and Linux and with any chat model RAMen runs. When you are done for the day, run <code>ramen sleep</code>: RAMen pauses (every session is saved), your own model studies what is new in your conversations, on your computer, and keeps what you told it and your own words, then RAMen starts again. It takes a while, so let it run when you are not using the computer; if it stops early, it keeps what it learned and goes on next time. New chats in every app and with every model then know what you told it. It can still get things wrong, and may guess about things you never told it. <code>ramen sleep --status</code> shows what it learned, <code>ramen sleep --off</code> stops using it and <code>ramen sleep --forget</code> deletes it.</p></details>
+      <details><summary>Can Claude use what RAMen learned about me?</summary><p>Yes, on Pro and during the trial. <code>ramen mcp</code> is a connector for Claude Desktop, Claude Code, Codex and other apps that use MCP: they can ask your local model what it knows about you, save something for the next sleep, and see what Sleep has learned. Your local model answers on your computer and only that short answer goes to the app. For Claude Code: <code>claude mcp add ramen-memory -- ramen mcp</code>. For Codex: <code>codex mcp add ramen-memory -- ramen mcp</code>.</p></details>
+      <details><summary>Do thinking models work?</summary><p>Yes. Models that think before they answer, such as Qwen3 Thinking, the hybrid Qwen3 models and gpt-oss, always finish with an answer in RAMen: it leaves them room for it, so an app's token limit or a full chat no longer cuts them off mid-thought. <code>ramen start qwen3-4b-thinking</code> and <code>ramen start qwen3-30b-thinking</code> are in the catalog; they are slower and meant for math, code and other hard questions.</p></details>
       <details><summary>Is there a one-time price?</summary><p>Yes, at launch: Pro for life for $19.99, for the first 1,000 buyers. After that Pro is $3.99 a month or $29 a year.</p></details>
       <details><summary>Who is the Server plan for?</summary><p>Teams that share one GPU machine. RAMen serves everyone from it, gives each person a key, keeps each person's conversations apart and counts usage per person.</p></details>
       <details><summary>How do I switch on my plan after buying?</summary><p>Your license key is in the email from Polar and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. Run <code>ramen activate YOUR-KEY</code> and you are done.</p></details>
@@ -301,7 +439,7 @@
     <h2 class="rise">Bring your chats back <span class="shine">in seconds.</span></h2>
     <div class="btns rise"><a class="btn primary" href="#how">Download free</a><a class="btn line" href="#plans">See plans</a></div>
     <form class="updates rise" id="updates" novalidate>
-      <p class="updates-t">Get a reminder when RAMen launches on Product Hunt this Sunday, plus news when new versions ship.</p>
+      <p class="updates-t">Get news when new versions of RAMen ship.</p>
       <div class="updates-row">
         <label class="sr" for="u-email">Email address</label>
         <input id="u-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
@@ -385,6 +523,21 @@
     }).catch(function () { msg.textContent = 'Something went wrong. Please email support@getramenai.com.'; btn.disabled = false; });
   });
 })();
+</script>
+<script>
+  // Copy buttons in RAMen Online's setup: copy the address or the line, or select it when the browser will not copy.
+  (function () {
+    function pick(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+    document.querySelectorAll('button.copy[data-copy]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var el = document.getElementById(b.getAttribute('data-copy'));
+        if (!el) return;
+        var done = function () { b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(el.textContent.trim()).then(done, function () { pick(el); });
+        else pick(el);
+      });
+    });
+  })();
 </script>
 </body>
 </html>

@@ -68,9 +68,11 @@
 <h2>On a computer or a server</h2>
 <p>Start RAMen (<code>ramen start</code>) and point your app at it. It answers the APIs apps already speak, so there is no new client to learn:</p>
 <ul>
-<li><strong>OpenAI:</strong> <code>http://127.0.0.1:8090/v1</code> (chat completions and Responses)</li>
-<li><strong>Anthropic Messages:</strong> <code>http://127.0.0.1:8090</code></li>
-<li><strong>Ollama:</strong> <code>ramen start --ollama replace</code> answers at Ollama's own address, with your Ollama models</li>
+<li><strong>OpenAI:</strong> <code>http://127.0.0.1:8090/v1</code> (chat completions on every plan; Responses on Pro and the trial)</li>
+<li><strong>Anthropic Messages</strong> (Pro and the trial): <code>http://127.0.0.1:8090</code></li>
+<li><strong>Ollama</strong> (Pro and the trial): <code>ramen start --ollama replace</code> answers at Ollama's own address, with your Ollama models</li>
+<li><strong>Cloud models</strong> (RAMen Cloud, Pro and the trial): after <code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>, the same addresses take <code>claude-*</code> and <code>gpt-*</code> model names; the header <code>X-RAMen-Answered-By</code> says who answered</li>
+<li><strong>RAMen Memory over MCP:</strong> <code>ramen mcp</code> on your computer (stdio), or RAMen Online for remote MCP clients, with OAuth sign-in: <code>https://ramen-online.matthewsleibel.workers.dev/mcp</code></li>
 </ul>
 <p>Send the whole conversation each time, as usual. To name a conversation yourself, add an <code>X-Session-Id</code> header. On a shared GPU server (the Server plan), give each person a key with <code>ramen keys add NAME</code> and start it with <code>ramen start --api-keys ~/.context-engine/api-keys.txt --host 0.0.0.0</code>.</p>
 <h2>On Android: the RAMen kit</h2>

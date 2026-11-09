@@ -363,6 +363,26 @@ footer a { color: var(--muted); }
 .callout.row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 20px; align-items: center; }
 .callout.row > img { width: 96px; height: 96px; margin: 0; }
 
+/* RAMen Online's setup: numbered steps in a callout, and a command or line with its copy button */
+.callout ol.steps { counter-reset: step; list-style: none; padding: 0; margin: 12px 0 0; }
+.callout ol.steps > li { counter-increment: step; position: relative; padding-left: 38px; margin: 16px 0 0; }
+.callout ol.steps > li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%;
+                                 border: 2px solid var(--ink); background: var(--broth); color: #1d0c02; font: 850 13px/22px var(--font);
+                                 text-align: center; }
+.callout .after { margin-top: 16px; color: var(--faint); font-size: 14.5px; }
+.copyline { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
+.copyline .cmd { margin-top: 0; flex: 1 1 auto; min-width: 0; }
+.cmd.lines { white-space: normal; overflow-wrap: anywhere; font: 500 14.5px/1.55 var(--font); }
+.copy { flex: none; padding: 9px 14px; border: 1.5px solid var(--line-2); border-radius: 12px; background: rgba(255, 255, 255, .08);
+        color: var(--cream); font: 750 14px/1.4 var(--font); cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.copy:hover { background: rgba(255, 255, 255, .16); }
+.copy:focus-visible { outline: 2px solid var(--broth-hi); outline-offset: 2px; }
+.copy.done { color: var(--broth-hi); border-color: var(--broth); }
+.setup { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 860px) { .setup { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) { .copyline { flex-direction: column; align-items: stretch; } .copy { align-self: flex-start; }
+                            .copyline .cmd { white-space: normal; overflow-wrap: anywhere; } }
+
 @media (min-width: 1100px) {
   .read.has-toc { grid-template-columns: 220px minmax(0, 700px); }
   .read.has-toc .toc { position: sticky; top: 100px; align-self: start; max-height: calc(100vh - 130px); overflow-y: auto; }

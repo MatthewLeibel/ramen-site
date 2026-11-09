@@ -160,6 +160,46 @@
   </div>
 </section>
 
+<section class="scene" id="sleep" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 05 &middot; RAMen Sleep <i>✦</i></span>
+      <h2 class="rise">It learns <span class="shine">while you sleep.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>RAMen keeps every conversation: its exact state and its text. When you run <code>ramen sleep</code>, at the end of the day for example, RAMen pauses (every session is saved) and your own model, on your computer, reads each conversation that has something new, three times, and writes careful notes of what you told it: about you, your people, your work, your rules and how you like things. It keeps only notes that come from what you said, and your own sentences too. Then RAMen starts again.</p>
+      <p>From then on, whenever an app asks something, RAMen puts the few notes and sentences that best match the question in front of it, so any model in any app answers with what you told it, with none of the old chats in the prompt. A long conversation is read in full, in pieces; each night studies only what is new; <code>ramen import</code> brings in your ChatGPT or Claude history to study. It works with every chat model RAMen runs, on Mac, Windows and Linux, and <code>ramen sleep --off</code> and <code>ramen sleep --forget</code> stop or delete what it learned.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="cloud" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 06 &middot; RAMen Cloud <i>✦</i></span>
+      <h2 class="rise">Claude and GPT, <span class="shine">never cut off.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>With your own Claude or OpenAI API key (<code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>), apps ask RAMen for those models by name, and RAMen sends each request to Anthropic or OpenAI with your key and passes the answer back as it comes. Every other model name still gets your local model, and with no key saved nothing goes to a cloud.</p>
+      <p>While you read the cloud's answer, your own model reads the new part of the conversation into the conversation's saved state, on your computer. When the cloud does not answer (a usage or rate limit, an outage, no internet), RAMen asks your own model instead, from that state, so it starts answering at once with everything said so far instead of reading the whole conversation first, and the answer's first line says so. The saved state survives a restart. Cloud chats are kept like any other, so Sleep learns from them, and with <code>ramen cloud memory on</code> the notes that match each question go along with it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="online" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 07 &middot; RAMen Online <i>✦</i></span>
+      <h2 class="rise">Your memory in <span class="shine">Claude and ChatGPT.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>RAMen Online is RAMen Memory as a connector: add it in Claude's or ChatGPT's connectors and sign in with your RAMen Pro license key. Your AI gets four tools. <code>remember</code> saves a lasting fact you tell it, in your words; <code>recall</code> looks up what you told it before, with RAMen's own lookup (the same one Sleep's notes are found with), oldest first so the newest holds; <code>forget</code> deletes what you ask it to; <code>memory_status</code> says what is kept. Your AI does the thinking itself, and RAMen Online only keeps and finds, so it works in the browser, the desktop apps and the phone apps, with your computer off.</p>
+      <p>To set it up in Claude, add RAMen Memory as a custom connector (Settings &rsaquo; Customize &rsaquo; Connectors), sign in with your key and add one line to Claude's instructions (<a href="index.html#online-setup">the steps and the line</a>). The line matters: Claude has a memory of its own, and in our tests on claude.ai it used that one unless the line was there or you named RAMen. With the line, it checked RAMen before answering questions about you and saved new facts there by itself, in every new chat. ChatGPT gets RAMen Memory once it is in ChatGPT's plugin directory.</p>
+      <p>Each person's memory is its own small database on Cloudflare, tied to a one-way hash of their license key. With RAMen on a computer, <code>ramen online</code> links it: what Sleep learns goes up after each night, and what you told Claude or ChatGPT comes down to your local models, every 15 minutes while RAMen runs. <code>ramen online --forget</code> deletes everything online.</p>
+    </div>
+  </div>
+</section>
+
 <section class="scene" id="results" style="--sky:#4e327f;--show:.68;--art:url(/assets/v2/rooftops.jpg);--art-m:url(/assets/v2/rooftops-m.jpg)">
   <div class="wrap">
     <div class="center">
@@ -181,6 +221,15 @@
 <tr><td><b>NVIDIA L4</b>, Qwen3 4B</td><td data-label="Size">104,744 tokens</td><td data-label="Reading it again">220 seconds</td><td data-label="RAMen"><b>1.8 seconds</b></td></tr>
 <tr><td><b>RTX 4090</b>, Qwen3 4B</td><td data-label="Size">197,860 tokens</td><td data-label="Reading it again">91 seconds</td><td data-label="RAMen"><b>5.6 seconds</b></td></tr>
     </table></div>
+    <div class="table-wrap stack rise" style="margin-top:28px"><table>
+<tr><th>Memory and takeover</th><th>Without RAMen</th><th>With RAMen</th></tr>
+<tr><td><b>RAMen Sleep</b>, Mac mini M2 Pro, Qwen3 4B: 45 questions about a made-up person's ten earlier chats, asked in fresh chats</td><td data-label="Without RAMen">2% right</td><td data-label="With RAMen"><b>98% right</b></td></tr>
+<tr><td><b>Sleep's notes in front of Claude</b> (Haiku, Sonnet and Opus 5.5), five made-up people</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>98 to 100% right</b></td></tr>
+<tr><td><b>Sleep's notes in front of GPT</b> (GPT-6 Luna, GPT-6.1 Sol), the same five people</td><td data-label="Without RAMen">0 to 5% right</td><td data-label="With RAMen"><b>95 to 100% right</b></td></tr>
+<tr><td><b>RAMen Online with Claude Sonnet 5.5</b>, no Sleep and no computer: Claude saved what it chose while chatting, then answered the 45 questions in fresh chats</td><td data-label="Without RAMen">2 to 7% right</td><td data-label="With RAMen"><b>93% right</b></td></tr>
+<tr><td><b>RAMen Memory as a connector</b>, Claude Haiku and Sonnet 5.5 choosing by themselves when to look something up</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>100% right</b> (45 of 45)</td></tr>
+<tr><td><b>RAMen Cloud takeover</b>, Claude Sonnet 5.5 and Qwen3 4B on an 8 GB M1 Mac, an 8,343-token chat: until the local model starts answering</td><td data-label="Without RAMen">55 seconds</td><td data-label="With RAMen"><b>2.2 seconds</b></td></tr>
+    </table></div>
     <p class="notes rise">Writing speed (decode), same model, settings and cache type on both sides, November 2026. Below about 30K to 40K tokens a fast NVIDIA card gains little, and RAMen keeps normal attention there.</p>
   </div>
 </section>
@@ -198,6 +247,9 @@
         <li>Models that keep a small memory by design (for example sliding-window models) gain little speed. Session memory still helps them.</li>
         <li>Models bigger than your memory: mixture-of-experts models only (a dense model that big would crawl). RAMen's own expert cache runs on Mac and Linux; on Windows the experts are read through the system's file cache for now.</li>
         <li>After a saved chat is restored, llama.cpp reads the last word of the prompt again on its own. On a graphics card that small difference in the math can change a later word of the reply; the saved state itself is exact.</li>
+        <li>RAMen Sleep is a preview: it can get things wrong, and about things you never told it, it may still guess. It takes a while (about 18 minutes for ten conversations on an M2 Pro Mac mini), so run it when you are not using the computer.</li>
+        <li>RAMen Cloud is a preview: after a takeover the answers come from your own model, which is smaller than Claude or GPT, and the conversation has to fit in its memory (about 12,000 words on an 8 GB Mac). Claude with tools goes through RAMen's Anthropic API. The cloud is paid with your own key, as it would be without RAMen.</li>
+        <li>RAMen Online keeps your memory on RAMen's servers (on Cloudflare), so the apps you connect can use it with your computer off; it fills as fast as your AI saves things (Claude Sonnet saved 17 facts over ten conversations in our test, the small Haiku 9), and Sleep studying whole conversations needs RAMen on a computer.</li>
         <li>RAMen is proprietary software with a free plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
       </ul>
     </div>
