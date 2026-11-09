@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RAMen for developers</title>
-<meta name="description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta name="description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android and iPhone apps.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
 <meta property="og:title" content="RAMen for developers">
-<meta property="og:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta property="og:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android and iPhone apps.">
 <meta property="og:url" content="https://getramenai.com/developers.html">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
 <meta name="twitter:title" content="RAMen for developers">
-<meta name="twitter:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android apps.">
+<meta name="twitter:description" content="Give your app's local AI a memory: RAMen's APIs on computers and servers, and the RAMen kit inside Android and iPhone apps.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/developers.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -58,7 +58,7 @@
     <div class="copy">
       <span class="kick rise"><i>✦</i> For developers <i>✦</i></span>
       <h1 class="rise">RAMen inside <span class="shine">your app.</span></h1>
-      <p class="lede rise">Give your app's local AI a memory: every conversation comes back in seconds instead of being read again, and long ones stay fast. On computers your app talks to RAMen like any model server. On Android, the RAMen kit goes inside your app.</p>
+      <p class="lede rise">Give your app's local AI a memory: every conversation comes back in seconds instead of being read again, and long ones stay fast. On computers your app talks to RAMen like any model server. On Android and iPhone, the RAMen kit goes inside your app.</p>
     </div>
   </div>
 </section>
@@ -92,8 +92,22 @@ ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "cha
     }
 }</code></pre>
 <p>Send the whole conversation each time (system, user and assistant messages), as with the OpenAI API, and RAMen reads only what is new. <code>history(session)</code> returns a conversation's saved messages, <code>forget(session)</code> deletes it, and <code>close()</code> frees the model's memory. Answers arrive on the main thread. The kit runs any GGUF model your app ships or downloads, needs no permissions, and works on arm64 phones and x86_64 emulators. Tested in a blank app with only these two snippets: the conversation came back after Android closed the app, and the model read only the new message. This is a 0.9.0 preview.</p>
-<h2>iPhone</h2>
-<p>A Swift package for iPhone apps is next. Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a> to hear when it is ready, or with any question about building RAMen into your app.</p>
+<h2>On iPhone: the RAMen Swift package</h2>
+<p><strong>1.</strong> In Xcode: File &gt; Add Package Dependencies, enter <code>https://github.com/MatthewLeibel/ramen-swift</code>, choose version 0.9.0 and add the <code>RAMen</code> library to your app. Or in <code>Package.swift</code>:</p>
+<pre><code>.package(url: "https://github.com/MatthewLeibel/ramen-swift", from: "0.9.0")</code></pre>
+<p><strong>2.</strong> Hello world:</p>
+<pre><code>import RAMen
+
+let ramen = try Ramen.open(model: modelURL)   // a GGUF file your app ships or downloads
+let chat: [Ramen.Message] = [.user("Name three kinds of noodles.")]
+for try await reply in ramen.reply(chat, session: "chat-1") {
+    switch reply {
+    case .text(let text, _): answer += text
+    case .done(let done): print("read \(done.readTokens) new tokens, memory: \(done.memory)")
+    case .started: break
+    }
+}</code></pre>
+<p>The same rules as on Android: send the whole conversation each time and RAMen reads only what is new. <code>answer(_:session:)</code> returns only the finished answer, <code>history(session:)</code> a conversation's saved messages, <code>forget(session:)</code> deletes it, and <code>close()</code> frees the model's memory. iOS 16.4 or newer; on a phone, an A13 chip or newer (iPhone 11 and later); the simulator works on Apple silicon and Intel Macs. Tested in a blank app with only this snippet: the conversation came back from its memory file after the app ended, and the model read only the new message. This is a 0.9.0 preview; before you ship it in an App Store app, write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>.</p>
     </article>
   </div>
 </section>
