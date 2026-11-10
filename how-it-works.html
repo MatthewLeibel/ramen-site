@@ -200,6 +200,35 @@
   </div>
 </section>
 
+<section class="scene" id="endless" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 08 &middot; RAMen Endless <i>✦</i></span>
+      <h2 class="rise">One conversation, <span class="shine">any number of chats.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>In a chat, every reply re-reads everything said so far. In our 40-message planning test, the last reply read about 32,000 tokens of conversation, and the chat as a whole read 646,000. RAMen Endless moves a long chat into a fresh one without losing it. Say "Save this chat to RAMen": the AI writes down where things stand with <code>save_thread</code> (the goal, the values that can change with what they were before, the facts, each decision and why, what is still open, and every draft word for word), and RAMen keeps it as a thread. In a fresh chat, in any app with RAMen Memory, "Continue my RAMen thread" brings it back (<code>resume_thread</code>), and <code>recall_thread</code> finds any detail or draft the short version leaves out.</p>
+      <p>Each save under the same name merges into the thread: a value that changes keeps what it was before, facts and decisions add up, the open list is replaced, and a draft keeps its newest version. That is what a copied summary cannot do: in our test the work went from Claude to GPT and back to Claude, with changes at each step, and the thread kept 98% of what was known, where summaries made from summaries kept 85 to 88%.</p>
+      <p>Added RAMen Memory to Claude before this feature? Open Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; RAMen Memory, and choose Refresh tools list in its menu once.</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="hub" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 09 &middot; RAMen Hub <i>✦</i></span>
+      <h2 class="rise">Your team and every AI, <span class="shine">one place.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>A <b>room</b> is a live chat for a team. Anyone in it writes, and a mention brings a model in: <code>@claude</code>, <code>@gpt</code> or <code>@gemini</code> (also <code>@opus</code>, <code>@haiku</code>, <code>@luna</code>). The model reads the room's pinned notes, what the team's memory has on the question, and the latest messages within a budget, not the whole history, so a long room stays cheap. Its answer streams to everyone as it is written. Models run on the team's own API keys, added once by the owner; RAMen never pays for, marks up or sees model use, and the keys are sealed and never shown again.</p>
+      <p>A <b>team</b> shares rooms and a memory. Its owner sends an invite link, no email needed: people who have RAMen join with their own plan, free; everyone else joins on one of the team plan's seats and gets a member code once, which signs them in on other devices and connects their own AI apps. Owners and admins can remove people and turn links off; access ends at once.</p>
+      <p>From inside <b>Claude, ChatGPT, Claude Code or any app with RAMen's connector</b>, five tools reach the hub: <code>my_rooms</code>, <code>read_room</code>, <code>post_to_room</code> (optionally asking a model to answer in the room), <code>team_recall</code> and <code>team_remember</code>. So "what did the team decide in the launch room?" works from anyone's own AI app.</p>
+      <p>Your own memory and saved chats stay yours: a team sees only its rooms and its shared memory. Every rule is checked on RAMen's servers, in the one place each team's or person's data lives, never by trusting what an AI says. The hub is at <a href="https://ramen-online.matthewsleibel.workers.dev/app">ramen-online.matthewsleibel.workers.dev/app</a>.</p>
+    </div>
+  </div>
+</section>
+
 <section class="scene" id="results" style="--sky:#4e327f;--show:.68;--art:url(/assets/v2/rooftops.jpg);--art-m:url(/assets/v2/rooftops-m.jpg)">
   <div class="wrap">
     <div class="center">

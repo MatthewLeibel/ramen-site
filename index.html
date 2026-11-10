@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RAMen: one memory for all your local AI</title>
-<meta name="description" content="RAMen is the memory layer for the AI on your own computer: every chat and agent session comes back in seconds, long chats stay fast, and overnight it learns what you told it, for every app and model. Works with apps made for Ollama, Claude Code and Codex. Free plan forever.">
+<title>RAMen: one hub for every AI you use</title>
+<meta name="description" content="RAMen AI: one hub for you, your team and every AI you use. Rooms where people and several AIs work together, one memory that Claude, ChatGPT and your local AI share, and a local engine that brings every chat back in seconds.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
-<meta property="og:title" content="RAMen: one memory for all your local AI">
+<meta property="og:title" content="RAMen: one hub for every AI you use">
 <meta property="og:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
 <meta property="og:url" content="https://getramenai.com/">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
-<meta name="twitter:title" content="RAMen: one memory for all your local AI">
+<meta name="twitter:title" content="RAMen: one hub for every AI you use">
 <meta name="twitter:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/">
@@ -63,6 +63,14 @@
   .plan.pro h3 .badge { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 4px 9px; border-radius: 999px; border: 2px solid var(--ink);
                         background: var(--aqua); color: #03141a; font: 800 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
   .plan .btn { margin-top: 20px; }
+  .hub-shot > picture > img { display: block; width: 100%; height: auto; }
+  .hub-shot { --ratio: auto; }
+  .seat-slider { display: block; margin: 16px 0 0; color: var(--muted); font-size: 14.5px; }
+  .seat-slider b { color: #fff; }
+  .seat-slider em { font-style: normal; color: var(--broth-hi); margin-left: 2px; }
+  .seat-slider input[type=range] { display: block; width: 100%; margin: 10px 0 0; accent-color: var(--broth); cursor: pointer; }
+  .team-more { margin: 12px 0 0; font-size: 13.5px; color: var(--faint); }
+  .team-more a { color: #fff; }
   .plan { display: flex; flex-direction: column; } .plan ul { flex: 1; } .plan .btn { align-self: flex-start; }
   .ent { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 22px; align-items: center; margin-top: 46px; padding: 24px 0;
          border-block: 1px solid var(--line); }
@@ -157,15 +165,15 @@
   <img class="bg" src="assets/hero.jpg" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl">
   <div class="wrap">
     <div class="copy">
-      <span class="kick rise"><i>✦</i> The memory layer for local AI <i>✦</i></span>
-      <h1 class="rise">One memory for <span class="shine">all your local AI.</span></h1>
-      <p class="lede rise">RAMen sits between your AI apps and your models and gives all of them memory. Every chat and agent session comes back in seconds, long ones stay fast, and overnight it learns what you told it.</p>
+      <span class="kick rise"><i>✦</i> RAMen AI <i>✦</i></span>
+      <h1 class="rise">One hub for <span class="shine">every AI you use.</span></h1>
+      <p class="lede rise">Your team, your memory and your models in one place. Rooms where people and several AIs work in one conversation, one memory that Claude, ChatGPT and your own local AI all share, and a local engine that brings every chat back in seconds.</p>
       <div class="btns rise">
-        <a class="btn primary" href="#how">Download free</a>
-        <a class="btn line" href="#plans">See plans</a>
+        <a class="btn primary" href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a>
+        <a class="btn line" href="#how">Download free</a>
       </div>
       <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux, including ARM</p>
-      <p class="fine rise"><a class="ph-link" href="#sleep">New in 1.4: RAMen Sleep, a memory that learns while you sleep</a> <i>✦</i> <a class="ph-link" href="#cloud">RAMen Cloud, Claude and GPT that never cut you off</a> <i>✦</i> <a class="ph-link" href="#online">RAMen Online, your memory in Claude and ChatGPT</a></p>
+      <p class="fine rise"><a class="ph-link" href="#hub">New: RAMen Hub, your team and every AI in one room</a> <i>✦</i> <a class="ph-link" href="#sleep">RAMen Sleep, a memory that learns while you sleep</a> <i>✦</i> <a class="ph-link" href="#cloud">RAMen Cloud, Claude and GPT that never cut you off</a> <i>✦</i> <a class="ph-link" href="#online">RAMen Online, your memory in Claude and ChatGPT</a> <i>✦</i> <a class="ph-link" href="#endless">RAMen Endless, long chats at the cost of a fresh one</a></p>
     </div>
   </div>
 </section>
@@ -174,6 +182,30 @@
   <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
   <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
 </div></div>
+
+<section class="scene s-sleep s-hub" id="hub" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New: RAMen Hub <i>✦</i></span>
+      <h2 class="rise">Your team and every AI, <span class="shine">in one room.</span></h2>
+      <p class="lede rise">Rooms are live chats where your team and several AIs work in one conversation. Mention a model to bring it in: @claude drafts, @gpt checks, @gemini adds a view, and everyone sees each answer as it is written. The room's notes and your team's memory go along, and from inside Claude or ChatGPT you can read a room or post to it.</p>
+    </div>
+    <figure class="media hub-shot rise">
+      <picture><source media="(max-width: 700px)" srcset="assets/v3/hub-room-phone.jpg" width="700" height="1515">
+        <img src="assets/v3/hub-room.jpg" width="1600" height="1111" loading="lazy" alt="A RAMen Hub room: Olga asks Claude for an outline of the announcement, Sam asks GPT what is missing, and both answers appear in the room next to its pinned notes"></picture>
+      <span class="tag">A real room</span>
+    </figure>
+    <p class="notes center rise">Claude and GPT answering one team in RAMen Hub, on the team's own API keys. <a href="how-it-works.html#hub">How RAMen Hub works</a></p>
+    <div class="feats">
+      <div class="feat rise"><h3>Several AIs, one conversation</h3><p>Claude, GPT and Gemini in the same chat as your team, each building on what the others said.</p></div>
+      <div class="feat rise"><h3>Join by link</h3><p>No email needed: send a link. People with RAMen join free, and a team plan's seats cover everyone else.</p></div>
+      <div class="feat rise"><h3>Inside every app</h3><p>From Claude, ChatGPT or Claude Code, read a room, post to it and use the team's shared memory.</p></div>
+      <div class="feat rise"><h3>Your keys, your data</h3><p>Models run on your team's own API keys. Private memory stays private, and you can delete anything.</p></div>
+    </div>
+    <div class="center rise" style="margin-top:34px"><a class="btn primary" href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a> <a class="btn line" href="#plans">Team plans</a></div>
+    <p class="fine center rise">Included in RAMen Pro and Team <i>✦</i> Teammates without RAMen join on a team seat</p>
+  </div>
+</section>
 
 <section class="scene s-layer" id="layer" style="--sky:#232659;--show:0">
   <div class="wrap">
@@ -323,6 +355,33 @@
   </div>
 </section>
 
+<section class="scene s-sleep s-endless" id="endless" style="--sky:#2f305d;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> New: RAMen Endless <i>✦</i></span>
+      <h2 class="rise">Long chats, <span class="shine">at the cost of a fresh one.</span></h2>
+      <p class="lede rise">Every reply in a long chat re-reads the whole conversation, and that is what burns through your Claude and ChatGPT limits. Say "Save this chat to RAMen", start a fresh chat in any AI app, say "Continue my RAMen thread", and it picks up exactly where you were: every name, number, decision and draft.</p>
+    </div>
+    <ol class="story rise" aria-label="An example: a long chat saved to RAMen, then continued in a fresh chat">
+      <li><span class="when">A long planning chat in Claude</span>
+        <p class="you"><span class="who">You</span>Please save this whole chat to RAMen as a thread, with the email draft, so I can continue it in a fresh chat.</p></li>
+      <li class="night"><span class="when">RAMen keeps where it stands</span>
+        <p class="note">The goal, what changed and what it was before, each decision and why, what is still open, and the drafts word for word.</p></li>
+      <li><span class="when">A fresh chat</span>
+        <p class="you"><span class="who">You</span>Continue my RAMen thread team offsite. How many people are coming now, and what was it before?</p>
+        <p class="ai"><span class="who">Claude</span>14 people now. It was 12 before.</p></li>
+    </ol>
+    <p class="notes center rise">A real exchange on claude.ai with RAMen Online, its first sentence. <a href="how-it-works.html#endless">How RAMen Endless works</a></p>
+    <div class="feats">
+      <div class="feat rise"><h3>A fraction of the tokens</h3><p>A fresh chat that starts from the thread reads a short page instead of the whole conversation, every time it answers.</p></div>
+      <div class="feat rise"><h3>Nothing important lost</h3><p>Values keep what they were before, decisions keep their reasons, and every draft comes back word for word.</p></div>
+      <div class="feat rise"><h3>Any AI picks it up</h3><p>Start in Claude, go on in another app when you hit a limit, come back. Each save adds to the same thread.</p></div>
+      <div class="feat rise"><h3>Details on request</h3><p>The thread stays short. Any draft, any number, anything said along the way is one question away.</p></div>
+    </div>
+    <p class="fine center rise">Part of RAMen Pro, in RAMen Online <i>✦</i> Works in any app with RAMen Memory connected</p>
+  </div>
+</section>
+
 <section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(/assets/v2/speed.jpg);--show:.8">
   <div class="wrap center">
     <span class="kick rise"><i>✦</i> Speed <i>✦</i></span>
@@ -396,9 +455,12 @@
       <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
         <ul><li>Remembers your last 3 chats, back in seconds</li><li>One chat at a time</li><li>Works with your apps through the OpenAI API, one command to start</li></ul><a class="btn line sm" href="#how">Download free</a></div>
       <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
-        <ul><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Models bigger than your computer's memory</li><li>Claude Code, Codex and apps made for Ollama</li><li>The models you already downloaded, one pick away</li><li>Learns from your chats while you sleep (RAMen Sleep)</li><li>Your local memory in Claude and other MCP apps</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
-      <div class="plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price">$9.99<small>per person a month, from 3 people</small></div>
-        <ul><li>Pro for everyone on the team</li><li>One bill, seats you can move</li><li>Priority email support</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_DYqZqS4EOCcWQqCNccDaTmGDzqUwRLo4VLRC22vmIiF">Get Team</a></div>
+        <ul><li>RAMen Hub: rooms with your team and several AIs, shared memory</li><li>Your memory in Claude, ChatGPT and every AI app</li><li>Remembers every chat and agent session</li><li>Many agents at once on one GPU</li><li>Long chats stay fast, plus the draft helper on supported models</li><li>Models bigger than your computer's memory</li><li>Claude Code, Codex and apps made for Ollama</li><li>The models you already downloaded, one pick away</li><li>Learns from your chats while you sleep (RAMen Sleep)</li><li>Your local memory in Claude and other MCP apps</li><li>Up to 3 of your computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
+      <div class="plan team-plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price"><span id="seat-price">$5.99</span><small>per seat a month<br><span id="seat-total">1 seat: $5.99 a month</span></small></div>
+        <label class="seat-slider"><span>Seats: <b id="seat-count">1</b><em id="seat-save"></em></span>
+          <input id="seats" type="range" min="1" max="100" value="5" aria-label="How many seats"></label>
+        <ul><li>Pro for everyone on the team, plus RAMen Hub's rooms, shared memory and admin</li><li>Teammates join by link, no email</li><li>The more seats, the less each costs: half off at 50</li></ul><a class="btn line sm" id="team-buy" href="mailto:support@getramenai.com?subject=RAMen%20Team">Get Team</a>
+        <p class="team-more">More than 100 people? <a href="mailto:support@getramenai.com?subject=RAMen%20Team%20for%20more%20than%20100">Talk to us</a></p></div>
       <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
         <ul><li>One GPU machine serving your whole team</li><li>A key per person, conversations kept apart</li><li>Usage per person and Prometheus metrics</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_Ux819FD0OLMWUBjs49I2gixXzGgUa2dYgqE432JNc0T">Get Server</a></div>
     </div>
@@ -424,6 +486,10 @@
       <details><summary>Can it make Claude or ChatGPT faster?</summary><p>No. Those models run on Anthropic's and OpenAI's own servers. RAMen speeds up the models on your own computer, and it can run Claude Code and Codex, the coding tools, on those models with their sessions saved.</p></details>
       <details><summary>Can I use my RAMen memory in claude.ai or ChatGPT?</summary><p>Yes, on Pro, with RAMen Online. In Claude (web, desktop and phone apps), add RAMen Memory as a custom connector, sign in with your RAMen Pro license key and add one line to Claude's instructions (<a href="#online-setup">the steps</a>). Claude then saves what you tell it and looks it up when it matters, in every chat, also with your computer off. ChatGPT gets it once it is in ChatGPT's plugin directory. If you run RAMen on a computer, <code>ramen online</code> links it, so what Sleep learns goes up and what you told Claude or ChatGPT comes down to your local models.</p></details>
       <details><summary>Can I use Claude or GPT through RAMen?</summary><p>Yes, with your own API key, on Pro and during the trial: <code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>. Your apps then ask RAMen for those models by name, like <code>claude-sonnet-5-5</code>. Your own model reads along on your computer, so if the cloud hits a limit, goes down or your internet drops, it answers at once with everything said so far, and the answer says so. With <code>ramen cloud memory on</code>, the notes that match each question go along, so the cloud model knows what you told RAMen. Without a key, nothing goes to a cloud.</p></details>
+      <details><summary>What is RAMen Hub?</summary><p>One place for you, your team and every AI you use. Rooms are live chats where people and several AIs (Claude, GPT, Gemini) work in one conversation; teams share a memory that every member's AI app can read and add to; and your own memory and saved chats live there too. It works in the browser, and from inside Claude, ChatGPT and other AI apps through RAMen's connector.</p></details>
+      <details><summary>Do my teammates need RAMen?</summary><p>No. You send an invite link, no email needed. People who already have RAMen join with their own plan, free. Everyone else joins on one of your team plan's seats and gets a member code to sign in with, also from their own AI apps.</p></details>
+      <details><summary>Who pays for the AI models in rooms?</summary><p>Your team does, directly: models run on the team's own Anthropic, OpenAI or Google API keys, added once by the team's owner. RAMen never pays for, marks up or sees your model use, which is why RAMen stays this affordable. Each model reads the room's notes and the latest messages, not the whole history, so long rooms stay cheap.</p></details>
+      <details><summary>Can my team see my private memory?</summary><p>No. Your own memory and your saved chats are yours only. Teams share only what is put in the team's memory or said in its rooms, and an owner or admin can remove people at any time.</p></details>
       <details><summary>What happens after the trial?</summary><p>RAMen keeps working on the free plan: it remembers your last 3 chats, one at a time, for apps that use the OpenAI API. Everything else is part of Pro. Add a Pro key with <code>ramen activate YOUR-KEY</code> to remember everything, run many agents at once, keep long chats fast, and use Claude Code, Codex, apps made for Ollama, the models you already have, RAMen Sleep, RAMen Memory, RAMen Cloud and RAMen Online.</p></details>
       <details><summary>Can my model learn from my chats?</summary><p>Yes, with RAMen Sleep, on Pro and during the trial, on Mac, Windows and Linux and with any chat model RAMen runs. When you are done for the day, run <code>ramen sleep</code>: RAMen pauses (every session is saved), your own model studies what is new in your conversations, on your computer, and keeps what you told it and your own words, then RAMen starts again. It takes a while, so let it run when you are not using the computer; if it stops early, it keeps what it learned and goes on next time. New chats in every app and with every model then know what you told it. It can still get things wrong, and may guess about things you never told it. <code>ramen sleep --status</code> shows what it learned, <code>ramen sleep --off</code> stops using it and <code>ramen sleep --forget</code> deletes it.</p></details>
       <details><summary>Can Claude use what RAMen learned about me?</summary><p>Yes, on Pro and during the trial. <code>ramen mcp</code> is a connector for Claude Desktop, Claude Code, Codex and other apps that use MCP: they can ask your local model what it knows about you, save something for the next sleep, and see what Sleep has learned. Your local model answers on your computer and only that short answer goes to the app. For Claude Code: <code>claude mcp add ramen-memory -- ramen mcp</code>. For Codex: <code>codex mcp add ramen-memory -- ramen mcp</code>.</p></details>
@@ -523,6 +589,27 @@
     }).catch(function () { msg.textContent = 'Something went wrong. Please email support@getramenai.com.'; btn.disabled = false; });
   });
 })();
+</script>
+<script>
+  // Team pricing: the price per seat falls with the team's size; above 100 seats, talk to us.
+  (function () {
+    var range = document.getElementById('seats');
+    if (!range) return;
+    var tiers = [[50, 2.99], [25, 3.99], [10, 4.49], [5, 4.99], [1, 5.99]];
+    function priceFor(n) { for (var i = 0; i < tiers.length; i++) if (n >= tiers[i][0]) return tiers[i][1]; return 5.99; }
+    function money(v) { return '$' + v.toFixed(2); }
+    function update() {
+      var n = Number(range.value), p = priceFor(n), save = Math.round((1 - p / 5.99) * 100);
+      document.getElementById('seat-count').textContent = n;
+      document.getElementById('seat-price').textContent = money(p);
+      document.getElementById('seat-total').textContent = n + (n === 1 ? ' seat: ' : ' seats: ') + money(p * n) + ' a month';
+      document.getElementById('seat-save').textContent = save > 0 ? ' (' + save + '% off)' : '';
+      document.getElementById('team-buy').href = 'mailto:support@getramenai.com?subject=' + encodeURIComponent('RAMen Team for ' + n + ' seats');
+      range.style.setProperty('--fill', ((n - 1) / 99 * 100) + '%');
+    }
+    range.addEventListener('input', update);
+    update();
+  })();
 </script>
 <script>
   // Copy buttons in RAMen Online's setup: copy the address or the line, or select it when the browser will not copy.
