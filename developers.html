@@ -58,7 +58,7 @@
     <div class="copy">
       <span class="kick rise"><i>✦</i> For developers <i>✦</i></span>
       <h1 class="rise">RAMen inside <span class="shine">your app.</span></h1>
-      <p class="lede rise">Give your app's local AI a memory: every conversation comes back in seconds instead of being read again, and long ones stay fast. On computers your app talks to RAMen like any model server. On Android and iPhone, the RAMen kit goes inside your app.</p>
+      <p class="lede rise">Give your app's local AI a memory: chats come back in seconds and stay fast. On computers, use RAMen like any model server. On phones, the kit goes inside your app.</p>
     </div>
   </div>
 </section>
@@ -66,15 +66,15 @@
   <div class="wrap read">
     <article class="prose rise">
 <h2>On a computer or a server</h2>
-<p>Start RAMen (<code>ramen start</code>) and point your app at it. It answers the APIs apps already speak, so there is no new client to learn:</p>
+<p>Run <code>ramen start</code> and point your app at it. It speaks the APIs your app already uses:</p>
 <ul>
 <li><strong>OpenAI:</strong> <code>http://127.0.0.1:8090/v1</code> (chat completions on every plan; Responses on Pro and the trial)</li>
 <li><strong>Anthropic Messages</strong> (Pro and the trial): <code>http://127.0.0.1:8090</code></li>
 <li><strong>Ollama</strong> (Pro and the trial): <code>ramen start --ollama replace</code> answers at Ollama's own address, with your Ollama models</li>
-<li><strong>Cloud models</strong> (RAMen Cloud, Pro and the trial): after <code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>, the same addresses take <code>claude-*</code> and <code>gpt-*</code> model names; the header <code>X-RAMen-Answered-By</code> says who answered</li>
+<li><strong>Cloud models</strong> (Pro): after <code>ramen cloud key claude</code>, the same addresses take <code>claude-*</code> and <code>gpt-*</code> names.</li>
 <li><strong>RAMen Memory over MCP:</strong> <code>ramen mcp</code> on your computer (stdio), or RAMen Online for remote MCP clients, with OAuth sign-in: <code>https://ramen-online.matthewsleibel.workers.dev/mcp</code></li>
 </ul>
-<p>Send the whole conversation each time, as usual. To name a conversation yourself, add an <code>X-Session-Id</code> header. On a shared GPU server (the Server plan), give each person a key with <code>ramen keys add NAME</code> and start it with <code>ramen start --api-keys ~/.context-engine/api-keys.txt --host 0.0.0.0</code>.</p>
+<p>Send the whole conversation each time. Name one with an <code>X-Session-Id</code> header. Shared GPU server: <code>ramen keys add NAME</code>.</p>
 <h2>On Android: the RAMen kit</h2>
 <p><strong>1.</strong> In <code>settings.gradle.kts</code>, inside <code>dependencyResolutionManagement { repositories { ... } }</code>:</p>
 <pre><code>exclusiveContent {
@@ -93,7 +93,7 @@ ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "cha
         is Reply.Started -&gt; {}
     }
 }</code></pre>
-<p>Send the whole conversation each time (system, user and assistant messages), as with the OpenAI API, and RAMen reads only what is new. <code>history(session)</code> returns a conversation's saved messages, <code>forget(session)</code> deletes it, and <code>close()</code> frees the model's memory. Answers arrive on the main thread. The kit runs any GGUF model your app ships or downloads, needs no permissions, and works on arm64 phones and x86_64 emulators. Tested in a blank app with only these two snippets: the conversation came back after Android closed the app, and the model read only the new message. This is a 0.9.0 preview.</p>
+<p>Send the whole conversation each time; RAMen reads only what is new. <code>history</code>, <code>forget</code> and <code>close()</code> manage it. Any GGUF model, no permissions. A 0.9.0 preview.</p>
 <h2>On iPhone: the RAMen Swift package</h2>
 <p><strong>1.</strong> In Xcode: File &gt; Add Package Dependencies, enter <code>https://github.com/MatthewLeibel/ramen-swift</code>, choose version 0.9.0 and add the <code>RAMen</code> library to your app. Or in <code>Package.swift</code>:</p>
 <pre><code>.package(url: "https://github.com/MatthewLeibel/ramen-swift", from: "0.9.0")</code></pre>
@@ -109,7 +109,7 @@ for try await reply in ramen.reply(chat, session: "chat-1") {
     case .started: break
     }
 }</code></pre>
-<p>The same rules as on Android: send the whole conversation each time and RAMen reads only what is new. <code>answer(_:session:)</code> returns only the finished answer, <code>history(session:)</code> a conversation's saved messages, <code>forget(session:)</code> deletes it, and <code>close()</code> frees the model's memory. iOS 16.4 or newer; on a phone, an A13 chip or newer (iPhone 11 and later); the simulator works on Apple silicon and Intel Macs. Tested in a blank app with only this snippet: the conversation came back from its memory file after the app ended, and the model read only the new message. This is a 0.9.0 preview; before you ship it in an App Store app, write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>.</p>
+<p>The same rules as on Android. iOS 16.4 or newer, iPhone 11 and later. A 0.9.0 preview: <a href="mailto:support@getramenai.com">write to us</a> before shipping it on the App Store.</p>
     </article>
   </div>
 </section>

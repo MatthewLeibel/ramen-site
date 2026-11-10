@@ -79,7 +79,7 @@
     <div class="copy">
       <span class="kick rise"><i>✦</i> How it works <i>✦</i></span>
       <h1 class="rise">How RAMen <span class="shine">works</span></h1>
-      <p class="lede rise">One memory for all your local AI. Why local AI gets slow and forgetful on long work, and how RAMen fixes both, on your own computer.</p>
+      <p class="lede rise">One hub for every AI you use, and how each part works.</p>
       <div class="btns rise"><a class="btn primary" href="index.html#how">Download free</a><a class="btn line" href="#both">See how</a></div>
     </div>
   </div>
@@ -91,9 +91,9 @@
       <span class="kick rise"><i>✦</i> The short version <i>✦</i></span>
       <h2 class="rise">RAMen fixes <span class="shine">both.</span></h2>
     </div>
-    <p class="lede center rise">Local AI gets frustrating on long work for two reasons. The model slows down as a conversation grows. And when you close the app, everything it had read is gone, so reopening a long chat means waiting while it reads the whole thing again. RAMen sits between your apps and your models, in front of llama.cpp, and fixes both: one memory for every app, model and agent session, so each comes back in seconds, and long chats that stay fast. It also runs models bigger than your computer's memory, and works with the apps and models you already use.</p>
+    <p class="lede center rise">Local AI slows down as a chat grows, and forgets it when the app closes. RAMen fixes both, in front of llama.cpp.</p>
     <div class="media rise"><video src="assets/v2/race.mp4" poster="assets/v2/race.jpg" controls muted playsinline preload="metadata"></video><span class="tag">Real run</span></div>
-    <p class="notes rise">A replay of a real run at its real speed: Qwen3 32B on an RTX A6000, the same 87,099-token conversation, normal llama.cpp on the left (8.4 tokens per second) and RAMen on the right (20.5). Same answer.</p>
+    <p class="notes rise">Real speed: Qwen3 32B on an RTX A6000, 87K tokens. Normal llama.cpp 8.4 tokens per second, RAMen 20.5. Same answer.</p>
   </div>
 </section>
 
@@ -104,12 +104,12 @@
       <h2 class="rise">Chats that come back <span class="shine">in seconds.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>While a model reads a conversation it builds a working memory (the KV cache). RAMen saves each conversation's working memory to disk as you go and restores it the moment that conversation continues, even after a restart. Many chats and agents share a few live slots on the GPU; the rest wait on disk and come back on demand.</p>
+      <p>RAMen saves each chat's working memory (the KV cache) to disk and brings it back when the chat goes on, even after a restart.</p>
     </div>
     <div class="media rise"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none"></video><span class="tag">Real time</span></div>
-    <p class="notes rise">Real recording, real time, on a Mac mini M2 Pro with Qwen3 4B: a 70,082-token chat, restarted. Reading it from scratch took 12 minutes 47 seconds just before; RAMen restored it and wrote the first word after 3.7 seconds. A second take, with the Mac's file cache cleared first so the saved chat had to come from the SSD, wrote the first word after 3.0 seconds.</p>
+    <p class="notes rise">Real time, Mac mini M2 Pro, Qwen3 4B: a 70K-token chat back in 3.7 seconds, where reading it again took 12 minutes 47.</p>
     <div class="story prose rise">
-      <p>Saving the cache is not a new idea: llama.cpp has slot save and restore, and small tools automate it. <a href="save-chats-llama-cpp.html">How to do it by hand</a>. RAMen does it for every session automatically, with checks that a saved cache matches the model and settings before it is reused, and it combines it with the speedup below.</p>
+      <p>llama.cpp can save a cache <a href="save-chats-llama-cpp.html">by hand</a>. RAMen does it for every session, and checks each one fits the model first.</p>
     </div>
   </div>
 </section>
@@ -121,8 +121,8 @@
       <h2 class="rise">Long chats that <span class="shine">stay fast.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>Normally every new word the model writes reads the whole working memory, so a 100,000-token chat is several times slower than a short one. RAMen keeps a small summary of each block of the memory and, at each step, reads only the blocks that matter for the next word (about 8,000 tokens' worth), plus the start and the most recent part of the conversation. The idea comes from research on query-aware sparse attention (Quest, 2024). RAMen builds it into llama.cpp for NVIDIA and Apple GPUs. It switches on by itself only past the length where it is faster on your kind of machine (between 16K and about 43K tokens), so it is never slower.</p>
-      <p>Quality: when the selection covers the whole conversation, RAMen writes exactly the same text as normal attention. With selection on, it gave the same answers as full attention in 54 of 54 long-document tests (16K to 64K tokens), and a needle-in-a-haystack test passed at 32K and 64K.</p>
+      <p>Each new word normally reads the whole memory. RAMen reads only the parts that matter, and turns this on only where it is faster.</p>
+      <p>Same answers as full attention in 54 of 54 long-document tests, 16K to 64K tokens.</p>
     </div>
   </div>
 </section>
@@ -134,7 +134,7 @@
       <h2 class="rise">Models bigger than <span class="shine">your memory.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>The strongest open models are mixture-of-experts models: for each word they use only a few of their "experts", but all of them have to be stored somewhere. When such a model is bigger than your computer's memory, llama.cpp leaves the experts in the model file and the operating system reads them from the SSD a small page at a time, which is slow. RAMen (Pro) keeps everything except the experts in memory and reads the experts itself: in large parallel reads, straight into a cache of its own, with the next layer's experts predicted from the current one so the reads start early. When the graphics card reads a long prompt, RAMen hands it the experts from that cache. The math does not change, so the answers are the same.</p>
+      <p>Mixture-of-experts models use a few experts per word. RAMen (Pro) streams the experts from the SSD into its own cache. Same answers.</p>
     </div>
     <div class="table-wrap stack rise"><table>
 <tr><th>Mac mini M2 Pro, 16 GB</th><th>What</th><th>Plain llama.cpp</th><th>RAMen</th></tr>
@@ -144,7 +144,7 @@
 <tr><td></td><td class="sub">Writing</td><td data-label="Plain llama.cpp">7 to 13 tok/s</td><td data-label="RAMen"><b>11 to 15 tok/s</b></td></tr>
 <tr><td></td><td class="sub">Starting the model</td><td data-label="Plain llama.cpp">12 s</td><td data-label="RAMen"><b>2 s</b></td></tr>
     </table></div>
-    <p class="notes rise">November 2026, the same settings on both sides (experts on the CPU, everything else on the GPU, the same build of llama.cpp). gpt-oss 120B writes at 2.8 tokens per second with RAMen's own expert cache, up from 1.9 with RAMen 1.0 on the same settings. Big models write slowly: a 300-word answer from gpt-oss 120B takes about two minutes, so they suit background and agent work more than live chat.</p>
+    <p class="notes rise">gpt-oss 120B writes at 2.8 tokens per second, up from 1.9. Big models suit background and agent work.</p>
   </div>
 </section>
 
@@ -155,7 +155,7 @@
       <h2 class="rise">Your apps and <span class="shine">your models.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>RAMen speaks the OpenAI API, Anthropic's API and Ollama's API, so apps made for any of them can talk to it, and their chats are saved like any other: Open WebUI, Continue, Cline and Enchanted, and also Claude Code and Codex (<code>ramen claude</code>, <code>ramen connect codex</code>), whose long instructions are then read once instead of again on every restart. Every model already on your computer (from Ollama, LM Studio, llama.cpp or Hugging Face) shows up in your apps under names like <code>qwen3:4b</code>: pick one and RAMen switches to it, and each model's conversations come back with it. Already use Ollama? <code>ramen start --ollama replace</code> puts RAMen at Ollama's address with your Ollama models, so your apps use it without a change, and <code>ramen stop</code> starts Ollama again. Hybrid models such as Qwen 3.5 come back without re-reading the conversation too.</p>
+      <p>RAMen speaks the OpenAI, Anthropic and Ollama APIs, so your apps work as they are, Claude Code (<code>ramen claude</code>) and Codex included. <code>ramen start --ollama replace</code> takes Ollama's place.</p>
     </div>
   </div>
 </section>
@@ -167,8 +167,8 @@
       <h2 class="rise">It learns <span class="shine">while you sleep.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>RAMen keeps every conversation: its exact state and its text. When you run <code>ramen sleep</code>, at the end of the day for example, RAMen pauses (every session is saved) and your own model, on your computer, reads each conversation that has something new, three times, and writes careful notes of what you told it: about you, your people, your work, your rules and how you like things. It keeps only notes that come from what you said, and your own sentences too. Then RAMen starts again.</p>
-      <p>From then on, whenever an app asks something, RAMen puts the few notes and sentences that best match the question in front of it, so any model in any app answers with what you told it, with none of the old chats in the prompt. A long conversation is read in full, in pieces; each night studies only what is new; <code>ramen import</code> brings in your ChatGPT or Claude history to study. It works with every chat model RAMen runs, on Mac, Windows and Linux, and <code>ramen sleep --off</code> and <code>ramen sleep --forget</code> stop or delete what it learned.</p>
+      <p><code>ramen sleep</code> pauses RAMen while your own model reads each new chat and writes careful notes of what you told it, in your words.</p>
+      <p>After that, every app gets the few notes that match each question. <code>ramen import</code> brings in ChatGPT or Claude history; <code>ramen sleep --forget</code> deletes it all.</p>
     </div>
   </div>
 </section>
@@ -180,8 +180,8 @@
       <h2 class="rise">Claude and GPT, <span class="shine">never cut off.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>With your own Claude or OpenAI API key (<code>ramen cloud key claude</code> or <code>ramen cloud key openai</code>), apps ask RAMen for those models by name, and RAMen sends each request to Anthropic or OpenAI with your key and passes the answer back as it comes. Every other model name still gets your local model, and with no key saved nothing goes to a cloud.</p>
-      <p>While you read the cloud's answer, your own model reads the new part of the conversation into the conversation's saved state, on your computer. When the cloud does not answer (a usage or rate limit, an outage, no internet), RAMen asks your own model instead, from that state, so it starts answering at once with everything said so far instead of reading the whole conversation first, and the answer's first line says so. The saved state survives a restart. Cloud chats are kept like any other, so Sleep learns from them, and with <code>ramen cloud memory on</code> the notes that match each question go along with it.</p>
+      <p>Save your own key (<code>ramen cloud key claude</code> or <code>openai</code>) and apps ask RAMen for those models by name. No key, nothing leaves your computer.</p>
+      <p>Your own model reads along. If the cloud stops, it answers at once with everything said so far, and says so.</p>
     </div>
   </div>
 </section>
@@ -193,9 +193,9 @@
       <h2 class="rise">Your memory in <span class="shine">Claude and ChatGPT.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>RAMen Online is RAMen Memory as a connector: add it in Claude's or ChatGPT's connectors and sign in with your RAMen Pro license key. Your AI gets four tools. <code>remember</code> saves a lasting fact you tell it, in your words; <code>recall</code> looks up what you told it before, with RAMen's own lookup (the same one Sleep's notes are found with), oldest first so the newest holds; <code>forget</code> deletes what you ask it to; <code>memory_status</code> says what is kept. Your AI does the thinking itself, and RAMen Online only keeps and finds, so it works in the browser, the desktop apps and the phone apps, with your computer off.</p>
-      <p>To set it up in Claude, add RAMen Memory as a custom connector (Settings &rsaquo; Customize &rsaquo; Connectors), sign in with your key and add one line to Claude's instructions (<a href="index.html#online-setup">the steps and the line</a>). The line matters: Claude has a memory of its own, and in our tests on claude.ai it used that one unless the line was there or you named RAMen. With the line, it checked RAMen before answering questions about you and saved new facts there by itself, in every new chat. ChatGPT gets RAMen Memory once it is in ChatGPT's plugin directory.</p>
-      <p>Each person's memory is its own small database on Cloudflare, tied to a one-way hash of their license key. With RAMen on a computer, <code>ramen online</code> links it: what Sleep learns goes up after each night, and what you told Claude or ChatGPT comes down to your local models, every 15 minutes while RAMen runs. <code>ramen online --forget</code> deletes everything online.</p>
+      <p>RAMen Memory is a connector for Claude and ChatGPT. Sign in with your key, and your AI can <code>remember</code>, <code>recall</code> and <code>forget</code>, even with your computer off.</p>
+      <p>In Claude, add one line to its instructions (<a href="index.html#online-setup">the steps</a>), or Claude uses its own memory first.</p>
+      <p>Each person's memory is its own database, tied to a one-way hash of their key. <code>ramen online --forget</code> deletes it.</p>
     </div>
   </div>
 </section>
@@ -207,9 +207,9 @@
       <h2 class="rise">One conversation, <span class="shine">any number of chats.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>In a chat, every reply re-reads everything said so far. In our 40-message planning test, the last reply read about 32,000 tokens of conversation, and the chat as a whole read 646,000. RAMen Endless moves a long chat into a fresh one without losing it. Say "Save this chat to RAMen": the AI writes down where things stand with <code>save_thread</code> (the goal, the values that can change with what they were before, the facts, each decision and why, what is still open, and every draft word for word), and RAMen keeps it as a thread. In a fresh chat, in any app with RAMen Memory, "Continue my RAMen thread" brings it back (<code>resume_thread</code>), and <code>recall_thread</code> finds any detail or draft the short version leaves out.</p>
-      <p>Each save under the same name merges into the thread: a value that changes keeps what it was before, facts and decisions add up, the open list is replaced, and a draft keeps its newest version. That is what a copied summary cannot do: in our test the work went from Claude to GPT and back to Claude, with changes at each step, and the thread kept 98% of what was known, where summaries made from summaries kept 85 to 88%.</p>
-      <p>Added RAMen Memory to Claude before this feature? Open Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; RAMen Memory, and choose Refresh tools list in its menu once.</p>
+      <p>Every reply in a long chat re-reads it all: 32,000 tokens per reply in our 40-message test. Say "Save this chat to RAMen", then "Continue my RAMen thread" in any fresh chat.</p>
+      <p>Each save merges: changed values keep what they were, drafts keep their newest version. After three hand-offs the thread kept 98% of what was known; copied summaries kept 85 to 88%.</p>
+      <p>Added RAMen to Claude before? Refresh its tools list once in Settings &rsaquo; Customize &rsaquo; Connectors.</p>
     </div>
   </div>
 </section>
@@ -221,10 +221,10 @@
       <h2 class="rise">Your team and every AI, <span class="shine">one place.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>A <b>room</b> is a live chat for a team. Anyone in it writes, and a mention brings a model in: <code>@claude</code>, <code>@gpt</code> or <code>@gemini</code> (also <code>@opus</code>, <code>@haiku</code>, <code>@luna</code>). The model reads the room's pinned notes, what the team's memory has on the question, and the latest messages within a budget, not the whole history, so a long room stays cheap. Its answer streams to everyone as it is written. Models run on the team's own API keys, added once by the owner; RAMen never pays for, marks up or sees model use, and the keys are sealed and never shown again.</p>
-      <p>A <b>team</b> shares rooms and a memory. Its owner sends an invite link, no email needed: people who have RAMen join with their own plan, free; everyone else joins on one of the team plan's seats and gets a member code once, which signs them in on other devices and connects their own AI apps. Owners and admins can remove people and turn links off; access ends at once.</p>
-      <p>From inside <b>Claude, ChatGPT, Claude Code or any app with RAMen's connector</b>, five tools reach the hub: <code>my_rooms</code>, <code>read_room</code>, <code>post_to_room</code> (optionally asking a model to answer in the room), <code>team_recall</code> and <code>team_remember</code>. So "what did the team decide in the launch room?" works from anyone's own AI app.</p>
-      <p>Your own memory and saved chats stay yours: a team sees only its rooms and its shared memory. Every rule is checked on RAMen's servers, in the one place each team's or person's data lives, never by trusting what an AI says. The hub is at <a href="https://ramen-online.matthewsleibel.workers.dev/app">ramen-online.matthewsleibel.workers.dev/app</a>.</p>
+      <p>A <b>room</b> is a live team chat. <code>@claude</code>, <code>@gpt</code> or <code>@gemini</code> brings a model in. It reads the pinned notes and latest messages, on the team's own keys.</p>
+      <p>Invite by link, no email. People with RAMen join free; others take a seat and get a member code.</p>
+      <p>From Claude, ChatGPT or Claude Code: <code>read_room</code>, <code>post_to_room</code>, <code>team_recall</code> and more.</p>
+      <p>Your own memory stays yours. Every rule is checked on RAMen's servers. <a href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a></p>
     </div>
   </div>
 </section>
@@ -259,7 +259,7 @@
 <tr><td><b>RAMen Memory as a connector</b>, Claude Haiku and Sonnet 5.5 choosing by themselves when to look something up</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>100% right</b> (45 of 45)</td></tr>
 <tr><td><b>RAMen Cloud takeover</b>, Claude Sonnet 5.5 and Qwen3 4B on an 8 GB M1 Mac, an 8,343-token chat: until the local model starts answering</td><td data-label="Without RAMen">55 seconds</td><td data-label="With RAMen"><b>2.2 seconds</b></td></tr>
     </table></div>
-    <p class="notes rise">Writing speed (decode), same model, settings and cache type on both sides, November 2026. Below about 30K to 40K tokens a fast NVIDIA card gains little, and RAMen keeps normal attention there.</p>
+    <p class="notes rise">Same model and settings on both sides, November 2026. Below about 30K tokens, RAMen keeps normal attention.</p>
   </div>
 </section>
 
@@ -274,11 +274,11 @@
         <li>Selective reading speeds up writing (decode), not the first read of a new long prompt.</li>
         <li>It does not stack with draft models (speculative decoding) yet; RAMen uses whichever is faster.</li>
         <li>Models that keep a small memory by design (for example sliding-window models) gain little speed. Session memory still helps them.</li>
-        <li>Models bigger than your memory: mixture-of-experts models only (a dense model that big would crawl). RAMen's own expert cache runs on Mac and Linux; on Windows the experts are read through the system's file cache for now.</li>
-        <li>After a saved chat is restored, llama.cpp reads the last word of the prompt again on its own. On a graphics card that small difference in the math can change a later word of the reply; the saved state itself is exact.</li>
-        <li>RAMen Sleep is a preview: it can get things wrong, and about things you never told it, it may still guess. It takes a while (about 18 minutes for ten conversations on an M2 Pro Mac mini), so run it when you are not using the computer.</li>
-        <li>RAMen Cloud is a preview: after a takeover the answers come from your own model, which is smaller than Claude or GPT, and the conversation has to fit in its memory (about 12,000 words on an 8 GB Mac). Claude with tools goes through RAMen's Anthropic API. The cloud is paid with your own key, as it would be without RAMen.</li>
-        <li>RAMen Online keeps your memory on RAMen's servers (on Cloudflare), so the apps you connect can use it with your computer off; it fills as fast as your AI saves things (Claude Sonnet saved 17 facts over ten conversations in our test, the small Haiku 9), and Sleep studying whole conversations needs RAMen on a computer.</li>
+        <li>Big models: mixture-of-experts only.</li>
+        <li>On a graphics card, a restored chat's next words can differ slightly from a fresh read.</li>
+        <li>Sleep is a preview: it can get things wrong, and takes a while (about 18 minutes for ten chats on an M2 Pro).</li>
+        <li>Cloud is a preview: after a takeover, answers come from your smaller local model.</li>
+        <li>Online memory lives on RAMen's servers (Cloudflare), so it works with your computer off.</li>
         <li>RAMen is proprietary software with a free plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
       </ul>
     </div>
