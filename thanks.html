@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
 <title>Thank you | RAMen</title>
-<meta name="description" content="How to activate your RAMen plan.">
+<meta name="description" content="How to switch on RAMen in Claude, ChatGPT, Chrome and on your computer.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
 <meta property="og:title" content="Thank you | RAMen">
-<meta property="og:description" content="How to activate your RAMen plan.">
+<meta property="og:description" content="How to switch on RAMen in Claude, ChatGPT, Chrome and on your computer.">
 <meta property="og:url" content="https://getramenai.com/thanks.html">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
 <meta name="twitter:title" content="Thank you | RAMen">
-<meta name="twitter:description" content="How to activate your RAMen plan.">
+<meta name="twitter:description" content="How to switch on RAMen in Claude, ChatGPT, Chrome and on your computer.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/thanks.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -26,6 +27,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="RAMen home">
@@ -37,38 +39,37 @@
       </svg>
       <span>RAM<b>en</b></span>
     </a>
-    <nav>
-      <a href="index.html#speed">Speed</a>
-      <a href="index.html#how">How it works</a>
-      <a href="developers.html">Developers</a>
+    <nav aria-label="Main">
+      <a href="index.html#memory">Memory</a>
+      <a href="index.html#endless">Endless</a>
+      <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
-      <a href="index.html#faq">Questions</a>
-      <a class="btn sm primary" href="index.html#how">Download free</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section class="page-hero" style="--sky:#111a39">
   <picture>
-    <source media="(max-width: 560px)" srcset="assets/v3/thanks-m.jpg">
-    <img class="bg" src="assets/v3/thanks.jpg" alt="" fetchpriority="high">
+    <source media="(max-width: 560px)" srcset="assets/v3/thanks-m.jpg" width="1200" height="1200">
+    <img class="bg" src="assets/v3/thanks.jpg" width="2400" height="1340" alt="" fetchpriority="high">
   </picture>
   <div class="wrap">
     <div class="copy">
       <span class="kick rise"><i>✦</i> Welcome to RAMen <i>✦</i></span>
       <h1 class="rise">Thank <span class="shine">you!</span></h1>
-      <p class="lede rise">Your order went through. Here is how to switch on your plan; it takes a minute.</p>
+      <p class="lede rise">Your order went through. Here is how to switch on RAMen where you use AI; each step takes a minute.</p>
     </div>
   </div>
 </section>
 <section class="scene light" style="--sky:#fdc886;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg);--show:.7">
   <div class="wrap">
     <ol class="rows">
-      <li class="rise"><img class="float" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 01</span><h3>Find your license key</h3><p>It is in the email from Polar (our store) and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. It starts with <code>RAMEN-</code>.</p></div></li>
-      <li class="rise"><img class="float b" src="assets/v2/icons/install.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Install RAMen</h3><p>(skip this if you already have it)<br>Mac and Linux, in Terminal:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
-      <li class="rise"><img class="float c" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Activate it</h3><p>Paste your key into this command:</p><code class="cmd">ramen activate YOUR-KEY</code><p class="alt-os">Works on up to 3 computers. To move it: <code>ramen deactivate</code>.</p></div></li>
-      <li class="rise"><img class="float" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 04</span><h3>Start</h3><code class="cmd">ramen start</code><p class="alt-os">It picks a model and runs in the background. <code>ramen connect cline</code> sets up your app.</p></div></li>
+      <li class="rise"><img class="float" src="assets/v2/icons/pro.webp" width="120" height="120" alt=""><div><span class="n">STEP 01</span><h3>Find your license key</h3><p>It is in the email from Polar (our store) and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. It starts with <code>RAMEN-</code>.</p></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" width="120" height="120" alt=""><div><span class="n">STEP 02</span><h3>Add RAMen to Claude or ChatGPT</h3><p>In Claude: Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector. Name it RAMen, paste this address and sign in with your key:</p><code class="cmd">https://ramen-online.matthewsleibel.workers.dev/mcp</code><p class="alt-os">In ChatGPT, on a paid plan: Plugins &rsaquo; Add custom MCP server, with the same address. Then add the one line from <a href="index.html#online-setup">the setup</a> to your instructions.</p></div></li>
+      <li class="rise"><img class="float c" src="assets/v4/icons/addon.webp" width="120" height="120" alt=""><div><span class="n">STEP 03</span><h3>The RAMen add-on for Chrome</h3><p>For Detail Lock, and RAMen on ChatGPT, Gemini and the other AI websites it works on. <span data-store-soon>It is waiting for its place in the Chrome Web Store, so you cannot add it yet. </span><a href="chrome.html#get" data-add-to-chrome data-live-text="Add to Chrome">Get an email when it is there</a></p></div></li>
+      <li class="rise"><img class="float" src="assets/v4/icons/desktop.webp" width="120" height="120" alt=""><div><span class="n">STEP 04</span><h3>RAMen Desktop, if you use AI on your computer</h3><p>Install it (Mac and Linux, in Terminal):</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code><p class="alt-os">Then switch on your plan and start:</p><code class="cmd">ramen activate YOUR-KEY</code> <code class="cmd">ramen start</code><p class="alt-os">A key works on up to 3 computers. To move it: <code>ramen deactivate</code>.</p></div></li>
     </ol>
     <p class="lede center rise">Manage or cancel your plan any time in the <a href="https://polar.sh/ramen/portal">customer portal</a>. Questions? Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>; a real person answers.</p>
   </div>
@@ -77,11 +78,12 @@
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
+<script src="assets/links.js"></script>
 <script>
   // fade sections in as they scroll into view (everything shows at once when motion is reduced)
   (function () {
@@ -97,5 +99,6 @@
   })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="assets/seams.js" defer></script>
 </body>
 </html>

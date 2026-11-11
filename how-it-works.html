@@ -3,20 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
 <title>How RAMen works</title>
-<meta name="description" content="How RAMen saves your chats and keeps long conversations fast, with measured results on NVIDIA and Mac.">
+<meta name="description" content="How RAMen works: RAMen Memory with receipts, RAMen Endless with Detail Lock and RAMen Desktop, and the ways to get them: the connector in Claude and ChatGPT, the Chrome add-on and the Claude Code plugin.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
 <meta property="og:title" content="How RAMen works">
-<meta property="og:description" content="How RAMen saves your chats and keeps long conversations fast, with measured results on NVIDIA and Mac.">
+<meta property="og:description" content="RAMen Memory, RAMen Endless and RAMen Desktop, each a little more closely, and the ways to get them.">
 <meta property="og:url" content="https://getramenai.com/how-it-works.html">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RAMen: never start over in a new chat. One memory for all your AIs.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
 <meta name="twitter:title" content="How RAMen works">
-<meta name="twitter:description" content="How RAMen saves your chats and keeps long conversations fast, with measured results on NVIDIA and Mac.">
+<meta name="twitter:description" content="RAMen Memory, RAMen Endless and RAMen Desktop, each a little more closely, and the ways to get them.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/how-it-works.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -25,21 +27,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* How it works: the story column and the notes under the videos and tables */
+  /* How it works: the story column and the notes under the videos, pictures and tables */
   .story { max-width: 780px; margin: 30px auto 0; }
   .story.prose p:last-child { margin-bottom: 0; }
+  .story.prose h3 { margin-top: 30px; }
   .scene .notes { max-width: 820px; margin: 16px auto 0; }
   .scene .media + .notes, .scene .table-wrap + .notes { margin-top: 16px; }
   .scene .table-wrap { max-width: 1040px; margin: 36px auto 0; }
+  .scene .media.shot { max-width: 980px; }
+  .scene .media.shot.narrow { max-width: 640px; }
   .light .notes { color: #6b4422; }
   .light .prose { color: #5a3416; }
   .light .prose b, .light .prose strong { color: #2b1406; }
+  .light .prose h3 { color: #2b1406; }
   .light .prose a { color: #b4520b; }
   .light .prose code { background: rgba(43, 20, 6, .1); border-color: rgba(43, 20, 6, .25); color: #2b1406; }
   .light .alt-os { color: #5a3416; }
   .story .cmd { margin-top: 8px; }
   .story .alt-os { margin: 18px 0 0; }
   .callout.story ul { margin: 0; }
+  .ways-grid { max-width: 1040px; margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 760px) { .ways-grid { grid-template-columns: minmax(0, 1fr); } }
+  .ways-grid .callout .cmd { white-space: normal; overflow-wrap: anywhere; font-size: 14px; }
   @media (min-width: 900px) {
     .page-hero .copy { max-width: 470px; }
     .page-hero .bg { width: 60%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 30%); mask-image: linear-gradient(90deg, transparent 0, #000 30%); }
@@ -47,6 +56,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="RAMen home">
@@ -58,83 +68,134 @@
       </svg>
       <span>RAM<b>en</b></span>
     </a>
-    <nav>
-      <a href="index.html#speed">Speed</a>
-      <a href="index.html#how">How it works</a>
-      <a href="developers.html">Developers</a>
+    <nav aria-label="Main">
+      <a href="index.html#memory">Memory</a>
+      <a href="index.html#endless">Endless</a>
+      <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
-      <a href="index.html#faq">Questions</a>
-      <a class="btn sm primary" href="index.html#how">Download free</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section class="page-hero" style="--sky:#2e6872;--pos:50% 100%">
   <picture>
-    <source media="(max-width: 560px)" srcset="assets/v3/how-m.jpg">
-    <img class="bg" src="assets/v3/how.jpg" alt="The kitchen of the ramen shop at night: steaming pots and shelves of glowing jars" fetchpriority="high">
+    <source media="(max-width: 560px)" srcset="assets/v3/how-m.jpg" width="1200" height="1200">
+    <img class="bg" src="assets/v3/how.jpg" width="2400" height="1340" fetchpriority="high" alt="The kitchen of the ramen shop at night: steaming pots and shelves of glowing jars">
   </picture>
   <div class="wrap">
     <div class="copy">
       <span class="kick rise"><i>✦</i> How it works <i>✦</i></span>
       <h1 class="rise">How RAMen <span class="shine">works</span></h1>
-      <p class="lede rise">One hub for every AI you use, and how each part works.</p>
-      <div class="btns rise"><a class="btn primary" href="index.html#how">Download free</a><a class="btn line" href="#both">See how</a></div>
+      <p class="lede rise">Each of RAMen's three features a little more closely, and the ways to get them.</p>
+      <div class="btns rise"><a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a><a class="btn line" href="#short">See how</a></div>
     </div>
   </div>
 </section>
 
-<section class="scene" id="both" style="--sky:#0d1a35;--show:0">
+<section class="scene" id="short" style="--sky:#0d1a35;--show:0"><span id="both" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> The short version <i>✦</i></span>
-      <h2 class="rise">RAMen fixes <span class="shine">both.</span></h2>
+      <h2 class="rise">Three features. <span class="shine">Many ways in.</span></h2>
     </div>
-    <p class="lede center rise">Local AI slows down as a chat grows, and forgets it when the app closes. RAMen fixes both, in front of llama.cpp.</p>
-    <div class="media rise"><video src="assets/v2/race.mp4" poster="assets/v2/race.jpg" controls muted playsinline preload="metadata"></video><span class="tag">Real run</span></div>
-    <p class="notes rise">Real speed: Qwen3 32B on an RTX A6000, 87K tokens. Normal llama.cpp 8.4 tokens per second, RAMen 20.5. Same answer.</p>
+    <div class="story prose rise">
+      <p>RAMen has three features: <a href="#memory">RAMen Memory</a>, <a href="#endless">RAMen Endless</a> and <a href="#desktop">RAMen Desktop</a>. You get them through <a href="#get">the RAMen connector</a> in Claude and ChatGPT, the RAMen add-on for Chrome, RAMen Desktop and the Claude Code plugin, with one account and one plan.</p>
+      <p>In Claude and ChatGPT, your AI calls RAMen when it needs your memory or a saved chat, on the plan you already pay for. RAMen keeps everything and hands back the part that matters.</p>
+    </div>
   </div>
 </section>
 
-<section class="scene light" id="chats" style="--sky:#f7c583;--show:1.04;--art:url(/assets/v2/counter.jpg);--art-m:url(/assets/v2/counter-m.jpg)">
+<section class="scene" id="memory" style="--sky:#246068;--show:.62" data-art="/assets/v4/receipts.jpg" data-art-m="/assets/v4/receipts-m.jpg"><span id="online" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> 01 &middot; Session memory <i>✦</i></span>
+      <span class="kick rise"><i>✦</i> 01 &middot; RAMen Memory <i>✦</i></span>
+      <h2 class="rise">One memory for <span class="shine">all your AIs.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>Your AI saves what you tell it to RAMen and looks it up later, in any chat and in every app where you use RAMen, even with your computer off.</p>
+      <p><b>Receipts.</b> Every note keeps the date, the app and whether you said it or the AI guessed, and your exact words when your AI saves them. A guess waits until you approve it; until then, no app uses it.</p>
+      <p><b>Sensitive topics.</b> Health, money and other sensitive topics are saved like anything else. You can turn any of them off under <b>Advanced settings</b> on your RAMen page.</p>
+      <p><b>Search everything.</b> Ask "What did I decide about the venue?" and your AI searches every note and saved chat at once, and says where each answer came from.</p>
+      <p><b>Your profile card.</b> A few lines on how you like answers: length, tone, format, what to call you. Your AI gets it with your memory, so it answers your way in every app.</p>
+      <p><b>Must-know facts.</b> Mark up to 12 facts every AI should keep in mind, like an allergy, a medicine or where you live. Your AI gets them first whenever it checks your memory, and the RAMen add-on puts them under your first message in each new chat, so a question about a headache or a dinner idea gets an answer that fits you. Turn them on and off on your RAMen page, in the memory panel or in the add-on.</p>
+      <p><b>See and forget.</b> Ask your AI what RAMen keeps about you, and in apps that show connector panels (MCP Apps), such as Claude, a memory panel opens right in the chat: approve, edit or delete from there. To forget something, just ask; RAMen says what it deleted. Everything is also on your RAMen page.</p>
+      <p><b>Bring your history.</b> RAMen Desktop reads your ChatGPT and Claude exports (<code>ramen import</code>) and links them to your memory (<code>ramen online</code>).</p>
+      <p>In Claude, add the line from <a href="index.html#online-setup">the setup</a> to Claude's instructions, or Claude may use its own memory first.</p>
+    </div>
+    <figure class="media shot rise">
+      <img src="assets/v4/shots/dashboard-memory.webp" width="2080" height="1315" loading="lazy" decoding="async" alt="The RAMen page, Memory: notes such as My sister Priya moved to Denver, each with the person's own words, You said, the app and the time, a search box, and a Pending tab with one guess waiting">
+    </figure>
+    <p class="notes rise">Your RAMen page, shown with sample notes.</p>
+  </div>
+</section>
+
+<section class="scene" id="endless" style="--sky:#101336;--show:.7" data-art="/assets/v4/relay.jpg" data-art-m="/assets/v4/relay-m.jpg"><span id="organized" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 02 &middot; RAMen Endless <i>✦</i></span>
+      <h2 class="rise">One conversation, <span class="shine">any number of chats.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>Every reply in a long chat re-reads the whole chat. That uses up your limits, and details start to slip. Say "Save this chat to RAMen", then "Continue my RAMen thread" in a fresh chat or another AI.</p>
+      <p><b>Saved as you go.</b> With the RAMen add-on, a chat on any of the 11 AI sites is saved to your RAMen every 15 messages: its goal, its details, its to-dos and the AI's latest answer. In apps with only the connector, ask your AI to save the chat. It can also save on its own as a long chat grows, but not reliably: in our test, Claude Haiku 5.5 with the line from the setup saved a 45-message chat on its own once, at message 44. Turn it off on your RAMen page.</p>
+      <p><b>Nothing lost.</b> Each save merges into the thread: changed values keep what they were before, and drafts keep their newest version, word for word. In our test, a thread kept 98% of what was known after three hand-offs between apps; copied summaries kept 85 to 88%.</p>
+      <p><b>Open items.</b> Every to-do and open question from your saved chats, in one list. Tick them off on your RAMen page, or tell your AI they are done.</p>
+      <p><b>Projects.</b> Put saved chats in a project. In a new chat, say "Load my wedding project" to bring back its goal, current values, decisions, open items and drafts. Apps that list a connector's prompts show each project there too.</p>
+      <p>Added RAMen to Claude before? Refresh its tools list once in Settings &rsaquo; Customize &rsaquo; Connectors.</p>
+    </div>
+    <figure class="media shot narrow rise">
+      <img src="assets/v4/shots/panel-thread.webp" width="1280" height="1440" loading="lazy" decoding="async" alt="The memory panel showing a saved chat, Wedding planning: its goal, open items with boxes to tick, current values such as the wedding date June 21, 2027 (was June 14), facts, decisions and drafts, with Continue in this chat">
+    </figure>
+    <p class="notes rise">A saved chat in the memory panel, shown in a test page with sample data.</p>
+  </div>
+</section>
+
+<section class="scene" id="detail-lock" style="--sky:#49133b;--show:.62" data-art="/assets/v4/mise.jpg" data-art-m="/assets/v4/mise-m.jpg">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 02 &middot; RAMen Endless: Detail Lock <i>✦</i></span>
+      <h2 class="rise">Every detail of <span class="shine">the chat you're in.</span></h2>
+    </div>
+    <div class="story prose rise">
+      <p>Detail Lock comes with the RAMen add-on for Chrome. On ChatGPT, Claude, Gemini, Grok, Perplexity, Copilot, DeepSeek, Mistral, Meta AI, Poe and Qwen, it lists the details you set as you chat: limits, names, dates, things to leave out, formats and rules. A later detail about the same thing replaces the earlier one.</p>
+      <p>Once the chat is too long for the AI to see it all, it adds the short list to each message you send (or always, or never: your choice). When an answer comes, its own rules check limits, names, things to leave out, units, years and tables, and flag any detail the answer dropped.</p>
+      <p><b>Remind it</b> puts a short reminder in the message box. <b>Fresh start with everything</b> opens a new chat with your goal, every detail and the last answer in one message. Nothing is sent until you press Send.</p>
+      <p>Smarter checks are optional: Chrome's built-in AI, or RAMen Desktop on the same computer, looks at the details the rules cannot check. Detail Lock's lists stay in your browser, except in your own messages and in the saves of a long chat to your own RAMen. <a href="chrome.html">RAMen for Chrome</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="scene light" id="desktop" style="--sky:#fbc886;--show:1.04" data-art="/assets/v2/counter.jpg" data-art-m="/assets/v2/counter-m.jpg"><span id="chats" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> 03 &middot; RAMen Desktop <i>✦</i></span>
       <h2 class="rise">Chats that come back <span class="shine">in seconds.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>RAMen saves each chat's working memory (the KV cache) to disk and brings it back when the chat goes on, even after a restart.</p>
+      <p>RAMen Desktop runs AI models on your own computer (Mac, Windows and Linux) and keeps each chat's memory on disk, so a chat comes back in seconds, even after a restart.</p>
     </div>
-    <div class="media rise"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none"></video><span class="tag">Real time</span></div>
+    <div class="media rise"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none" aria-label="A 70,000-token chat reopened on a Mac mini in a few seconds, in real time"></video><span class="tag">Real time</span></div>
     <p class="notes rise">Real time, Mac mini M2 Pro, Qwen3 4B: a 70K-token chat back in 3.7 seconds, where reading it again took 12 minutes 47.</p>
-    <div class="story prose rise">
-      <p>llama.cpp can save a cache <a href="save-chats-llama-cpp.html">by hand</a>. RAMen does it for every session, and checks each one fits the model first.</p>
+    <div class="story prose rise"><span id="fast" aria-hidden="true"></span><span id="apps" aria-hidden="true"></span><span id="sleep" aria-hidden="true"></span>
+      <p>Long chats stay fast too: each new word normally reads the whole memory, and RAMen reads only the parts that matter, where that is faster. llama.cpp can save a chat <a href="save-chats-llama-cpp.html">by hand</a>; RAMen does it for every chat.</p>
+      <h3>With Pro</h3>
+      <p><b>Memory for local models.</b> <code>ramen online</code> links the computer to your RAMen Memory: your local models know what you told Claude and ChatGPT.</p>
+      <p><b>Sleep notes.</b> <code>ramen sleep</code> pauses RAMen while your own model reads each new chat and writes careful notes of what you told it, in your words. After that, every app gets the few notes that match each question. <code>ramen sleep --forget</code> deletes them all.</p>
+      <p><b>Claude Code and Codex on local models.</b> <code>ramen claude</code> and <code>ramen connect codex</code> run them on a model on your computer. RAMen speaks the OpenAI, Anthropic and Ollama APIs, so other apps work as they are.</p>
     </div>
   </div>
 </section>
 
-<section class="scene" id="fast" style="--sky:#2f305d;--show:1.02;--art:url(/assets/v2/speed.jpg);--art-m:url(/assets/v2/speed-m.jpg)">
+<section class="scene" id="big" style="--sky:#593f7e;--show:.9" data-art="/assets/v3/big.jpg" data-art-m="/assets/v3/big-m.jpg">
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> 02 &middot; Selective reading <i>✦</i></span>
-      <h2 class="rise">Long chats that <span class="shine">stay fast.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p>Each new word normally reads the whole memory. RAMen reads only the parts that matter, and turns this on only where it is faster.</p>
-      <p>Same answers as full attention in 54 of 54 long-document tests, 16K to 64K tokens.</p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="big" style="--sky:#593f7e;--show:.9;--art:url(/assets/v3/big.jpg);--art-m:url(/assets/v3/big-m.jpg)">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 03 &middot; Pro <i>✦</i></span>
+      <span class="kick rise"><i>✦</i> 03 &middot; RAMen Desktop, with Pro <i>✦</i></span>
       <h2 class="rise">Models bigger than <span class="shine">your memory.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>Mixture-of-experts models use a few experts per word. RAMen (Pro) streams the experts from the SSD into its own cache. Same answers.</p>
+      <p>Mixture-of-experts models use a few experts per word. RAMen streams the experts it needs from the SSD into its own cache. Same answers.</p>
     </div>
     <div class="table-wrap stack rise"><table>
 <tr><th>Mac mini M2 Pro, 16 GB</th><th>What</th><th>Plain llama.cpp</th><th>RAMen</th></tr>
@@ -148,95 +209,53 @@
   </div>
 </section>
 
-<section class="scene" id="apps" style="--sky:#46367d;--show:.96;--art:url(/assets/v2/market.jpg);--art-m:url(/assets/v2/market-m.jpg)">
+<section class="scene" id="get" style="--sky:#232659;--show:0">
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> 04 &middot; Plug and play <i>✦</i></span>
-      <h2 class="rise">Your apps and <span class="shine">your models.</span></h2>
+      <span class="kick rise"><i>✦</i> Ways to get it <i>✦</i></span>
+      <h2 class="rise">One account. <span class="shine">Four ways in.</span></h2>
     </div>
-    <div class="story prose rise">
-      <p>RAMen speaks the OpenAI, Anthropic and Ollama APIs, so your apps work as they are, Claude Code (<code>ramen claude</code>) and Codex included. <code>ramen start --ollama replace</code> takes Ollama's place.</p>
+    <div class="callouts ways-grid">
+      <div class="callout row rise"><img class="float" src="assets/v2/icons/connect.webp" width="96" height="96" loading="lazy" alt="">
+        <div><h3>The RAMen connector</h3><p>Inside Claude on the web, desktop and phone, ChatGPT on paid plans, and other AI apps that take connectors. You add it once and sign in with your RAMen key. <a href="index.html#online-setup">The setup</a></p></div></div>
+      <div class="callout row rise"><img class="float b" src="assets/v4/icons/addon.webp" width="96" height="96" loading="lazy" alt="">
+        <div><h3>The RAMen add-on for Chrome</h3><p>On the AI websites in Chrome, including the ones that cannot take a connector: Detail Lock, your memory and Endless. <a href="chrome.html">RAMen for Chrome</a></p></div></div>
+      <div class="callout row rise"><img class="float c" src="assets/v4/icons/desktop.webp" width="96" height="96" loading="lazy" alt="">
+        <div><h3>RAMen Desktop</h3><p>The app for Mac, Windows and Linux, for AI that runs on your own computer. <a href="index.html#desktop">Install it</a></p></div></div>
+      <div class="callout row rise"><img class="float" src="assets/v2/icons/apps.webp" width="96" height="96" loading="lazy" alt="">
+        <div><h3>The Claude Code plugin</h3><p>The same memory in your coding sessions:</p><code class="cmd">/plugin install ramen-memory --marketplace MatthewLeibel/ramen-plugins</code></div></div>
     </div>
   </div>
 </section>
 
-<section class="scene" id="sleep" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 05 &middot; RAMen Sleep <i>✦</i></span>
-      <h2 class="rise">It learns <span class="shine">while you sleep.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p><code>ramen sleep</code> pauses RAMen while your own model reads each new chat and writes careful notes of what you told it, in your words.</p>
-      <p>After that, every app gets the few notes that match each question. <code>ramen import</code> brings in ChatGPT or Claude history; <code>ramen sleep --forget</code> deletes it all.</p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="cloud" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 06 &middot; RAMen Cloud <i>✦</i></span>
-      <h2 class="rise">Claude and GPT, <span class="shine">never cut off.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p>Save your own key (<code>ramen cloud key claude</code> or <code>openai</code>) and apps ask RAMen for those models by name. No key, nothing leaves your computer.</p>
-      <p>Your own model reads along. If the cloud stops, it answers at once with everything said so far, and says so.</p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="online" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 07 &middot; RAMen Online <i>✦</i></span>
-      <h2 class="rise">Your memory in <span class="shine">Claude and ChatGPT.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p>RAMen Memory is a connector for Claude and ChatGPT. Sign in with your key, and your AI can <code>remember</code>, <code>recall</code> and <code>forget</code>, even with your computer off.</p>
-      <p>In Claude, add one line to its instructions (<a href="index.html#online-setup">the steps</a>), or Claude uses its own memory first.</p>
-      <p>Each person's memory is its own database, tied to a one-way hash of their key. <code>ramen online --forget</code> deletes it.</p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="endless" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 08 &middot; RAMen Endless <i>✦</i></span>
-      <h2 class="rise">One conversation, <span class="shine">any number of chats.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p>Every reply in a long chat re-reads it all: 32,000 tokens per reply in our 40-message test. Say "Save this chat to RAMen", then "Continue my RAMen thread" in any fresh chat.</p>
-      <p>Each save merges: changed values keep what they were, drafts keep their newest version. After three hand-offs the thread kept 98% of what was known; copied summaries kept 85 to 88%.</p>
-      <p>Added RAMen to Claude before? Refresh its tools list once in Settings &rsaquo; Customize &rsaquo; Connectors.</p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="hub" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> 09 &middot; RAMen Hub <i>✦</i></span>
-      <h2 class="rise">Your team and every AI, <span class="shine">one place.</span></h2>
-    </div>
-    <div class="story prose rise">
-      <p>A <b>room</b> is a live team chat. <code>@claude</code>, <code>@gpt</code> or <code>@gemini</code> brings a model in. It reads the pinned notes and latest messages, on the team's own keys.</p>
-      <p>Invite by link, no email. People with RAMen join free; others take a seat and get a member code.</p>
-      <p>From Claude, ChatGPT or Claude Code: <code>read_room</code>, <code>post_to_room</code>, <code>team_recall</code> and more.</p>
-      <p>Your own memory stays yours. Every rule is checked on RAMen's servers. <a href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="scene" id="results" style="--sky:#4e327f;--show:.68;--art:url(/assets/v2/rooftops.jpg);--art-m:url(/assets/v2/rooftops-m.jpg)">
+<section class="scene" id="results" style="--sky:#4e327f;--show:.68" data-art="/assets/v2/rooftops.jpg" data-art-m="/assets/v2/rooftops-m.jpg">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Measured <i>✦</i></span>
       <h2 class="rise">Measured <span class="shine">results.</span></h2>
     </div>
     <div class="table-wrap stack rise"><table>
-<tr><th>Machine and model</th><th>Conversation</th><th>Cache</th><th>Normal llama.cpp</th><th>RAMen</th><th>Faster</th></tr>
+<tr><th>Memory</th><th>Without RAMen</th><th>With RAMen</th></tr>
+<tr><td><b>The RAMen connector</b>, Claude Haiku and Sonnet 5.5 choosing by themselves when to look something up</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>100% right</b> (45 of 45)</td></tr>
+<tr><td><b>RAMen Memory with Claude Sonnet 5.5</b>, no Sleep and no computer: Claude saved what it chose while chatting, then answered 45 questions in fresh chats</td><td data-label="Without RAMen">2 to 7% right</td><td data-label="With RAMen"><b>93% right</b></td></tr>
+<tr><td><b>RAMen Sleep</b>, Mac mini M2 Pro, Qwen3 4B: 45 questions about a made-up person's ten earlier chats, asked in fresh chats</td><td data-label="Without RAMen">2% right</td><td data-label="With RAMen"><b>98% right</b></td></tr>
+<tr><td><b>Sleep's notes in front of Claude</b> (Haiku, Sonnet and Opus 5.5), five made-up people</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>98 to 100% right</b></td></tr>
+<tr><td><b>Sleep's notes in front of GPT</b> (GPT-6 Luna, GPT-6.1 Sol), the same five people</td><td data-label="Without RAMen">0 to 5% right</td><td data-label="With RAMen"><b>95 to 100% right</b></td></tr>
+    </table></div>
+    <div class="table-wrap stack rise" style="margin-top:28px"><table>
+<tr><th>Endless and Detail Lock</th><th>Without RAMen</th><th>With RAMen</th></tr>
+<tr><td><b>The next day, in another AI</b>: a 150-message planning chat with Claude Haiku 5.5, the same messages sent with and without RAMen; then a fresh chat with ChatGPT's model (GPT-6.1 Sol) asked about the plan</td><td data-label="Without RAMen">0 of 21 details</td><td data-label="With RAMen"><b>18 of 22 details</b></td></tr>
+<tr><td><b>Facts about you, in the other app</b>: told to ChatGPT's model during the chat, asked in Claude Haiku 5.5 the next day</td><td data-label="Without RAMen">0 of 7</td><td data-label="With RAMen"><b>6 of 7</b></td></tr>
+<tr><td><b>Once the chat is too long for the AI to see it all</b>: ChatGPT's model with its latest ~7,000 tokens in view, messages 1 to 93</td><td data-label="Without RAMen">92% of details kept (14 dropped)</td><td data-label="With RAMen"><span><b>98% kept (3 dropped)</b>: 4.7 times fewer dropped</span></td></tr>
+<tr><td><b>While the AI still sees the whole chat</b>: ~14,000 and ~20,000 tokens in view, and Claude Haiku 5.5 with all of it</td><td data-label="Without RAMen">97 to 98% kept</td><td data-label="With RAMen">96 to 99% kept: about even</td></tr>
+    </table></div>
+    <div class="table-wrap stack rise" style="margin-top:28px"><table>
+<tr><th>Must-know facts</th><th>RAMen's search alone</th><th>With must-know facts</th></tr>
+<tr><td><b>Claude Haiku 5.5</b>: 60 requests where a saved fact changes the right answer (a headache while on warfarin, a Thai dinner with a peanut allergy), each in a fresh chat, from 20 made-up people (with no memory at all: 27 wrong)</td><td data-label="RAMen's search alone">21 wrong</td><td data-label="With must-know facts"><span><b>3 wrong</b> with the connector, <b>1</b> with the add-on: 7 times fewer</span></td></tr>
+<tr><td><b>Claude Sonnet 5.5</b>, 20 of those requests</td><td data-label="RAMen's search alone">6 wrong</td><td data-label="With must-know facts"><span><b>0 wrong</b>, with the connector and with the add-on</span></td></tr>
+    </table></div>
+    <div class="table-wrap stack rise" style="margin-top:28px"><table>
+<tr><th>RAMen Desktop: machine and model</th><th>Conversation</th><th>Cache</th><th>Normal llama.cpp</th><th>RAMen</th><th>Faster</th></tr>
 <tr><td><b>RTX A6000</b>, Qwen3 32B</td><td data-label="Conversation">87K tokens</td><td data-label="Cache">8-bit</td><td data-label="Normal llama.cpp">8.4 tok/s</td><td data-label="RAMen">20.4 tok/s</td><td data-label="Faster"><b>2.4x</b></td></tr>
 <tr><td><b>RTX A6000</b>, Qwen3 32B</td><td data-label="Conversation">56K tokens</td><td data-label="Cache">8-bit</td><td data-label="Normal llama.cpp">11.5 tok/s</td><td data-label="RAMen">20.9 tok/s</td><td data-label="Faster"><b>1.8x</b></td></tr>
 <tr><td><b>RTX 4090</b>, Qwen3 4B</td><td data-label="Conversation">224K tokens</td><td data-label="Cache">8-bit</td><td data-label="Normal llama.cpp">31 tok/s</td><td data-label="RAMen">88 tok/s</td><td data-label="Faster"><b>2.9x</b></td></tr>
@@ -250,20 +269,11 @@
 <tr><td><b>NVIDIA L4</b>, Qwen3 4B</td><td data-label="Size">104,744 tokens</td><td data-label="Reading it again">220 seconds</td><td data-label="RAMen"><b>1.8 seconds</b></td></tr>
 <tr><td><b>RTX 4090</b>, Qwen3 4B</td><td data-label="Size">197,860 tokens</td><td data-label="Reading it again">91 seconds</td><td data-label="RAMen"><b>5.6 seconds</b></td></tr>
     </table></div>
-    <div class="table-wrap stack rise" style="margin-top:28px"><table>
-<tr><th>Memory and takeover</th><th>Without RAMen</th><th>With RAMen</th></tr>
-<tr><td><b>RAMen Sleep</b>, Mac mini M2 Pro, Qwen3 4B: 45 questions about a made-up person's ten earlier chats, asked in fresh chats</td><td data-label="Without RAMen">2% right</td><td data-label="With RAMen"><b>98% right</b></td></tr>
-<tr><td><b>Sleep's notes in front of Claude</b> (Haiku, Sonnet and Opus 5.5), five made-up people</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>98 to 100% right</b></td></tr>
-<tr><td><b>Sleep's notes in front of GPT</b> (GPT-6 Luna, GPT-6.1 Sol), the same five people</td><td data-label="Without RAMen">0 to 5% right</td><td data-label="With RAMen"><b>95 to 100% right</b></td></tr>
-<tr><td><b>RAMen Online with Claude Sonnet 5.5</b>, no Sleep and no computer: Claude saved what it chose while chatting, then answered the 45 questions in fresh chats</td><td data-label="Without RAMen">2 to 7% right</td><td data-label="With RAMen"><b>93% right</b></td></tr>
-<tr><td><b>RAMen Memory as a connector</b>, Claude Haiku and Sonnet 5.5 choosing by themselves when to look something up</td><td data-label="Without RAMen">2 to 13% right</td><td data-label="With RAMen"><b>100% right</b> (45 of 45)</td></tr>
-<tr><td><b>RAMen Cloud takeover</b>, Claude Sonnet 5.5 and Qwen3 4B on an 8 GB M1 Mac, an 8,343-token chat: until the local model starts answering</td><td data-label="Without RAMen">55 seconds</td><td data-label="With RAMen"><b>2.2 seconds</b></td></tr>
-    </table></div>
-    <p class="notes rise">Same model and settings on both sides, November 2026. Below about 30K tokens, RAMen keeps normal attention.</p>
+    <p class="notes rise">Same model and settings on both sides, November 2026. Below about 30K tokens, RAMen Desktop keeps normal attention.</p>
   </div>
 </section>
 
-<section class="scene" id="limits" style="--sky:#0f1430;--show:.78;--art:url(/assets/v2/lake.jpg);--art-m:url(/assets/v2/lake-m.jpg)">
+<section class="scene" id="limits" style="--sky:#0f1430;--show:.78" data-art="/assets/v2/lake.jpg" data-art-m="/assets/v2/lake-m.jpg">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Honestly <i>✦</i></span>
@@ -271,33 +281,37 @@
     </div>
     <div class="callout story rise">
       <ul>
-        <li>Selective reading speeds up writing (decode), not the first read of a new long prompt.</li>
-        <li>It does not stack with draft models (speculative decoding) yet; RAMen uses whichever is faster.</li>
-        <li>Models that keep a small memory by design (for example sliding-window models) gain little speed. Session memory still helps them.</li>
-        <li>Big models: mixture-of-experts only.</li>
-        <li>On a graphics card, a restored chat's next words can differ slightly from a fresh read.</li>
+        <li>Your AI decides when to use RAMen. The line from the setup tells it to check RAMen first, and to save as it goes.</li>
+        <li>In one chat, RAMen helps once the chat is too long for the AI to see it all. While the AI still sees the whole chat, it keeps about as much on its own. The big gains are the next day and in another app.</li>
+        <li>RAMen makes what the AI reads longer (its tools, and the list in long chats): in the 150-message test, the AI read 2.2 to 2.5 times the tokens.</li>
+        <li>Our tests use made-up people and chats, one run per setting, November 2026. Your chats will differ.</li>
+        <li>RAMen Memory lives on RAMen's servers (Cloudflare), so it works with your computer off.</li>
+        <li>The memory panel shows only in apps that support connector panels. Elsewhere, your AI answers in words.</li>
+        <li>Detail Lock's own rules check some kinds of details. The others are carried in your messages, and checked only with smarter checks on. A website that changes its page can stop the add-on until we update it.</li>
+        <li>In RAMen Desktop: faster long chats speed up writing, not the first read of a new long prompt, and do not stack with draft models (speculative decoding) yet. Models that keep a small memory by design gain little speed.</li>
+        <li>Big models: mixture-of-experts only. On a graphics card, a restored chat's next words can differ slightly from a fresh read.</li>
         <li>Sleep is a preview: it can get things wrong, and takes a while (about 18 minutes for ten chats on an M2 Pro).</li>
-        <li>Cloud is a preview: after a takeover, answers come from your smaller local model.</li>
-        <li>Online memory lives on RAMen's servers (Cloudflare), so it works with your computer off.</li>
-        <li>RAMen is proprietary software with a free plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
+        <li>RAMen Desktop is proprietary software, part of the RAMen plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="scene light" id="try" style="--sky:#fdc886;--show:.84;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg)">
+<section class="scene light" id="try" style="--sky:#fdc886;--show:.84" data-art="/assets/v3/developers.jpg" data-art-m="/assets/v3/developers-m.jpg">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Try it <i>✦</i></span>
-      <h2 class="rise">Try it <span class="shine">free.</span></h2>
+      <h2 class="rise">Try it <span class="shine">for 14 days.</span></h2>
     </div>
-    <div class="media rise"><video src="assets/v2/install.mp4" poster="assets/v2/install.jpg" controls muted playsinline preload="none"></video><span class="tag">Recorded live</span></div>
+    <div class="story prose center rise">
+      <p>In Claude or ChatGPT: start your 14-day trial, then follow <a href="index.html#online-setup">the setup</a>. On your computer: install RAMen Desktop below and run <code>ramen start</code>.</p>
+      <div class="btns"><a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a><a class="btn line" href="index.html#plans">See plans</a></div>
+    </div>
+    <div class="media rise"><video src="assets/v2/install.mp4" poster="assets/v2/install.jpg" controls muted playsinline preload="none" aria-label="A fresh install of RAMen Desktop on a Mac mini, recorded as it happened"></video><span class="tag">Recorded live</span></div>
     <p class="notes rise">A fresh install on a Mac mini, recorded as it happened (the model download is shown 4x faster).</p>
     <div class="story center rise">
       <p class="alt-os">Mac and Linux (including ARM):</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code>
       <p class="alt-os">Windows (PowerShell):</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code>
-      <p class="alt-os">Then <code>ramen start</code>. The free plan is free forever, and every install starts with 14 days of everything.</p>
-      <div class="btns"><a class="btn primary" href="index.html#plans">See plans</a></div>
     </div>
   </div>
 </section>
@@ -306,19 +320,28 @@
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license). ChatGPT, Claude and the other names and logos shown belong to their owners; RAMen is not affiliated with or endorsed by them.</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
 <script>
-  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  // fade blocks in as they scroll into view (everything shows at once when motion is reduced), and load each scene's
+  // art when its section comes near the screen (data-art, data-art-m)
   (function () {
-    var els = document.querySelectorAll('.rise');
-    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      els.forEach(function (e) { e.classList.add('in'); });
-      return;
+    var scenes = document.querySelectorAll('.scene[data-art]');
+    function art(s) {
+      s.style.setProperty('--art', 'url(' + s.getAttribute('data-art') + ')');
+      if (s.hasAttribute('data-art-m')) s.style.setProperty('--art-m', 'url(' + s.getAttribute('data-art-m') + ')');
+      s.removeAttribute('data-art');
     }
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window)) { scenes.forEach(art); els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var near = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { art(en.target); near.unobserve(en.target); } });
+    }, { rootMargin: '1400px 0px' });
+    scenes.forEach(function (s) { near.observe(s); });
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
@@ -326,5 +349,6 @@
   })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="assets/seams.js" defer></script>
 </body>
 </html>

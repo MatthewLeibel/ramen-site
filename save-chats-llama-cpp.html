@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
 <title>How to make llama.cpp remember chats after a restart</title>
 <meta name="description" content="Keep the llama.cpp working memory across restarts: slot save and restore by hand, small proxies that automate it, or RAMen.">
 <meta property="og:type" content="website">
@@ -26,6 +27,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="RAMen home">
@@ -37,22 +39,21 @@
       </svg>
       <span>RAM<b>en</b></span>
     </a>
-    <nav>
-      <a href="index.html#speed">Speed</a>
-      <a href="index.html#how">How it works</a>
-      <a href="developers.html">Developers</a>
+    <nav aria-label="Main">
+      <a href="index.html#memory">Memory</a>
+      <a href="index.html#endless">Endless</a>
+      <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
-      <a href="index.html#faq">Questions</a>
-      <a class="btn sm primary" href="index.html#how">Download free</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section class="page-hero" style="--sky:#693154;--pos:50% 100%">
   <picture>
     <source media="(max-width: 560px)" srcset="assets/v3/article-m.jpg">
-    <img class="bg" src="assets/v3/article.jpg" alt="A cozy reading corner of the ramen shop with shelves of glowing takeout boxes" fetchpriority="high">
+    <img class="bg" src="assets/v3/article.jpg" width="2400" height="1340" alt="A cozy reading corner of the ramen shop with shelves of glowing takeout boxes" fetchpriority="high">
   </picture>
   <div class="wrap">
     <div class="copy">
@@ -86,13 +87,13 @@
 <p>Small open tools sit in front of llama-server and save and restore slots around each request, for example <a href="https://pypi.org/project/stillwarm/">StillWarm</a> and <a href="https://pypi.org/project/hearth-llm/">hearth</a>. They are a good fit if you run one model and want the saving part only.</p>
 
 <h2 id="ramen">3. With RAMen</h2>
-<p>RAMen does the saving for every chat and agent session automatically, checks that each saved memory matches the model and settings before using it, and lets many chats share a few live slots while the rest wait on disk. In the same test as above, the 70,082-token chat came back with its first word after 3.7 seconds. It also does one thing the tools above do not: it keeps long chats fast by reading only the parts of the conversation that matter for each new word. <a href="how-it-works.html">How it works, with all measurements</a>.</p>
+<p>RAMen does the saving for every chat and agent session automatically, checks that each saved memory matches the model and settings before using it, and lets many chats share a few live slots while the rest wait on disk. In the same test as above, the 70,082-token chat came back with its first word after 3.7 seconds. It also keeps long chats fast by reading only the parts of the conversation that matter for each new word. <a href="how-it-works.html">How it works, with all measurements</a>.</p>
 <div class="media"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none"></video><span class="tag">Real time</span></div>
 <p>Install with one command, then start it:</p>
 <pre><code>curl -fsSL https://getramenai.com/install.sh | bash      # Mac and Linux
 irm https://getramenai.com/install.ps1 | iex             # Windows (PowerShell)
 ramen start</code></pre>
-<p>RAMen has a free plan that keeps your last 3 chats; every install starts with 14 days of everything. <a href="index.html#plans">See plans</a>.</p>
+<p>RAMen is one plan, $1.99 a month or $19 a year, and every install starts with a 14-day trial of everything. <a href="index.html#plans">See plans</a>.</p>
     </article>
   </div>
 </section>
@@ -100,8 +101,8 @@ ramen start</code></pre>
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
@@ -120,5 +121,6 @@ ramen start</code></pre>
   })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="assets/seams.js" defer></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
 <title>RAMen license agreement</title>
 <meta name="description" content="The RAMen End User License Agreement.">
 <meta property="og:type" content="website">
@@ -26,6 +27,7 @@
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="RAMen home">
@@ -37,28 +39,27 @@
       </svg>
       <span>RAM<b>en</b></span>
     </a>
-    <nav>
-      <a href="index.html#speed">Speed</a>
-      <a href="index.html#how">How it works</a>
-      <a href="developers.html">Developers</a>
+    <nav aria-label="Main">
+      <a href="index.html#memory">Memory</a>
+      <a href="index.html#endless">Endless</a>
+      <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
-      <a href="index.html#faq">Questions</a>
-      <a class="btn sm primary" href="index.html#how">Download free</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section class="page-hero" style="--sky:#151839">
   <picture>
     <source media="(max-width: 560px)" srcset="assets/v3/docs-m.jpg">
-    <img class="bg" src="assets/v3/docs.jpg" alt="" fetchpriority="high">
+    <img class="bg" src="assets/v3/docs.jpg" width="2400" height="1340" alt="" fetchpriority="high">
   </picture>
   <div class="wrap">
     <div class="copy">
       <span class="kick rise"><i>✦</i> Legal <i>✦</i></span>
       <h1 class="rise">RAMen End User <span class="shine">License Agreement</span></h1>
-      <p class="lede rise">Version 1.0, effective 6 November 2026. RAMen is made by NEOTECH Inc., a Delaware corporation ("NEOTECH", "we").</p>
+      <p class="lede rise">Version 1.2, effective 11 November 2026. RAMen is made by NEOTECH Inc., a Delaware corporation ("NEOTECH", "we").</p>
     </div>
   </div>
 </section>
@@ -69,20 +70,21 @@
 <p>By installing or using RAMen you agree to this agreement. If you use RAMen for a company, you agree for that company and confirm you may do so.</p>
 <h2 id="1-what-you-may-do">1. What you may do</h2>
 <p>We grant you a non-exclusive, non-transferable license to install and use RAMen, as follows:</p>
-<ul><li><strong>Free plan:</strong> any number of your own computers, for personal or business use, with the features the free plan includes (session memory for your most recent conversations, one at a time).</li><li><strong>Trial:</strong> every feature for 14 days from the first start on a computer.</li><li><strong>Pro:</strong> one person, on up to 3 computers at a time, with every feature except team server mode. A lifetime Pro license is the same, with no end date.</li><li><strong>Team:</strong> Pro for each person you pay a seat for. A seat may be moved to another person.</li><li><strong>Server:</strong> one server per license, serving the people you give API keys to, with every feature including team server mode.</li><li><strong>Enterprise:</strong> as set out in your order form, which takes precedence over this agreement where they differ.</li></ul>
+<ul><li><strong>RAMen Free:</strong> one person, at no cost, with these limits: up to 50 notes in your RAMen Memory, 3 must-know facts, 3 chat saves in RAMen Endless each calendar month, and 2 connected apps at a time. RAMen Free does not include Detail Lock, the automatic saves of long chats, RAMen Desktop or linking a computer. Everything you saved stays yours to read, search and delete on RAMen Free; only new saves past a limit need RAMen Pro.</li><li><strong>RAMen Pro, monthly or yearly:</strong> one person, on up to 3 computers at a time, with everything in the plan and without RAMen Free's limits: RAMen Memory, RAMen Endless with Detail Lock and RAMen Desktop.</li><li><strong>Trial:</strong> the whole of RAMen Pro for 14 days. RAMen Desktop's own trial starts the first time it runs on a computer.</li><li><strong>RAMen Lifetime:</strong> RAMen Pro for one person for as long as RAMen runs the service, for one payment, with no renewals.</li><li><strong>Pro for life:</strong> if you have Pro for life (sold at launch), you keep it: the same as RAMen Lifetime.</li></ul>
+<p>License keys bought with the same email address share one RAMen Memory, so moving between plans keeps what you saved.</p>
 <h2 id="2-what-you-may-not-do">2. What you may not do</h2>
-<ul><li>Share, sell, rent or sublicense RAMen or a license key, or let more people or computers use a license than it covers.</li><li>Remove or work around the license checks, or change RAMen to unlock features your plan does not include.</li><li>Reverse engineer, decompile or disassemble RAMen, except where the law allows it despite this restriction.</li><li>Use RAMen to break the law or the rights of others.</li></ul>
+<ul><li>Share, sell, rent or sublicense RAMen or a license key, or let more people or computers use a license than it covers.</li><li>Remove or work around the license checks or the limits of your plan, or change RAMen to unlock features your plan does not include.</li><li>Reverse engineer, decompile or disassemble RAMen, except where the law allows it despite this restriction.</li><li>Use RAMen to break the law or the rights of others.</li></ul>
 <h2 id="3-other-software-and-models">3. Other software and models</h2>
 <ul><li>RAMen includes llama.cpp, used under the MIT license. Its license is included with RAMen (LICENSE-llama.cpp.txt) and applies to that part.</li><li>AI models are not part of RAMen. Models that RAMen downloads for you come from their makers (for example on Hugging Face) under their own licenses, which you must follow. You are responsible for how you use a model and what it produces.</li></ul>
 <h2 id="4-your-data">4. Your data</h2>
-<p>RAMen runs on your computers. Your prompts, files and conversations stay there. To check a paid license, RAMen sends the license key, our store's identifier and an anonymous machine label (the platform and a short code derived from the machine, never its name) to our store provider, Polar. See the Privacy Policy.</p>
-<p>RAMen Online, if you use it, keeps your RAMen Memory on our servers so the apps you connect (such as Claude and ChatGPT) can use it. It is part of RAMen Pro while your license is active. You are responsible for what you and your apps save to it; we may suspend access that abuses the service or puts it at risk. You can delete your memory there at any time (<code>ramen online --forget</code>). When RAMen Cloud sends your conversations to Anthropic or OpenAI with your own API key, their terms and policies apply to that use. See the Privacy Policy.</p>
+<p>RAMen Desktop runs on your computers, and your prompts, files and conversations in it stay there unless you link it to RAMen Online or turn on RAMen Cloud. To check a license key, RAMen Desktop sends the key, our store's identifier and an anonymous machine label (the platform and a short code derived from the machine, never its name) to our store provider, Polar. See the Privacy Policy.</p>
+<p>RAMen Online keeps your RAMen Memory and saved chats on our servers so the apps you connect (such as Claude, ChatGPT and the RAMen add-on for Chrome) can use them. It is part of every plan, within RAMen Free's limits on RAMen Free. You are responsible for what you and your apps save to it; we may suspend access that abuses the service or puts it at risk. You can delete what it keeps at any time (on your RAMen page, with <code>ramen online --forget</code> on a linked computer, or by asking us), and after a plan ends it stays until you delete it or ask us to, as the Privacy Policy says. When RAMen Cloud sends your conversations to Anthropic or OpenAI with your own API key, their terms and policies apply to that use. See the Privacy Policy.</p>
 <h2 id="5-payments-renewals-and-refunds">5. Payments, renewals and refunds</h2>
-<p>Purchases are made through Polar, which acts as the reseller and handles payment and sales tax. Subscriptions renew until cancelled; you can cancel any time from the customer portal (<a href="https://polar.sh/ramen/portal">https://polar.sh/ramen/portal</a>) and keep access until the end of the period you paid for. Refunds follow the Refund Policy. If a paid license ends, RAMen continues on the free plan.</p>
+<p>Purchases are made through Polar, which acts as the reseller and handles payment and sales tax. Subscriptions renew until cancelled; you can cancel any time from the customer portal (<a href="https://polar.sh/ramen/portal">https://polar.sh/ramen/portal</a>) and keep access until the end of the period you paid for. A trial started at checkout asks for a card, and the first payment is taken when the trial ends unless you cancel before then. RAMen Lifetime is paid once and does not renew. Refunds follow the Refund Policy. If a paid plan or trial ends, its Pro parts stop (Detail Lock, RAMen Desktop, the automatic saves and the higher limits); with a RAMen Free key from the same email address you keep your memory and use it within RAMen Free's limits.</p>
 <h2 id="6-updates">6. Updates</h2>
 <p>We may provide updates. Updates are covered by this agreement unless they come with a new one.</p>
 <h2 id="7-ending-this-agreement">7. Ending this agreement</h2>
-<p>You may stop using RAMen at any time. We may end your license if you break this agreement. When it ends you must stop using the paid features; the free plan remains available under these terms unless we ended your license for a breach.</p>
+<p>You may stop using RAMen at any time. We may end your license if you break this agreement. When it ends you must stop using RAMen.</p>
 <h2 id="8-no-warranty">8. No warranty</h2>
 <p>RAMen is provided "as is", without warranties of any kind, including fitness for a particular purpose and non-infringement, to the extent the law allows. AI models can produce wrong or harmful output; check what matters.</p>
 <h2 id="9-limit-of-liability">9. Limit of liability</h2>
@@ -98,8 +100,8 @@
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 

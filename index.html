@@ -3,31 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RAMen: one hub for every AI you use</title>
-<meta name="description" content="RAMen AI: one hub for you, your team and every AI you use. Rooms where people and several AIs work together, one memory that Claude, ChatGPT and your local AI share, and a local engine that brings every chat back in seconds.">
+<script>document.documentElement.className += ' js';</script>
+<title>RAMen: one memory for all your AIs</title>
+<meta name="description" content="RAMen gives all your AIs one memory with receipts and keeps long chats from losing the thread. In Claude, ChatGPT and Chrome, on the plan you already pay for. $1.99 a month, 14 days free.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
-<meta property="og:title" content="RAMen: one hub for every AI you use">
-<meta property="og:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
+<meta property="og:title" content="RAMen: never start over in a new chat">
+<meta property="og:description" content="One memory for all your AIs, with receipts. Long chats that keep the thread. On the plan you already pay for.">
 <meta property="og:url" content="https://getramenai.com/">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RAMen: never start over in a new chat. One memory for all your AIs.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
-<meta name="twitter:title" content="RAMen: one hub for every AI you use">
-<meta name="twitter:description" content="One memory for every app, model and agent on your computer: chats come back in seconds, long ones stay fast, and it learns what you told it. Free plan forever.">
+<meta name="twitter:title" content="RAMen: never start over in a new chat">
+<meta name="twitter:description" content="One memory for all your AIs, with receipts. Long chats that keep the thread. On the plan you already pay for.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RAMen","url":"https://getramenai.com/","description":"The memory layer for local AI: every app, model and agent session on your own computer is saved and comes back in seconds, long conversations stay fast, and RAMen Sleep learns what you told it for every app and model. Built on llama.cpp.","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Windows, Linux","image":"https://getramenai.com/assets/og.jpg","publisher":{"@type":"Organization","name":"NEOTECH Inc.","url":"https://getramenai.com/"},"offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, monthly","price":"3.99","priceCurrency":"USD"},{"@type":"Offer","name":"Pro, lifetime (launch offer)","price":"19.99","priceCurrency":"USD"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RAMen","url":"https://getramenai.com/","description":"RAMen Memory: one memory for all your AIs, with receipts. RAMen Endless: long chats that keep the thread, with Detail Lock. RAMen Desktop: RAMen on your own computer for local AI. In Claude and ChatGPT through the RAMen connector, on AI websites through the RAMen add-on for Chrome, and in Claude Code through the plugin.","applicationCategory":"ProductivityApplication","operatingSystem":"Web, Chrome, macOS, Windows, Linux","image":"https://getramenai.com/assets/og.jpg","publisher":{"@type":"Organization","name":"NEOTECH Inc.","url":"https://getramenai.com/"},"offers":[{"@type":"Offer","name":"Pro, monthly","price":"1.99","priceCurrency":"USD"}]}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-  /* Main page only: the hero, the ribbon, the plans, the enterprise row and the sign-up form. The shared look
-     (tokens, header, scenes, components, motion, phone sizes) is in assets/site.css; see DESIGN.md. */
+  /* Main page only: the hero, the ribbon, the story cards, the ways to get it, the plans and the sign-up form. The
+     shared look (tokens, header, scenes, components, motion, phone sizes) is in assets/site.css. */
   /* hero: the words sit on the art's calm left sky; no empty band above */
   .s-hero { position: relative; padding: 0; min-height: clamp(620px, 55.8vw, 100svh); display: flex; align-items: center;
             overflow: hidden; background: var(--night); }
@@ -38,67 +40,54 @@
   .s-hero .wrap { position: relative; z-index: 2; padding: 96px 0 120px; }
   .s-hero .copy { max-width: 640px; text-align: left; }
   .s-hero h1 { margin: 16px 0 0; font-size: clamp(46px, 5.6vw, 86px); line-height: .95; letter-spacing: -0.052em; text-shadow: var(--outline); }
-  .s-hero .lede { margin: 22px 0 0; max-width: 40ch; color: #ece6f6; }
+  .s-hero .lede { margin: 22px 0 0; max-width: 42ch; color: #ece6f6; }
   .s-hero .btns { justify-content: flex-start; }
-  .s-hero .float-a { position: absolute; z-index: 2; width: clamp(80px, 9vw, 150px); right: 7%; bottom: 14%; }
 
-  /* ribbon */
-  .ribbon { position: relative; z-index: 3; background: var(--ink); border-block: 2.5px solid #000; overflow: hidden; }
-  .ribbon .track { display: flex; width: max-content; animation: roll 38s linear infinite; }
-  .ribbon span { padding: 16px 0; color: var(--cream); font: 800 15px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-  .ribbon span i { font-style: normal; color: var(--broth); margin: 0 22px; }
-
-  /* plans: columns split by thin lines */
-  .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 50px; }
-  .plan { padding: 8px 26px 10px; min-width: 0; }
-  .plan + .plan { border-left: 1px solid var(--line); }
-  .plan img { width: 104px; height: 104px; object-fit: contain; margin: 0 0 10px -6px; }
-  .plan h3 { font-size: 22px; letter-spacing: -0.02em; }
-  .price { margin-top: 10px; font: 900 46px/1 var(--font); letter-spacing: -0.04em; color: var(--cream); text-shadow: var(--outline); }
-  .price small { display: block; margin-top: 8px; font: 650 14.5px/1.3 var(--font); letter-spacing: 0; color: var(--faint); text-shadow: none; }
-  .plan ul { list-style: none; margin: 18px 0 0; padding: 0; }
-  .plan li { position: relative; padding-left: 22px; margin: 9px 0; color: var(--muted); font-size: 15.5px; line-height: 1.45; }
-  .plan li::before { content: "✦"; position: absolute; left: 0; color: var(--broth); font-size: 13px; top: 2px; }
-  .plan.pro .price { color: #fff; }
-  .plan.pro h3 .badge { display: inline-block; vertical-align: middle; margin-left: 8px; padding: 4px 9px; border-radius: 999px; border: 2px solid var(--ink);
-                        background: var(--aqua); color: #03141a; font: 800 11px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; }
-  .plan .btn { margin-top: 20px; }
-  .hub-shot > picture > img { display: block; width: 100%; height: auto; }
-  .hub-shot { --ratio: auto; }
-  .seat-slider { display: block; margin: 16px 0 0; color: var(--muted); font-size: 14.5px; }
-  .seat-slider b { color: #fff; }
-  .seat-slider em { font-style: normal; color: var(--broth-hi); margin-left: 2px; }
-  .seat-slider input[type=range] { display: block; width: 100%; margin: 10px 0 0; accent-color: var(--broth); cursor: pointer; }
-  .team-more { margin: 12px 0 0; font-size: 13.5px; color: var(--faint); }
-  .team-more a { color: #fff; }
-  .plan { display: flex; flex-direction: column; } .plan ul { flex: 1; } .plan .btn { align-self: flex-start; }
-  .ent { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 22px; align-items: center; margin-top: 46px; padding: 24px 0;
-         border-block: 1px solid var(--line); }
-  .ent img { width: 96px; height: 96px; object-fit: contain; }
-  .ent h3 { font-size: 22px; }
-  .ent p { margin: 4px 0 0; color: var(--muted); }
-
-  @media (max-width: 900px) {
-    .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
-    .plan:nth-child(3) { border-left: 0; }
-    .s-hero { min-height: 0; display: block; padding-top: 74vw; }
-    .s-hero .bg { height: 100vw; bottom: auto; object-position: 64% 50%; }
-    .s-hero::before { background: linear-gradient(180deg, transparent 0, transparent 40vw, rgba(9, 16, 41, .85) 78vw, var(--night) 100vw); }
-    .s-hero .wrap { padding: 0 0 72px; }
-    .s-hero .copy { max-width: none; }
+  /* the apps RAMen works with: their logos roll by under the hero (the names are trademarks of their owners; see the
+     footer). Single-colour logos take the cream text colour; the others keep their own colours. */
+  .works { position: relative; z-index: 3; background: var(--ink); border-block: 2.5px solid #000; padding: 20px 0 22px; }
+  .works-h { margin: 0 0 14px; text-align: center; color: var(--faint); font: 800 12px/1 var(--font); letter-spacing: .16em; text-transform: uppercase; }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+           mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
+  .logos-track { display: flex; width: max-content; animation: roll 64s linear infinite; }
+  .logos:hover .logos-track { animation-play-state: paused; }
+  .logos ul { display: flex; margin: 0; padding: 0; list-style: none; }
+  .logos li { display: inline-flex; align-items: center; gap: 12px; padding: 0 24px; color: var(--cream);
+              font: 700 15.5px/1 var(--font); letter-spacing: -.005em; white-space: nowrap; }
+  .logos li .tile { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 11px;
+                    background: #fff3e2; color: #14101f; box-shadow: 0 0 0 1.5px #000, 0 6px 14px -6px rgba(0, 0, 0, .7); }
+  .logos li .lg { width: 23px; height: 23px; }
+  .lg { width: 26px; height: 26px; flex: none; }
+  .app-tiles { display: flex; gap: 8px; margin: 0 0 14px; }
+  .app-tiles .tile { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: #fff3e2;
+                     color: #14101f; box-shadow: 0 0 0 1.5px #000, 3px 3px 0 #000; }
+  .app-tiles .lg { width: 24px; height: 24px; }
+  @media (prefers-reduced-motion: reduce) {
+    .logos { -webkit-mask-image: none; mask-image: none; }
+    .logos-track { animation: none; width: auto; justify-content: center; }
+    .logos ul { flex-wrap: wrap; justify-content: center; row-gap: 16px; }
+    .logos ul[aria-hidden] { display: none; }
   }
-  @media (max-width: 560px) {
-    .plans { grid-template-columns: minmax(0, 1fr); }
-    .plan + .plan { border-left: 0; border-top: 1px solid var(--line); padding-top: 26px; }
-    .ent { grid-template-columns: 72px minmax(0, 1fr); }
-    .ent img { width: 72px; height: 72px; }
-    .ent .btn { grid-column: 1 / -1; justify-self: start; }
-    .s-hero .float-a { display: none; }
-    .s-hero h1 { font-size: 46px; }
-  }
-  /* RAMen Sleep: a day, a night, the next day, as three framed cards (ink outline, hard shadow, chat bubbles) */
+
+  /* the three features */
+  /* each card a soft color from its own icon (peach, sakura, aqua), so the row stands out on the night sky */
+  .feat-cards .feat { position: relative; padding: 24px 22px 24px; border: 2.5px solid var(--ink); border-radius: 22px;
+                   background: var(--card-bg, #fff3e2); color: #2a1406; box-shadow: 7px 7px 0 var(--ink); text-decoration: none;
+                   display: block; transition: transform .2s, filter .2s; }
+  .feat-cards .feat:nth-child(1) { --card-bg: #ffe6cc; }
+  .feat-cards .feat:nth-child(2) { --card-bg: #ffdeec; }
+  .feat-cards .feat:nth-child(3) { --card-bg: #d6f6ef; }
+  .feat-cards a.feat:hover { transform: translateY(-3px); filter: brightness(1.04); }
+  .feat-cards a.feat:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 4px; }
+  .feat-cards .feat img { width: 104px; height: 104px; filter: drop-shadow(0 6px 10px rgba(42, 20, 6, .25)); }
+  .feat-cards .feat h3 { font-size: 22px; color: #1b1206; text-shadow: none; }
+  .feat-cards .feat p { color: #4d3b2c; }
+  .feat-cards .feat .go { display: inline-block; margin-top: 12px; color: #b0500b; font-weight: 780; font-size: 15px; }
+  .no-list { margin-top: 40px; color: var(--cream); font-weight: 700; font-size: 16px; }
+
+  /* story cards: three framed moments (ink outline, hard shadow, chat bubbles) */
   .story { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; max-width: 1080px;
-           margin: 56px auto 0; padding: 0; counter-reset: none; }
+           margin: 56px auto 0; padding: 0; }
   .story li { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 22px 22px 26px;
               border: 2.5px solid var(--ink); border-radius: 22px; background: rgba(255, 255, 255, .07); box-shadow: 7px 7px 0 var(--ink); }
   .story li.night { background: rgba(7, 10, 23, .62); }
@@ -112,16 +101,53 @@
   .story .who { display: block; margin-bottom: 4px; font: 760 11.5px/1 var(--font); letter-spacing: .08em; text-transform: uppercase;
                 opacity: .7; }
   .story .note { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
-  .story .cmd { align-self: flex-start; margin: 4px 0 0; }
-  .story .moon { position: absolute; top: -26px; right: 18px; width: 64px; height: 64px; object-fit: contain; }
-  .s-sleep { padding-bottom: clamp(56px, 6vw, 96px); }     /* the same sky as #speed below: one calm stretch */
-  .s-sleep .feats { margin-top: 64px; }
-  @media (min-width: 901px) { .s-sleep .feats { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px 32px; } }
-  .s-sleep code { white-space: nowrap; }
+  .story .badge-icon { position: absolute; top: -30px; right: 16px; width: 70px; height: 70px; object-fit: contain; }
   @media (max-width: 900px) {
     .story { grid-template-columns: minmax(0, 1fr); max-width: 560px; gap: 30px; }
     .story li + li::before { left: 50%; top: -30px; width: 3px; height: 30px; }
   }
+
+  /* Detail Lock: the words beside the real side panel */
+  .s-lock .words > img { width: 104px; height: 104px; object-fit: contain; margin: 0 0 14px -8px; }
+  .s-lock .words .flabel { margin: 34px 0 0; text-align: left; }
+  .s-lock .words .btns { justify-content: flex-start; margin-top: 28px; }
+  .s-lock .words .fine { margin-top: 14px; }
+
+  /* RAMen Desktop: its commands wrap on narrow screens */
+  #desktop .rows code.cmd { white-space: normal; overflow-wrap: anywhere; }
+  #desktop .rows p + .cmd + .cmd { margin-left: 8px; }
+
+  /* ways to get it: the connector's setup on the left, the other three ways stacked on the right */
+  .ways { align-items: stretch; }
+  .ways-side { display: grid; gap: 22px; align-content: start; }
+  .ways-side .callout { padding: 22px 22px 20px; }
+  .ways .callout.row { grid-template-columns: 76px minmax(0, 1fr); gap: 16px; align-items: start; }
+  .ways .callout.row > img { width: 76px; height: 76px; }
+  .ways .callout .btn { margin-top: 14px; }
+  .ways .callout .cmd { white-space: normal; overflow-wrap: anywhere; font-size: 14px; }
+  .ways .sub-h { margin: 26px 0 4px; color: #fff; font-size: 17px; letter-spacing: -0.02em; }
+  .ramen-page { max-width: 880px; margin: 30px auto 0; text-align: center; color: var(--muted); }
+  .ramen-page a { color: var(--broth-hi); font-weight: 700; }
+
+  /* plans: two columns split by a thin line */
+  .life { max-width: 880px; margin: 40px auto 0; padding: 18px 22px; border-block: 1px solid var(--line); color: var(--muted); text-align: center; }
+  .life b { color: #fff; }
+  @media (max-width: 900px) {
+    .s-hero { min-height: 0; display: block; padding-top: 74vw; }
+    .s-hero .bg { height: 100vw; bottom: auto; object-position: 64% 50%; }
+    .s-hero::before { background: linear-gradient(180deg, transparent 0, transparent 40vw, rgba(9, 16, 41, .85) 78vw, var(--night) 100vw); }
+    .s-hero .wrap { padding: 0 0 72px; }
+    .s-hero .copy { max-width: none; }
+  }
+  @media (max-width: 640px) {
+  }
+  @media (max-width: 560px) {
+    .s-hero h1 { font-size: 46px; }
+    .story .badge-icon { width: 58px; height: 58px; top: -24px; }
+    .feat-cards .feat { padding: 20px 18px; }
+  }
+
+  /* the sign-up form above the footer */
   .updates { max-width: 560px; margin: 36px auto 0; text-align: center; }
   .updates-t { color: var(--cream); font-weight: 650; font-size: 17px; margin: 0 0 12px; }
   .updates-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -129,15 +155,41 @@
   .updates input[type=email]::placeholder { color: rgba(255, 255, 255, .6); }
   .updates .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .updates-msg { margin-top: 12px; }
-  .updates-msg a, .ph-link { color: var(--broth-hi); }
-  /* an affiliate's link (?code=CODE): a cream note above the menu, and the launch ticket names the code */
+  .updates-msg a { color: var(--broth-hi); }
+  /* an affiliate's link (?code=CODE): a cream note above the menu */
   .codebar { position: relative; z-index: 21; padding: 9px 16px; border-bottom: 2px solid var(--ink); background: var(--cream);
              color: #2b1406; font: 700 14.5px/1.4 var(--font); text-align: center; }
   .codebar b { color: #b4520b; font-family: var(--mono); letter-spacing: .02em; }
   .codebar a { margin-left: 8px; color: #2b1406; font-weight: 800; }
+  /* plans: three cards in the feature cards' style. Free and Lifetime show once their checkout links are set in
+     assets/links.js; until then Pro sits alone in the middle */
+  .tiers { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 28px; max-width: 1140px; margin: 56px auto 0; }
+  .tier { position: relative; display: flex; flex-direction: column; flex: 1 1 300px; max-width: 362px; padding: 30px 26px 26px;
+          border: 2.5px solid var(--ink); border-radius: 24px; background: var(--tier-bg, #fff3e2); color: #2a1406;
+          box-shadow: 7px 7px 0 var(--ink); }
+  .tier.free { --tier-bg: #fff3e2; }
+  .tier.pro { --tier-bg: #ffd5a6; box-shadow: 9px 9px 0 var(--ink), 0 34px 70px -22px rgba(242, 154, 67, .6); }
+  .tier.tier-life { --tier-bg: #e3dbff; }
+  .tier h3 { margin: 0; font-size: 23px; letter-spacing: -.02em; color: #1b1206; text-shadow: none; }
+  .tier .badge { position: absolute; top: -15px; left: 24px; padding: 6px 12px 5px; border: 2px solid var(--ink); border-radius: 999px;
+                 background: var(--aqua); color: #06231f; font: 850 11.5px/1 var(--font); letter-spacing: .1em; text-transform: uppercase;
+                 box-shadow: 3px 3px 0 var(--ink); }
+  .tier .price { margin-top: 12px; font: 900 50px/1 var(--font); letter-spacing: -.045em; color: #1b1206; text-shadow: none; }
+  .tier .price s { margin-right: 4px; font-size: .52em; font-weight: 760; color: #8a6a4e; text-decoration-thickness: 2px; vertical-align: .18em; }
+  .tier .price small { display: block; margin-top: 9px; font: 650 14.5px/1.35 var(--font); letter-spacing: 0; color: #6b4a2b; }
+  .tier ul { flex: 1; list-style: none; margin: 22px 0 0; padding: 0; }
+  .tier li { position: relative; padding-left: 22px; margin: 10px 0; color: #4d3b2c; font-size: 15.5px; line-height: 1.45; }
+  .tier li::before { content: "✦"; position: absolute; left: 0; top: 2px; color: #d06b0c; font-size: 13px; }
+  .tier li b { color: #1b1206; font-weight: 760; }
+  .tier .btn { align-self: flex-start; margin-top: 22px; }
+  .tier .btn.line { color: #1d0c02; border-color: #1d0c02; background: rgba(255, 255, 255, .45); }
+  .tier .btn.line:hover { background: rgba(255, 255, 255, .8); border-color: #1d0c02; }
+  .tier-fine { margin: 11px 0 0; color: #6b4a2b; font-size: 13.5px; }
+  @media (max-width: 700px) { .tier { flex-basis: 100%; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="wrap">
     <a class="brand" href="#" aria-label="RAMen home">
@@ -149,350 +201,270 @@
       </svg>
       <span>RAM<b>en</b></span>
     </a>
-    <nav>
-      <a href="#speed">Speed</a>
-      <a href="#how">How it works</a>
-      <a href="developers.html">Developers</a>
+    <nav aria-label="Main">
+      <a href="#memory">Memory</a>
+      <a href="#endless">Endless</a>
+      <a href="#desktop">Desktop</a>
       <a href="#plans">Plans</a>
-      <a href="#faq">Questions</a>
-      <a class="btn sm primary" href="#how">Download free</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main">
 <section class="s-hero">
-  <img class="bg" src="assets/hero.jpg" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl">
+  <img class="bg" src="assets/hero.jpg" width="1920" height="1071" fetchpriority="high" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl">
   <div class="wrap">
     <div class="copy">
-      <span class="kick rise"><i>✦</i> RAMen AI <i>✦</i></span>
-      <h1 class="rise">One hub for <span class="shine">every AI you use.</span></h1>
-      <p class="lede rise">Your team and several AIs in one chat. One memory they all share. Your own AI on your computer.</p>
+      <span class="kick rise"><i>✦</i> One memory for all your AIs <i>✦</i></span>
+      <h1 class="rise">Never start over <span class="shine">in a new chat.</span></h1>
+      <p class="lede rise">RAMen remembers what you tell any of your AIs, with receipts. Long chats keep the thread. All on the plan you already pay for.</p>
       <div class="btns rise">
-        <a class="btn primary" href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a>
-        <a class="btn line" href="#how">Download free</a>
+        <a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
+        <a class="btn line" href="#features">See what it does</a>
       </div>
-      <p class="fine rise">Free plan forever <i>✦</i> 14 days of everything, no card <i>✦</i> Mac, Windows and Linux</p>
-      <p class="fine rise">New: <a class="ph-link" href="#hub">Hub</a> <i>✦</i> <a class="ph-link" href="#sleep">Sleep</a> <i>✦</i> <a class="ph-link" href="#cloud">Cloud</a> <i>✦</i> <a class="ph-link" href="#online">Online</a> <i>✦</i> <a class="ph-link" href="#endless">Endless</a></p>
+      <p class="fine rise">14 days free <i>✦</i> Then $1.99 a month <i>✦</i> Cancel any time</p>
     </div>
   </div>
 </section>
 
-<div class="ribbon" aria-hidden="true"><div class="track">
-  <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
-  <span>One memory for every app<i>✦</i>Learns while you sleep<i>✦</i>Reopens in seconds<i>✦</i>Long chats stay fast<i>✦</i>Claude Code and Codex<i>✦</i>Your memory in Claude<i>✦</i>Every model you have<i>✦</i>Takes Ollama's place<i>✦</i>Models bigger than your memory<i>✦</i>Works offline<i>✦</i>Free plan forever<i>✦</i></span>
-</div></div>
+<section class="works" aria-labelledby="works-h">
+  <p class="works-h" id="works-h">Works with the AI you already use</p>
+  <div class="logos"><div class="logos-track">
+    <ul aria-label="Apps RAMen works with"><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-chatgpt"/></svg></span>ChatGPT</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-claude"/></svg></span>Claude</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-gemini"/></svg></span>Gemini</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-grok"/></svg></span>Grok</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-perplexity"/></svg></span>Perplexity</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-copilot"/></svg></span>Copilot</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-deepseek"/></svg></span>DeepSeek</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-mistral"/></svg></span>Mistral</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-metaai"/></svg></span>Meta AI</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-poe"/></svg></span>Poe</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-qwen"/></svg></span>Qwen</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-claudecode"/></svg></span>Claude Code</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-cursor"/></svg></span>Cursor</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-ghcopilot"/></svg></span>VS Code</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-codex"/></svg></span>Codex</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-windsurf"/></svg></span>Windsurf</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-zed"/></svg></span>Zed</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-cline"/></svg></span>Cline</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-continue"/></svg></span>Continue</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-opencode"/></svg></span>OpenCode</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-ollama"/></svg></span>Ollama</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-lmstudio"/></svg></span>LM Studio</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-openwebui"/></svg></span>Open WebUI</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-chrome"/></svg></span>Chrome</li></ul>
+    <ul aria-hidden="true"><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-chatgpt"/></svg></span>ChatGPT</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-claude"/></svg></span>Claude</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-gemini"/></svg></span>Gemini</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-grok"/></svg></span>Grok</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-perplexity"/></svg></span>Perplexity</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-copilot"/></svg></span>Copilot</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-deepseek"/></svg></span>DeepSeek</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-mistral"/></svg></span>Mistral</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-metaai"/></svg></span>Meta AI</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-poe"/></svg></span>Poe</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-qwen"/></svg></span>Qwen</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-claudecode"/></svg></span>Claude Code</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-cursor"/></svg></span>Cursor</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-ghcopilot"/></svg></span>VS Code</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-codex"/></svg></span>Codex</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-windsurf"/></svg></span>Windsurf</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-zed"/></svg></span>Zed</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-cline"/></svg></span>Cline</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-continue"/></svg></span>Continue</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-opencode"/></svg></span>OpenCode</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-ollama"/></svg></span>Ollama</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-lmstudio"/></svg></span>LM Studio</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-openwebui"/></svg></span>Open WebUI</li><li><span class="tile"><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-chrome"/></svg></span>Chrome</li></ul>
+  </div></div>
+</section>
 
-<section class="scene s-sleep s-hub" id="hub" style="--sky:#2f305d;--show:0">
+<section class="scene" id="features" style="--sky:#232659;--show:0"><span id="works" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> New: RAMen Hub <i>✦</i></span>
-      <h2 class="rise">Your team and every AI, <span class="shine">in one room.</span></h2>
-      <p class="lede rise">Live chats for your team and several AIs. Type @claude, @gpt or @gemini to bring one in.</p>
+      <span class="kick rise"><i>✦</i> Three features, one plan <i>✦</i></span>
+      <h2 class="rise">Everything your AI <span class="shine">should remember.</span></h2>
+      <p class="lede rise">RAMen works inside the AI apps you already use. Your AI does the work on your own plan, and RAMen keeps the memory.</p>
     </div>
-    <figure class="media hub-shot rise">
-      <picture><source media="(max-width: 700px)" srcset="assets/v3/hub-room-phone.jpg" width="700" height="1515">
-        <img src="assets/v3/hub-room.jpg" width="1600" height="1111" loading="lazy" alt="A RAMen Hub room: Olga asks Claude for an outline of the announcement, Sam asks GPT what is missing, and both answers appear in the room next to its pinned notes"></picture>
-    </figure>
-    <p class="notes center rise">A real room: Claude and GPT answering one team. <a href="how-it-works.html#hub">How it works</a></p>
-    <div class="feats">
-      <div class="feat rise"><h3>Several AIs, one chat</h3><p>Each builds on what the others said.</p></div>
-      <div class="feat rise"><h3>Join by link</h3><p>No email. Seats cover teammates without RAMen.</p></div>
-      <div class="feat rise"><h3>Inside every app</h3><p>Read and post from Claude or ChatGPT.</p></div>
-      <div class="feat rise"><h3>Your keys, your data</h3><p>Models run on your team's own keys.</p></div>
+    <div class="feats feat-cards">
+      <a class="feat rise" href="#memory"><img class="float" src="assets/v4/icons/receipt.webp" width="104" height="104" alt=""><h3>RAMen Memory</h3><p>One memory for all your AIs, with receipts. See or forget anything.</p><span class="go">How it remembers</span></a>
+      <a class="feat rise" href="#endless"><img class="float b" src="assets/v4/icons/endless.webp" width="104" height="104" alt=""><h3>RAMen Endless</h3><p>Long chats that keep the thread. Detail Lock keeps the details you set.</p><span class="go">How chats keep going</span></a>
+      <a class="feat rise" href="#desktop"><img class="float c" src="assets/v4/icons/desktop.webp" width="104" height="104" alt=""><h3>RAMen Desktop</h3><p>RAMen on your own computer, for AI that runs there.</p><span class="go">Get the app</span></a>
     </div>
-    <div class="center rise" style="margin-top:34px"><a class="btn primary" href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen Hub</a> <a class="btn line" href="#plans">Team plans</a></div>
-    <p class="fine center rise">Included in Pro and Team</p>
+    <p class="no-list center rise">No new app <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No API keys <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No extra AI bill</p>
+  </div>
+  <img class="band" src="assets/v2/band.webp" width="2400" height="848" alt="" aria-hidden="true">
+</section>
+
+<section class="scene" id="memory" style="--sky:#246068;--show:.62" data-art="/assets/v4/receipts.jpg" data-art-m="/assets/v4/receipts-m.jpg">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> RAMen Memory <i>✦</i></span>
+      <h2 class="rise">One memory, <span class="shine">with receipts.</span></h2>
+      <p class="lede rise">Tell Claude something on Monday, and ChatGPT knows it on Tuesday. Each note keeps the date and the app, and your own words when your AI saves them. When the AI only guesses, it waits for your OK.</p>
+    </div>
+    <div class="split">
+      <figure class="media shot rise">
+        <img src="assets/v4/shots/panel.webp" width="1280" height="1374" loading="lazy" decoding="async" alt="The RAMen memory panel: five notes, each with the person's own words, who said it, the date and the app. An AI guess, Prefers metric units, waits with Approve and Reject buttons.">
+      </figure>
+      <div class="feats rise">
+        <div class="feat"><img class="float" src="assets/v4/icons/receipt.webp" width="112" height="112" loading="lazy" alt=""><h3>Receipts on every note</h3><p>The date, the app and who said it, with your own words when your AI saves them. Guesses wait for your OK.</p></div>
+        <div class="feat"><img class="float b" src="assets/v4/icons/search.webp" width="112" height="112" loading="lazy" alt=""><h3>Search everything</h3><p>One question searches every note and saved chat.</p></div>
+        <div class="feat"><img class="float c" src="assets/v4/icons/passport.webp" width="112" height="112" loading="lazy" alt=""><h3>Your profile card</h3><p>How you like answers, in every app you use.</p></div>
+        <div class="feat"><img class="float" src="assets/v2/icons/private.webp" width="112" height="112" loading="lazy" alt=""><h3>See and forget</h3><p>Look through it all, even right in the chat. Delete anything.</p></div>
+        <div class="feat"><img class="float b" src="assets/v2/icons/saved.webp" width="112" height="112" loading="lazy" alt=""><h3>Bring your history</h3><p>Your ChatGPT and Claude history, brought in with RAMen Desktop.</p></div>
+        <div class="feat"><img class="float c" src="assets/v2/icons/connect.webp" width="112" height="112" loading="lazy" alt=""><h3>Must-know facts</h3><p>Mark what every AI must keep in mind, like an allergy. RAMen hands it over first.</p></div>
+      </div>
+    </div>
+    <p class="notes center rise">The memory panel, shown with sample notes. <a href="how-it-works.html#memory">How it works</a> <i>✦</i> <a href="privacy.html#ramen-online">Privacy</a></p>
+    <p class="notes center rise">Tested: must-know facts cut wrong answers 7 times, from 21 in 60 to 3 (Claude Haiku 5.5, requests where a saved fact changes the answer). <a href="how-it-works.html#results">How we measured</a></p>
   </div>
 </section>
 
-<section class="scene s-layer" id="layer" style="--sky:#232659;--show:0">
+<section class="scene" id="endless" style="--sky:#101336;--show:.7" data-art="/assets/v4/relay.jpg" data-art-m="/assets/v4/relay-m.jpg">
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> Every app, every model <i>✦</i></span>
-      <h2 class="rise">Keep your apps and models. <span class="shine">RAMen adds the memory.</span></h2>
-      <p class="lede rise">Your apps and models work as they are. Every conversation keeps its memory.</p>
-    </div>
-    <div class="flow rise">
-      <div class="fside fapps">
-        <p class="flabel">Your apps</p>
-        <ul class="tiles">
-          <li><span class="tile full"><img src="assets/logos/openwebui.svg" alt=""></span>Open WebUI</li>
-          <li><span class="tile" style="--t:#ffffff"><img src="assets/logos/continue.png" alt=""></span>Continue</li>
-          <li><span class="tile" style="--t:#ffffff"><img src="assets/logos/cline.svg" alt=""></span>Cline</li>
-          <li><span class="tile wide" style="--t:#0c0f0c"><img src="assets/logos/aider.svg" alt=""></span>Aider</li>
-          <li><span class="tile full"><img src="assets/logos/opencode.svg" alt=""></span>OpenCode</li>
-          <li><span class="tile" style="--t:#f5efe6"><img src="assets/logos/claude-color.svg" alt=""></span>Claude Code</li>
-          <li><span class="tile" style="--t:#000000"><img src="assets/logos/openai-white.svg" alt=""></span>Codex</li>
-        </ul>
-        <p class="fnote">and any app made for Ollama or OpenAI</p>
-      </div>
-      <div class="fwire" aria-hidden="true"></div>
-      <div class="fhub">
-        <img class="float" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()">
-        <b>RAMen</b>
-        <span>memory for every chat, agent and model</span>
-      </div>
-      <div class="fwire" aria-hidden="true"></div>
-      <div class="fside">
-        <p class="flabel">Your models</p>
-        <ul class="tiles">
-          <li><span class="tile" style="--t:#ffffff"><img src="assets/logos/ollama-black.svg" alt=""></span>Ollama</li>
-          <li><span class="tile full"><img src="assets/logos/lmstudio.png" alt=""></span>LM Studio</li>
-          <li><span class="tile" style="--t:#ffd21e"><img src="assets/logos/huggingface-black.svg" alt=""></span>Hugging Face</li>
-        </ul>
-      </div>
-    </div>
-    <div class="howto rise">
-      <p><b>Already use Ollama?</b><code class="cmd">ramen start --ollama replace</code></p>
-      <p><b>Claude Code</b><code class="cmd">ramen claude</code></p>
-      <p><b>Codex</b><code class="cmd">ramen connect codex</code></p>
-    </div>
-  </div>
-  <img class="band" src="assets/v2/band.webp" alt="" aria-hidden="true">
-</section>
-
-<section class="scene s-sleep" id="sleep" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Sleep <i>✦</i></span>
-      <h2 class="rise">It learns <span class="shine">while you sleep.</span></h2>
-      <p class="lede rise">Each night, your own model studies the day's chats and keeps what you told it.</p>
-    </div>
-    <ol class="story rise" aria-label="An example: a day, a night, the next day">
-      <li><span class="when">Monday, in one app</span>
-        <p class="you"><span class="who">You</span>When I say "the usual", I mean 12 rye boules for the Thursday farmers market.</p></li>
-      <li class="night"><img class="moon float" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><span class="when">Monday night</span>
-        <code class="cmd">ramen sleep</code>
-        <p class="note">Your model studies the day's chats and keeps your words.</p></li>
-      <li><span class="when">Tuesday, in another app</span>
-        <p class="you"><span class="who">You</span>What do I mean when I say "the usual"?</p>
-        <p class="ai"><span class="who">Your model</span>When you say "the usual," you mean 12 rye boules for the Thursday farmers market.</p></li>
-    </ol>
-    <p class="notes center rise">A real answer from our tests. <a href="how-it-works.html#sleep">How it works</a></p>
-    <div class="feats">
-      <div class="feat rise"><h3>Every app, every model</h3><p>Switch models. What it learned stays.</p></div>
-      <div class="feat rise"><h3>Your words</h3><p>Only what you said, never its own guesses.</p></div>
-      <div class="feat rise"><h3>On your computer</h3><p><code>ramen sleep --forget</code> deletes it all.</p></div>
-      <div class="feat rise"><h3>Bring your history</h3><p><code>ramen import</code> reads ChatGPT and Claude exports.</p></div>
-    </div>
-    <p class="fine center rise">Pro and the 14-day trial <i>✦</i> A preview</p>
-  </div>
-</section>
-
-<section class="scene s-sleep s-cloud" id="cloud" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Cloud <i>✦</i></span>
-      <h2 class="rise">Claude and GPT, <span class="shine">never cut off.</span></h2>
-      <p class="lede rise">Use Claude and GPT with your own key. If the cloud stops, your own model carries on at once.</p>
-    </div>
-    <ol class="story rise" aria-label="An example: a chat with Claude, the cloud stops, your model carries on">
-      <li><span class="when">In your app, with Claude</span>
-        <p class="you"><span class="who">You</span>My sourdough starter is called Gus. I feed him at 1:5:5, starter to flour to water.</p></li>
-      <li class="night"><span class="when">Then Claude stops answering</span>
-        <p class="note">A limit, an outage or no internet. Your model was reading along.</p></li>
-      <li><span class="when">A moment later, the same chat</span>
-        <p class="you"><span class="who">You</span>What feeding ratio do I use for Gus, and how much flour for 30 g of him?</p>
-        <p class="ai"><span class="who">Your model</span>Gus's feeding ratio is 1:5:5 (starter : flour : water).</p></li>
-    </ol>
-    <p class="notes center rise">A real answer from our tests. <a href="how-it-works.html#cloud">How it works</a></p>
-    <div class="feats">
-      <div class="feat rise"><h3>Your key, your choice</h3><p>Nothing goes to a cloud without your key.</p></div>
-      <div class="feat rise"><h3>Your memory goes along</h3><p>Turn it on with <code>ramen cloud memory on</code>.</p></div>
-      <div class="feat rise"><h3>Sleep learns from it</h3><p>Cloud chats are kept like any other.</p></div>
-      <div class="feat rise"><h3>Any app, by name</h3><p>Ask for <code>claude-sonnet-5-5</code>. RAMen does the rest.</p></div>
-    </div>
-    <p class="fine center rise">Pro and the 14-day trial <i>✦</i> A preview</p>
-  </div>
-</section>
-
-<section class="scene s-sleep s-online" id="online" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> New in 1.4: RAMen Online <i>✦</i></span>
-      <h2 class="rise">One memory for <span class="shine">Claude and ChatGPT.</span></h2>
-      <p class="lede rise">Your memory in Claude and ChatGPT, on web, desktop and phone. Nothing to install.</p>
-    </div>
-    <ol class="story rise" aria-label="An example: Claude saves a fact, and a new chat days later uses it">
-      <li><span class="when">One chat in Claude</span>
-        <p class="you"><span class="who">You</span>My daughter Tova turns 7 next week and I'm baking for her class. She's allergic to sesame, so give me three nut-free, sesame-free snack ideas kids like.</p></li>
-      <li class="night"><span class="when">Claude saves it to RAMen Memory</span>
-        <p class="note">"My daughter Tova is allergic to sesame; she turns 7 next week and I'm baking nut-free, sesame-free snacks for her class."</p></li>
-      <li><span class="when">A new chat, days later</span>
-        <p class="you"><span class="who">You</span>I'm packing a snack for my kid's lunch. Which ingredient do I have to avoid?</p>
-        <p class="ai"><span class="who">Claude</span>Avoid sesame. Tova is allergic to it.</p></li>
-    </ol>
-    <p class="notes center rise">A real exchange from our tests. <a href="how-it-works.html#online">How it works</a></p>
-    <div class="feats">
-      <div class="feat rise"><h3>Claude and ChatGPT</h3><p>Add it once. Sign in with your key.</p></div>
-      <div class="feat rise"><h3>One memory, every AI</h3><p>Tell ChatGPT Monday. Claude knows Tuesday.</p></div>
-      <div class="feat rise"><h3>The newest holds</h3><p>Changes win. No guessing.</p></div>
-      <div class="feat rise"><h3>Yours to delete</h3><p>Never sold, never used for training.</p></div>
-    </div>
-    <div class="callouts setup" id="online-setup">
-      <div class="callout rise">
-        <span class="kick"><i>✦</i> In Claude <i>✦</i></span>
-        <h3>Set it up in a minute</h3>
-        <ol class="steps">
-          <li>In Claude: <b>Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector</b>. Paste:
-            <div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div></li>
-          <li>Click <b>Connect</b> and sign in with your RAMen key.</li>
-          <li>Add this line in <b>Settings &rsaquo; Your Claude &rsaquo; Instructions</b>:
-            <div class="copyline"><code class="cmd lines" id="ramen-line">I use the RAMen Memory connector as my memory across my AI apps. Before answering anything about me (my people, work, plans, preferences or earlier chats), check RAMen Memory. When I tell you a lasting fact about myself, save it to RAMen Memory as well.</code><button class="copy" type="button" data-copy="ramen-line" aria-label="Copy the line">Copy</button></div></li>
-        </ol>
-        <p class="after">Then it works in Claude's desktop and phone apps too.</p>
-      </div>
-      <div class="callout rise">
-        <span class="kick"><i>✦</i> In ChatGPT <i>✦</i></span>
-        <h3>Coming soon</h3>
-        <p>RAMen is on its way to ChatGPT's plugin directory. Then add the same line in <b>Custom instructions</b>.</p>
-      </div>
-    </div>
-    <p class="fine center rise">Part of Pro <i>✦</i> <a href="privacy.html#ramen-online">Privacy</a></p>
-  </div>
-</section>
-
-<section class="scene s-sleep s-endless" id="endless" style="--sky:#2f305d;--show:0">
-  <div class="wrap">
-    <div class="center">
-      <span class="kick rise"><i>✦</i> New: RAMen Endless <i>✦</i></span>
-      <h2 class="rise">Long chats, <span class="shine">at the cost of a fresh one.</span></h2>
-      <p class="lede rise">Long chats burn through your limits. Save one to RAMen, and any fresh chat picks up where you left off.</p>
+      <span class="kick rise"><i>✦</i> RAMen Endless <i>✦</i></span>
+      <h2 class="rise">Long chats that <span class="shine">keep the thread.</span></h2>
+      <p class="lede rise">Long chats eat your limits and start to forget. RAMen saves the chat, and a fresh chat, or another AI, picks up right where you left off.</p>
     </div>
     <ol class="story rise" aria-label="An example: a long chat saved to RAMen, then continued in a fresh chat">
       <li><span class="when">A long planning chat in Claude</span>
         <p class="you"><span class="who">You</span>Please save this whole chat to RAMen as a thread, with the email draft, so I can continue it in a fresh chat.</p></li>
-      <li class="night"><span class="when">RAMen keeps where it stands</span>
-        <p class="note">Every value, decision and draft, word for word.</p></li>
+      <li class="night"><img class="badge-icon float" src="assets/v4/icons/endless.webp" width="70" height="70" loading="lazy" alt=""><span class="when">RAMen keeps where it stands</span>
+        <p class="note">Every number, decision and draft, word for word.</p></li>
       <li><span class="when">A fresh chat</span>
         <p class="you"><span class="who">You</span>Continue my RAMen thread team offsite. How many people are coming now, and what was it before?</p>
         <p class="ai"><span class="who">Claude</span>14 people now. It was 12 before.</p></li>
     </ol>
-    <p class="notes center rise">A real exchange on claude.ai. <a href="how-it-works.html#endless">How it works</a></p>
-    <div class="feats">
-      <div class="feat rise"><h3>A fraction of the tokens</h3><p>A short page, not the whole history.</p></div>
-      <div class="feat rise"><h3>Nothing lost</h3><p>Values, decisions and drafts kept.</p></div>
-      <div class="feat rise"><h3>Any AI picks it up</h3><p>Hit a limit? Go on in another app.</p></div>
-      <div class="feat rise"><h3>Details on request</h3><p>Any draft, one question away.</p></div>
+    <p class="notes center rise">Tested: the next day, in another AI, 18 of 22 details of a 150-message plan came back with RAMen, and none without. <a href="how-it-works.html#results">How we measured</a> <i>✦</i> <a href="how-it-works.html#endless">How it works</a></p>
+    <div class="feats four">
+      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" width="112" height="112" loading="lazy" alt=""><h3>Saved as you go</h3><p>The RAMen add-on saves long chats every 15 messages. Elsewhere, ask your AI to save.</p></div>
+      <div class="feat rise"><img class="float b" src="assets/v4/icons/endless.webp" width="112" height="112" loading="lazy" alt=""><h3>Pick up anywhere</h3><p>Go on in a fresh chat, or in another AI.</p></div>
+      <div class="feat rise"><img class="float c" src="assets/v4/icons/open.webp" width="112" height="112" loading="lazy" alt=""><h3>One list of open items</h3><p>Every to-do from every saved chat, in one place.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v4/icons/projects.webp" width="112" height="112" loading="lazy" alt=""><h3>Projects</h3><p>Say "Load my wedding project" and a new chat knows it all.</p></div>
     </div>
-    <p class="fine center rise">Part of Pro</p>
   </div>
 </section>
 
-<section class="scene s-speed" id="speed" style="--sky:#2f305d;--art:url(/assets/v2/speed.jpg);--show:.8">
-  <div class="wrap center">
-    <span class="kick rise"><i>✦</i> Speed <i>✦</i></span>
-    <h2 class="rise">Long chats <span class="shine">stop slowing down.</span></h2>
-    <p class="lede rise">RAMen reads only what matters at each step, so long chats stay fast.</p>
-    <div class="race rise">
-      <video src="assets/v2/race.mp4" poster="assets/v2/race.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Normal llama.cpp and RAMen answering the same 87,000-token conversation, side by side, in real time"></video>
-      <span class="tag">Real recording</span>
+<section class="scene s-lock" id="detail-lock" style="--sky:#49133b;--show:.62" data-art="/assets/v4/mise.jpg" data-art-m="/assets/v4/mise-m.jpg">
+  <div class="wrap">
+    <div class="split flip">
+      <div class="words">
+        <img class="float rise" src="assets/v4/icons/lock.webp" width="104" height="104" loading="lazy" alt="">
+        <span class="kick rise"><i>✦</i> RAMen Endless: Detail Lock <i>✦</i></span>
+        <h2 class="rise">Hold on to <span class="shine">the details you set.</span></h2>
+        <p class="lede rise" style="margin-left:0">In a long chat, the AI starts to drop what you told it. Detail Lock keeps a list of the details you set, adds it to your messages and flags an answer that drops one it can check.</p>
+        <ol class="numbered rise" style="margin-top:30px">
+          <li><h3>It keeps a list</h3><p>The limits, names, dates and rules it finds in your messages, and things to leave out. Add any it missed.</p></li>
+          <li><h3>Your messages carry it</h3><p>Once the chat gets long, the list goes along with every message you send.</p></li>
+          <li><h3>It checks each answer</h3><p>It checks the details it can, like limits and things to leave out, and flags any the answer dropped. Remind it in one click, or start fresh with everything.</p></li>
+        </ol>
+        <p class="flabel rise">With the RAMen add-on for Chrome, on</p>
+        <ul class="chips rise" aria-label="AI websites the RAMen add-on works on">
+          <li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-chatgpt"/></svg>ChatGPT</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-claude"/></svg>Claude</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-gemini"/></svg>Gemini</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-grok"/></svg>Grok</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-perplexity"/></svg>Perplexity</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-copilot"/></svg>Copilot</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-deepseek"/></svg>DeepSeek</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-mistral"/></svg>Mistral</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-metaai"/></svg>Meta AI</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-poe"/></svg>Poe</li><li><svg class="lg" aria-hidden="true"><use href="assets/logos/works.svg#lg-qwen"/></svg>Qwen</li>
+        </ul>
+        <div class="btns rise">
+          <a class="btn primary" href="chrome.html#get" data-add-to-chrome data-live-text="Add to Chrome">Coming to Chrome</a>
+          <a class="btn line" href="chrome.html">RAMen for Chrome</a>
+        </div>
+        <p class="fine rise">Tested: once a chat was too long for the AI to see it all, Detail Lock cut the details it dropped 4.7 times (ChatGPT's model, about 7,000 tokens in view). <a href="how-it-works.html#results">How we measured</a></p>
+        <p class="fine rise">Detail Lock's lists stay in your browser, except in your own messages and when it saves a long chat to your own RAMen (you can turn that off).</p>
+      </div>
+      <figure class="media shot tall rise">
+        <img src="assets/v4/shots/detail-lock.webp" width="760" height="2128" loading="lazy" decoding="async" alt="The RAMen side panel in Chrome, on its Endless tab: after a dinner-party chat, Detail Lock says it will add its 5 details to each message once the chat is too long for Claude to see it all, and warns that the last answer missed 2, the vegetarian rule and the nut allergy (grilled chicken, toasted pine nuts), with Remind it and Fresh start with everything buttons, then lists the 5 details with Pin, Edit and Remove">
+      </figure>
     </div>
-    <div class="strip rise">
-      <div><b>1.8<small>s</small></b><span>to reopen a 105K-token chat, not 3.7 minutes</span></div>
-      <div><b>99.7<small>%</small></b><span>of history reused across agents</span></div>
-      <div><b>54<small>/54</small></b><span>long-document answers unchanged</span></div>
-      <div><b>5.5<small>x</small></b><span>faster at 128K tokens</span></div>
-    </div>
-    <p class="notes rise">Measured on NVIDIA L4 and RTX A6000, November 2026. <a href="how-it-works.html#results">All results</a></p>
+    <p class="notes center rise">The add-on after a sample chat.</p>
   </div>
 </section>
 
-<section class="scene s-how light" id="how" style="--sky:#f7c583;--art:url(/assets/v2/counter.jpg);--show:.82">
+<section class="scene light" id="desktop" style="--sky:#fbc886;--show:.82" data-art="/assets/v2/counter.jpg" data-art-m="/assets/v2/counter-m.jpg"><span id="how" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> Set up in a minute <i>✦</i></span>
-      <h2 class="rise">Four commands. <span class="shine">No new tools.</span></h2>
-      <p class="lede rise">It picks a model that fits and speaks the APIs your apps already use.</p>
+      <span class="kick rise"><i>✦</i> RAMen Desktop <i>✦</i></span>
+      <h2 class="rise">Your own AI <span class="shine">remembers too.</span></h2>
+      <p class="lede rise">RAMen on your own computer, for AI that runs there. Your chats come back in seconds, your local models get your memory and Sleep notes, and Claude Code and Codex can run on them.</p>
     </div>
     <ol class="rows">
-      <li class="rise"><img class="float" src="assets/v2/icons/install.webp" alt="" onerror="this.onerror=null;this.src='assets/v2/icons/pro.webp'"><div><span class="n">STEP 01</span><h3>Install</h3><p>Mac and Linux:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
-      <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 02</span><h3>Start</h3><p>It finds a model that fits and starts it.</p><code class="cmd">ramen start</code></div></li>
-      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 03</span><h3>Connect your apps</h3><p>One command per app. Ollama apps just work.</p><code class="cmd">ramen connect cline</code></div></li>
-      <li class="rise"><img class="float b" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><div><span class="n">STEP 04</span><h3>Let it learn</h3><p>Run Sleep at the end of the day.</p><code class="cmd">ramen sleep</code></div></li>
+      <li class="rise"><img class="float" src="assets/v4/icons/desktop.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 01</span><h3>Install</h3><p>Mac and Linux:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 02</span><h3>Start</h3><p>It picks a model that fits your computer, and your chats come back in seconds.</p><code class="cmd">ramen start</code></div></li>
+      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 03</span><h3>Your memory here too</h3><p>Your local models know what you told Claude and ChatGPT. Bring in your old chats too.</p><code class="cmd">ramen online</code> <code class="cmd">ramen import</code></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/reopen.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 04</span><h3>Let it learn</h3><p>At the end of the day, your own model keeps notes of what you told it.</p><code class="cmd">ramen sleep</code></div></li>
+      <li class="rise"><img class="float" src="assets/v2/icons/agents.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 05</span><h3>Claude Code and Codex</h3><p>Run them on a model on your own computer, with its memory.</p><code class="cmd">ramen claude</code> <code class="cmd">ramen connect codex</code></div></li>
     </ol>
   </div>
 </section>
 
-<section class="scene s-features" id="features" style="--sky:#46367d;--art:url(/assets/v2/market.jpg);--show:.96">
+<section class="scene" id="get" style="--sky:#392572;--show:.74" data-art="/assets/v4/street.jpg" data-art-m="/assets/v4/street-m.jpg"><span id="setup" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> What you get <i>✦</i></span>
-      <h2 class="rise">Memory that <span class="shine">keeps up with your agents.</span></h2>
+      <span class="kick rise"><i>✦</i> Ways to get it <i>✦</i></span>
+      <h2 class="rise">One account. <span class="shine">Every place you use AI.</span></h2>
+      <p class="lede rise">One $1.99 plan covers all of them. Start your trial, then sign in with the key from your email.</p>
     </div>
-    <div class="feats">
-      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" alt="" onerror="this.remove()"><h3>Sessions that survive restarts</h3><p>Back in seconds, even after a reboot.</p></div>
-      <div class="feat rise"><img class="float b" src="assets/v2/icons/agents.webp" alt="" onerror="this.remove()"><h3>Many agents, one GPU</h3><p>Each resumes where it stopped.</p></div>
-      <div class="feat rise"><img class="float c" src="assets/v2/icons/speed.webp" alt="" onerror="this.remove()"><h3>Fast on long chats</h3><p>On by itself where it's faster.</p></div>
-      <div class="feat rise"><img class="float b" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Models bigger than your memory</h3><p>gpt-oss 120B on a 16 GB Mac.</p></div>
-      <div class="feat rise"><img class="float" src="assets/v2/icons/apps.webp" alt="" onerror="this.remove()"><h3>Works with your apps</h3><p>Claude Code, Codex, Cline, Open WebUI and more.</p></div>
-      <div class="feat rise"><img class="float c" src="assets/v2/icons/private.webp" alt="" onerror="this.remove()"><h3>Stays on your computer</h3><p>Works offline. Built on llama.cpp.</p></div>
-      <div class="feat rise"><img class="float" src="assets/v2/icons/reopen.webp" alt="" onerror="this.remove()"><h3>Learns while you sleep</h3><p>Your model keeps what you told it.</p></div>
-      <div class="feat rise"><img class="float b" src="assets/v2/icons/connect.webp" alt="" onerror="this.remove()"><h3>Your local memory in Claude</h3><p>Only the short answer leaves your computer.</p></div>
-      <div class="feat rise"><img class="float c" src="assets/v2/icons/engine.webp" alt="" onerror="this.remove()"><h3>Thinking models finish</h3><p>Room is always kept for the answer.</p></div>
+    <div class="callouts setup ways">
+      <div class="callout rise" id="online-setup">
+        <span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-claude"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-chatgpt"/></svg></span></span>
+        <span class="kick"><i>✦</i> The RAMen connector <i>✦</i></span>
+        <h3>Inside Claude and ChatGPT</h3>
+        <p>On the web, desktop and phone, and in other AI apps that take connectors.</p>
+        <p class="sub-h">In Claude</p>
+        <ol class="steps">
+          <li><b>Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector</b>. Name it RAMen and paste:
+            <div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div></li>
+          <li>Click <b>Connect</b> and sign in with your RAMen key.</li>
+          <li>Add this line in <b>Settings &rsaquo; Your Claude &rsaquo; Instructions</b>:
+            <div class="copyline"><code class="cmd lines" id="ramen-line">I use the RAMen connector as my memory across my AI apps. Before answering anything about me (my people, work, plans, preferences or earlier chats), check RAMen Memory. When I tell you a lasting fact about myself, save it to RAMen Memory as well. In a long chat, save it to RAMen as a checkpoint about every 15 messages, without asking me.</code><button class="copy" type="button" data-copy="ramen-line" aria-label="Copy the line">Copy</button></div></li>
+        </ol>
+        <p class="sub-h">In ChatGPT, on a paid plan</p>
+        <p>Open <b>Plugins</b>, choose <b>Add custom MCP server</b> and paste the same address. Sign in with your RAMen key, then add the same line to <b>Custom instructions</b>.</p>
+      </div>
+      <div class="ways-side">
+        <div class="callout row rise"><img class="float" src="assets/v4/icons/addon.webp" width="76" height="76" loading="lazy" alt="">
+          <div><span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-chrome"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-gemini"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-perplexity"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-deepseek"/></svg></span></span><span class="kick"><i>✦</i> The RAMen add-on <i>✦</i></span><h3>On AI websites in Chrome</h3><p>Detail Lock, your memory and Endless on ChatGPT, Claude, Gemini, Grok, Perplexity, Copilot, DeepSeek, Mistral, Meta AI, Poe and Qwen, even the sites that cannot take a connector.</p>
+            <a class="btn primary sm" href="chrome.html#get" data-add-to-chrome data-live-text="Add to Chrome">Coming to Chrome</a></div></div>
+        <div class="callout row rise"><img class="float b" src="assets/v4/icons/desktop.webp" width="76" height="76" loading="lazy" alt="">
+          <div><span class="kick"><i>✦</i> RAMen Desktop <i>✦</i></span><h3>On your own computer</h3><p>The app for Mac, Windows and Linux.</p><a class="btn line sm" href="#desktop">Install it</a></div></div>
+        <div class="callout row rise"><img class="float c" src="assets/v2/icons/apps.webp" width="76" height="76" loading="lazy" alt="">
+          <div><span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-claudecode"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-cursor"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-ghcopilot"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-codex"/></svg></span></span><span class="kick"><i>✦</i> The Claude Code plugin <i>✦</i></span><h3>In Claude Code</h3><p>The same memory in your coding sessions:</p><code class="cmd">/plugin install ramen-memory --marketplace MatthewLeibel/ramen-plugins</code><p>Cursor, VS Code, Codex, Windsurf or Zed? Add RAMen as an MCP server: <a href="developers.html#editors">the steps</a>.</p></div></div>
+      </div>
     </div>
-    <div class="strip rise">
-      <div><b>117<small>B</small></b><span>parameters on a 16 GB Mac mini</span></div>
-      <div><b>4.4<small>x</small></b><span>faster prompt reading</span></div>
-      <div><b>2.8<small>tok/s</small></b><span>writing, up from 1.9</span></div>
-      <div><b>5<small>s</small></b><span>to start, not 41</span></div>
-    </div>
-    <p class="notes rise">gpt-oss 120B on a Mac mini M2 Pro, 16 GB, November 2026. <a href="how-it-works.html#big">How it works</a></p>
+    <p class="ramen-page rise">See and search what RAMen keeps, edit or delete notes, approve guesses and tick off open items on <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a>.</p>
   </div>
 </section>
-<section class="scene s-plans" id="plans" style="--sky:#4e327f;--art:url(/assets/v2/rooftops.jpg);--show:.68"><span id="pricing" aria-hidden="true"></span>
+
+<section class="scene s-plans" id="plans" style="--sky:#4e327f;--show:.68" data-art="/assets/v2/rooftops.jpg" data-art-m="/assets/v2/rooftops-m.jpg"><span id="pricing" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
-      <h2 class="rise">Free forever. <span class="shine">Everything for $3.99.</span></h2>
-      <p class="lede rise">Every plan starts with 14 days of everything. No card.</p>
-      <div class="ticket rise">✦ Launch offer: <span><b>Pro for life, $19.99 once</b>, for the first 1,000 buyers ✦</span> <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG">Claim it</a></div>
+      <h2 class="rise">Everything for <span class="shine">$1.99 a month.</span></h2>
+      <p class="lede rise" data-free-live hidden>Start with 14 days of everything. Then keep going on Pro, or stay on RAMen Free.</p>
+      <p class="lede rise" data-free-soon>One account, one plan with everything in it. Try it free for 14 days.</p>
     </div>
-    <div class="plans">
-      <div class="plan rise"><img class="float" src="assets/v2/icons/free.webp" alt="" onerror="this.remove()"><h3>Free</h3><div class="price">$0<small>forever</small></div>
-        <ul><li>Your last 3 chats, back in seconds</li><li>Apps that use the OpenAI API</li></ul><a class="btn line sm" href="#how">Download free</a></div>
-      <div class="plan pro rise"><img class="float b" src="assets/v2/icons/pro.webp" alt="" onerror="this.remove()"><h3>Pro <span class="badge">Popular</span></h3><div class="price">$3.99<small>a month, or $29 a year</small></div>
-        <ul><li>RAMen Hub: rooms, teams, shared memory</li><li>Your memory in Claude, ChatGPT and every app</li><li>Every chat and agent, remembered</li><li>Sleep, Cloud and Endless</li><li>Big models, Claude Code, Codex, Ollama apps</li><li>Up to 3 computers</li></ul><a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Get Pro</a></div>
-      <div class="plan team-plan rise"><img class="float c" src="assets/v2/icons/team.webp" alt="" onerror="this.remove()"><h3>Team</h3><div class="price"><span id="seat-price">$5.99</span><small>per seat a month<br><span id="seat-total">1 seat: $5.99 a month</span></small></div>
-        <label class="seat-slider"><span>Seats: <b id="seat-count">1</b><em id="seat-save"></em></span>
-          <input id="seats" type="range" min="1" max="100" value="5" aria-label="How many seats"></label>
-        <ul><li>Pro for every seat, plus team rooms</li><li>Join by link, no email</li><li>Half off per seat at 50+</li></ul><a class="btn line sm" id="team-buy" href="mailto:support@getramenai.com?subject=RAMen%20Team">Get Team</a>
-        <p class="team-more">More than 100 people? <a href="mailto:support@getramenai.com?subject=RAMen%20Team%20for%20more%20than%20100">Talk to us</a></p></div>
-      <div class="plan rise"><img class="float" src="assets/v2/icons/server.webp" alt="" onerror="this.remove()"><h3>Server</h3><div class="price">$149<small>per server a month</small></div>
-        <ul><li>One GPU machine for your team</li><li>A key per person</li><li>Usage per person</li></ul><a class="btn line sm" href="https://buy.polar.sh/polar_cl_Ux819FD0OLMWUBjs49I2gixXzGgUa2dYgqE432JNc0T">Get Server</a></div>
+    <div class="tiers">
+      <article class="tier free rise" data-free-live hidden>
+        <h3>Free</h3>
+        <div class="price">$0<small>for good</small></div>
+        <ul>
+          <li><b>RAMen Memory</b>: 50 notes and 3 must-know facts, with receipts</li>
+          <li>In <b>2 apps</b> at a time</li>
+          <li><b>RAMen Endless</b>: 3 chat saves a month</li>
+          <li>Nothing you save is ever locked away</li>
+        </ul>
+        <a class="btn line sm" href="#plans" data-free-checkout>Get RAMen Free</a>
+      </article>
+      <article class="tier pro rise">
+        <span class="badge">Everything</span>
+        <h3>Pro</h3>
+        <div class="price">$1.99<small>a month, or $19 a year</small></div>
+        <ul>
+          <li><b>RAMen Memory</b>, with receipts and no caps</li>
+          <li><b>RAMen Endless</b>, with Detail Lock and automatic saves</li>
+          <li><b>RAMen Desktop</b> with your memory, Sleep notes, Claude Code and Codex, on up to 3 computers</li>
+          <li><b>Every app</b>: Claude, ChatGPT, Chrome, Claude Code and your code editor</li>
+        </ul>
+        <a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
+        <p class="tier-fine">14 days of everything, then $1.99 a month</p>
+      </article>
+      <article class="tier tier-life rise" data-lifetime-live hidden>
+        <h3>Lifetime</h3>
+        <div class="price"><s>$79</s> $49<small>once, for the first 500 buyers</small></div>
+        <ul>
+          <li><b>Everything in Pro</b>, for good</li>
+          <li>One payment, no renewals</li>
+          <li>For one person, for as long as RAMen runs</li>
+        </ul>
+        <a class="btn line sm" href="#plans" data-lifetime-checkout>Get Lifetime</a>
+      </article>
     </div>
-    <div class="ent rise"><img class="float b" src="assets/v2/icons/enterprise.webp" alt="" onerror="this.remove()"><div><h3>Enterprise</h3><p>Offline licenses, invoices and support.</p></div>
-      <a class="btn line" href="mailto:support@getramenai.com?subject=RAMen%20Enterprise">Talk to us</a></div>
+    <p class="life rise">Bought <b>Pro for life</b>? Nothing changes. You keep it.</p>
     <p class="fine center">Secure checkout by Polar <i>✦</i> Sales tax handled at checkout <i>✦</i> Cancel any time in your <a href="https://polar.sh/ramen/portal">customer portal</a></p>
   </div>
 </section>
 
-<section class="scene s-faq" id="faq" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--show:.62">
+<section class="scene s-faq" id="faq" style="--sky:#0f1430;--show:.62" data-art="/assets/v2/lake.jpg" data-art-m="/assets/v2/lake-m.jpg">
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> Questions <i>✦</i></span>
       <h2 class="rise">Good to know.</h2>
     </div>
     <div class="faq">
-      <details><summary>What is RAMen Hub?</summary><p>Rooms where your team and several AIs work together, with shared memory. In the browser and inside your AI apps.</p></details>
-      <details><summary>Do my teammates need RAMen?</summary><p>No. Send a link. People with RAMen join free; everyone else takes a team seat.</p></details>
-      <details><summary>Who pays for the AI models?</summary><p>Your team, on its own API keys. RAMen never pays for, marks up or sees model use.</p></details>
-      <details><summary>Can I use RAMen in Claude or ChatGPT?</summary><p>Yes, on Pro. Add the connector and sign in. <a href="#online-setup">The steps</a></p></details>
-      <details><summary>Is my data private?</summary><p>Local chats stay on your computer. Online memory is never sold or used for training, and you can delete it. <a href="privacy.html">Privacy</a></p></details>
-      <details><summary>What do I need to run it?</summary><p>A Mac with Apple silicon, or a Windows or Linux PC. Any GGUF model, including Ollama's and LM Studio's.</p></details>
-      <details><summary>Does it make Claude or ChatGPT faster?</summary><p>No. RAMen speeds up the models on your own computer.</p></details>
-      <details><summary>What happens after the trial?</summary><p>The free plan stays: your last 3 chats. Everything else is Pro.</p></details>
-      <details><summary>Is there a one-time price?</summary><p>At launch: Pro for life, $19.99, for the first 1,000 buyers.</p></details>
-      <details><summary>How do I activate or cancel?</summary><p>Run <code>ramen activate YOUR-KEY</code>. Cancel any time in your <a href="https://polar.sh/ramen/portal">customer portal</a>. <a href="refunds.html">Refunds</a></p></details>
-      <details><summary>Can I build RAMen into my app?</summary><p>Yes, through RAMen's API or the mobile kit. <a href="developers.html">Developers</a></p></details>
+      <details><summary>Is there an extra AI bill?</summary><p>No. RAMen works inside Claude or ChatGPT, on the plan you already pay for, with no API keys. Like any connector, it uses a little of each chat.</p></details>
+      <details><summary>Where does RAMen work?</summary><p>Inside Claude on the web, desktop and phone, and ChatGPT on paid plans, through the RAMen connector. On AI websites in Chrome, including Gemini, Copilot, DeepSeek, Meta AI, Poe and Qwen, through the <a href="chrome.html">RAMen add-on</a>. In Claude Code through the plugin, and on your own computer with RAMen Desktop.</p></details>
+      <details><summary>What does "with receipts" mean?</summary><p>Each note shows the date and the app it came from, and your own words when your AI saves them. When the AI guesses something about you, the guess waits for your OK.</p></details>
+      <details><summary>Will Claude use RAMen, or its own memory?</summary><p>Add the line from the <a href="#online-setup">setup</a> to Claude's instructions, and Claude checks RAMen for anything about you.</p></details>
+      <details><summary>Is my memory private?</summary><p>Yes. It is never sold or used for training, and you can delete any of it. Detail Lock's lists stay in your browser, except when it saves a long chat to your own RAMen. <a href="privacy.html">Privacy</a></p></details>
+      <details data-free-live hidden><summary>What happens after the 14 days?</summary><p>Keep everything for $1.99 a month, or $19 a year. Or stay on RAMen Free: 50 notes, 3 must-know facts, 2 apps and 3 chat saves a month. Nothing you saved is locked away.</p></details>
+      <details data-free-soon><summary>What happens after the 14 days?</summary><p>Keep everything for $1.99 a month, or $19 a year.</p></details>
+      <details data-lifetime-live hidden><summary>Is there a lifetime plan?</summary><p>Yes. RAMen Lifetime is everything in Pro for one payment of $79, for one person, for as long as RAMen runs. The first 500 buyers pay $49.</p></details>
+      <details><summary>I bought Pro for life. What changes?</summary><p>Nothing. You keep it.</p></details>
+      <details><summary>How do I cancel?</summary><p>Any time, in your <a href="https://polar.sh/ramen/portal">customer portal</a>. <a href="refunds.html">Refunds</a></p></details>
+      <details><summary>Do I need RAMen Desktop?</summary><p>No. The connector and the Chrome add-on work without it. RAMen Desktop is for AI that runs on your own computer.</p></details>
     </div>
   </div>
   <div class="wrap final">
-    <h2 class="rise">Bring your chats back <span class="shine">in seconds.</span></h2>
-    <div class="btns rise"><a class="btn primary" href="#how">Download free</a><a class="btn line" href="#plans">See plans</a></div>
+    <h2 class="rise">Pick up <span class="shine">right where you left off.</span></h2>
+    <div class="btns rise"><a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a><a class="btn line" href="#plans">See plans</a></div>
     <form class="updates rise" id="updates" novalidate>
-      <p class="updates-t">Get news when new versions of RAMen ship.</p>
+      <p class="updates-t">Get news when RAMen ships something new.</p>
       <div class="updates-row">
         <label class="sr" for="u-email">Email address</label>
         <input id="u-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
@@ -507,19 +479,29 @@
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 NEOTECH Inc. RAMen is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license). ChatGPT, Claude and the other names and logos shown belong to their owners; RAMen is not affiliated with or endorsed by them.</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
+<script src="assets/links.js"></script>
 <script>
-  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  // fade blocks in as they scroll into view (everything shows at once when motion is reduced), and load each scene's
+  // art when its section comes near the screen (data-art, data-art-m)
   (function () {
-    var els = document.querySelectorAll('.rise');
-    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      els.forEach(function (e) { e.classList.add('in'); });
-      return;
+    var scenes = document.querySelectorAll('.scene[data-art]');
+    function art(s) {
+      s.style.setProperty('--art', 'url(' + s.getAttribute('data-art') + ')');
+      if (s.hasAttribute('data-art-m')) s.style.setProperty('--art-m', 'url(' + s.getAttribute('data-art-m') + ')');
+      s.removeAttribute('data-art');
     }
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window)) { scenes.forEach(art); els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var near = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { art(en.target); near.unobserve(en.target); } });
+    }, { rootMargin: '1400px 0px' });
+    scenes.forEach(function (s) { near.observe(s); });
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(function (e) { e.classList.add('in'); }); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -8% 0px' });
@@ -527,9 +509,9 @@
   })();
 </script>
 <script>
-  // An affiliate's link (getramenai.com/?code=CODE, see affiliates.html): when the affiliate Worker knows the code, the
-  // Pro for life button applies it at checkout, the launch ticket names it and a note above the menu says so. The code
-  // is kept for this visit only (sessionStorage), never in a cookie.
+  // An affiliate's link (getramenai.com/?code=CODE, see affiliates.html): when the affiliate Worker knows the code, a
+  // note above the menu names it, with the affiliate offer (RAMen Lifetime, Pro for life, at 50% off) at checkout. The code is kept for
+  // this visit only (sessionStorage), never in a cookie.
   (function () {
     var m = /[?&]code=([A-Za-z0-9]{3,32})(?:&|#|$)/.exec(location.search), code = m ? m[1].toUpperCase() : null;
     try { if (code) sessionStorage.setItem('ramen-code', code); else code = sessionStorage.getItem('ramen-code'); } catch (e) {}
@@ -538,21 +520,14 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d || !d.ok) return;
-        document.querySelectorAll('a[href^="https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG"]').forEach(function (a) {
-          var u = new URL(a.href); u.searchParams.set('discount_code', d.code); a.href = u.toString();
-        });
         var bar = document.createElement('div');
         bar.className = 'codebar';
         var b = document.createElement('b'); b.textContent = d.code;
-        var go = document.createElement('a'); go.href = '#plans'; go.textContent = 'See Pro for life';
-        bar.append('\u2726 Code ', b, ' from ' + d.name + ': 50% off Pro for life at checkout ', go);
+        var go = document.createElement('a');
+        go.href = 'https://buy.polar.sh/polar_cl_Tr6ojzoANKCKNl3t1Z7qBbv7w1qErG1IGDLOV0gkWAG?discount_code=' + encodeURIComponent(d.code);
+        go.textContent = 'Get Lifetime';
+        bar.append('✦ Code ', b, ' from ' + d.name + ': 50% off RAMen Lifetime at checkout ', go);
         document.body.insertBefore(bar, document.body.firstChild);
-        var t = document.querySelector('#plans .ticket');
-        if (t && t.firstChild && t.firstChild.nodeType === 3) {
-          t.firstChild.textContent = '\u2726 ' + d.name + "'s code " + d.code + ': ';
-          var s = t.querySelector('span');
-          if (s) s.innerHTML = '<b>50% off Pro for life</b>, applied at checkout \u2726';
-        }
       }).catch(function () {});
   })();
 </script>
@@ -578,28 +553,7 @@
 })();
 </script>
 <script>
-  // Team pricing: the price per seat falls with the team's size; above 100 seats, talk to us.
-  (function () {
-    var range = document.getElementById('seats');
-    if (!range) return;
-    var tiers = [[50, 2.99], [25, 3.99], [10, 4.49], [5, 4.99], [1, 5.99]];
-    function priceFor(n) { for (var i = 0; i < tiers.length; i++) if (n >= tiers[i][0]) return tiers[i][1]; return 5.99; }
-    function money(v) { return '$' + v.toFixed(2); }
-    function update() {
-      var n = Number(range.value), p = priceFor(n), save = Math.round((1 - p / 5.99) * 100);
-      document.getElementById('seat-count').textContent = n;
-      document.getElementById('seat-price').textContent = money(p);
-      document.getElementById('seat-total').textContent = n + (n === 1 ? ' seat: ' : ' seats: ') + money(p * n) + ' a month';
-      document.getElementById('seat-save').textContent = save > 0 ? ' (' + save + '% off)' : '';
-      document.getElementById('team-buy').href = 'mailto:support@getramenai.com?subject=' + encodeURIComponent('RAMen Team for ' + n + ' seats');
-      range.style.setProperty('--fill', ((n - 1) / 99 * 100) + '%');
-    }
-    range.addEventListener('input', update);
-    update();
-  })();
-</script>
-<script>
-  // Copy buttons in RAMen Online's setup: copy the address or the line, or select it when the browser will not copy.
+  // Copy buttons in the setup: copy the address or the line, or select it when the browser will not copy.
   (function () {
     function pick(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
     document.querySelectorAll('button.copy[data-copy]').forEach(function (b) {
@@ -613,5 +567,6 @@
     });
   })();
 </script>
+<script src="assets/seams.js" defer></script>
 </body>
 </html>

@@ -85,6 +85,16 @@ header nav a:not(.btn):hover { color: var(--ink); }
 .scene::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 56.25vw; z-index: -1;
                  background: var(--art, none) center bottom / cover no-repeat;
                  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 24%); mask-image: linear-gradient(180deg, transparent 0, #000 24%); }
+/* seams: a scene melts into the section after it. The foot of its art goes soft and fades into the next section's
+   colour (--next, set by assets/seams.js), so no section ends in a hard line; the blur is strongest where they meet */
+.scene > .seam, .page-hero > .seam, .s-hero > .seam { position: absolute; left: 0; right: 0; bottom: -1px; height: clamp(84px, 7.5vw, 150px); z-index: -1;
+                 pointer-events: none;
+                 background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--next) 26%, transparent) 42%,
+                   color-mix(in srgb, var(--next) 78%, transparent) 80%, var(--next) 100%);
+                 -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px);
+                 -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 62%);
+                 mask-image: linear-gradient(180deg, transparent 0%, #000 62%); }
+.s-hero > .seam { z-index: 1; }      /* over the main hero's picture and its shade, under its words */
 /* a cloud band over one seam: the main page's #layer has no art at its foot, so the seam below it gets the band the
    scenes used to have (Matthew, 9 Nov 2026); the scene after it leaves room for the clouds */
 .band { position: absolute; left: 0; bottom: -5.5vw; z-index: 4; width: 100%; height: 11vw; object-fit: cover; object-position: 50% 50%;
@@ -170,14 +180,16 @@ footer a { color: var(--muted); }
 .float { animation: float 6.5s ease-in-out infinite; }
 .float.b { animation-duration: 7.6s; animation-delay: -2.6s; }
 .float.c { animation-duration: 6.9s; animation-delay: -4.2s; }
-.rise { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
-.rise.in { opacity: 1; transform: none; }
+/* blocks rise in as they scroll into view; only when scripts run (each page's head adds .js), so without scripts
+   everything simply shows */
+.js .rise { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
+.js .rise.in { opacity: 1; transform: none; }
 @keyframes shine { to { background-position: -200% 0; } }
 @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(-1.6deg); } }
 @keyframes roll { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .rise { opacity: 1; transform: none; }
+  .rise, .js .rise { opacity: 1; transform: none; }
 }
 
 @media (max-width: 900px) {
@@ -202,6 +214,9 @@ footer a { color: var(--muted); }
 }
 /* visually hidden, still read by screen readers */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* the hidden attribute always wins, also over a .btn's display (assets/links.js shows [data-store-live] buttons once
+   the add-on is in the Chrome Web Store) */
+[hidden] { display: none !important; }
 
 
 /* ===== Part 2: blocks for the other pages (none of these classes is on the main page) ===== */
@@ -229,7 +244,7 @@ footer a { color: var(--muted); }
 
 /* reading: long text (articles, legal pages) at a comfortable measure, with an optional table of contents beside it */
 .read { display: grid; grid-template-columns: minmax(0, 700px); justify-content: center; column-gap: 72px; }
-.prose { color: var(--muted); font-size: 18px; line-height: 1.7; }
+.prose { color: var(--muted); font-size: 18px; line-height: 1.7; overflow-wrap: break-word; }
 .prose > :first-child { margin-top: 0; }
 .prose p, .prose ul, .prose ol, .prose pre, .prose blockquote, .prose .table-wrap { margin: 0 0 22px; }
 .prose h2 { margin: 56px 0 14px; font-size: clamp(27px, 3.4vw, 36px); line-height: 1.08; letter-spacing: -0.035em;
@@ -373,14 +388,15 @@ footer a { color: var(--muted); }
 .copyline { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
 .copyline .cmd { margin-top: 0; flex: 1 1 auto; min-width: 0; }
 .cmd.lines { white-space: normal; overflow-wrap: anywhere; font: 500 14.5px/1.55 var(--font); }
-.copy { flex: none; padding: 9px 14px; border: 1.5px solid var(--line-2); border-radius: 12px; background: rgba(255, 255, 255, .08);
+/* the copy button (button.copy only: a hero's words sit in a div.copy, which must not get the button's frame) */
+button.copy { flex: none; padding: 9px 14px; border: 1.5px solid var(--line-2); border-radius: 12px; background: rgba(255, 255, 255, .08);
         color: var(--cream); font: 750 14px/1.4 var(--font); cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
-.copy:hover { background: rgba(255, 255, 255, .16); }
-.copy:focus-visible { outline: 2px solid var(--broth-hi); outline-offset: 2px; }
-.copy.done { color: var(--broth-hi); border-color: var(--broth); }
+button.copy:hover { background: rgba(255, 255, 255, .16); }
+button.copy:focus-visible { outline: 2px solid var(--broth-hi); outline-offset: 2px; }
+button.copy.done { color: var(--broth-hi); border-color: var(--broth); }
 .setup { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
 @media (max-width: 860px) { .setup { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 520px) { .copyline { flex-direction: column; align-items: stretch; } .copy { align-self: flex-start; }
+@media (max-width: 520px) { .copyline { flex-direction: column; align-items: stretch; } button.copy { align-self: flex-start; }
                             .copyline .cmd { white-space: normal; overflow-wrap: anywhere; } }
 
 @media (min-width: 1100px) {
@@ -410,3 +426,80 @@ footer a { color: var(--muted); }
   .callout.row { grid-template-columns: 72px minmax(0, 1fr); gap: 14px; }
   .callout.row > img { width: 72px; height: 72px; }
 }
+
+
+/* ===== Part 3: blocks for the $1.99 plan (main page, Detail Lock, How it works; 10 Nov 2026) ===== */
+
+/* keyboard focus: a clear broth ring on everything you can reach with Tab */
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid var(--broth-hi);
+  outline-offset: 3px; border-radius: 8px; }
+.btn:focus-visible { outline-offset: 4px; border-radius: 999px; }
+header :where(a):focus-visible { outline-color: #b4520b; }
+.light :where(a, button, summary):focus-visible { outline-color: #b4520b; }
+/* the first Tab on a page: a way past the menu */
+.skip { position: absolute; left: 12px; top: -80px; z-index: 50; padding: 10px 16px; border: 2px solid var(--ink); border-radius: 12px;
+        background: var(--cream); color: #2b1406; font-weight: 760; text-decoration: none; }
+.skip:focus { top: 12px; }
+
+/* scene art that loads when its section comes near the screen: data-art (and data-art-m for phones) on the section;
+   the page's script turns them into --art and --art-m */
+.scene[data-art]::before { background-image: none; }
+
+/* split: a real screenshot beside its words; stacked on tablets and phones (.flip puts the picture second) */
+.split { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center;
+         max-width: 1120px; margin: 56px auto 0; }
+.split.flip > :first-child { order: 2; }
+.split > .media { margin: 0; }
+.split .feats { margin-top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 28px; }
+@media (max-width: 900px) {
+  .split { grid-template-columns: minmax(0, 1fr); }
+  .split.flip > :first-child { order: 0; }
+}
+@media (max-width: 560px) { .split .feats { grid-template-columns: minmax(0, 1fr); } }
+
+/* product screenshots: the real interface in the ink frame (they keep their own shape); .tall is a narrow side panel */
+.media.shot { background: #0b0e1b; }
+.media.shot img { display: block; width: 100%; height: auto; aspect-ratio: auto; }
+.media.tall { width: min(100%, 380px); margin-inline: auto; }
+.media.shot figcaption, .shot-note { margin-top: 14px; color: var(--faint); font-size: 13.5px; text-align: center; }
+
+/* chips: a row of names, such as the chat sites Detail Lock works on */
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0 0; padding: 0; }
+.chips.center { justify-content: center; margin-inline: auto; max-width: 860px; }
+.chips li { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border: 1.5px solid var(--line-2);
+            border-radius: 999px; background: rgba(255, 255, 255, .07); color: var(--cream); font: 700 14px/1.2 var(--font);
+            white-space: nowrap; }
+.chips li .lg { width: 18px; height: 18px; flex: none; }
+.chips li:has(.lg) { padding-left: 10px; }
+
+/* numbered: three or four steps with the broth number dot of the setup cards */
+.numbered { list-style: none; counter-reset: n; margin: 0; padding: 0; }
+.numbered > li { counter-increment: n; position: relative; margin: 0 0 26px; padding-left: 54px; }
+.numbered > li:last-child { margin-bottom: 0; }
+.numbered > li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 36px; height: 36px; border: 2.5px solid var(--ink);
+                         border-radius: 50%; background: var(--broth); color: #1d0c02; font: 850 15px/31px var(--font); text-align: center;
+                         box-shadow: 0 3px 0 var(--ink); }
+.numbered h3 { margin: 4px 0 4px; font-size: 21px; letter-spacing: -0.025em; }
+.numbered p { margin: 0; color: var(--muted); }
+
+/* the menu between tablet and desktop widths: a little closer together so it never wraps */
+@media (min-width: 901px) and (max-width: 1100px) { header nav { gap: 16px; } header nav a:not(.btn) { font-size: 14.5px; } }
+header nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px;
+                                   text-decoration-color: var(--broth); }
+
+/* long addresses inside running text may break on the narrowest phones instead of pushing the page sideways */
+.prose :not(pre) > code { overflow-wrap: anywhere; }
+
+/* on the narrowest phones a callout's icon sits above its words, so the words keep a comfortable width */
+@media (max-width: 430px) {
+  .callout.row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .callout.row > img { width: 64px; height: 64px; }
+}
+
+/* the outline button on a light scene: dark ink instead of white */
+.light .btn.line { color: #2b1406; border-color: #2b1406; background: rgba(43, 20, 6, .06); }
+.light .btn.line:hover { background: rgba(43, 20, 6, .12); }
+
+/* feats in four columns on wide screens */
+@media (min-width: 1000px) { .feats.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px 30px; } }
+.feat a { color: var(--broth-hi); }
