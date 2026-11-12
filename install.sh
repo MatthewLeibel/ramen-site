@@ -39,7 +39,9 @@ case "$OS-$ARCH" in
         else PKG="ramen-linux-x64-cpu"; fi ;;
     Linux-aarch64|Linux-arm64)                                      # DGX Spark, Graviton, Ampere, Raspberry Pi 5
         [ "$(getconf LONG_BIT 2>/dev/null || echo 64)" = 64 ] || die "RAMen needs a 64-bit system (this one is 32-bit; on a Raspberry Pi, install the 64-bit Raspberry Pi OS)"
-        PKG="ramen-linux-arm64-cpu" ;;
+        # an NVIDIA GPU (DGX Spark, Grace Hopper, Jetson Orin): the NVIDIA build, from RAMen 1.4.2
+        if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then PKG="ramen-linux-arm64-cuda"
+        else PKG="ramen-linux-arm64-cpu"; fi ;;
     *) die "this installer is for macOS and Linux. On Windows, run in PowerShell: irm https://getramenai.com/install.ps1 | iex" ;;
 esac
 command -v curl >/dev/null || die "curl is needed"
