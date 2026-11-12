@@ -180,6 +180,8 @@
     <p class="notes rise">Real time, Mac mini M2 Pro, Qwen3 4B: a 70K-token chat back in 3.7 seconds, where reading it again took 12 minutes 47.</p>
     <div class="story prose rise"><span id="fast" aria-hidden="true"></span><span id="apps" aria-hidden="true"></span><span id="sleep" aria-hidden="true"></span>
       <p>Long chats stay fast too: each new word normally reads the whole memory, and RAMen reads only the parts that matter, where that is faster. llama.cpp can save a chat <a href="save-chats-llama-cpp.html">by hand</a>; RAMen does it for every chat.</p>
+      <p id="lean"><b>Fewer tokens in long chats.</b> RAMen re-sends earlier answers lean: no formatting, and older ones only when your message needs them. You still see every answer. On by default with your own Claude or OpenAI key; for local models, <code>ramen start --lean-history on</code>.</p>
+      <p class="notes">Measured, November 2026. 24-turn chats: 70% fewer tokens with Claude Sonnet 5.5, 67% with Qwen3 4B, answers judged as good, blind, turn by turn. Recalling earlier details: 7 of 29 right, 6 of 30 with the whole history, reading 63% fewer tokens. Memory on LoCoMo: about 1,200 tokens an answer, 6,400 for Mem0, 23,000 for the whole chat (16, 17, 19 of 20 right).</p>
       <h3>With Pro</h3>
       <p><b>Memory for local models.</b> <code>ramen online</code> links the computer to your RAMen Memory: your local models know what you told Claude and ChatGPT.</p>
       <p><b>Sleep notes.</b> <code>ramen sleep</code> pauses RAMen while your own model reads each new chat and writes careful notes of what you told it, in your words. After that, every app gets the few notes that match each question. <code>ramen sleep --forget</code> deletes them all.</p>
@@ -289,6 +291,7 @@
         <li>The memory panel shows only in apps that support connector panels. Elsewhere, your AI answers in words.</li>
         <li>Detail Lock's own rules check some kinds of details. The others are carried in your messages, and checked only with smarter checks on. A website that changes its page can stop the add-on until we update it.</li>
         <li>In RAMen Desktop: faster long chats speed up writing, not the first read of a new long prompt, and do not stack with draft models (speculative decoding) yet. Models that keep a small memory by design gain little speed.</li>
+        <li>Lean history finds older answers by shared words: ask back by name ("which hotel you suggested"). Chats with tools keep every turn.</li>
         <li>Big models: mixture-of-experts only. On a graphics card, a restored chat's next words can differ slightly from a fresh read.</li>
         <li>Sleep is a preview: it can get things wrong, and takes a while (about 18 minutes for ten chats on an M2 Pro).</li>
         <li>RAMen Desktop is proprietary software, part of the RAMen plan. It is built on llama.cpp (MIT license), whose license ships with it.</li>
