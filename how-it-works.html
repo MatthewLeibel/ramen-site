@@ -139,8 +139,9 @@
     </div>
     <div class="story prose rise">
       <p>Every reply in a long chat re-reads the whole chat. That uses up your limits, and details start to slip. Say "Save this chat to RAMen", then "Continue my RAMen thread" in a fresh chat or another AI.</p>
+      <p id="endless-tokens"><b>83% fewer tokens to keep going.</b> In our test, an 80-message chat was saved, then 48 questions about it were asked in fresh chats. Re-sending the whole chat used 32,539 tokens an answer with Claude Sonnet 5.5; going on from the RAMen save used 5,478, 83% fewer, and all 48 answers were right. Claude Haiku 5.5 and GPT-6 Luna also got 48 of 48 from the save. A copied summary used fewer tokens still but got 45 to 47 right. Saving the chat once took the AI about 6,100 tokens of writing.</p>
       <p><b>Saved as you go.</b> With the RAMen add-on, a chat on any of the 11 AI sites is saved to your RAMen every 15 messages: its goal, its details, its to-dos and the AI's latest answer. In apps with only the connector, ask your AI to save the chat. It can also save on its own as a long chat grows, but not reliably: in our test, Claude Haiku 5.5 with the line from the setup saved a 45-message chat on its own once, at message 44. Turn it off on your RAMen page.</p>
-      <p><b>Nothing lost.</b> Each save merges into the thread: changed values keep what they were before, and drafts keep their newest version, word for word. In our test, a thread kept 98% of what was known after three hand-offs between apps; copied summaries kept 85 to 88%.</p>
+      <p><b>Merged, not overwritten.</b> Each save merges into the thread: changed values keep what they were before, and drafts keep their newest version, word for word. In our test, a thread kept 98% of what was known after three hand-offs between apps; copied summaries kept 85 to 88%.</p>
       <p><b>Open items.</b> Every to-do and open question from your saved chats, in one list. Tick them off on your RAMen page, or tell your AI they are done.</p>
       <p><b>Projects.</b> Put saved chats in a project. In a new chat, say "Load my wedding project" to bring back its goal, current values, decisions, open items and drafts. Apps that list a connector's prompts show each project there too.</p>
       <p>Added RAMen to Claude before? Refresh its tools list once in Settings &rsaquo; Customize &rsaquo; Connectors.</p>
@@ -159,10 +160,11 @@
       <h2 class="rise">Every detail of <span class="shine">the chat you're in.</span></h2>
     </div>
     <div class="story prose rise">
-      <p>Detail Lock comes with the RAMen add-on for Chrome. On ChatGPT, Claude, Gemini, Grok, Perplexity, Copilot, DeepSeek, Mistral, Meta AI, Poe and Qwen, it lists the details you set as you chat: limits, names, dates, things to leave out, formats and rules. A later detail about the same thing replaces the earlier one.</p>
-      <p>Once the chat is too long for the AI to see it all, it adds the short list to each message you send (or always, or never: your choice). When an answer comes, its own rules check limits, names, things to leave out, units, years and tables, and flag any detail the answer dropped.</p>
+      <p>Detail Lock comes with the RAMen add-on for Chrome, <a href="https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii" rel="noopener">in the Chrome Web Store</a>. On ChatGPT, Claude, Gemini, Grok, Perplexity, Copilot, DeepSeek, Mistral, Meta AI, Poe and Qwen, it lists the details you set as you chat: limits, names, dates, things to leave out, formats and rules. A later detail about the same thing replaces the earlier one.</p>
+      <p>Once RAMen estimates the chat is too long for the AI to see it all (from the chat's length and how much each site's AI sees), it adds the short list to each message you send (or always, or never: your choice). When an answer comes, its own rules check limits, names, things to leave out, units, years and tables, and flag any detail the answer dropped.</p>
       <p><b>Remind it</b> puts a short reminder in the message box. <b>Fresh start with everything</b> opens a new chat with your goal, every detail and the last answer in one message. Nothing is sent until you press Send.</p>
       <p>Smarter checks are optional: Chrome's built-in AI, or RAMen Desktop on the same computer, looks at the details the rules cannot check. Detail Lock's lists stay in your browser, except in your own messages and in the saves of a long chat to your own RAMen. <a href="chrome.html">RAMen for Chrome</a></p>
+      <p id="lock-cost"><b>A switch, with a cost.</b> Detail Lock is for when exact details matter. In the add-on's Settings, choose when the list goes along and whether it checks answers; never, with checks off, turns it off, and it is off on RAMen Free. While it is on, your messages are longer: in our 150-message test, RAMen's tools (about 2,700 tokens a request) and the list (about 600 tokens a message) had the AI read 2.2 to 2.5 times the tokens. Endless is the part that saves tokens.</p>
     </div>
   </div>
 </section>
@@ -179,7 +181,7 @@
     <div class="media rise"><video src="assets/v2/reopen.mp4" poster="assets/v2/reopen.jpg" controls muted playsinline preload="none" aria-label="A 70,000-token chat reopened on a Mac mini in a few seconds, in real time"></video><span class="tag">Real time</span></div>
     <p class="notes rise">Real time, Mac mini M2 Pro, Qwen3 4B: a 70K-token chat back in 3.7 seconds, where reading it again took 12 minutes 47.</p>
     <div class="story prose rise"><span id="fast" aria-hidden="true"></span><span id="apps" aria-hidden="true"></span><span id="sleep" aria-hidden="true"></span>
-      <p>Long chats stay fast too: each new word normally reads the whole memory, and RAMen reads only the parts that matter, where that is faster. llama.cpp can save a chat <a href="save-chats-llama-cpp.html">by hand</a>; RAMen does it for every chat.</p>
+      <p>Long chats stay fast too: normally each new word reads the whole chat in memory. RAMen's selective reading reads its start, its most recent part and the parts that match best, about 8,000 tokens, once a chat is long enough for that to be faster (about 16K tokens on Macs, 21K to 42K on NVIDIA cards). It is on with a license; in our tests it gave the same answers as full attention when finding details in chats up to 64K tokens. llama.cpp can save a chat <a href="save-chats-llama-cpp.html">by hand</a>; RAMen does it for every chat.</p>
       <p id="lean"><b>Fewer tokens in long chats.</b> RAMen re-sends earlier answers lean: no formatting, and older ones only when your message needs them. You still see every answer. On by default with your own Claude or OpenAI key; for local models, <code>ramen start --lean-history on</code>.</p>
       <p class="notes">Measured, November 2026. 24-turn chats: 70% fewer tokens with Claude Sonnet 5.5, 67% with Qwen3 4B, answers judged as good, blind, turn by turn. Recalling earlier details: 7 of 29 right, 6 of 30 with the whole history, reading 63% fewer tokens. Memory on LoCoMo: about 1,200 tokens an answer, 6,400 for Mem0, 23,000 for the whole chat (16, 17, 19 of 20 right).</p>
       <h3>With Pro</h3>
@@ -245,11 +247,17 @@
 <tr><td><b>Sleep's notes in front of GPT</b> (GPT-6 Luna, GPT-6.1 Sol), the same five people</td><td data-label="Without RAMen">0 to 5% right</td><td data-label="With RAMen"><b>95 to 100% right</b></td></tr>
     </table></div>
     <div class="table-wrap stack rise" style="margin-top:28px"><table>
-<tr><th>Endless and Detail Lock</th><th>Without RAMen</th><th>With RAMen</th></tr>
+<tr><th>Endless</th><th>Without RAMen</th><th>With RAMen</th></tr>
+<tr><td><b>Going on from a save</b>: an 80-message chat, then 48 questions about it in fresh chats, Claude Sonnet 5.5</td><td data-label="Without RAMen">The whole chat re-sent: 32,539 tokens an answer, 48 of 48 right</td><td data-label="With RAMen"><span><b>5,478 tokens an answer, 48 of 48 right</b>: 83% fewer tokens</span></td></tr>
+<tr><td><b>The same questions, three AIs</b>: Claude Sonnet 5.5, Claude Haiku 5.5 and GPT-6 Luna</td><td data-label="Without RAMen">A copied summary: 1,764 to 2,736 tokens an answer, 45 to 47 of 48 right</td><td data-label="With RAMen"><b>4,669 to 5,491 tokens an answer, 48 of 48 right</b> with each</td></tr>
 <tr><td><b>The next day, in another AI</b>: a 150-message planning chat with Claude Haiku 5.5, the same messages sent with and without RAMen; then a fresh chat with ChatGPT's model (GPT-6.1 Sol) asked about the plan</td><td data-label="Without RAMen">0 of 21 details</td><td data-label="With RAMen"><b>18 of 22 details</b></td></tr>
 <tr><td><b>Facts about you, in the other app</b>: told to ChatGPT's model during the chat, asked in Claude Haiku 5.5 the next day</td><td data-label="Without RAMen">0 of 7</td><td data-label="With RAMen"><b>6 of 7</b></td></tr>
+    </table></div>
+    <div class="table-wrap stack rise" style="margin-top:28px"><table>
+<tr><th>Detail Lock, while it is on</th><th>Without RAMen</th><th>With RAMen</th></tr>
 <tr><td><b>Once the chat is too long for the AI to see it all</b>: ChatGPT's model with its latest ~7,000 tokens in view, messages 1 to 93</td><td data-label="Without RAMen">92% of details kept (14 dropped)</td><td data-label="With RAMen"><span><b>98% kept (3 dropped)</b>: 4.7 times fewer dropped</span></td></tr>
 <tr><td><b>While the AI still sees the whole chat</b>: ~14,000 and ~20,000 tokens in view, and Claude Haiku 5.5 with all of it</td><td data-label="Without RAMen">97 to 98% kept</td><td data-label="With RAMen">96 to 99% kept: about even</td></tr>
+<tr><td><b>What it costs</b>: the same 150-message test, with RAMen's tools in every request and the list in long chats</td><td data-label="Without RAMen">The chat alone</td><td data-label="With RAMen">2.2 to 2.5 times the input tokens</td></tr>
     </table></div>
     <div class="table-wrap stack rise" style="margin-top:28px"><table>
 <tr><th>Must-know facts</th><th>RAMen's search alone</th><th>With must-know facts</th></tr>
@@ -271,7 +279,7 @@
 <tr><td><b>NVIDIA L4</b>, Qwen3 4B</td><td data-label="Size">104,744 tokens</td><td data-label="Reading it again">220 seconds</td><td data-label="RAMen"><b>1.8 seconds</b></td></tr>
 <tr><td><b>RTX 4090</b>, Qwen3 4B</td><td data-label="Size">197,860 tokens</td><td data-label="Reading it again">91 seconds</td><td data-label="RAMen"><b>5.6 seconds</b></td></tr>
     </table></div>
-    <p class="notes rise">Same model and settings on both sides, November 2026. Below about 30K tokens, RAMen Desktop keeps normal attention.</p>
+    <p class="notes rise">Same model and settings on both sides, November 2026. Below about 16K tokens on Macs and 21K to 42K on NVIDIA cards, RAMen Desktop keeps normal attention.</p>
   </div>
 </section>
 
@@ -285,7 +293,8 @@
       <ul>
         <li>Your AI decides when to use RAMen. The line from the setup tells it to check RAMen first, and to save as it goes.</li>
         <li>In one chat, RAMen helps once the chat is too long for the AI to see it all. While the AI still sees the whole chat, it keeps about as much on its own. The big gains are the next day and in another app.</li>
-        <li>RAMen makes what the AI reads longer (its tools, and the list in long chats): in the 150-message test, the AI read 2.2 to 2.5 times the tokens.</li>
+        <li>RAMen's tools and Detail Lock's list make what the AI reads longer: in the 150-message test, the AI read 2.2 to 2.5 times the tokens. Turn the list off in the add-on's Settings; Endless's fresh chats are what save tokens.</li>
+        <li>Selective reading in RAMen Desktop is tested on finding details: the same answers as full attention, up to 64K tokens, with one model. Long reasoning is not measured yet. Pointing RAMen at a stock llama-server turns it off.</li>
         <li>Our tests use made-up people and chats, one run per setting, November 2026. Your chats will differ.</li>
         <li>RAMen Memory lives on RAMen's servers (Cloudflare), so it works with your computer off.</li>
         <li>The memory panel shows only in apps that support connector panels. Elsewhere, your AI answers in words.</li>

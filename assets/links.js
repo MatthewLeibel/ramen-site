@@ -1,14 +1,12 @@
 // Links that change in one place, for every page that loads this file.
 //
-// ADD_TO_CHROME: the RAMen add-on's page in the Chrome Web Store. The add-on is not listed yet, so this is null and
-// every Chrome button (a link with data-add-to-chrome) keeps its own address, chrome.html#get, where the page says it
-// is waiting for the Chrome Web Store and offers an email when it is there. Until then the buttons say so in their
-// own words ("Coming to Chrome"), never "Add to Chrome". Once the listing is live, put its address here, for example
-// "https://chromewebstore.google.com/detail/ramen/ID". Then on every page:
+// ADD_TO_CHROME: the RAMen add-on's page in the Chrome Web Store (live since 13 November 2026, version 1.3.1). The
+// pages also carry this address and the words "Add to Chrome" in their own HTML; set it back to null only if the
+// listing is ever taken down (then each button falls back to its own address). While it is set, on every page:
 //   a[data-add-to-chrome]   goes straight to the store, and takes the words in its data-live-text ("Add to Chrome")
 //   [data-store-soon]       the "waiting for the store" notes and the email form hide themselves
 //   [data-store-live]       what only makes sense once it is in the store (hidden until then) shows itself
-var ADD_TO_CHROME = null;
+var ADD_TO_CHROME = "https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii";
 
 // FREE_CHECKOUT and LIFETIME_CHECKOUT: the Polar checkout links of RAMen Free ($0) and RAMen Lifetime ($79, with the
 // FOUNDER discount: $49 for the first 500). Until each is set, its plan card and anything marked for it stay hidden
