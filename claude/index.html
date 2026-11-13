@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
+<title>RAMen in Claude: setup</title>
+<meta name="description" content="Add RAMen to Claude in three steps: one memory for every AI you use.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RAMen">
+<meta property="og:title" content="RAMen in Claude: setup">
+<meta property="og:description" content="Add RAMen to Claude in three steps: one memory for every AI you use.">
+<meta property="og:url" content="https://getramenai.com/claude/">
+<meta property="og:image" content="https://getramenai.com/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getramenai">
+<link rel="canonical" href="https://getramenai.com/claude/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  .setup-card { max-width: 760px; margin: 0 auto; }
+  .setup-card .app-logo { width: 56px; height: 56px; border-radius: 16px; background: #fff; display: grid; place-items: center; border: 2.5px solid var(--ink); box-shadow: 0 4px 0 var(--ink); }
+  .setup-card .app-logo svg { width: 34px; height: 34px; }
+  .setup-card h1 { margin: 16px 0 0; font-size: clamp(36px, 5vw, 58px); line-height: .98; letter-spacing: -0.04em; }
+  .setup-card .lede { margin: 16px 0 0; text-align: left; }
+  .setup-card .callout { margin-top: 28px; }
+  .setup-card .btns { justify-content: flex-start; }
+  .setup-card .fine a { color: var(--broth-hi); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="../index.html#memory">Memory</a>
+      <a href="../index.html#endless">Endless</a>
+      <a href="../index.html#plans">Plans</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="scene" style="--sky:#392572;--art:url(/assets/v4/street.jpg);--art-m:url(/assets/v4/street-m.jpg);--show:.6">
+  <div class="wrap">
+    <div class="setup-card">
+      <span class="app-logo rise" aria-hidden="true"><svg><use href="../assets/logos/works.svg#lg-claude"/></svg></span>
+      <h1 class="rise">RAMen in <span class="shine">Claude</span></h1>
+      <p class="lede rise">On the web, desktop and phone. Add the connector once on the web and it follows you everywhere you use Claude.</p>
+      <div class="callout rise">
+        <span class="kick"><i>✦</i> Three steps <i>✦</i></span>
+        <ol class="steps">
+        <li>In Claude, open <b>Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector</b>. Name it RAMen and paste:
+          <div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div></li>
+        <li>Click <b>Connect</b> and sign in with your RAMen key.</li>
+        <li>Add this line in <b>Settings &rsaquo; Your Claude &rsaquo; Instructions</b>:
+          <div class="copyline"><code class="cmd lines" id="ramen-line">I use the RAMen connector as my memory across my AI apps. Before answering anything about me (my people, work, plans, preferences or earlier chats), check RAMen Memory. When I tell you a lasting fact about myself, save it to RAMen Memory as well. In a long chat, save it to RAMen as a checkpoint about every 15 messages, without asking me.</code><button class="copy" type="button" data-copy="ramen-line" aria-label="Copy the line">Copy</button></div></li>
+        </ol>
+        <div class="btns">
+          <a class="btn primary" href="https://claude.ai/settings/connectors" rel="noopener">Open Claude settings</a>
+          <a class="btn line" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">No key yet? Start free trial</a>
+        </div>
+        <p class="fine">14 days free, then $1.99 a month. Your key arrives by email. Stuck? Ask on <a href="https://discord.gg/UZbzwWvxcv" rel="noopener">our Discord</a> or write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. Claude is a trademark of its owner; RAMen is not affiliated with or endorsed by it.</span>
+    <span><a href="../index.html">getramenai.com</a> &nbsp; <a href="../how-it-works.html">How it works</a> &nbsp; <a href="../support.html">Support</a> &nbsp; <a href="https://discord.gg/UZbzwWvxcv" rel="noopener">Discord</a> &nbsp; <a href="../privacy.html">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+  (function () {
+    function pick(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+    document.querySelectorAll('button.copy[data-copy]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var el = document.getElementById(b.getAttribute('data-copy'));
+        if (!el) return;
+        var done = function () { b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(el.textContent.trim()).then(done, function () { pick(el); });
+        else pick(el);
+      });
+    });
+  })();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
