@@ -66,13 +66,56 @@
 <section class="scene" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--art-m:url(/assets/v2/lake-m.jpg);--show:.75">
   <div class="wrap read">
     <article class="prose">
-<p>Tell us which app you use RAMen with (ChatGPT, Claude, the RAMen add-on for Chrome or RAMen Desktop) and what happened. Please don't send your license key: the email you got RAMen with is enough for us to find your account.</p>
-<h2 id="connect">Connecting an AI app</h2>
-<p>How to add RAMen to ChatGPT, Claude and your other apps, step by step: <a href="how-it-works.html#online">How it works</a>. When an app asks you to sign in, use your RAMen license key.</p>
-<h2 id="key">Your license key</h2>
+<h2 id="fix">Fix it yourself</h2>
+<p>Most problems have a quick fix. Find what you see below. Is RAMen itself down? The <a href="status.html">status page</a> says.</p>
+
+<h3 id="connect">Connecting Claude or ChatGPT</h3>
+<p>Step by step, with the address and the one line to copy: <a href="claude/">RAMen in Claude</a>, <a href="chatgpt/">RAMen in ChatGPT</a> (on a paid ChatGPT plan), and <a href="how-it-works.html#online">other apps</a>. When the app asks you to sign in, paste your RAMen license key.</p>
+
+<h3 id="key-refused">"Could not connect" when you sign in</h3>
+<ul>
+<li><strong>"That license key was not found, or its plan has ended":</strong> check the key in the email from Polar (it starts with <code>RAMEN-</code>). Quotes, spaces or a full stop copied with it are fine. If your plan or trial ended, <a href="index.html#plans">RAMen Free</a> keeps your memory: get it with the same email, then connect again with the new key.</li>
+<li><strong>"Too many tries":</strong> wait fifteen minutes, then connect again from the app.</li>
+<li><strong>"Busy right now":</strong> new sign-ins are paused for a while. Apps you already connected keep working. Try again in an hour.</li>
+<li><strong>"Not connected: RAMen Free connects up to 2 apps":</strong> disconnect one on <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a> (Connections), then connect again.</li>
+</ul>
+
+<h3 id="used-before">"You have used RAMen before"</h3>
+<p>Your email already has a RAMen memory, from a key you used before (RAMen Free, then Pro, for example). Paste that earlier key to use the same memory with the new key. It is in your earlier email from Polar, and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. Or start a new, empty memory. RAMen asks because one email can be shared by a family or a team, so a memory opens only for someone who has its key.</p>
+
+<h3 id="not-using">Your AI does not use RAMen</h3>
+<ul>
+<li>Add the one line from the setup page to your app's instructions (Claude: Settings &rsaquo; Your Claude &rsaquo; Instructions; ChatGPT: Custom instructions). It tells your AI to check RAMen and to save what you tell it.</li>
+<li>In Claude, check that RAMen is switched on for the chat, in the chat box's tools menu.</li>
+<li><strong>ChatGPT shows fewer RAMen tools than 7?</strong> ChatGPT keeps the list from the day you added RAMen. Refresh RAMen in ChatGPT's settings, or remove it and add it again. Your memory stays.</li>
+<li>You can always ask in plain words: "Check RAMen for my dentist" or "Save this to RAMen".</li>
+</ul>
+
+<h3 id="not-found">RAMen did not find something you told it</h3>
+<ul>
+<li>Look on <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a> under Notes (search it). If an AI only guessed it, it waits for your OK under Pending.</li>
+<li>Ask in other words, or name the chat it came from: "What did we decide in the wedding chat?"</li>
+<li>If you turned a sensitive topic off (Settings, Advanced), RAMen does not save new notes about it.</li>
+</ul>
+
+<h3 id="long-chats">Going on with a long chat</h3>
+<p>In the long chat, say "Save this chat to RAMen". Then, in a fresh chat or another AI app: "Continue my RAMen chat" and its name. Your saved chats are on your RAMen page, each with the line to copy.</p>
+
+<h3 id="free-limits">"Not saved" on RAMen Free</h3>
+<p>RAMen Free keeps 50 notes, 3 must-know facts, 3 chat saves a month and 2 apps. Your RAMen page warns you before a limit, and everything you saved stays. To make room, delete notes you no longer need, or <a href="index.html#plans">move to Pro</a> for no caps.</p>
+
+<h3 id="computer-offline">Your memory is on your computer, and it is offline</h3>
+<p>With On my devices, your memory lives on your own computer, so apps reach it only while RAMen runs there. Start it again on that computer: <code>node ~/.ramen/ramen-vault.mjs start</code>.</p>
+
+<h3 id="key">Your license key</h3>
 <p>Your key is in the email from Polar, RAMen's store, and in the customer portal at <a href="https://polar.sh/ramen/portal">polar.sh/ramen/portal</a>: sign in there with the email you got RAMen with.</p>
+
 <h2 id="your-data">Seeing, changing or deleting what RAMen keeps</h2>
-<p>On your RAMen page (<a href="https://ramen-online.matthewsleibel.workers.dev/app">ramen-online.matthewsleibel.workers.dev/app</a>) you can see, edit and delete every note and saved chat, turn sensitive topics off and disconnect apps. In a chat, you can also ask your AI to forget something, for example "Forget my dentist from RAMen Memory." To delete everything, email us and we do it for you. How long RAMen keeps what it keeps: <a href="privacy.html#how-long">Privacy</a>.</p>
+<p>On <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a> you can see, edit and delete every note and saved chat, turn sensitive topics off and disconnect apps. In a chat, you can also ask your AI to forget something, for example "Forget my dentist from RAMen Memory." Settings has <strong>Download your memory</strong> (as text or JSON) and <strong>Delete everything</strong> (type DELETE to confirm), or email us and we delete everything for you. How long RAMen keeps what it keeps: <a href="privacy.html#how-long">Privacy</a>.</p>
+
+<h2 id="write">Still stuck?</h2>
+<p>Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a> and say which app you use RAMen with and what you see. A real person answers. Please don't send your license key.</p>
+
 <h2 id="more">More</h2>
 <p><a href="privacy.html">Privacy policy</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="refunds.html">Refunds</a></p>
     </article>
