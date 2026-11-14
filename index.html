@@ -213,7 +213,7 @@
 
 <main id="main">
 <section class="s-hero">
-  <img class="bg" src="assets/hero.jpg" width="1920" height="1071" fetchpriority="high" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl">
+  <picture><source srcset="assets/hero.avif" type="image/avif"><source srcset="assets/hero.webp" type="image/webp"><img class="bg" src="assets/hero.jpg" width="1920" height="1071" fetchpriority="high" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl"></picture>
   <div class="wrap">
     <div class="copy">
       <span class="kick rise"><i>✦</i> One memory for all your AIs <i>✦</i></span>
@@ -266,7 +266,7 @@
     </div>
     <p class="no-list center rise">In the AI apps you already use <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No API keys <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No extra AI bill</p>
   </div>
-  <img class="band" src="assets/v2/band.webp" width="2400" height="848" alt="" aria-hidden="true">
+  <img class="band" src="assets/v2/band.webp" srcset="assets/v2/band-1200.webp 1200w, assets/v2/band.webp 2400w" sizes="100vw" width="2400" height="848" loading="lazy" decoding="async" alt="" aria-hidden="true">
 </section>
 
 <section class="scene" id="tokens" style="--sky:#1c2a56;--show:0">
@@ -622,5 +622,6 @@
   })();
 </script>
 <script src="assets/seams.js" defer></script>
+<script src="assets/a11y.js" defer></script>
 </body>
 </html>

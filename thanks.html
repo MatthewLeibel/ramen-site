@@ -65,6 +65,7 @@
 </section>
 <section class="scene light" style="--sky:#fdc886;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg);--show:.7">
   <div class="wrap">
+    <h2 class="sr-only">Get started in four steps</h2>
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v2/icons/pro.webp" width="120" height="120" alt=""><div><span class="n">STEP 01</span><h3 id="key-title">Find your license key</h3><p id="key-where">It is in the email from Polar (our store) and in your <a href="https://polar.sh/ramen/portal" data-portal>customer portal</a>. It starts with <code>RAMEN-</code>.</p><div class="copyline" id="key-box" hidden><code class="cmd" id="ramen-key"></code><button class="copy" type="button" data-copy="ramen-key" aria-label="Copy your license key">Copy</button></div><p class="alt-os" id="key-note" hidden>We emailed it to you too. Keep it private: it opens your memory.</p></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" width="120" height="120" alt=""><div><span class="n">STEP 02</span><h3>Add RAMen to Claude or ChatGPT</h3><p>In Claude: Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector. Name it RAMen, paste this address and sign in with your key:</p><div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div><p class="alt-os">In ChatGPT, on a paid plan: Plugins &rsaquo; Add custom MCP server, with the same address. Then add the one line from <a href="index.html#online-setup">the setup</a> to your instructions.</p></div></li>
@@ -147,5 +148,6 @@
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
 <script src="assets/seams.js" defer></script>
+<script src="assets/a11y.js" defer></script>
 </body>
 </html>

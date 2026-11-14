@@ -545,3 +545,11 @@ header nav a[aria-current="page"] { color: var(--ink); text-decoration: underlin
 footer a { display: inline-block; padding: 10px 0; }
 .tier :where(a, button):focus-visible, .qr-card :where(a, button):focus-visible { outline-color: #9c4f12; }
 code.cmd:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 3px; }
+
+/* accessibility re-check, 14 Nov 2026 (later): a focus ring that shows on any background (ink outside, orange inside)
+   for code boxes and videos; the Discord card's ring white on its blurple; a part that has not faded in yet shows at once
+   when something inside it gets the focus (Tab could land on a link still invisible); text only screen readers read */
+.qr-discord :where(a, button):focus-visible { outline-color: #fff; }
+code.cmd:focus-visible, pre:focus-visible, video:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 3px #ffb46a; }
+.js .rise:focus-within { opacity: 1; transform: none; transition: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
