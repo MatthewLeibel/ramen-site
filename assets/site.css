@@ -539,3 +539,9 @@ header nav a[aria-current="page"] { color: var(--ink); text-decoration: underlin
   .qr-card .qr-code, .qr-card .qr-desk, .qr-hide-m { display: none; }
   .qr-card .qr-alt { display: inline; }
 }
+
+/* accessibility audit, 14 Nov 2026: footer links big enough to tap on a phone; the focus ring readable on the light
+   pricing and QR cards; code lines that scroll sideways can be scrolled from the keyboard (tabindex added by script) */
+footer a { display: inline-block; padding: 10px 0; }
+.tier :where(a, button):focus-visible, .qr-card :where(a, button):focus-visible { outline-color: #9c4f12; }
+code.cmd:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 3px; }
