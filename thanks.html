@@ -66,12 +66,12 @@
 <section class="scene light" style="--sky:#fdc886;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg);--show:.7">
   <div class="wrap">
     <ol class="rows">
-      <li class="rise"><img class="float" src="assets/v2/icons/pro.webp" width="120" height="120" alt=""><div><span class="n">STEP 01</span><h3>Find your license key</h3><p>It is in the email from Polar (our store) and in your <a href="https://polar.sh/ramen/portal">customer portal</a>. It starts with <code>RAMEN-</code>.</p></div></li>
-      <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" width="120" height="120" alt=""><div><span class="n">STEP 02</span><h3>Add RAMen to Claude or ChatGPT</h3><p>In Claude: Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector. Name it RAMen, paste this address and sign in with your key:</p><code class="cmd">https://ramen-online.matthewsleibel.workers.dev/mcp</code><p class="alt-os">In ChatGPT, on a paid plan: Plugins &rsaquo; Add custom MCP server, with the same address. Then add the one line from <a href="index.html#online-setup">the setup</a> to your instructions.</p></div></li>
+      <li class="rise"><img class="float" src="assets/v2/icons/pro.webp" width="120" height="120" alt=""><div><span class="n">STEP 01</span><h3 id="key-title">Find your license key</h3><p id="key-where">It is in the email from Polar (our store) and in your <a href="https://polar.sh/ramen/portal" data-portal>customer portal</a>. It starts with <code>RAMEN-</code>.</p><div class="copyline" id="key-box" hidden><code class="cmd" id="ramen-key"></code><button class="copy" type="button" data-copy="ramen-key" aria-label="Copy your license key">Copy</button></div><p class="alt-os" id="key-note" hidden>We emailed it to you too. Keep it private: it opens your memory.</p></div></li>
+      <li class="rise"><img class="float b" src="assets/v2/icons/connect.webp" width="120" height="120" alt=""><div><span class="n">STEP 02</span><h3>Add RAMen to Claude or ChatGPT</h3><p>In Claude: Settings &rsaquo; Customize &rsaquo; Connectors &rsaquo; Add custom connector. Name it RAMen, paste this address and sign in with your key:</p><div class="copyline"><code class="cmd" id="ramen-mcp-url">https://ramen-online.matthewsleibel.workers.dev/mcp</code><button class="copy" type="button" data-copy="ramen-mcp-url" aria-label="Copy the address">Copy</button></div><p class="alt-os">In ChatGPT, on a paid plan: Plugins &rsaquo; Add custom MCP server, with the same address. Then add the one line from <a href="index.html#online-setup">the setup</a> to your instructions.</p></div></li>
       <li class="rise"><img class="float c" src="assets/v4/icons/addon.webp" width="120" height="120" alt=""><div><span class="n">STEP 03</span><h3>The RAMen add-on for Chrome</h3><p>For Detail Lock, and RAMen on ChatGPT, Gemini and the other AI websites it works on. <a href="https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii" rel="noopener" data-add-to-chrome data-live-text="Add to Chrome">Add to Chrome</a></p></div></li>
-      <li class="rise"><img class="float" src="assets/v4/icons/desktop.webp" width="120" height="120" alt=""><div><span class="n">STEP 04</span><h3>RAMen Desktop, if you use AI on your computer</h3><p>Install it (Mac and Linux, in Terminal):</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code><p class="alt-os">Then switch on your plan and start:</p><code class="cmd">ramen activate YOUR-KEY</code> <code class="cmd">ramen start</code><p class="alt-os">A key works on up to 3 computers. To move it: <code>ramen deactivate</code>.</p></div></li>
+      <li class="rise"><img class="float" src="assets/v4/icons/desktop.webp" width="120" height="120" alt=""><div><span class="n">STEP 04</span><h3>RAMen Desktop, if you use AI on your computer</h3><p>Install it (Mac and Linux, in Terminal):</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows, in PowerShell:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code><p class="alt-os">Then switch on your plan and start:</p><code class="cmd" id="activate-line">ramen activate YOUR-KEY</code> <code class="cmd">ramen start</code><p class="alt-os">A key works on up to 3 computers. To move it: <code>ramen deactivate</code>.</p></div></li>
     </ol>
-    <p class="lede center rise">Manage or cancel your plan any time in the <a href="https://polar.sh/ramen/portal">customer portal</a>. Questions? Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>; a real person answers.</p>
+    <p class="lede center rise">Manage or cancel your plan any time in the <a href="https://polar.sh/ramen/portal" data-portal>customer portal</a>. Questions? Write to <a href="mailto:support@getramenai.com">support@getramenai.com</a>; a real person answers.</p>
   </div>
 </section>
 </main>
@@ -79,12 +79,59 @@
 <footer>
   <div class="wrap">
     <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
-    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="support.html">Support</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="support.html">Support</a> &nbsp; <a href="status.html">Status</a> &nbsp; <a href="security.html">Security</a> &nbsp; <a href="changelog.html">What's new</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
   </div>
 </footer>
 
 <script src="assets/links.js"></script>
 <script>
+  // The new license key, shown here (14 Nov 2026: before, people had to find Polar's email first). Polar sends a new
+  // customer here with a short-lived customer token; the page asks Polar for that customer's keys (their own, over
+  // HTTPS, from their browser), shows the newest with Copy, keeps the portal links signed in, and takes the token out
+  // of the address bar. Without a token (an email that bought before) the page says where the key is, as before.
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var token = params.get('customer_session_token');
+    if (!token) return;
+    var portal = 'https://polar.sh/ramen/portal?customer_session_token=' + encodeURIComponent(token);
+    document.querySelectorAll('a[data-portal]').forEach(function (a) { a.href = portal; });
+    params.delete('customer_session_token');
+    history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : '') + location.hash);
+    var tries = 0;
+    (function ask() {
+      fetch('https://api.polar.sh/v1/customer-portal/license-keys/?limit=20', { headers: { Authorization: 'Bearer ' + token } })
+        .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function (d) {
+          // the newest key first (Polar lists them oldest first; a new customer has one)
+          var keys = (d.items || []).filter(function (k) { return k.status === 'granted' && k.key; })
+            .sort(function (a, b) { return String(b.created_at).localeCompare(String(a.created_at)); });
+          // a key can take a few seconds to be made after the order: ask again a few times
+          if (!keys.length) { if (++tries < 6) setTimeout(ask, 2500); return; }
+          var key = keys[0].key;
+          document.getElementById('ramen-key').textContent = key;
+          document.getElementById('key-box').hidden = false;
+          document.getElementById('key-note').hidden = false;
+          document.getElementById('key-title').textContent = 'Your license key';
+          document.getElementById('key-where').hidden = true;
+          var act = document.getElementById('activate-line');
+          if (act) act.textContent = 'ramen activate ' + key;
+        })
+        .catch(function () { /* the email and the portal still have it */ });
+    })();
+  })();
+  // Copy buttons: copy the key or the address, or select it when the browser will not copy
+  (function () {
+    function pick(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+    document.querySelectorAll('button.copy[data-copy]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var el = document.getElementById(b.getAttribute('data-copy'));
+        if (!el) return;
+        var done = function () { b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Copy'; b.classList.remove('done'); }, 1800); };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(el.textContent.trim()).then(done, function () { pick(el); });
+        else pick(el);
+      });
+    });
+  })();
   // fade sections in as they scroll into view (everything shows at once when motion is reduced)
   (function () {
     var els = document.querySelectorAll('.rise');

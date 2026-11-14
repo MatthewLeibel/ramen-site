@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>document.documentElement.className += ' js';</script>
+<title>RAMen security</title>
+<meta name="description" content="How RAMen protects your memory, and how to report a security problem.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RAMen">
+<meta property="og:title" content="RAMen security">
+<meta property="og:description" content="How RAMen protects your memory, and how to report a security problem.">
+<meta property="og:url" content="https://getramenai.com/security.html">
+<meta property="og:image" content="https://getramenai.com/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@getramenai">
+<meta name="twitter:title" content="RAMen security">
+<meta name="twitter:description" content="How RAMen protects your memory, and how to report a security problem.">
+<meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
+<link rel="canonical" href="https://getramenai.com/security.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="RAMen home">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M22 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M42 6c-3 4 3 6 0 10" fill="none" stroke="#f29a43" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 28h52c0 15-11.6 26-26 26S6 43 6 28z" fill="#f29a43" stroke="#070a17" stroke-width="2"/>
+        <path d="M14 34c6 3 12-3 18 0s12 3 18 0" fill="none" stroke="#fff3e2" stroke-width="3" stroke-linecap="round"/>
+        <path d="M46 6 26 30M54 9 32 31" stroke="#d9709f" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      <span>RAM<b>en</b></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="index.html#memory">Memory</a>
+      <a href="index.html#endless">Endless</a>
+      <a href="index.html#desktop">Desktop</a>
+      <a href="index.html#plans">Plans</a>
+      <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-hero" style="--sky:#151839">
+  <picture>
+    <source media="(max-width: 560px)" srcset="assets/v3/docs-m.jpg">
+    <img class="bg" src="assets/v3/docs.jpg" width="2400" height="1340" alt="" fetchpriority="high">
+  </picture>
+  <div class="wrap">
+    <div class="copy">
+      <span class="kick rise"><i>✦</i> Trust <i>✦</i></span>
+      <h1 class="rise">RAMen <span class="shine">Security</span></h1>
+      <p class="lede rise">How your memory is kept safe, and how to tell us about a problem. Updated 14 November 2026.</p>
+    </div>
+  </div>
+</section>
+<section class="scene" style="--sky:#0f1430;--art:url(/assets/v2/lake.jpg);--art-m:url(/assets/v2/lake-m.jpg);--show:.75">
+  <div class="wrap read">
+    <article class="prose">
+<h2>How your memory is protected</h2>
+<ul>
+<li><strong>Your memory is yours alone.</strong> Each person's memory is kept apart from everyone else's, and one person's sign-in never reaches another person's memory. Every release is tested for this.</li>
+<li><strong>Signing in.</strong> Apps connect over HTTPS with OAuth and PKCE, the way Claude and ChatGPT connect to any connector. Your license key and the apps' access tokens are kept only as one-way hashes; the copy of your key used to check your plan is kept encrypted (details in the <a href="privacy.html">privacy policy</a>).</li>
+<li><strong>The RAMen page</strong> uses a signed, encrypted sign-in cookie, refuses changes sent from other websites, and loads no scripts from anywhere else.</li>
+<li><strong>You decide.</strong> A guess an AI makes about you waits for your OK. The memory panel's buttons that can delete things are given only to the apps that show the panel to you (Claude, ChatGPT and the RAMen add-on), never to an AI on its own.</li>
+<li><strong>On your own devices.</strong> With On my devices your memory lives on your computer, and RAMen Online only passes requests through and keeps none of it. Local models can have a private memory that never leaves the computer.</li>
+<li><strong>Delete everything</strong> in Settings on your RAMen page deletes your memory, disconnects every app and computer, and signs out every browser.</li>
+<li>We do not sell your data, share it, or use it to train any model.</li>
+</ul>
+<h2>How we test</h2>
+<p>Before every release RAMen passes its automated tests: signing in, every tool, the memory panel, your own computer, the RAMen page in the engines of Chrome, Safari and Firefox, and more than 1,300 odd, broken and hostile inputs (pasted keys with stray characters, HTML and scripts in notes, malformed requests). A full security review of the code was done on 14 November 2026 and its findings were fixed. You can see RAMen's live health on the <a href="status.html">status page</a>.</p>
+<h2>Report a security problem</h2>
+<p>Email <a href="mailto:support@getramenai.com?subject=Security">support@getramenai.com</a> with "Security" in the subject: what you found and how to see it. Please give us a chance to fix it before telling others. We read every report and reply. Please do not test against other people's memories or accounts.</p>
+<p>Machine-readable contact: <a href="/.well-known/security.txt">security.txt</a>.</p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 NEOTECH Inc. RAMen Desktop is built on <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> (MIT license).</span>
+    <span><a href="how-it-works.html">How it works</a> &nbsp; <a href="chrome.html">RAMen for Chrome</a> &nbsp; <a href="developers.html">Developers</a> &nbsp; <a href="affiliates.html">Affiliates</a> &nbsp; <a href="terms.html">Terms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="refunds.html">Refunds</a> &nbsp; <a href="support.html">Support</a> &nbsp; <a href="status.html">Status</a> &nbsp; <a href="security.html">Security</a> &nbsp; <a href="changelog.html">What's new</a> &nbsp; <a href="mailto:support@getramenai.com">support@getramenai.com</a></span>
+  </div>
+</footer>
+
+<script>
+  // fade sections in as they scroll into view (everything shows at once when motion is reduced)
+  (function () {
+    var els = document.querySelectorAll('.rise');
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (e) { e.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "79e6b51fc873478fa51bf2dbf22e1b08"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
