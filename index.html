@@ -67,14 +67,17 @@
     .logos ul[aria-hidden] { display: none; }
   }
 
-  /* the three features */
-  /* each card a soft color from its own icon (peach, sakura, aqua), so the row stands out on the night sky */
+  /* the four features */
+  /* each card a soft color from its own icon (peach, sakura, aqua, lilac), so the row stands out on the night sky */
   .feat-cards .feat { position: relative; padding: 24px 22px 24px; border: 2.5px solid var(--ink); border-radius: 22px;
                    background: var(--card-bg, #fff3e2); color: #2a1406; box-shadow: 7px 7px 0 var(--ink); text-decoration: none;
                    display: block; transition: transform .2s, filter .2s; }
   .feat-cards .feat:nth-child(1) { --card-bg: #ffe6cc; }
   .feat-cards .feat:nth-child(2) { --card-bg: #ffdeec; }
   .feat-cards .feat:nth-child(3) { --card-bg: #d6f6ef; }
+  .feat-cards .feat:nth-child(4) { --card-bg: #ece4ff; }
+  @media (min-width: 1101px) { .feat-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; } }
+  @media (max-width: 1100px) and (min-width: 641px) { .feat-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .feat-cards a.feat:hover { transform: translateY(-3px); filter: brightness(1.04); }
   .feat-cards a.feat:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 4px; }
   .feat-cards .feat img { width: 104px; height: 104px; filter: drop-shadow(0 6px 10px rgba(42, 20, 6, .25)); }
@@ -202,6 +205,7 @@
     <nav aria-label="Main">
       <a href="#memory">Memory</a>
       <a href="#endless">Endless</a>
+      <a href="#bowl">Bowl</a>
       <a href="#desktop">Desktop</a>
       <a href="#plans">Plans</a>
       <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
@@ -216,13 +220,13 @@
     <div class="copy">
       <span class="kick rise"><i>✦</i> One memory for all your AIs <i>✦</i></span>
       <h1 class="rise">More memory. <span class="shine">Fewer tokens.</span></h1>
-      <p class="lede rise">RAMen remembers what you tell any of your AIs, and with selective memory each answer pulls only what it needs, on demand. All on the plan you already pay for.</p>
+      <p class="lede rise">Tell one AI, and every AI knows. Each answer pulls only what it needs, on the plan you already pay for.</p>
       <div class="btns rise">
         <a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
         <a class="btn line" href="#demo">Watch the demo</a>
       </div>
-      <p class="fine rise">14 days free <i>✦</i> Then $1.99 a month <i>✦</i> Cancel any time</p>
-      <p class="fine rise" style="margin-top:6px">Your memory stays in your hands: in our cloud, or kept on your own computer with Pro. <a href="#plans" data-free-checkout>Or start with RAMen Free</a>.</p>
+      <p class="fine rise">14 days free (card at checkout) <i>✦</i> Then $1.99 a month <i>✦</i> Cancel any time</p>
+      <p class="fine rise" style="margin-top:6px">Your memory, your call: our cloud, or your own computer with Pro. <a href="#plans" data-free-checkout>Or start with RAMen Free</a>.</p>
     </div>
   </div>
 </section>
@@ -253,14 +257,15 @@
 <section class="scene" id="features" style="--sky:#232659;--show:0"><span id="works" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> Three features, one plan <i>✦</i></span>
+      <span class="kick rise"><i>✦</i> Four features, one plan <i>✦</i></span>
       <h2 class="rise">Everything your AI <span class="shine">should remember.</span></h2>
-      <p class="lede rise">RAMen works inside the AI apps you already use. Your AI does the work on your own plan, and RAMen keeps the memory.</p>
+      <p class="lede rise">It works inside the AI apps you already use. Your AI does the work; RAMen keeps the memory.</p>
     </div>
     <div class="feats feat-cards">
       <a class="feat rise" href="#memory"><img class="float" src="assets/v4/icons/receipt.webp" width="104" height="104" alt=""><h3>RAMen Memory</h3><p>One memory for all your AIs, with receipts. See or forget anything.</p><span class="go">How it remembers</span></a>
       <a class="feat rise" href="#endless"><img class="float b" src="assets/v4/icons/endless.webp" width="104" height="104" alt=""><h3>RAMen Endless</h3><p>Long chats that keep the thread. Detail Lock keeps the details you set.</p><span class="go">How chats keep going</span></a>
       <a class="feat rise" href="#desktop"><img class="float c" src="assets/v4/icons/desktop.webp" width="104" height="104" alt=""><h3>RAMen Desktop</h3><p>RAMen on your own computer, for AI that runs there.</p><span class="go">Get the app</span></a>
+      <a class="feat rise" href="#bowl"><img class="float" src="assets/v4/icons/open.webp" width="104" height="104" alt=""><h3>RAMen Bowl</h3><p>Everything your AIs know, on one board, one timeline and one honest week ahead.</p><span class="go">See the future</span></a>
     </div>
     <p class="no-list center rise">In the AI apps you already use <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No API keys <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No extra AI bill</p>
   </div>
@@ -272,13 +277,13 @@
     <div class="center">
       <span class="kick rise"><i>✦</i> Selective memory, on demand <i>✦</i></span>
       <h2 class="rise">Right answers, <span class="shine">far fewer tokens.</span></h2>
-      <p class="lede rise">Long chats re-read everything. With selective memory, your AI pulls only what each answer needs, when it asks for it.</p>
+      <p class="lede rise">Long chats re-read everything. With RAMen, your AI pulls only what each answer needs.</p>
     </div>
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v4/icons/receipt.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">RAMEN MEMORY</span><h3>About 1,200 tokens an answer</h3><p>Not the whole 23,000-token conversation.</p></div></li>
       <li class="rise"><img class="float b" src="assets/v4/icons/endless.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">RAMEN ENDLESS</span><h3>83% fewer tokens to keep going</h3><p>An 80-message chat, continued in a fresh one. Every answer still right: 48 of 48.</p></div></li>
       <li class="rise"><img class="float c" src="assets/v4/icons/desktop.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">RAMEN DESKTOP</span><h3>Up to 70% fewer tokens in long chats</h3><p>24-turn chats, answers judged as good, with Claude and local models.</p></div></li>
-      <li class="rise"><img class="float" src="assets/v4/icons/lock.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">DETAIL LOCK, A SWITCH</span><h3>More tokens, for exact details</h3><p>Turn it on when details matter: once a chat gets long, it adds your list of details to each message, so it uses more tokens while it is on. <a href="#detail-lock">How it works</a></p></div></li>
+      <li class="rise"><img class="float" src="assets/v4/icons/lock.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">DETAIL LOCK, A SWITCH</span><h3>More tokens, for exact details</h3><p>Turn it on when details matter. It adds your details to each message, so it uses more tokens while on. <a href="#detail-lock">How it works</a></p></div></li>
     </ol>
     <p class="notes center rise">Each number measured on its own, by us, November 2026. <a href="how-it-works.html#results">How we measured</a></p>
   </div>
@@ -289,7 +294,7 @@
     <div class="center">
       <span class="kick rise"><i>✦</i> RAMen Memory <i>✦</i></span>
       <h2 class="rise">One memory, <span class="shine">with receipts.</span></h2>
-      <p class="lede rise">Tell Claude something on Monday, and ChatGPT knows it on Tuesday. Each note keeps the date and the app, and your own words when your AI saves them. When the AI only guesses, it waits for your OK.</p>
+      <p class="lede rise">Tell Claude on Monday. ChatGPT knows on Tuesday. Every note shows when, where and your own words.</p>
     </div>
     <div class="split">
       <figure class="media shot rise">
@@ -305,7 +310,7 @@
       </div>
     </div>
     <p class="notes center rise">The memory panel, shown with sample notes. <a href="how-it-works.html#memory">How it works</a> <i>✦</i> <a href="privacy.html#ramen-online">Privacy</a></p>
-    <p class="notes center rise">Tested: must-know facts cut wrong answers 7 times, from 21 in 60 to 3 (Claude Haiku 5.5, requests where a saved fact changes the answer). <a href="how-it-works.html#results">How we measured</a></p>
+    <p class="notes center rise">Tested: must-know facts cut wrong answers from 21 in 60 to 3. <a href="how-it-works.html#results">How we measured</a></p>
   </div>
 </section>
 
@@ -314,7 +319,7 @@
     <div class="center">
       <span class="kick rise"><i>✦</i> RAMen Endless <i>✦</i></span>
       <h2 class="rise">Long chats that <span class="shine">keep the thread.</span></h2>
-      <p class="lede rise">Long chats eat your limits and start to forget. RAMen saves the chat, and a fresh chat, or another AI, picks up right where you left off.</p>
+      <p class="lede rise">Long chats eat your limits and start to forget. Save one, and a fresh chat or another AI picks up right where you left off.</p>
     </div>
     <ol class="story rise" aria-label="An example: a long chat saved to RAMen, then continued in a fresh chat">
       <li><span class="when">A long planning chat in Claude</span>
@@ -322,12 +327,12 @@
       <li class="night"><img class="badge-icon float" src="assets/v4/icons/endless.webp" width="70" height="70" loading="lazy" alt=""><span class="when">RAMen keeps where it stands</span>
         <p class="note">The numbers, decisions and drafts it saved, word for word.</p></li>
       <li><span class="when">A fresh chat</span>
-        <p class="you"><span class="who">You</span>Continue my RAMen thread team offsite. How many people are coming now, and what was it before?</p>
+        <p class="you"><span class="who">You</span>Continue my RAMen chat team offsite. How many people are coming now, and what was it before?</p>
         <p class="ai"><span class="who">Claude</span>14 people now. It was 12 before.</p></li>
     </ol>
-    <p class="notes center rise">Tested: the next day, in another AI, 18 of 22 details of a 150-message plan came back with RAMen, and none without. <a href="how-it-works.html#results">How we measured</a> <i>✦</i> <a href="how-it-works.html#endless">How it works</a></p>
+    <p class="notes center rise">Tested: a day later, in another AI, 18 of 22 details came back with RAMen. None without. <a href="how-it-works.html#results">How we measured</a> <i>✦</i> <a href="how-it-works.html#endless">How it works</a></p>
     <div class="feats four">
-      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" width="112" height="112" loading="lazy" alt=""><h3>Saved as you go</h3><p>The RAMen add-on saves long chats every 15 messages. Elsewhere, ask your AI to save.</p></div>
+      <div class="feat rise"><img class="float" src="assets/v2/icons/saved.webp" width="112" height="112" loading="lazy" alt=""><h3>Saved as you go</h3><p>With RAMen Pro, the RAMen add-on saves long chats every 15 messages. Elsewhere, ask your AI to save.</p></div>
       <div class="feat rise"><img class="float b" src="assets/v4/icons/endless.webp" width="112" height="112" loading="lazy" alt=""><h3>Pick up anywhere</h3><p>Go on in a fresh chat, or in another AI.</p></div>
       <div class="feat rise"><img class="float c" src="assets/v4/icons/open.webp" width="112" height="112" loading="lazy" alt=""><h3>One list of open items</h3><p>Every to-do from every saved chat, in one place.</p></div>
       <div class="feat rise"><img class="float" src="assets/v4/icons/projects.webp" width="112" height="112" loading="lazy" alt=""><h3>Projects</h3><p>Say "Load my wedding project" and a new chat picks up its goal, decisions, open items and drafts.</p></div>
@@ -342,12 +347,12 @@
         <img class="float rise" src="assets/v4/icons/lock.webp" width="104" height="104" loading="lazy" alt="">
         <span class="kick rise"><i>✦</i> RAMen Endless: Detail Lock <i>✦</i></span>
         <h2 class="rise">Hold on to <span class="shine">the details you set.</span></h2>
-        <p class="lede rise" style="margin-left:0">In long chats, AIs can drop details you set. Detail Lock is a switch for when they matter: it keeps a list of the details you set, adds it to your messages and flags an answer that drops one it can check.</p>
+        <p class="lede rise" style="margin-left:0">Long chats drop details. Detail Lock keeps a list of the ones you set, adds it to your messages and flags answers that miss one.</p>
         <ol class="numbered rise" style="margin-top:30px">
-          <li><h3>It keeps a list</h3><p>The limits, names, dates and rules it finds in your messages, and things to leave out. Add any it missed.</p></li>
-          <li><h3>Your messages carry it</h3><p>Once RAMen estimates the chat is too long for the AI to see it all, the list goes along with every message you send. Or always, or never: your choice.</p></li>
-          <li><h3>It checks each answer</h3><p>It checks the details it can, like limits and things to leave out, and flags any the answer dropped. Remind it in one click, or start fresh with everything.</p></li>
-          <li><h3>You switch it on and off</h3><p>In the add-on's Settings: when the list goes along, and whether it checks answers. It makes your messages longer, so it uses more tokens while it is on. It is off on RAMen Free.</p></li>
+          <li><h3>It keeps a list</h3><p>Limits, names, dates, rules and things to leave out, found in your messages. Add any it missed.</p></li>
+          <li><h3>Your messages carry it</h3><p>Once the chat is too long for the AI to see it all, the list rides along with each message. Or always, or never.</p></li>
+          <li><h3>It checks each answer</h3><p>It flags any detail an answer drops. Remind the AI in one click, or start fresh with everything.</p></li>
+          <li><h3>You switch it on and off</h3><p>Choose when the list goes along and whether answers get checked. It uses more tokens while on. RAMen Pro.</p></li>
         </ol>
         <p class="flabel rise">With the RAMen add-on for Chrome, on</p>
         <ul class="chips rise" aria-label="AI websites the RAMen add-on works on">
@@ -357,8 +362,8 @@
           <a class="btn primary" href="https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii" rel="noopener" data-add-to-chrome data-live-text="Add to Chrome">Add to Chrome</a>
           <a class="btn line" href="chrome.html">RAMen for Chrome</a>
         </div>
-        <p class="fine rise">Tested: once a chat was too long for the AI to see it all, Detail Lock cut the details it dropped 4.7 times (ChatGPT's model, about 7,000 tokens in view), while the AI read 2.2 to 2.5 times the tokens with RAMen's tools and the list. <a href="how-it-works.html#results">How we measured</a></p>
-        <p class="fine rise">Detail Lock's lists stay in your browser, except in your own messages and when it saves a long chat to your own RAMen (you can turn that off).</p>
+        <p class="fine rise">Tested: in long chats, Detail Lock cut dropped details 4.7 times, using 2.2 to 2.5 times the tokens. <a href="how-it-works.html#results">How we measured</a></p>
+        <p class="fine rise">The lists stay in your browser, except in your messages and your own saves.</p>
       </div>
       <figure class="media shot tall rise">
         <img src="assets/v4/shots/detail-lock.webp" width="760" height="2128" loading="lazy" decoding="async" alt="The RAMen side panel in Chrome, on its Endless tab: after a dinner-party chat, Detail Lock says it will add its 5 details to each message once the chat is too long for Claude to see it all, and warns that the last answer missed 2, the vegetarian rule and the nut allergy (grilled chicken, toasted pine nuts), with Remind it and Fresh start with everything buttons, then lists the 5 details with Pin, Edit and Remove">
@@ -368,17 +373,43 @@
   </div>
 </section>
 
+<section class="scene" id="bowl" style="--sky:#0d1a35;--show:0">
+  <div class="wrap">
+    <div class="split">
+      <div class="words">
+        <img class="float rise" src="assets/v4/icons/open.webp" width="104" height="104" loading="lazy" alt="">
+        <span class="kick rise"><i>✦</i> RAMen Bowl <i>✦</i></span>
+        <h2 class="rise">Your AI life, <span class="shine">brought together.</span></h2>
+        <p class="lede rise" style="margin-left:0">See the future. Every chat you save from Claude, ChatGPT, Gemini and your local AI, on one whiteboard: your memories by date, today, then your forecast.</p>
+        <ol class="numbered rise" style="margin-top:30px">
+          <li><h3>One whiteboard</h3><p>Everything your AIs know in time order, each part of your life in its own color. Press Today, then look past it.</p></li>
+          <li><h3>A timeline that tells the truth</h3><p>When it was discussed, decided, changed and done, with the app and your own words.</p></li>
+          <li><h3>Your week, honestly</h3><p>Bowl tells you early when Friday won't fit, with the tasks behind it.</p></li>
+          <li><h3>RAMenScope</h3><p>Take on a client. Move the launch. Keep Fridays free. Watch your future change before you decide.</p></li>
+          <li><h3>Ask Bowl</h3><p>Ask what's at risk this week, or tell it what to do. It answers and rearranges the board.</p></li>
+        </ol>
+        <div class="btns rise"><a class="btn primary" href="bowl.html">See RAMen Bowl</a></div>
+        <p class="fine rise">In RAMen Pro and the 14-day trial. In your browser, in RAMen Desktop and on your phone. Bowl's AI runs free on your device, or on RAMen Cloud AI when you want it.</p>
+      </div>
+      <figure class="media shot rise">
+        <img src="assets/v5/bowl/bowl-today.webp" width="2720" height="1720" loading="lazy" decoding="async" alt="RAMen Bowl's Today: a short briefing, then the cards that need you, like a Friday that needs more hours than you have, with the tasks behind it">
+      </figure>
+    </div>
+    <p class="notes center rise">RAMen Bowl, shown with a sample project.</p>
+  </div>
+</section>
+
 <section class="scene light" id="desktop" style="--sky:#fbc886;--show:.82" data-art="/assets/v2/counter.jpg" data-art-m="/assets/v2/counter-m.jpg"><span id="how" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="kick rise"><i>✦</i> RAMen Desktop <i>✦</i></span>
       <h2 class="rise">Your own AI <span class="shine">remembers too.</span></h2>
-      <p class="lede rise">RAMen on your own computer, for AI that runs there. Your chats come back in seconds, your local models get your memory and Sleep notes, and Claude Code and Codex can run on them.</p>
+      <p class="lede rise">RAMen for AI on your own computer. Chats come back in seconds, local models get your memory, and Claude Code and Codex run on them.</p>
     </div>
     <ol class="rows">
       <li class="rise"><img class="float" src="assets/v4/icons/desktop.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 01</span><h3>Install</h3><p>Mac and Linux:</p><code class="cmd">curl -fsSL https://getramenai.com/install.sh | bash</code><p class="alt-os">Windows:</p><code class="cmd">irm https://getramenai.com/install.ps1 | iex</code></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/mark.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 02</span><h3>Start</h3><p>It picks a model that fits your computer, and your chats come back in seconds.</p><code class="cmd">ramen start</code></div></li>
-      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 03</span><h3>Your memory here too</h3><p>Your local models know what you told Claude and ChatGPT. Bring in your old chats too.</p><code class="cmd">ramen online</code> <code class="cmd">ramen import</code></div></li>
+      <li class="rise"><img class="float c" src="assets/v2/icons/connect.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 03</span><h3>Your memory here too</h3><p>Your local models know what you told Claude and ChatGPT. Old chats too: export them from ChatGPT or Claude, then import the file.</p><code class="cmd">ramen online</code> <code class="cmd">ramen import ~/Downloads/your-export.zip</code></div></li>
       <li class="rise"><img class="float b" src="assets/v2/icons/reopen.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 04</span><h3>Let it learn</h3><p>At the end of the day, your own model keeps notes of what you told it.</p><code class="cmd">ramen sleep</code></div></li>
       <li class="rise"><img class="float" src="assets/v2/icons/agents.webp" width="120" height="120" loading="lazy" alt=""><div><span class="n">STEP 05</span><h3>Claude Code and Codex</h3><p>Run them on a model on your own computer, with its memory.</p><code class="cmd">ramen claude</code> <code class="cmd">ramen connect codex</code></div></li>
     </ol>
@@ -390,7 +421,7 @@
     <div class="center">
       <span class="kick rise"><i>✦</i> Ways to get it <i>✦</i></span>
       <h2 class="rise">One account. <span class="shine">Every place you use AI.</span></h2>
-      <p class="lede rise">One $1.99 plan covers all of them. Start your trial, then sign in with the key from your email.</p>
+      <p class="lede rise">One $1.99 plan covers them all. Start your trial, then sign in with the key from your email.</p>
     </div>
     <div class="callouts setup ways">
       <div class="callout rise" id="online-setup">
@@ -411,7 +442,7 @@
           <div><p class="qr-t">Setting up Claude on another device?</p><p class="qr-s"><span class="qr-desk">Scan for the Claude steps, or open </span><span class="qr-alt">The steps, on any device: </span><a href="claude/">getramenai.com/claude</a></p></div>
         </div>
         <p class="sub-h">In ChatGPT, on a paid plan</p>
-        <p>Open <b>Plugins</b>, choose <b>Add custom MCP server</b> and paste the same address. Sign in with your RAMen key, then add the same line to <b>Custom instructions</b>, without its last sentence: in ChatGPT, RAMen saves a chat only when you ask.</p>
+        <p>Open <b>Plugins</b> › <b>Add custom MCP server</b>, paste the same address and sign in. Add the line to <b>Custom instructions</b>, minus its last sentence.</p>
         <div class="qr-card qr-chatgpt">
           <div class="qr-code"><img src="assets/qr/qr-chatgpt.svg" width="104" height="104" loading="lazy" alt="QR code that opens the RAMen steps for ChatGPT"><span class="qr-mid" aria-hidden="true"><svg><use href="assets/logos/works.svg#lg-chatgpt"/></svg></span></div>
           <div><p class="qr-t">Setting up ChatGPT on another device?</p><p class="qr-s"><span class="qr-desk">Scan for the ChatGPT steps, or open </span><span class="qr-alt">The steps, on any device: </span><a href="chatgpt/">getramenai.com/chatgpt</a></p></div>
@@ -419,7 +450,7 @@
       </div>
       <div class="ways-side">
         <div class="callout row rise"><img class="float" src="assets/v4/icons/addon.webp" width="76" height="76" loading="lazy" alt="">
-          <div><span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-chrome"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-gemini"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-perplexity"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-deepseek"/></svg></span></span><span class="kick"><i>✦</i> The RAMen add-on <i>✦</i></span><h3>On AI websites in Chrome</h3><p>Detail Lock, your memory and Endless on ChatGPT, Claude, Gemini, Grok, Perplexity, Copilot, DeepSeek, Mistral, Meta AI, Poe and Qwen, even the sites that cannot take a connector.</p>
+          <div><span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-chrome"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-gemini"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-perplexity"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-deepseek"/></svg></span></span><span class="kick"><i>✦</i> The RAMen add-on <i>✦</i></span><h3>On AI websites in Chrome</h3><p>Detail Lock, your memory and Endless on 11 AI websites, even ones that can't take a connector.</p>
             <a class="btn primary sm" href="https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii" rel="noopener" data-add-to-chrome data-live-text="Add to Chrome">Add to Chrome</a>
             <div class="qr-card qr-chrome qr-hide-m">
               <div class="qr-code"><img src="assets/qr/qr-chrome.svg" width="104" height="104" loading="lazy" alt="QR code that opens RAMen in the Chrome Web Store"><span class="qr-mid" aria-hidden="true"><svg><use href="assets/logos/works.svg#lg-chrome"/></svg></span></div>
@@ -431,7 +462,7 @@
           <div><span class="app-tiles" aria-hidden="true"><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-claudecode"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-cursor"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-ghcopilot"/></svg></span><span class="tile"><svg class="lg"><use href="assets/logos/works.svg#lg-codex"/></svg></span></span><span class="kick"><i>✦</i> The Claude Code plugin <i>✦</i></span><h3>In Claude Code</h3><p>The same memory in your coding sessions:</p><code class="cmd">/plugin install ramen-memory --marketplace MatthewLeibel/ramen-plugins</code><p>Cursor, VS Code, Codex, Windsurf or Zed? Add RAMen as an MCP server: <a href="developers.html#editors">the steps</a>.</p></div></div>
       </div>
     </div>
-    <p class="ramen-page rise">See and search what RAMen keeps, edit or delete notes, approve guesses and tick off open items on <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a>.</p>
+    <p class="ramen-page rise">See, search, edit and delete everything on <a href="https://ramen-online.matthewsleibel.workers.dev/app">your RAMen page</a>.</p>
   </div>
 </section>
 
@@ -440,7 +471,7 @@
     <div class="center">
       <span class="kick rise"><i>✦</i> Plans <i>✦</i></span>
       <h2 class="rise">Everything for <span class="shine">$1.99 a month.</span></h2>
-      <p class="lede rise" data-free-live hidden>Start with 14 days of everything. Then keep going on Pro, or switch to RAMen Free and keep your memory.</p>
+      <p class="lede rise" data-free-live hidden>14 days of everything. Then stay on Pro, or switch to RAMen Free and keep your memory.</p>
       <p class="lede rise" data-free-soon>One account, one plan with everything in it. Try it free for 14 days.</p>
     </div>
     <div class="tiers">
@@ -466,7 +497,7 @@
           <li><b>Every app</b>: Claude, ChatGPT, Chrome, Claude Code and your code editor</li>
         </ul>
         <a class="btn primary sm" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
-        <p class="tier-fine">14 days of everything, then $1.99 a month or $19 a year, your choice at checkout. The trial asks for a card; cancel before it ends and you pay nothing.</p>
+        <p class="tier-fine">14 days free, then $1.99 a month or $19 a year. The trial takes a card; cancel before it ends and pay nothing.</p>
       </article>
       <article class="tier tier-life rise" data-lifetime-live hidden>
         <h3>Lifetime</h3>
@@ -491,18 +522,18 @@
       <h2 class="rise">Good to know.</h2>
     </div>
     <div class="faq">
-      <details><summary>Is there an extra AI bill?</summary><p>No. RAMen works inside Claude or ChatGPT, on the plan you already pay for, with no API keys. Like any connector, it uses a little of each chat, and Detail Lock more while it is on. RAMen Desktop runs AI on your own computer; if you pick a cloud model there with your own key, its provider bills you for it.</p></details>
-      <details><summary>Does RAMen save tokens?</summary><p>Yes, and each part was measured on its own: about 1,200 tokens of memory an answer instead of a 23,000-token conversation, 83% fewer to keep going from a saved chat (an 80-message chat, 48 of 48 answers right), and up to 70% fewer in long chats on RAMen Desktop. Detail Lock is the exception: it adds its list to your messages, so it uses more while it is on. <a href="how-it-works.html#results">How we measured</a></p></details>
-      <details><summary>Can I turn Detail Lock off?</summary><p>Yes. In the add-on's Settings, choose when its list goes along with your messages (once the chat gets long, always or never) and whether it checks each answer. Never, with checks off, turns it off. It is off on RAMen Free.</p></details>
-      <details><summary>What does Autopilot do?</summary><p>It is one switch on your RAMen page, on from the start. RAMen saves long chats as they go (RAMen Pro), keeps one copy of a fact you say twice, suggests must-know facts for your OK, and in Chrome offers a fresh chat when one gets too long. Turn it off and RAMen does only what you or your AI ask, or switch single parts under Fine-tune.</p></details>
-      <details><summary>Where does RAMen work?</summary><p>Inside Claude on the web, desktop and phone, and ChatGPT on paid plans, through the RAMen connector. On AI websites in Chrome, including Gemini, Copilot, DeepSeek, Meta AI, Poe and Qwen, through the <a href="chrome.html">RAMen add-on</a>, in the <a href="https://chromewebstore.google.com/detail/ramen/lckfcnjgdfgkodanlilfgjkgelffgcii" rel="noopener">Chrome Web Store</a>. In Claude Code through the plugin, and on your own computer with RAMen Desktop.</p></details>
-      <details><summary>What does "with receipts" mean?</summary><p>Each note shows the date and the app it came from, and your own words when your AI saves them. When the AI guesses something about you, the guess waits for your OK.</p></details>
+      <details><summary>Is there an extra AI bill?</summary><p>No. RAMen runs inside Claude or ChatGPT, on the plan you already pay for, with no API keys. The one exception: a cloud model you pick in RAMen Desktop bills your own key.</p></details>
+      <details><summary>Does RAMen save tokens?</summary><p>Yes. About 1,200 tokens of memory an answer instead of a 23,000-token chat, and 83% fewer to continue a saved chat. Detail Lock is the exception: it uses more while on. <a href="how-it-works.html#results">How we measured</a></p></details>
+      <details><summary>Can I turn Detail Lock off?</summary><p>Yes. In the add-on's Settings, set the list to never and checks off. Or keep it for long chats only. Detail Lock comes with RAMen Pro.</p></details>
+      <details><summary>What does Autopilot do?</summary><p>One switch that runs RAMen for you: it saves long chats, keeps one copy of a repeated fact, suggests must-know facts and offers a fresh chat when one gets long. Saving and the offer need RAMen Pro.</p></details>
+      <details><summary>Where does RAMen work?</summary><p>In Claude (web, desktop and phone) and ChatGPT (paid plans) through the connector. On 11 AI websites through the <a href="chrome.html">RAMen add-on for Chrome</a>. In Claude Code through the plugin, and with local AI through RAMen Desktop.</p></details>
+      <details><summary>What does "with receipts" mean?</summary><p>Each note shows when you said it, in which app, and your own words. Guesses wait for your OK.</p></details>
       <details><summary>Will Claude use RAMen, or its own memory?</summary><p>Add the line from the <a href="#online-setup">setup</a> to Claude's instructions, and Claude checks RAMen for anything about you.</p></details>
-      <details><summary>Is my memory private?</summary><p>Yes. It is never sold or used for training, and you can delete any of it. Detail Lock's lists stay in your browser, except in your own messages to the AI and when it saves a long chat to your own RAMen. <a href="privacy.html">Privacy</a></p></details>
-      <details><summary>Can my memory stay on my own computer?</summary><p>Yes, with RAMen Pro and the trial. On my devices keeps your memory in one file on your computer instead of our cloud. Claude, ChatGPT and your other apps still reach it through RAMen while that computer is on, and RAMen keeps none of it on the way; desktop apps on that computer read it directly. With local models (LM Studio, Jan), you can also keep a private memory that never leaves your computer at all, while they still read your shared memory. Set it up on your RAMen page, under Settings. <a href="privacy.html#on-my-devices">How it is kept</a></p></details>
-      <details data-free-live hidden><summary>What happens after the 14 days?</summary><p>Keep everything for $1.99 a month, or $19 a year. Or switch to RAMen Free: get a free key with the same email and sign in again, and your memory comes with you, within Free's limits (50 notes, 3 must-know facts, 2 apps and 3 chat saves a month). Nothing you saved is locked away.</p></details>
+      <details><summary>Is my memory private?</summary><p>Yes. It's never sold or used for training, and you can delete any of it. <a href="privacy.html">Privacy</a></p></details>
+      <details><summary>Can my memory stay on my own computer?</summary><p>Yes, with RAMen Pro. On my devices keeps your memory in one file on your computer, reachable while it's on. RAMen keeps none of it. Set it up in Settings on your RAMen page (needs Node.js 22). <a href="privacy.html#on-my-devices">How it's kept</a></p></details>
+      <details data-free-live hidden><summary>What happens after the 14 days?</summary><p>Keep everything for $1.99 a month or $19 a year. Or switch to RAMen Free with the same email and keep your memory, within Free's limits. Nothing you saved is locked away.</p></details>
       <details data-free-soon><summary>What happens after the 14 days?</summary><p>Keep everything for $1.99 a month, or $19 a year.</p></details>
-      <details data-lifetime-live hidden><summary>Is there a lifetime plan?</summary><p>Yes. RAMen Lifetime is everything in Pro for one payment of $79, for one person, for as long as RAMen runs. The first 500 buyers pay $49.</p></details>
+      <details data-lifetime-live hidden><summary>Is there a lifetime plan?</summary><p>Yes. Everything in Pro for one payment of $79, for as long as RAMen runs. The first 500 buyers pay $49.</p></details>
       <details><summary>I bought Pro for life. What changes?</summary><p>Nothing. You keep it.</p></details>
       <details><summary>How do I cancel?</summary><p>Any time, in your <a href="https://polar.sh/ramen/portal">customer portal</a>. <a href="refunds.html">Refunds</a></p></details>
       <details><summary>Do I need RAMen Desktop?</summary><p>No. The connector and the Chrome add-on work without it. RAMen Desktop is for AI that runs on your own computer.</p></details>

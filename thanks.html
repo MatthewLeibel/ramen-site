@@ -40,6 +40,7 @@
     <nav aria-label="Main">
       <a href="index.html#memory">Memory</a>
       <a href="index.html#endless">Endless</a>
+      <a href="bowl.html">Bowl</a>
       <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
       <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
@@ -58,10 +59,11 @@
       <span class="kick rise"><i>✦</i> Welcome to RAMen <i>✦</i></span>
       <h1 class="rise">Thank <span class="shine">you!</span></h1>
       <p class="lede rise">Your order went through. Here is how to switch on RAMen where you use AI; each step takes a minute.</p>
+      <p class="rise" id="open-ramen" hidden><a class="btn primary" id="open-ramen-link" href="https://ramen-online.matthewsleibel.workers.dev/app">Open RAMen, signed in</a></p>
     </div>
   </div>
 </section>
-<section class="scene light" style="--sky:#fdc886;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg);--show:.7">
+<section class="scene light tight" style="--sky:#fdc886;--art:url(/assets/v3/developers.jpg);--art-m:url(/assets/v3/developers-m.jpg);--show:.7">
   <div class="wrap">
     <h2 class="sr-only">Get started in four steps</h2>
     <ol class="rows">
@@ -94,6 +96,10 @@
     if (!token) return;
     var portal = 'https://polar.sh/ramen/portal?customer_session_token=' + encodeURIComponent(token);
     document.querySelectorAll('a[data-portal]').forEach(function (a) { a.href = portal; });
+    // the RAMen page signs a new customer in with the same token, no key and no code (docs/SIGNIN.md); after the #, so
+    // it never reaches a server's log, and the RAMen page takes it out of its address at once
+    document.getElementById('open-ramen-link').href = 'https://ramen-online.matthewsleibel.workers.dev/app/welcome#customer_session_token=' + encodeURIComponent(token);
+    document.getElementById('open-ramen').hidden = false;
     params.delete('customer_session_token');
     history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : '') + location.hash);
     var tries = 0;

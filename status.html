@@ -40,6 +40,7 @@
     <nav aria-label="Main">
       <a href="index.html#memory">Memory</a>
       <a href="index.html#endless">Endless</a>
+      <a href="bowl.html">Bowl</a>
       <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
       <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
@@ -66,7 +67,7 @@
     <article class="prose">
 <p id="summary" class="lede">Checking...</p>
 <ul id="checks"></ul>
-<p class="note" id="watched">RAMen is also checked every 5 minutes from outside its own servers, and the team is alerted when something breaks.</p>
+<p class="note" id="watched" hidden></p>
 <h2>Past incidents</h2>
 <p>No incidents reported.</p>
 <p>Something not working for you? Email <a href="mailto:support@getramenai.com">support@getramenai.com</a>; a real person answers.</p>
@@ -132,7 +133,8 @@
       var names = Object.keys(d.checks || {});
       names.forEach(function (n) { var c = d.checks[n]; row(n, c.ok, (c.uptime === null ? '' : c.uptime + '% of checks today')); });
       var w = document.getElementById('watched');
-      if (w && d.at) w.textContent = 'Last checked by the watch: ' + new Date(d.at).toLocaleString() + '.';
+      // shown only once the outside watch really reports (until then this page checks from your browser only)
+      if (w && d.at) { w.textContent = 'RAMen is also checked every 5 minutes from outside its own servers, and the team is alerted when something breaks. Last check: ' + new Date(d.at).toLocaleString() + '.'; w.hidden = false; }
     }).catch(function () { /* the browser check above still shows */ });
   })();
 </script>

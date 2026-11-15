@@ -92,7 +92,7 @@
     <div class="table-wrap stack"><table><thead><tr><th>Date</th><th>Your audience paid</th><th>Your 50%</th><th>Status</th></tr></thead><tbody id="sales"></tbody></table></div>
     <h2>Payouts</h2>
     <div class="table-wrap stack"><table><thead><tr><th>Date</th><th>Amount</th><th>Sent by</th></tr></thead><tbody id="payouts"></tbody></table></div>
-    <p class="fine center">Paid monthly for sales past the 30-day refund window <i>✦</i> <span id="updated"></span> <i>✦</i> Keep this link private.</p>
+    <p class="fine center">Paid monthly for sales older than 30 days <i>✦</i> <span id="updated"></span> <i>✦</i> Keep this link private.</p>
   </div>
 </section>
 </main>
@@ -133,7 +133,7 @@
     $('t-earned').textContent = money(t.earned);
     $('t-due').textContent = money(t.due);
     $('t-paid').textContent = money(t.paid);
-    if (t.waiting > 0) { $('t-wait').hidden = false; $('t-wait').textContent = moneyExact(t.waiting) + ' more is still inside the 30-day refund window. It joins a payout once that window has passed.'; }
+    if (t.waiting > 0) { $('t-wait').hidden = false; $('t-wait').textContent = moneyExact(t.waiting) + ' more is from sales newer than 30 days. It joins a payout once that window has passed.'; }
     if (!d.active) { $('t-wait').hidden = false; $('t-wait').textContent = 'This code is not active any more. What it earned stays here and is still paid.'; }
     var sales = $('sales');
     if (!d.sales.length) { var tr = document.createElement('tr'); var td = cell(tr, '', 'No sales yet. They show up here within the hour after someone uses your code.', 'empty'); td.colSpan = 4; sales.appendChild(tr); }

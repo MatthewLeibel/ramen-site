@@ -561,3 +561,7 @@ code.cmd:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 3px
 code.cmd:focus-visible, pre:focus-visible, video:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 3px #ffb46a; }
 .js .rise:focus-within { opacity: 1; transform: none; transition: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* the thank-you page: the next steps start right under the welcome (14 Nov 2026 walk: an empty band sat between them) */
+.scene.tight { padding-top: clamp(20px, 2.5vw, 36px); }
+.scene.tight .rows { margin-top: 18px; }

@@ -40,6 +40,7 @@
     <nav aria-label="Main">
       <a href="index.html#memory">Memory</a>
       <a href="index.html#endless">Endless</a>
+      <a href="bowl.html">Bowl</a>
       <a href="index.html#desktop">Desktop</a>
       <a href="index.html#plans">Plans</a>
       <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
@@ -103,7 +104,7 @@ ramen.reply(listOf(Message.user("Name three kinds of noodles.")), session = "cha
         is Reply.Started -&gt; {}
     }
 }</code></pre>
-<p>Send the whole conversation each time; RAMen reads only what is new. <code>history</code>, <code>forget</code> and <code>close()</code> manage it. Any GGUF model, no permissions. A 0.9.0 preview.</p>
+<p>Send the whole conversation each time; RAMen reads only what is new. <code>history</code>, <code>forget</code> and <code>close()</code> manage it. Any GGUF model, no permissions. A 0.9.1 preview.</p>
 <h2>On iPhone: the RAMen Swift package</h2>
 <p><strong>1.</strong> In Xcode: File &gt; Add Package Dependencies, enter <code>https://github.com/MatthewLeibel/ramen-swift</code>, choose version 0.9.0 and add the <code>RAMen</code> library to your app. Or in <code>Package.swift</code>:</p>
 <pre><code>.package(url: "https://github.com/MatthewLeibel/ramen-swift", from: "0.9.0")</code></pre>
