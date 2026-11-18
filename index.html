@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>document.documentElement.className += ' js';</script>
-<title>RAMen: more memory, fewer tokens</title>
-<meta name="description" content="RAMen gives all your AIs one memory with receipts, and far fewer tokens: each answer reads only what it needs, and long chats keep the thread. In Claude, ChatGPT and Chrome, on the plan you already pay for. $1.99 a month, 14 days free.">
+<title>RAMen: remember everything, see what's next</title>
+<meta name="description" content="RAMen remembers you in every chat and every AI you use, with receipts. Long chats keep going on far fewer tokens, and what you said becomes one board and a look at the week ahead. In Claude, ChatGPT and Chrome, on the plan you already pay for. $1.99 a month, 14 days free.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RAMen">
-<meta property="og:title" content="RAMen: never start over in a new chat">
-<meta property="og:description" content="One memory for all your AIs, with receipts. Long chats that keep the thread. On the plan you already pay for.">
+<meta property="og:title" content="RAMen: remember everything, see what's next">
+<meta property="og:description" content="Your AI remembers you in every chat, and every AI you use shares it. Long chats on far fewer tokens. Your week ahead on one board.">
 <meta property="og:url" content="https://getramenai.com/">
 <meta property="og:image" content="https://getramenai.com/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -17,8 +17,8 @@
 <meta property="og:image:alt" content="RAMen: never start over in a new chat. One memory for all your AIs.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@getramenai">
-<meta name="twitter:title" content="RAMen: never start over in a new chat">
-<meta name="twitter:description" content="One memory for all your AIs, with receipts. Long chats that keep the thread. On the plan you already pay for.">
+<meta name="twitter:title" content="RAMen: remember everything, see what's next">
+<meta name="twitter:description" content="Your AI remembers you in every chat, and every AI you use shares it. Long chats on far fewer tokens. Your week ahead on one board.">
 <meta name="twitter:image" content="https://getramenai.com/assets/og.jpg">
 <link rel="canonical" href="https://getramenai.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RAMen","url":"https://getramenai.com/","description":"RAMen Memory: one memory for all your AIs, with receipts. RAMen Endless: long chats that keep the thread, with Detail Lock. RAMen Desktop: RAMen on your own computer for local AI. In Claude and ChatGPT through the RAMen connector, on AI websites through the RAMen add-on for Chrome, and in Claude Code through the plugin.","applicationCategory":"ProductivityApplication","operatingSystem":"Web, Chrome, macOS, Windows, Linux","image":"https://getramenai.com/assets/og.jpg","publisher":{"@type":"Organization","name":"NEOTECH Inc.","url":"https://getramenai.com/"},"offers":[{"@type":"Offer","name":"Pro, monthly","price":"1.99","priceCurrency":"USD"}]}</script>
@@ -40,6 +40,8 @@
   .s-hero h1 { margin: 16px 0 0; font-size: clamp(46px, 5.6vw, 86px); line-height: .95; letter-spacing: -0.052em; text-shadow: var(--outline); }
   .s-hero .lede { margin: 22px 0 0; max-width: 42ch; color: #ece6f6; }
   .s-hero .btns { justify-content: flex-start; }
+  .br-wide { display: none; }
+  @media (min-width: 700px) { .br-wide { display: inline; } }
 
   /* the apps RAMen works with: their logos roll by under the hero (the names are trademarks of their owners; see the
      footer). Single-colour logos take the cream text colour; the others keep their own colours. */
@@ -85,6 +87,114 @@
   .feat-cards .feat p { color: #4d3b2c; }
   .feat-cards .feat .go { display: inline-block; margin-top: 12px; color: #9a4508; font-weight: 780; font-size: 15px; }
   .no-list { margin-top: 40px; color: var(--cream); font-weight: 700; font-size: 16px; }
+
+  /* Bowl: the whiteboard on a computer, its timeline on a phone in front of it; on a wide screen it stays in view
+     beside the words as they scroll (as RAMenScope's board does) */
+  .split > .combo { margin: 0; }
+  @media (min-width: 901px) {
+    #bowl .split, #ramenscope .split { align-items: start; }
+    #bowl .split > .combo, #ramenscope .split > .scope-demo { position: sticky; top: 112px; }
+    #bowl .split > .combo { margin-top: 40px; }
+  }
+  #bowl .words .btns, #ramenscope .words .btns { justify-content: flex-start; }
+  .combo { position: relative; padding: 0 0 16% 0; }
+  .combo > .media { margin: 0; }
+  .combo .combo-phone { position: absolute; left: -5%; bottom: 0; width: 29%; border-radius: 20px; box-shadow: 0 6px 0 var(--ink), 0 28px 60px -24px rgba(0, 0, 0, .8); }
+  .combo .combo-phone img { aspect-ratio: auto; }
+  @media (max-width: 900px) { .combo .combo-phone { left: 2%; width: 31%; } }
+
+  /* what RAMen did in our tests, under the cards (17 Nov 2026, Matthew: "RAMen has massive benefit for users that even
+     just use one ai platform"): measured numbers only, each one on the how-it-works page */
+  .stats { list-style: none; margin: 46px auto 0; padding: 0; max-width: 1080px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .stats li { padding: 18px 18px 16px; border: 2.5px solid var(--ink); border-radius: 18px; background: rgba(255, 243, 226, .07);
+              box-shadow: 5px 5px 0 var(--ink); text-align: left; }
+  .stats b { display: block; font: 850 clamp(22px, 2.4vw, 30px)/1.05 var(--font); letter-spacing: -.03em; color: var(--broth-hi); }
+  .stats span { display: block; margin-top: 8px; color: var(--cream); font-size: 14.5px; line-height: 1.4; }
+  @media (max-width: 1100px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .stats { grid-template-columns: minmax(0, 1fr); } }
+
+  /* who RAMen is for (17 Nov 2026, Matthew: "it talks to both audiences ... caters to anybody that uses ai
+     frequently"): one card for each way people use AI, each to the part of the page that shows it */
+  .who { list-style: none; margin: 40px auto 0; padding: 0; max-width: 1180px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .who a { display: flex; flex-direction: column; height: 100%; box-sizing: border-box; padding: 22px 20px 20px; border: 2.5px solid var(--ink);
+           border-radius: 20px; background: rgba(255, 243, 226, .08); box-shadow: 6px 6px 0 var(--ink); color: inherit; text-decoration: none;
+           transition: transform .18s ease, background-color .18s ease; }
+  .who a:hover { transform: translateY(-3px); background: rgba(255, 243, 226, .13); }
+  .who a:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 4px; }
+  .who .who-k { align-self: flex-start; padding: 5px 11px; border: 2px solid var(--ink); border-radius: 999px; background: var(--broth-hi);
+                color: #1b1206; font-size: 13px; font-weight: 800; letter-spacing: .01em; }
+  .who h3 { margin: 16px 0 8px; font-size: 21px; line-height: 1.2; }
+  .who p { margin: 0; color: var(--cream); font-size: 15.5px; line-height: 1.5; flex: 1; }
+  .who .go { margin-top: 14px; color: var(--broth-hi); font-weight: 780; font-size: 15px; }
+  @media (prefers-reduced-motion: reduce) { .who a { transition: none; } .who a:hover { transform: none; } }
+  @media (max-width: 1100px) { .who { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .who { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+
+  /* the overview's line under the cards: RAMen Desktop, for the AI on your own computer */
+  .also { margin-top: 30px; color: var(--cream); font-size: 16px; }
+  .also a { color: var(--broth-hi); font-weight: 750; }
+  /* RAMenScope's crystal ball, the app's own drawing */
+  .scope-ball { width: 104px; height: 104px; filter: drop-shadow(0 8px 14px rgba(20, 8, 40, .45)); }
+  .feat-cards .feat svg.scope-ball { display: block; margin-bottom: 6px; filter: drop-shadow(0 6px 10px rgba(42, 20, 6, .25)); }
+
+  /* RAMenScope (17 Nov 2026): a violet night with a few quiet stars, and "Try a future" (assets/scope-demo.js): a sample
+     plan on a small whiteboard whose cards hop to where they would land; the ones that slip turn red; Undo goes back */
+  .scope-scene { background:
+      radial-gradient(1.6px 1.6px at 8% 22%, rgba(255, 255, 255, .7) 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 21% 64%, rgba(255, 255, 255, .55) 50%, transparent 52%),
+      radial-gradient(1.8px 1.8px at 37% 12%, rgba(255, 243, 226, .7) 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 58% 30%, rgba(255, 255, 255, .5) 50%, transparent 52%),
+      radial-gradient(1.6px 1.6px at 77% 9%, rgba(255, 255, 255, .7) 50%, transparent 52%),
+      radial-gradient(1.2px 1.2px at 91% 48%, rgba(255, 255, 255, .55) 50%, transparent 52%),
+      radial-gradient(1.4px 1.4px at 66% 86%, rgba(255, 243, 226, .55) 50%, transparent 52%),
+      radial-gradient(ellipse 70% 55% at 72% 18%, rgba(123, 92, 255, .35), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 90%, rgba(242, 154, 67, .14), transparent 70%),
+      var(--sky); }
+  .scope-demo { padding: 18px 18px 16px; border-radius: 26px; overflow: visible; color: var(--cream);
+                background: linear-gradient(160deg, rgba(52, 33, 100, .96), rgba(21, 13, 48, .98));
+                box-shadow: 8px 8px 0 var(--ink), 0 34px 90px -34px rgba(123, 92, 255, .7); }
+  .sd-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .sd-title { font: 800 17px/1.15 var(--font); letter-spacing: -.01em; color: #fff; }
+  .sd-title span { display: block; margin-top: 4px; font-weight: 600; font-size: 13.5px; color: #cfc4ee; }
+  .sd-pill { flex: none; padding: 8px 13px; border-radius: 999px; font: 800 13px/1 var(--font); background: #1d6a49; color: #eafff4;
+             box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); transition: background-color .35s; }
+  .sd-pill.bad { background: #962247; color: #fff1f4; }
+  .sd-board { position: relative; height: 280px; border-radius: 18px; overflow: hidden; --row: 80px;
+              background: rgba(255, 255, 255, .045); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); }
+  .sd-cols { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sd-cols span { padding: 11px 12px; font: 760 11.5px/1 var(--font); letter-spacing: .12em; text-transform: uppercase; color: #b3a6dc;
+                  border-right: 1px dashed rgba(255, 255, 255, .14); }
+  .sd-cols span:last-child { border-right: 0; }
+  .sd-card { position: absolute; left: calc(var(--c, 0) * 33.333% + 8px); top: calc(34px + var(--r, 0) * var(--row)); width: calc(33.333% - 16px);
+             min-height: 58px; padding: 9px 11px; border-radius: 14px; display: grid; align-content: start; gap: 4px; color: #1c1236;
+             background: linear-gradient(180deg, #fffdf9, #f3ecff); box-shadow: inset 4px 0 0 var(--broth), 0 10px 20px -12px rgba(0, 0, 0, .75);
+             transition: background-color .3s, box-shadow .3s; }
+  .sd-card b { font: 760 13.5px/1.2 var(--font); }
+  .sd-card span { font: 620 12px/1.25 var(--font); color: #5a4b80; }
+  .sd-card.sd-day { box-shadow: inset 4px 0 0 var(--violet), 0 10px 20px -12px rgba(0, 0, 0, .75); }
+  .sd-card.late { background: linear-gradient(180deg, #fff4f6, #ffe3ea); box-shadow: inset 4px 0 0 #df3460, 0 0 0 2.5px #df3460, 0 12px 26px -12px rgba(223, 52, 96, .7); }
+  .sd-card.late span::after { content: " · at risk"; color: #b0123f; font-weight: 800; }
+  .sd-say { min-height: 46px; margin: 14px 2px; color: #ece6ff; font-size: 15px; line-height: 1.45; }
+  .sd-btns { display: flex; flex-wrap: wrap; gap: 9px; }
+  .sd-btns button { min-height: 44px; padding: 0 15px; border: 2px solid var(--ink); border-radius: 999px; background: var(--cream); color: #2a1406;
+                    font: 760 14px/1 var(--font); cursor: pointer; box-shadow: 3px 3px 0 var(--ink); transition: transform .15s, background-color .2s; }
+  .sd-btns button[aria-pressed="true"] { background: var(--broth); }
+  .sd-btns button:hover:not(:disabled) { transform: translateY(-1px); }
+  .sd-btns button:focus-visible { outline: 3px solid var(--broth-hi); outline-offset: 3px; }
+  .sd-btns .sd-undo { background: transparent; color: var(--cream); border-color: rgba(255, 243, 226, .7); box-shadow: none; }
+  .sd-btns .sd-undo:disabled { opacity: .45; cursor: default; }
+  .scope-demo figcaption { margin-top: 14px; color: #bdb2dc; font-size: 13px; line-height: 1.45; }
+  @media (prefers-reduced-motion: reduce) { .sd-pill, .sd-card, .sd-btns button { transition: none; } }
+  @media (max-width: 560px) {
+    .scope-demo { padding: 14px 12px 12px; box-shadow: 6px 6px 0 var(--ink), 0 24px 60px -30px rgba(123, 92, 255, .7); }
+    .sd-board { height: 290px; --row: 80px; }
+    .sd-cols span { padding: 9px 6px; font-size: 9.5px; letter-spacing: .05em; }
+    .sd-card { left: calc(var(--c, 0) * 33.333% + 4px); width: calc(33.333% - 8px); min-height: 62px; padding: 7px 7px; border-radius: 11px; }
+    .sd-card b { font-size: 11.5px; }
+    .sd-card span { font-size: 10.5px; }
+    .sd-card.late span::after { content: " · risk"; }
+    .sd-btns button { flex: 1 1 calc(50% - 9px); padding: 0 10px; font-size: 13.5px; }
+  }
 
   /* story cards: three framed moments (ink outline, hard shadow, chat bubbles) */
   .story { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; max-width: 1080px;
@@ -206,6 +316,7 @@
       <a href="#memory">Memory</a>
       <a href="#endless">Endless</a>
       <a href="#bowl">Bowl</a>
+      <a href="#ramenscope">RAMenScope</a>
       <a href="#desktop">Desktop</a>
       <a href="#plans">Plans</a>
       <a class="btn sm primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
@@ -218,9 +329,9 @@
   <picture><source srcset="assets/hero.avif" type="image/avif"><source srcset="assets/hero.webp" type="image/webp"><img class="bg" src="assets/hero.jpg" width="1920" height="1071" fetchpriority="high" alt="A ramen shop on a hill at night under a moon shaped like a steaming bowl"></picture>
   <div class="wrap">
     <div class="copy">
-      <span class="kick rise"><i>✦</i> One memory for all your AIs <i>✦</i></span>
-      <h1 class="rise">More memory. <span class="shine">Fewer tokens.</span></h1>
-      <p class="lede rise">Tell one AI, and every AI knows. Each answer pulls only what it needs, on the plan you already pay for.</p>
+      <span class="kick rise"><i>✦</i> For anyone who uses AI a lot <i>✦</i></span>
+      <h1 class="rise">Remember everything.<br class="br-wide"> <span class="shine">See what's next.</span></h1>
+      <p class="lede rise">Use one AI? RAMen remembers you in every chat and keeps long chats going on far fewer tokens. Use several? They all share one memory. Either way, it lays everything out on one board with the week ahead.</p>
       <div class="btns rise">
         <a class="btn primary" href="https://buy.polar.sh/polar_cl_4XjWpI4B9lwVYviQ8ZYekEpPg0b4Ri4q6ptbb24iJTG">Start free trial</a>
         <a class="btn line" href="#demo">Watch the demo</a>
@@ -254,19 +365,43 @@
   </div>
 </section>
 
+<section class="scene" id="for-you" style="--sky:#1b2050;--show:0">
+  <div class="wrap">
+    <div class="center">
+      <span class="kick rise"><i>✦</i> Whichever way you use AI <i>✦</i></span>
+      <h2 class="rise">Built for how <span class="shine">you use AI.</span></h2>
+      <p class="lede rise">One AI or several, in the browser, in your code or on your own computer: if you use AI a lot, RAMen pays off.</p>
+    </div>
+    <ul class="who">
+      <li class="rise"><a href="#endless"><span class="who-k">You use one AI</span><h3>It remembers you in every chat</h3><p>Never start over in a fresh chat. Long chats keep going on 83% fewer tokens, and Detail Lock keeps the details you set.</p><span class="go">How chats keep going</span></a></li>
+      <li class="rise"><a href="#memory"><span class="who-k">You use several AIs</span><h3>They all share one memory</h3><p>Tell ChatGPT once, and Claude knows it too. Start a chat in one AI and pick it up in another, right where you left off.</p><span class="go">How it remembers</span></a></li>
+      <li class="rise"><a href="#get"><span class="who-k">You code with AI</span><h3>Your project, remembered</h3><p>Claude Code, Codex and your code editor keep your project's decisions and to-dos from one session to the next.</p><span class="go">Add it to your tools</span></a></li>
+      <li class="rise"><a href="#desktop"><span class="who-k">You run AI on your computer</span><h3>Local models with a memory</h3><p>RAMen Desktop gives the AI on your own computer your memory, and a long chat comes back in seconds, not minutes.</p><span class="go">See RAMen Desktop</span></a></li>
+    </ul>
+    <p class="also center rise">And for everyone: <a href="#bowl">RAMen Bowl</a> and <a href="#ramenscope">RAMenScope</a> turn what you told your AI into one board, one timeline and your week ahead.</p>
+  </div>
+</section>
+
 <section class="scene" id="features" style="--sky:#232659;--show:0"><span id="works" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
-      <span class="kick rise"><i>✦</i> Four features, one plan <i>✦</i></span>
-      <h2 class="rise">Everything your AI <span class="shine">should remember.</span></h2>
-      <p class="lede rise">It works inside the AI apps you already use. Your AI does the work; RAMen keeps the memory.</p>
+      <span class="kick rise"><i>✦</i> One memory, put to work <i>✦</i></span>
+      <h2 class="rise">A memory that <span class="shine">does something.</span></h2>
+      <p class="lede rise">A memory for every chat and every AI you use, long chats on far fewer tokens, and a plan made from what you said.</p>
     </div>
     <div class="feats feat-cards">
-      <a class="feat rise" href="#memory"><img class="float" src="assets/v4/icons/receipt.webp" width="104" height="104" alt=""><h3>RAMen Memory</h3><p>One memory for all your AIs, with receipts. See or forget anything.</p><span class="go">How it remembers</span></a>
-      <a class="feat rise" href="#endless"><img class="float b" src="assets/v4/icons/endless.webp" width="104" height="104" alt=""><h3>RAMen Endless</h3><p>Long chats that keep the thread. Detail Lock keeps the details you set.</p><span class="go">How chats keep going</span></a>
-      <a class="feat rise" href="#desktop"><img class="float c" src="assets/v4/icons/desktop.webp" width="104" height="104" alt=""><h3>RAMen Desktop</h3><p>RAMen on your own computer, for AI that runs there.</p><span class="go">Get the app</span></a>
-      <a class="feat rise" href="#bowl"><img class="float" src="assets/v4/icons/open.webp" width="104" height="104" alt=""><h3>RAMen Bowl</h3><p>Everything your AIs know, on one board, one timeline and one honest week ahead.</p><span class="go">See the future</span></a>
+      <a class="feat rise" href="#memory"><img class="float" src="assets/v4/icons/receipt.webp" width="104" height="104" alt=""><h3>RAMen Memory</h3><p>Remembers you in every chat, and every AI you use shares it. Receipts on every note.</p><span class="go">How it remembers</span></a>
+      <a class="feat rise" href="#endless"><img class="float b" src="assets/v4/icons/endless.webp" width="104" height="104" alt=""><h3>RAMen Endless</h3><p>Long chats that keep going on far fewer tokens. Detail Lock keeps the details you set.</p><span class="go">How chats keep going</span></a>
+      <a class="feat rise" href="#bowl"><img class="float c" src="assets/v4/icons/open.webp" width="104" height="104" alt=""><h3>RAMen Bowl</h3><p>Everything your AIs know, on one board and one timeline, from past decisions to next week's deadlines.</p><span class="go">See your board</span></a>
+      <a class="feat rise" href="#ramenscope"><svg class="float scope-ball" viewBox="14 8 92 100" width="104" height="104" aria-hidden="true"><defs><radialGradient id="ft-ball" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".45" stop-color="#f5b041" stop-opacity=".6"/><stop offset="1" stop-color="#8b5cf6" stop-opacity=".85"/></radialGradient></defs><circle cx="60" cy="52" r="38" fill="url(#ft-ball)" stroke="#1b1206" stroke-width="2.5"/><path d="M40 58c8-14 26-18 40-6M44 44c10-6 22-4 30 4" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="2.6" stroke-linecap="round"/><path d="M64 30l2.4 6 6 2.4-6 2.4-2.4 6-2.4-6-6-2.4 6-2.4z" fill="#fff"/><path d="M36 86l-4 14h56l-4-14" fill="#f29a43" stroke="#1b1206" stroke-width="2.5" stroke-linejoin="round"/><path d="M26 104h68" stroke="#1b1206" stroke-width="3" stroke-linecap="round"/></svg><h3>RAMenScope</h3><p>Your week ahead every morning. Try a change, like moving a launch, and see what moves before you decide.</p><span class="go">Try a future</span></a>
     </div>
+    <ul class="stats rise" aria-label="What RAMen did in our tests">
+      <li><b>83% fewer</b><span>tokens to keep a long chat going</span></li>
+      <li><b>4.7 times fewer</b><span>details dropped in long chats, with Detail Lock</span></li>
+      <li><b>1,200 tokens</b><span>of memory an answer, not a 23,000-token chat</span></li>
+      <li><b>3.7 seconds</b><span>to reopen a long chat in RAMen Desktop, not 12 minutes</span></li>
+    </ul>
+    <p class="also center rise">Measured in our own tests, <a href="how-it-works.html">how we measured</a>. Also on your own computer: <a href="#desktop">RAMen Desktop</a> gives the AI that runs there your memory too.</p>
     <p class="no-list center rise">In the AI apps you already use <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No API keys <i style="font-style:normal;color:var(--broth);margin:0 10px">✦</i> No extra AI bill</p>
   </div>
   <img class="band" src="assets/v2/band.webp" srcset="assets/v2/band-1200.webp 1200w, assets/v2/band.webp 2400w" sizes="100vw" width="2400" height="848" loading="lazy" decoding="async" alt="" aria-hidden="true">
@@ -385,17 +520,61 @@
           <li><h3>One whiteboard</h3><p>Everything your AIs know in time order, each part of your life in its own color. Press Today, then look past it.</p></li>
           <li><h3>A timeline that tells the truth</h3><p>When it was discussed, decided, changed and done, with the app and your own words.</p></li>
           <li><h3>Your week, honestly</h3><p>Bowl tells you early when Friday won't fit, with the tasks behind it.</p></li>
-          <li><h3>RAMenScope</h3><p>Take on a client. Move the launch. Keep Fridays free. Watch your future change before you decide.</p></li>
           <li><h3>Ask Bowl</h3><p>Ask what's at risk this week, or tell it what to do. It answers and rearranges the board.</p></li>
+          <li><h3>Undo anything</h3><p>Change a date and the cards move to where they land. Not right? Undo it, or go back to before any change.</p></li>
         </ol>
         <div class="btns rise"><a class="btn primary" href="bowl.html">See RAMen Bowl</a></div>
         <p class="fine rise">In RAMen Pro and the 14-day trial. In your browser, in RAMen Desktop and on your phone. Bowl's AI runs free on your device, or on RAMen Cloud AI when you want it.</p>
       </div>
-      <figure class="media shot rise">
-        <img src="assets/v5/bowl/bowl-today.webp" width="2720" height="1720" loading="lazy" decoding="async" alt="RAMen Bowl's Today: a short briefing, then the cards that need you, like a Friday that needs more hours than you have, with the tasks behind it">
+      <figure class="combo rise">
+        <div class="media shot"><img src="assets/v5/bowl/bowl-board.webp" width="2720" height="1720" loading="lazy" decoding="async" alt="RAMen Bowl's whiteboard: every memory from your AI apps in time order, each part of your life in its own color, with today and the forecast ahead"></div>
+        <div class="media shot combo-phone"><img src="assets/v5/bowl/bowl-phone-timeline.webp" width="1170" height="2532" loading="lazy" decoding="async" alt="Bowl's timeline on a phone: what was discussed, decided and done, with the app it came from"></div>
       </figure>
     </div>
     <p class="notes center rise">RAMen Bowl, shown with a sample project.</p>
+  </div>
+</section>
+
+<section class="scene scope-scene" id="ramenscope" style="--sky:#150d2e;--show:0">
+  <div class="wrap">
+    <div class="split flip">
+      <div class="words">
+        <svg class="float rise scope-ball" viewBox="0 0 120 120" width="104" height="104" aria-hidden="true"><defs><radialGradient id="sc-ball" cx="38%" cy="32%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".45" stop-color="#f5b041" stop-opacity=".6"/><stop offset="1" stop-color="#8b5cf6" stop-opacity=".85"/></radialGradient></defs><circle cx="60" cy="52" r="38" fill="url(#sc-ball)" stroke="#070a17" stroke-width="2.5"/><path d="M40 58c8-14 26-18 40-6M44 44c10-6 22-4 30 4" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="2.6" stroke-linecap="round"/><path d="M64 30l2.4 6 6 2.4-6 2.4-2.4 6-2.4-6-6-2.4 6-2.4z" fill="#fff"/><path d="M36 86l-4 14h56l-4-14" fill="#f29a43" stroke="#070a17" stroke-width="2.5" stroke-linejoin="round"/><path d="M26 104h68" stroke="#070a17" stroke-width="3" stroke-linecap="round"/></svg>
+        <span class="kick rise"><i>✦</i> RAMenScope <i>✦</i></span>
+        <h2 class="rise">See your future <span class="shine">before you choose it.</span></h2>
+        <p class="lede rise" style="margin-left:0">Every morning RAMenScope reads your board and writes you a short briefing: what stands out, what may slip, and what to do first. Then try a change and watch your plan rearrange itself.</p>
+        <ol class="numbered rise" style="margin-top:30px">
+          <li><h3>A morning briefing</h3><p>Your week in a few plain lines, with the numbers behind them and the news on your topics.</p></li>
+          <li><h3>Try a future</h3><p>Take on a client, move the launch, keep Fridays free. The cards move to where they would land, and RAMenScope says what slips.</p></li>
+          <li><h3>Undo anything</h3><p>Every change is kept with how things were before it. Undo it, or go back to before any change.</p></li>
+          <li><h3>Keep the one you like</h3><p>Save a few futures side by side, compare them with your plan, and keep the one that works. Every AI app sees it.</p></li>
+        </ol>
+        <div class="btns rise"><a class="btn primary" href="bowl.html#ramenscope">See RAMenScope</a></div>
+      </div>
+      <figure class="media scope-demo rise" data-scope-demo aria-labelledby="sd-h">
+        <div class="sd-head">
+          <span class="sd-title" id="sd-h">Try a future <span>Rye &amp; Co's next three weeks</span></span>
+          <span class="sd-pill" data-pill>All on time</span>
+        </div>
+        <div class="sd-board" data-board>
+          <div class="sd-cols" aria-hidden="true"><span>This week</span><span>Next week</span><span>The week after</span></div>
+          <div class="sd-card" data-card="logo"><b>Finalize the logo</b><span>3 hours</span></div>
+          <div class="sd-card" data-card="desc"><b>Write the descriptions</b><span>5 hours</span></div>
+          <div class="sd-card" data-card="test"><b>Test the checkout</b><span>4 hours</span></div>
+          <div class="sd-card" data-card="shoot"><b>Photo shoot with Ana</b><span>2 hours</span></div>
+          <div class="sd-card" data-card="email"><b>Send the launch email</b><span>Due next Wed</span></div>
+          <div class="sd-card sd-day" data-card="open"><b>Shop opens</b><span>In two weeks</span></div>
+        </div>
+        <p class="sd-say" data-say aria-live="polite">Your plan as it is. Try a future: the cards move to where they would land.</p>
+        <div class="sd-btns" role="group" aria-label="Futures to try">
+          <button type="button" data-future="client" aria-pressed="false">Take on a client</button>
+          <button type="button" data-future="launch" aria-pressed="false">Move the launch</button>
+          <button type="button" data-future="fridays" aria-pressed="false">Keep Fridays free</button>
+          <button type="button" class="sd-undo" data-undo disabled>Undo</button>
+        </div>
+        <figcaption>A sample plan. In RAMen, the cards are your own saved chats and notes, and nothing changes until you keep it.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -524,6 +703,7 @@
       <h2 class="rise">Good to know.</h2>
     </div>
     <div class="faq">
+      <details><summary>Is RAMen useful if I only use one AI?</summary><p>Yes. With one AI, RAMen remembers you in every fresh chat, keeps long chats going on far fewer tokens, and Detail Lock keeps the details you set. RAMen Bowl and RAMenScope turn what you said into one board and a look at the weeks ahead. Use more than one AI, and they all share the same memory.</p></details>
       <details><summary>Is there an extra AI bill?</summary><p>No. RAMen runs inside Claude or ChatGPT, on the plan you already pay for, with no API keys. Two extras, only if you choose them: a cloud model you pick in RAMen Desktop bills your own key, and RAMen Cloud AI for Bowl is its own plan (from $9.99 a month, or credits from $2). Bowl's AI also runs free on your own device.</p></details>
       <details><summary>Does RAMen save tokens?</summary><p>Yes. About 1,200 tokens of memory an answer instead of a 23,000-token chat, and 83% fewer to continue a saved chat. Detail Lock is the exception: it uses more while on. <a href="how-it-works.html#results">How we measured</a></p></details>
       <details><summary>Can I turn Detail Lock off?</summary><p>Yes. In the add-on's Settings, set the list to never and checks off. Or keep it for long chats only. Detail Lock comes with RAMen Pro.</p></details>
@@ -654,5 +834,6 @@
 </script>
 <script src="assets/seams.js" defer></script>
 <script src="assets/a11y.js" defer></script>
+<script src="assets/scope-demo.js" defer></script>
 </body>
 </html>
